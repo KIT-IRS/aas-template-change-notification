@@ -1,0 +1,4353 @@
+header:
+  Family: TechnicalData
+  PreVersion: https://admin-shell.io/ZVEI/TechnicalData/Submodel/1/2
+  PostVersion: https://admin-shell.io/idta/SubmodelTemplate/TechnicalData/2/0
+  PreTemplate: ressources/Templates/IDTA_02003-1-2_Template_TechnicalData.json
+  PostTemplate: ressources/Templates/IDTA 02003_2-0-1_Template_TechnicalData.json
+  TemplateOwner: Industrial Digital Twin Association (IDTA)
+  TemplateOwnerAddress:
+    Company: Industrial Digital Twin Association e.V.
+    Street: Lyoner Straße 18
+    Zipcode: '60528'
+    CityTown: Frankfurt am Main
+    NationalCode: DE
+  ChangeURI: https://github.com/admin-shell-io/submodel-templates/tree/main/published/Technical_Data/2/0
+sections:
+- title: 'G1: ManufacturerLogo is renamed to CompanyLogo'
+  origin: hand
+  items:
+  - ChangeOperation: UpdateIdShort
+    ElementPath: GeneralInformation.ManufacturerLogo
+    NewIdShort: CompanyLogo
+- title: 'G2: ProductImage (File, 0..*) becomes the list ProductImages whose entries hold ImageFile'
+  origin: hand
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: GeneralInformation.ProductImages
+    SMEType: SubmodelElementList
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ProductImages
+    AttributeKey: typeValueListElement
+    AttributeValue: SubmodelElementCollection
+  - ChangeOperation: CreateSME
+    ElementPath: GeneralInformation.ProductImages[0]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateQual
+    ElementPath: GeneralInformation.ProductImages
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ProductImages
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ProductImages
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - GeneralInformation.ProductImage@Cardinality#value
+    TargetElementPaths:
+    - GeneralInformation.ProductImages@SMT/Cardinality#value
+    TransferFunction:
+      Kind: ValueMap
+      Pairs:
+        ZeroToMany: ZeroToOne
+  - ChangeOperation: RemoveQual
+    ElementPath: GeneralInformation.ProductImage
+    QualifierType: Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: GeneralInformation.ProductImage
+    NewParentPath: GeneralInformation.ProductImages[0]
+  - ChangeOperation: UpdateIdShort
+    ElementPath: GeneralInformation.ProductImages[0].ProductImage
+    NewIdShort: ImageFile
+  - ChangeOperation: CreateQual
+    ElementPath: GeneralInformation.ProductImages[0].ImageFile
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ProductImages[0].ImageFile
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ProductImages[0].ImageFile
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ProductImages[0].ImageFile
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: One
+- title: 'G4: ProductClassifications becomes a list; each ProductClassificationItem becomes a list entry'
+  origin: hand
+  items:
+  - ChangeOperation: UpdateParent
+    ElementPath: ProductClassifications.ProductClassificationItem.ProductClassificationSystem
+    NewParentPath: ''
+  - ChangeOperation: UpdateParent
+    ElementPath: ProductClassifications.ProductClassificationItem.ClassificationSystemVersion
+    NewParentPath: ''
+  - ChangeOperation: UpdateParent
+    ElementPath: ProductClassifications.ProductClassificationItem.ProductClassId
+    NewParentPath: ''
+  - ChangeOperation: RemoveQual
+    ElementPath: ProductClassifications.ProductClassificationItem
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: ProductClassifications.ProductClassificationItem
+    QualifierType: AllowedIdShort
+  - ChangeOperation: RemoveSME
+    ElementPath: ProductClassifications.ProductClassificationItem
+  - ChangeOperation: CreateSME
+    ElementPath: ProductClassificationsList
+    SMEType: SubmodelElementList
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassificationsList
+    AttributeKey: typeValueListElement
+    AttributeValue: SubmodelElementCollection
+  - ChangeOperation: CreateQual
+    ElementPath: ProductClassificationsList
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassificationsList
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassificationsList
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - ProductClassifications@Cardinality#value
+    TargetElementPaths:
+    - ProductClassificationsList@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: ProductClassifications
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveSME
+    ElementPath: ProductClassifications
+  - ChangeOperation: UpdateIdShort
+    ElementPath: ProductClassificationsList
+    NewIdShort: ProductClassifications
+  - ChangeOperation: CreateSME
+    ElementPath: ProductClassifications[0]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: UpdateParent
+    ElementPath: ProductClassificationSystem
+    NewParentPath: ProductClassifications[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: ClassificationSystemVersion
+    NewParentPath: ProductClassifications[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: ProductClassId
+    NewParentPath: ProductClassifications[0]
+  - ChangeOperation: UpdateIdShort
+    ElementPath: ProductClassifications[0].ProductClassificationSystem
+    NewIdShort: ClassificationSystem
+- title: 'G5: TechnicalProperties becomes the list TechnicalPropertyAreas (paper, Table 3)'
+  origin: hand
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: TechnicalPropertyAreas
+    SMEType: SubmodelElementList
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas
+    AttributeKey: typeValueListElement
+    AttributeValue: SubmodelElementCollection
+  - ChangeOperation: CreateSME
+    ElementPath: TechnicalPropertyAreas[0]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: UpdateParent
+    ElementPath: TechnicalProperties.ID___arbitrary1__
+    NewParentPath: TechnicalPropertyAreas[0]
+  - ChangeOperation: UpdateIdShort
+    ElementPath: TechnicalPropertyAreas[0].ID___arbitrary1__
+    NewIdShort: ArbitraryMLP
+  - ChangeOperation: UpdateParent
+    ElementPath: TechnicalProperties.ID___arbitrary2__
+    NewParentPath: TechnicalPropertyAreas[0]
+  - ChangeOperation: UpdateIdShort
+    ElementPath: TechnicalPropertyAreas[0].ID___arbitrary2__
+    NewIdShort: ArbitraryProperty
+  - ChangeOperation: UpdateParent
+    ElementPath: TechnicalProperties.MainSection.SubSection
+    NewParentPath: TechnicalPropertyAreas[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: TechnicalProperties.MainSection
+    NewParentPath: TechnicalPropertyAreas[0]
+  - ChangeOperation: UpdateIdShort
+    ElementPath: TechnicalPropertyAreas[0].MainSection
+    NewIdShort: Section
+  - ChangeOperation: UpdateParent
+    ElementPath: TechnicalPropertyAreas[0].SubSection
+    NewParentPath: TechnicalPropertyAreas[0].Section
+  - ChangeOperation: UpdateIdShort
+    ElementPath: TechnicalPropertyAreas[0].Section.SubSection
+    NewIdShort: Section
+  - ChangeOperation: RemoveQual
+    ElementPath: TechnicalProperties.SubSection
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: TechnicalProperties.SubSection
+    QualifierType: AllowedIdShort
+  - ChangeOperation: RemoveSME
+    ElementPath: TechnicalProperties.SubSection
+  - ChangeOperation: CreateQual
+    ElementPath: TechnicalPropertyAreas
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - TechnicalProperties@Cardinality#value
+    TargetElementPaths:
+    - TechnicalPropertyAreas@SMT/Cardinality#value
+    TransferFunction:
+      Kind: ValueMap
+      Pairs:
+        One: ZeroToOne
+  - ChangeOperation: RemoveQual
+    ElementPath: TechnicalProperties
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveSME
+    ElementPath: TechnicalProperties
+- title: 'G8: the cardinality vocabulary changes from Cardinality to SMT/Cardinality'
+  origin: rule
+  rule:
+    QualifierTypeRenames:
+      Cardinality: SMT/Cardinality
+  items:
+  - ChangeOperation: CreateQual
+    ElementPath: GeneralInformation
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - GeneralInformation@Cardinality#value
+    TargetElementPaths:
+    - GeneralInformation@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: GeneralInformation
+    QualifierType: Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: GeneralInformation.ManufacturerName
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerName
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerName
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - GeneralInformation.ManufacturerName@Cardinality#value
+    TargetElementPaths:
+    - GeneralInformation.ManufacturerName@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: GeneralInformation.ManufacturerName
+    QualifierType: Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: GeneralInformation.CompanyLogo
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.CompanyLogo
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.CompanyLogo
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - GeneralInformation.CompanyLogo@Cardinality#value
+    TargetElementPaths:
+    - GeneralInformation.CompanyLogo@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: GeneralInformation.CompanyLogo
+    QualifierType: Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: GeneralInformation.ManufacturerProductDesignation
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerProductDesignation
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerProductDesignation
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - GeneralInformation.ManufacturerProductDesignation@Cardinality#value
+    TargetElementPaths:
+    - GeneralInformation.ManufacturerProductDesignation@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: GeneralInformation.ManufacturerProductDesignation
+    QualifierType: Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: GeneralInformation.ManufacturerArticleNumber
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerArticleNumber
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerArticleNumber
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - GeneralInformation.ManufacturerArticleNumber@Cardinality#value
+    TargetElementPaths:
+    - GeneralInformation.ManufacturerArticleNumber@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: GeneralInformation.ManufacturerArticleNumber
+    QualifierType: Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: GeneralInformation.ManufacturerOrderCode
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerOrderCode
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerOrderCode
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - GeneralInformation.ManufacturerOrderCode@Cardinality#value
+    TargetElementPaths:
+    - GeneralInformation.ManufacturerOrderCode@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: GeneralInformation.ManufacturerOrderCode
+    QualifierType: Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - ProductClassifications[0].ClassificationSystem@Cardinality#value
+    TargetElementPaths:
+    - ProductClassifications[0].ClassificationSystem@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    QualifierType: Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: ProductClassifications[0].ClassificationSystemVersion
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystemVersion
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystemVersion
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - ProductClassifications[0].ClassificationSystemVersion@Cardinality#value
+    TargetElementPaths:
+    - ProductClassifications[0].ClassificationSystemVersion@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: ProductClassifications[0].ClassificationSystemVersion
+    QualifierType: Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: ProductClassifications[0].ProductClassId
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ProductClassId
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ProductClassId
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - ProductClassifications[0].ProductClassId@Cardinality#value
+    TargetElementPaths:
+    - ProductClassifications[0].ProductClassId@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: ProductClassifications[0].ProductClassId
+    QualifierType: Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: TechnicalPropertyAreas[0].ArbitraryMLP
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - TechnicalPropertyAreas[0].ArbitraryMLP@Cardinality#value
+    TargetElementPaths:
+    - TechnicalPropertyAreas[0].ArbitraryMLP@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: TechnicalPropertyAreas[0].ArbitraryMLP
+    QualifierType: Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: TechnicalPropertyAreas[0].ArbitraryProperty
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - TechnicalPropertyAreas[0].ArbitraryProperty@Cardinality#value
+    TargetElementPaths:
+    - TechnicalPropertyAreas[0].ArbitraryProperty@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: TechnicalPropertyAreas[0].ArbitraryProperty
+    QualifierType: Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: TechnicalPropertyAreas[0].Section
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - TechnicalPropertyAreas[0].Section@Cardinality#value
+    TargetElementPaths:
+    - TechnicalPropertyAreas[0].Section@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: TechnicalPropertyAreas[0].Section
+    QualifierType: Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: TechnicalPropertyAreas[0].Section.Section
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.Section
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.Section
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - TechnicalPropertyAreas[0].Section.Section@Cardinality#value
+    TargetElementPaths:
+    - TechnicalPropertyAreas[0].Section.Section@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: TechnicalPropertyAreas[0].Section.Section
+    QualifierType: Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: FurtherInformation
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: FurtherInformation
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: FurtherInformation
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - FurtherInformation@Cardinality#value
+    TargetElementPaths:
+    - FurtherInformation@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: FurtherInformation
+    QualifierType: Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: FurtherInformation.TextStatement
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: FurtherInformation.TextStatement
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: FurtherInformation.TextStatement
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - FurtherInformation.TextStatement@Cardinality#value
+    TargetElementPaths:
+    - FurtherInformation.TextStatement@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: FurtherInformation.TextStatement
+    QualifierType: Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: FurtherInformation.ValidDate
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: FurtherInformation.ValidDate
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: FurtherInformation.ValidDate
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - FurtherInformation.ValidDate@Cardinality#value
+    TargetElementPaths:
+    - FurtherInformation.ValidDate@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: FurtherInformation.ValidDate
+    QualifierType: Cardinality
+- title: 'Completion: removed elements and qualifiers'
+  origin: generated
+  items:
+  - ChangeOperation: RemoveQual
+    ElementPath: GeneralInformation.ManufacturerName
+    QualifierType: ExampleValue
+  - ChangeOperation: RemoveQual
+    ElementPath: GeneralInformation.ManufacturerProductDesignation
+    QualifierType: ExampleValue
+  - ChangeOperation: RemoveQual
+    ElementPath: GeneralInformation.ManufacturerArticleNumber
+    QualifierType: ExampleValue
+  - ChangeOperation: RemoveQual
+    ElementPath: GeneralInformation.ManufacturerOrderCode
+    QualifierType: ExampleValue
+  - ChangeOperation: RemoveQual
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    QualifierType: ExampleValue
+  - ChangeOperation: RemoveQual
+    ElementPath: ProductClassifications[0].ClassificationSystemVersion
+    QualifierType: ExampleValue
+  - ChangeOperation: RemoveQual
+    ElementPath: ProductClassifications[0].ProductClassId
+    QualifierType: ExampleValue
+  - ChangeOperation: RemoveQual
+    ElementPath: TechnicalPropertyAreas[0].ArbitraryMLP
+    QualifierType: ExampleValue
+  - ChangeOperation: RemoveQual
+    ElementPath: TechnicalPropertyAreas[0].ArbitraryProperty
+    QualifierType: ExampleValue
+  - ChangeOperation: RemoveQual
+    ElementPath: TechnicalPropertyAreas[0].Section
+    QualifierType: AllowedIdShort
+  - ChangeOperation: RemoveQual
+    ElementPath: TechnicalPropertyAreas[0].Section.Section
+    QualifierType: AllowedIdShort
+  - ChangeOperation: RemoveQual
+    ElementPath: FurtherInformation.TextStatement
+    QualifierType: ExampleValue
+  - ChangeOperation: RemoveQual
+    ElementPath: FurtherInformation.TextStatement
+    QualifierType: AllowedIdShort
+  - ChangeOperation: RemoveQual
+    ElementPath: FurtherInformation.ValidDate
+    QualifierType: ExampleValue
+- title: 'Completion: created elements and qualifiers'
+  origin: generated
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: GeneralInformation.ProductImages[0].ImageNote
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: ProductClassifications[0].ClassificationSystemUrl
+    SMEType: Property
+  - ChangeOperation: CreateSME
+    ElementPath: ProductClassifications[0].ProductClassCodedName
+    SMEType: Property
+  - ChangeOperation: CreateSME
+    ElementPath: ProductClassifications[0].ProductClassName
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: ProductClassifications[0].ReferenceToTechnicalPropertyArea
+    SMEType: ReferenceElement
+  - ChangeOperation: CreateSME
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitrarySMC
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateSME
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitrarySML
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateSME
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitraryProperty
+    SMEType: Property
+  - ChangeOperation: CreateSME
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitraryMLP
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitraryRange
+    SMEType: Range
+  - ChangeOperation: CreateSME
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateSME
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.Section
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateSME
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitrarySMC
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateSME
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitrarySML
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateSME
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitraryProperty
+    SMEType: Property
+  - ChangeOperation: CreateSME
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitraryMLP
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitraryRange
+    SMEType: Range
+  - ChangeOperation: CreateSME
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySML
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateSME
+    ElementPath: TechnicalPropertyAreas[0].ArbitraryRange
+    SMEType: Range
+  - ChangeOperation: CreateSME
+    ElementPath: SpecificDescriptions
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateSME
+    ElementPath: SpecificDescriptions[0]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateSME
+    ElementPath: SpecificDescriptions[0].Section
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateSME
+    ElementPath: SpecificDescriptions[0].Section.Section
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateSME
+    ElementPath: SpecificDescriptions[0].Section.ArbitrarySMC
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateSME
+    ElementPath: SpecificDescriptions[0].Section.ArbitrarySML
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateSME
+    ElementPath: SpecificDescriptions[0].Section.ArbitraryProperty
+    SMEType: Property
+  - ChangeOperation: CreateSME
+    ElementPath: SpecificDescriptions[0].Section.ArbitraryMLP
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: SpecificDescriptions[0].Section.ArbitraryRange
+    SMEType: Range
+  - ChangeOperation: CreateSME
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateSME
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.Section
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateSME
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitrarySMC
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateSME
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitrarySML
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateSME
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryProperty
+    SMEType: Property
+  - ChangeOperation: CreateSME
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryMLP
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryRange
+    SMEType: Range
+  - ChangeOperation: CreateSME
+    ElementPath: SpecificDescriptions[0].ArbitrarySML
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateSME
+    ElementPath: SpecificDescriptions[0].ArbitraryProperty
+    SMEType: Property
+  - ChangeOperation: CreateSME
+    ElementPath: SpecificDescriptions[0].ArbitraryMLP
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: SpecificDescriptions[0].ArbitraryRange
+    SMEType: Range
+  - ChangeOperation: CreateQual
+    ElementPath: GeneralInformation.ProductImages[0].ImageNote
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    QualifierType: SMT/ExampleValue/ECLASS
+  - ChangeOperation: CreateQual
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    QualifierType: SMT/ExampleValue/CDD
+  - ChangeOperation: CreateQual
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    QualifierType: SMT/ExampleValue/UNSPSC
+  - ChangeOperation: CreateQual
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    QualifierType: SMT/ExampleValue/CustomerSpecific
+  - ChangeOperation: CreateQual
+    ElementPath: ProductClassifications[0].ClassificationSystemUrl
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: ProductClassifications[0].ProductClassCodedName
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: ProductClassifications[0].ProductClassName
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: ProductClassifications[0].ReferenceToTechnicalPropertyArea
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitrarySMC
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitrarySML
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitraryProperty
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitraryMLP
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitraryRange
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.Section
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitrarySMC
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitrarySML
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitraryProperty
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitraryMLP
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitraryRange
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySML
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: TechnicalPropertyAreas[0].ArbitraryRange
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: SpecificDescriptions
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: SpecificDescriptions[0]
+    QualifierType: Naming
+  - ChangeOperation: CreateQual
+    ElementPath: SpecificDescriptions[0].Section
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: SpecificDescriptions[0].Section.Section
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: SpecificDescriptions[0].Section.ArbitrarySMC
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: SpecificDescriptions[0].Section.ArbitrarySML
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: SpecificDescriptions[0].Section.ArbitraryProperty
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: SpecificDescriptions[0].Section.ArbitraryMLP
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: SpecificDescriptions[0].Section.ArbitraryRange
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.Section
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitrarySMC
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitrarySML
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryProperty
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryMLP
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryRange
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: SpecificDescriptions[0].ArbitrarySML
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: SpecificDescriptions[0].ArbitraryProperty
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: SpecificDescriptions[0].ArbitraryMLP
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: SpecificDescriptions[0].ArbitraryRange
+    QualifierType: SMT/Cardinality
+- title: 'Completion: attributes'
+  origin: generated
+  items:
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Submodel containing technical data of the asset and associated product classificatons
+    - language: de
+      text: Teilmodell, das die technischen Daten des Assets und die zugehörigen Produktklassifizierungen enthält
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    AttributeKey: administration
+    AttributeValue:
+      version: '2'
+      revision: '0'
+      templateId: https://admin-shell.io/idta-02003-2-0
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    AttributeKey: id
+    AttributeValue: https://admin-shell.io/idta/SubmodelTemplate/TechnicalData/2/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ModelReference
+      keys:
+      - type: Submodel
+        value: 0173-1#01-AHX837#002
+  - ChangeOperation: CreateAttr
+    ElementPath: ''
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-01-AHX837-002
+  - ChangeOperation: RemoveAttr
+    ElementPath: GeneralInformation
+    AttributeKey: description
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: General information
+    - language: de
+      text: Allgemeine Informationen
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABK161#002/0173-1#01-AHX838#002
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/ 0173-1-02-ABK161-002/0173-1-01-AHX838-002
+  - ChangeOperation: RemoveAttr
+    ElementPath: GeneralInformation.ManufacturerName
+    AttributeKey: description
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerName
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerName
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Manufacturer name
+    - language: de
+      text: Herstellername
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerName
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO677#004
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerName
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerName
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-AAO677-004
+  - ChangeOperation: RemoveAttr
+    ElementPath: GeneralInformation.CompanyLogo
+    AttributeKey: description
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.CompanyLogo
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.CompanyLogo
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Company logo
+    - language: de
+      text: Firmenlogo
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.CompanyLogo
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI776#002
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.CompanyLogo
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.CompanyLogo
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-ABI776-002
+  - ChangeOperation: RemoveAttr
+    ElementPath: GeneralInformation.ManufacturerProductDesignation
+    AttributeKey: description
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerProductDesignation
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerProductDesignation
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Manufacturer product designation
+    - language: de
+      text: Herstellerproduktbezeichnung
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerProductDesignation
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAW338#003
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerProductDesignation
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerProductDesignation
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-AAW338-003
+  - ChangeOperation: RemoveAttr
+    ElementPath: GeneralInformation.ManufacturerArticleNumber
+    AttributeKey: description
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerArticleNumber
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerArticleNumber
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Manufacturer article number
+    - language: de
+      text: Herstellerartikelnummer
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerArticleNumber
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO676#005
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerArticleNumber
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerArticleNumber
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-AAO676-005
+  - ChangeOperation: RemoveAttr
+    ElementPath: GeneralInformation.ManufacturerOrderCode
+    AttributeKey: description
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerOrderCode
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerOrderCode
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Manufacturer order code
+    - language: de
+      text: Bestellcode des Herstellers
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerOrderCode
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO227#004
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerOrderCode
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerOrderCode
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-AAO227-004
+  - ChangeOperation: RemoveAttr
+    ElementPath: FurtherInformation
+    AttributeKey: description
+  - ChangeOperation: CreateAttr
+    ElementPath: FurtherInformation
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: FurtherInformation
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Further information
+    - language: de
+      text: Weitere Informationen
+  - ChangeOperation: UpdateAttr
+    ElementPath: FurtherInformation
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABK164#002
+  - ChangeOperation: CreateAttr
+    ElementPath: FurtherInformation
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: FurtherInformation
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-ABK164-002
+  - ChangeOperation: RemoveAttr
+    ElementPath: FurtherInformation.TextStatement
+    AttributeKey: description
+  - ChangeOperation: CreateAttr
+    ElementPath: FurtherInformation.TextStatement
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: FurtherInformation.TextStatement
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Text statement
+    - language: de
+      text: Anweisung im Text
+  - ChangeOperation: UpdateAttr
+    ElementPath: FurtherInformation.TextStatement
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABK134#002
+  - ChangeOperation: CreateAttr
+    ElementPath: FurtherInformation.TextStatement
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: FurtherInformation.TextStatement
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-ABK134-002
+  - ChangeOperation: CreateAttr
+    ElementPath: FurtherInformation.TextStatement
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: FurtherInformation.TextStatement
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: Statement by the manufacturer in text form, e.g. scope of validity of the statements, scopes of application, conditions
+        of operation.
+  - ChangeOperation: RemoveAttr
+    ElementPath: FurtherInformation.ValidDate
+    AttributeKey: description
+  - ChangeOperation: CreateAttr
+    ElementPath: FurtherInformation.ValidDate
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: FurtherInformation.ValidDate
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Validity date
+    - language: de
+      text: Verfallsdatum
+  - ChangeOperation: UpdateAttr
+    ElementPath: FurtherInformation.ValidDate
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABL775#001
+  - ChangeOperation: CreateAttr
+    ElementPath: FurtherInformation.ValidDate
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: FurtherInformation.ValidDate
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1#02-ABL775#001
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ProductImages
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ProductImages
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Product images
+    - language: de
+      text: Produktbilder
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ProductImages
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ProductImages
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABM220#001
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ProductImages
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ProductImages
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-ABM220-001
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ProductImages
+    AttributeKey: semanticIdListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ProductImages
+    AttributeKey: semanticIdListElement
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABM220#001/0173-1#01-AHY911#001
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ProductImages[0]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ProductImages[0]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Product image
+    - language: de
+      text: Produktbild
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ProductImages[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ProductImages[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABM220#001/0173-1#01-AHY911#001
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ProductImages[0]
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ProductImages[0]
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABM220#001~0/0173-1#01-AHY911#001
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-ABM220-001/0173-1-01-AHY911-001
+  - ChangeOperation: RemoveAttr
+    ElementPath: GeneralInformation.ProductImages[0].ImageFile
+    AttributeKey: description
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ProductImages[0].ImageFile
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ProductImages[0].ImageFile
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Product image
+    - language: de
+      text: Bildname Sachaufnahme
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ProductImages[0].ImageFile
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABK291#002
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Product classifications
+    - language: de
+      text: Produktklassifikationen
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABK162#002
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-ABK162-002
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications
+    AttributeKey: orderRelevant
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications
+    AttributeKey: orderRelevant
+    AttributeValue: false
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications
+    AttributeKey: semanticIdListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications
+    AttributeKey: semanticIdListElement
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABK162#002/0173-1#01-AHX839#002
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Produkt classification
+    - language: de
+      text: Produktklassifikation
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABK162#002/0173-1#01-AHX839#002
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0]
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0]
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABK162#002~0/0173-1#01-AHX839#002
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-ABK162-002/0173-1-01-AHX839-002
+  - ChangeOperation: RemoveAttr
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    AttributeKey: description
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Classification system
+    - language: de
+      text: Klassifikationssystem
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABL424#001
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-ABL424-001
+  - ChangeOperation: RemoveAttr
+    ElementPath: ProductClassifications[0].ClassificationSystemVersion
+    AttributeKey: description
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystemVersion
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystemVersion
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Classification system version
+    - language: de
+      text: Version der Klassifikationssystem
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystemVersion
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAR710#003
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystemVersion
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystemVersion
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-AAR710-003
+  - ChangeOperation: RemoveAttr
+    ElementPath: ProductClassifications[0].ProductClassId
+    AttributeKey: description
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ProductClassId
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ProductClassId
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Product class ID
+    - language: de
+      text: Produktklassen ID
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ProductClassId
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABG776#003
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ProductClassId
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ProductClassId
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-ABG776-003
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Technical property areas
+    - language: de
+      text: Technsiche Merkmalsbereiche
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABK163#002
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/ 0173-1-02-ABK163-002
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas
+    AttributeKey: semanticIdListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas
+    AttributeKey: semanticIdListElement
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABL358#002/0173-1#01-AHX773#002
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Technical property area
+    - language: de
+      text: Technischer Merkmalsbereich
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABL358#002/0173-1#01-AHX773#002
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0]
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0]
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABL358#002~0/0173-1#01-AHX773#002
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-ABL358-002/0173-1-01-AHX773-002
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitraryMLP
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: Every multilanguage property can be used.'
+    - language: en
+      text: 'Note: The idShort is arbitrary.'
+    - language: en
+      text: 'Note: The use of a displayName is recommended.'
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitraryMLP
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/Arbitrary
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitraryMLP
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitraryMLP
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: 'Note: Every multilanguage property can be used.'
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitraryProperty
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: Every property can be used.'
+    - language: en
+      text: 'Note: The idShort is arbitrary.'
+    - language: en
+      text: 'Note: The use of a displayName is recommended.'
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitraryProperty
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/Arbitrary
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: The idShort is arbitrary.'
+    - language: en
+      text: 'Note: Using displayName is recommended.'
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/Arbitrary
+  - ChangeOperation: RemoveAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.Section
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.Section
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/Arbitrary
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ProductImages[0].ImageNote
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ProductImages[0].ImageNote
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Image note
+    - language: de
+      text: Bildhinweis
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ProductImages[0].ImageNote
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ProductImages[0].ImageNote
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABL423#001
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ProductImages[0].ImageNote
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ProductImages[0].ImageNote
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-ABL423-001
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ProductImages[0].ImageNote
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ProductImages[0].ImageNote
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: Notes or explanations about the image provided
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystemUrl
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystemUrl
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Classification system URL
+    - language: de
+      text: URL des Klassifikationssystems
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystemUrl
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystemUrl
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/IDTA/TechnicalData/ProductClassifications/ProduktClassification/ClassificationSystemUrl/2/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystemUrl
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ProductClassCodedName
+    AttributeKey: category
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ProductClassCodedName
+    AttributeKey: category
+    AttributeValue: PARAMETER
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ProductClassCodedName
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ProductClassCodedName
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Product Class Coded Name
+    - language: de
+      text: Produktklasse Coded Name
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ProductClassCodedName
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ProductClassCodedName
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABK128#002
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ProductClassCodedName
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ProductClassCodedName
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-ABK128-002
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ProductClassCodedName
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ProductClassName
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ProductClassName
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Product class name
+    - language: de
+      text: Produktklasse Name
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ProductClassName
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ProductClassName
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABK273#002
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ProductClassName
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ProductClassName
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-ABK273-002
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ProductClassName
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ProductClassName
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: Name of product class in the used classification system
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ReferenceToTechnicalPropertyArea
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ReferenceToTechnicalPropertyArea
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Reference to technical property area
+    - language: de
+      text: Referenz auf einen technsichen Merkmalsbereich
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ReferenceToTechnicalPropertyArea
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ReferenceToTechnicalPropertyArea
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABL358#002
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ReferenceToTechnicalPropertyArea
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ReferenceToTechnicalPropertyArea
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-ABL358-002
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ReferenceToTechnicalPropertyArea
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ReferenceToTechnicalPropertyArea
+    AttributeKey: value
+    AttributeValue:
+      type: ModelReference
+      keys:
+      - type: Submodel
+        value: https://admin-shell.io/idta/SubmodelTemplate/TechnicalData/2/0
+      - type: SubmodelElementList
+        value: TechnicalPropertyAreas
+      - type: SubmodelElementCollection
+        value: '0'
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitrarySMC
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitrarySMC
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: Every SMC with a specific semanticId can serve as a section.'
+    - language: en
+      text: 'Note: The idShort is arbitrary.'
+    - language: en
+      text: 'Note: The use of a displayName is recommended.'
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitrarySMC
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitrarySMC
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/Arbitrary
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitrarySML
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitrarySML
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: Every SMC with a specific semanticId can serve as a section.'
+    - language: en
+      text: 'Note: The idShort is arbitrary.'
+    - language: en
+      text: 'Note: The use of a displayName is recommended.'
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitrarySML
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitrarySML
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/Arbitrary
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitrarySML
+    AttributeKey: typeValueListElement
+    AttributeValue: SubmodelElement
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitraryProperty
+    AttributeKey: category
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitraryProperty
+    AttributeKey: category
+    AttributeValue: PARAMETER
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitraryProperty
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitraryProperty
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/Arbitrary
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitraryProperty
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitraryMLP
+    AttributeKey: category
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitraryMLP
+    AttributeKey: category
+    AttributeValue: PARAMETER
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitraryMLP
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitraryMLP
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/Arbitrary
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitraryRange
+    AttributeKey: category
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitraryRange
+    AttributeKey: category
+    AttributeValue: PARAMETER
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitraryRange
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitraryRange
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/Arbitrary
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitraryRange
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: Every SMC with a specific semanticId can serve as a section.'
+    - language: en
+      text: 'Note: The idShort is arbitrary.'
+    - language: en
+      text: 'Note: The use of a displayName is recommended.'
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/Arbitrary
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.Section
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.Section
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/Arbitrary
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitrarySMC
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitrarySMC
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: Every SMC with a specific semanticId can serve as a section.'
+    - language: en
+      text: 'Note: The idShort is arbitrary.'
+    - language: en
+      text: 'Note: The use of a displayName is recommended.'
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitrarySMC
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitrarySMC
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/Arbitrary
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitrarySML
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitrarySML
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: Every SMC with a specific semanticId can serve as a section.'
+    - language: en
+      text: 'Note: The idShort is arbitrary.'
+    - language: en
+      text: 'Note: The use of a displayName is recommended.'
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitrarySML
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitrarySML
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/Arbitrary
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitrarySML
+    AttributeKey: typeValueListElement
+    AttributeValue: SubmodelElement
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitraryProperty
+    AttributeKey: category
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitraryProperty
+    AttributeKey: category
+    AttributeValue: PARAMETER
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitraryProperty
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitraryProperty
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/Arbitrary
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitraryProperty
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitraryMLP
+    AttributeKey: category
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitraryMLP
+    AttributeKey: category
+    AttributeValue: PARAMETER
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitraryMLP
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitraryMLP
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/Arbitrary
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitraryRange
+    AttributeKey: category
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitraryRange
+    AttributeKey: category
+    AttributeValue: PARAMETER
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitraryRange
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitraryRange
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/Arbitrary
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitraryRange
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitraryRange
+    AttributeKey: min
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitraryRange
+    AttributeKey: min
+    AttributeValue: '1'
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitraryRange
+    AttributeKey: max
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitraryRange
+    AttributeKey: max
+    AttributeValue: '42'
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySML
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySML
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: Every SML with a specific semanticId can serve as a section.'
+    - language: en
+      text: 'Note: The idShort is arbitrary.'
+    - language: en
+      text: 'Note: The use of a displayName is recommended.'
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySML
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySML
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/Arbitrary
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySML
+    AttributeKey: typeValueListElement
+    AttributeValue: SubmodelElement
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitraryRange
+    AttributeKey: category
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitraryRange
+    AttributeKey: category
+    AttributeValue: PARAMETER
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitraryRange
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitraryRange
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: Every range property can be used.'
+    - language: en
+      text: 'Note: The idShort is arbitrary.'
+    - language: en
+      text: 'Note: The use of a displayName is recommended.'
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitraryRange
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitraryRange
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/Arbitrary
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitraryRange
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Specific description
+    - language: de
+      text: Spezifische Beschreibung
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABM221#001
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-ABM221-001
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions
+    AttributeKey: semanticIdListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions
+    AttributeKey: semanticIdListElement
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABM221#001/0173-1#01-AHY912#001
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions
+    AttributeKey: typeValueListElement
+    AttributeValue: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Specific description
+    - language: de
+      text: Spezifische Beschreibung
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABM221#001/0173-1#01-AHY912#001
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0]
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0]
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABM221#001~0/0173-1#01-AHY912#001
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-ABM221-001/0173-1-01-AHY912-001
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].Section
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].Section
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: The idShort is arbitrary.'
+    - language: en
+      text: 'Note: Using displayName is recommended.'
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].Section
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].Section
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/Arbitrary
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].Section.Section
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].Section.Section
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: The idShort is arbitrary.'
+    - language: en
+      text: 'Note: The use of a displayName is recommended.'
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].Section.Section
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].Section.Section
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/Arbitrary
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitrarySMC
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitrarySMC
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: Every SMC with a specific semanticId can serve as a section.'
+    - language: en
+      text: 'Note: The idShort is arbitrary.'
+    - language: en
+      text: 'Note: The use of a displayName is recommended.'
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitrarySMC
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitrarySMC
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/Arbitrary
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitrarySML
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitrarySML
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: Every SMC with a specific semanticId can serve as a section.'
+    - language: en
+      text: 'Note: The idShort is arbitrary.'
+    - language: en
+      text: 'Note: The use of a displayName is recommended.'
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitrarySML
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitrarySML
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/Arbitrary
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitrarySML
+    AttributeKey: typeValueListElement
+    AttributeValue: SubmodelElement
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitraryProperty
+    AttributeKey: category
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitraryProperty
+    AttributeKey: category
+    AttributeValue: PARAMETER
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitraryProperty
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitraryProperty
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: Every property can be used.'
+    - language: en
+      text: 'Note: The idShort is arbitrary.'
+    - language: en
+      text: 'Note: The use of a displayName is recommended.'
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitraryProperty
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitraryProperty
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/Arbitrary
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitraryProperty
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitraryMLP
+    AttributeKey: category
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitraryMLP
+    AttributeKey: category
+    AttributeValue: PARAMETER
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitraryMLP
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitraryMLP
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: Every multilanguage property can be used.'
+    - language: en
+      text: 'Note: The idShort is arbitrary.'
+    - language: en
+      text: 'Note: The use of a displayName is recommended.'
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitraryMLP
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitraryMLP
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/Arbitrary
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitraryRange
+    AttributeKey: category
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitraryRange
+    AttributeKey: category
+    AttributeValue: PARAMETER
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitraryRange
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitraryRange
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: Every range property can be used.'
+    - language: en
+      text: 'Note: The idShort is arbitrary.'
+    - language: en
+      text: 'Note: The use of a displayName is recommended.'
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitraryRange
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitraryRange
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/Arbitrary
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitraryRange
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: Every SMC with a specific semanticId can serve as a section.'
+    - language: en
+      text: 'Note: The idShort is arbitrary.'
+    - language: en
+      text: 'Note: The use of a displayName is recommended.'
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/Arbitrary
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.Section
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.Section
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: The idShort is arbitrary.'
+    - language: en
+      text: 'Note: The use of a displayName is recommended.'
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.Section
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.Section
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/Arbitrary
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitrarySMC
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitrarySMC
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: Every SMC with a specific semanticId can serve as a section.'
+    - language: en
+      text: 'Note: The idShort is arbitrary.'
+    - language: en
+      text: 'Note: The use of a displayName is recommended.'
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitrarySMC
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitrarySMC
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/Arbitrary
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitrarySML
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitrarySML
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: Every SMC with a specific semanticId can serve as a section.'
+    - language: en
+      text: 'Note: The idShort is arbitrary.'
+    - language: en
+      text: 'Note: The use of a displayName is recommended.'
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitrarySML
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitrarySML
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/Arbitrary
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitrarySML
+    AttributeKey: typeValueListElement
+    AttributeValue: SubmodelElement
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryProperty
+    AttributeKey: category
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryProperty
+    AttributeKey: category
+    AttributeValue: PARAMETER
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryProperty
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryProperty
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: Every property can be used.'
+    - language: en
+      text: 'Note: The idShort is arbitrary.'
+    - language: en
+      text: 'Note: The use of a displayName is recommended.'
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryProperty
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryProperty
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/Arbitrary
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryProperty
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryMLP
+    AttributeKey: category
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryMLP
+    AttributeKey: category
+    AttributeValue: PARAMETER
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryMLP
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryMLP
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: Every multilanguage property can be used.'
+    - language: en
+      text: 'Note: The idShort is arbitrary.'
+    - language: en
+      text: 'Note: The use of a displayName is recommended.'
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryMLP
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryMLP
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/Arbitrary
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryMLP
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryMLP
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: Sample
+    - language: de
+      text: Beispiel
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryRange
+    AttributeKey: category
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryRange
+    AttributeKey: category
+    AttributeValue: PARAMETER
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryRange
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryRange
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: Every range property can be used.'
+    - language: en
+      text: 'Note: The idShort is arbitrary.'
+    - language: en
+      text: 'Note: The use of a displayName is recommended.'
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryRange
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryRange
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/Arbitrary
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryRange
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryRange
+    AttributeKey: min
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryRange
+    AttributeKey: min
+    AttributeValue: '1'
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryRange
+    AttributeKey: max
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryRange
+    AttributeKey: max
+    AttributeValue: '42'
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySML
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySML
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: Every SML with a specific semanticId can serve as a section.'
+    - language: en
+      text: 'Note: The idShort is arbitrary.'
+    - language: en
+      text: 'Note: The use of a displayName is recommended.'
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySML
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySML
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/Arbitrary
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySML
+    AttributeKey: typeValueListElement
+    AttributeValue: SubmodelElement
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitraryProperty
+    AttributeKey: category
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitraryProperty
+    AttributeKey: category
+    AttributeValue: PARAMETER
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitraryProperty
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitraryProperty
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: Every property can be used.'
+    - language: en
+      text: 'Note: The idShort is arbitrary.'
+    - language: en
+      text: 'Note: The use of a displayName is recommended.'
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitraryProperty
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitraryProperty
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/Arbitrary
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitraryProperty
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitraryMLP
+    AttributeKey: category
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitraryMLP
+    AttributeKey: category
+    AttributeValue: PARAMETER
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitraryMLP
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitraryMLP
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: Every multilanguage property can be used.'
+    - language: en
+      text: 'Note: The idShort is arbitrary.'
+    - language: en
+      text: 'Note: The use of a displayName is recommended.'
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitraryMLP
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitraryMLP
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/Arbitrary
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitraryMLP
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitraryMLP
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: 'Note: Every multilanguage property can be used.'
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitraryRange
+    AttributeKey: category
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitraryRange
+    AttributeKey: category
+    AttributeValue: PARAMETER
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitraryRange
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitraryRange
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: Every range property can be used.'
+    - language: en
+      text: 'Note: The idShort is arbitrary.'
+    - language: en
+      text: 'Note: The use of a displayName is recommended.'
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitraryRange
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitraryRange
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/Arbitrary
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitraryRange
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ProductImages
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ProductImages
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ProductImages
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ProductImages
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ProductImages[0].ImageFile
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ProductImages[0].ImageFile
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerName
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerName
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.CompanyLogo
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.CompanyLogo
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerProductDesignation
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerProductDesignation
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerArticleNumber
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerArticleNumber
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerOrderCode
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerOrderCode
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystemVersion
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystemVersion
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ProductClassId
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ProductClassId
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.Section
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.Section
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: FurtherInformation
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: FurtherInformation
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: FurtherInformation.TextStatement
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: FurtherInformation.TextStatement
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: FurtherInformation.ValidDate
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: FurtherInformation.ValidDate
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ProductImages[0].ImageNote
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ProductImages[0].ImageNote
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ProductImages[0].ImageNote
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ProductImages[0].ImageNote
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ProductImages[0].ImageNote
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    QualifierType: SMT/ExampleValue/ECLASS
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    QualifierType: SMT/ExampleValue/ECLASS
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/AllowedValue/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    QualifierType: SMT/ExampleValue/ECLASS
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    QualifierType: SMT/ExampleValue/ECLASS
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    QualifierType: SMT/ExampleValue/ECLASS
+    AttributeKey: value
+    AttributeValue: ECLASS
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    QualifierType: SMT/ExampleValue/ECLASS
+    AttributeKey: valueId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    QualifierType: SMT/ExampleValue/ECLASS
+    AttributeKey: valueId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#07-ABB367#003
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-07-ABB367-003
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    QualifierType: SMT/ExampleValue/CDD
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    QualifierType: SMT/ExampleValue/CDD
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/AllowedValue/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    QualifierType: SMT/ExampleValue/CDD
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    QualifierType: SMT/ExampleValue/CDD
+    AttributeKey: kind
+    AttributeValue: ConceptQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    QualifierType: SMT/ExampleValue/CDD
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    QualifierType: SMT/ExampleValue/CDD
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    QualifierType: SMT/ExampleValue/CDD
+    AttributeKey: value
+    AttributeValue: IEC CDD
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    QualifierType: SMT/ExampleValue/CDD
+    AttributeKey: valueId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    QualifierType: SMT/ExampleValue/CDD
+    AttributeKey: valueId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#07-ACB994#001
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-07-ACB994-001
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    QualifierType: SMT/ExampleValue/UNSPSC
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    QualifierType: SMT/ExampleValue/UNSPSC
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/AllowedValue/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    QualifierType: SMT/ExampleValue/UNSPSC
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    QualifierType: SMT/ExampleValue/UNSPSC
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    QualifierType: SMT/ExampleValue/UNSPSC
+    AttributeKey: value
+    AttributeValue: UNSPSC
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    QualifierType: SMT/ExampleValue/UNSPSC
+    AttributeKey: valueId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    QualifierType: SMT/ExampleValue/UNSPSC
+    AttributeKey: valueId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#07-ABB368#003
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-07-ABB368-003
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    QualifierType: SMT/ExampleValue/CustomerSpecific
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    QualifierType: SMT/ExampleValue/CustomerSpecific
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/AllowedValue/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    QualifierType: SMT/ExampleValue/CustomerSpecific
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    QualifierType: SMT/ExampleValue/CustomerSpecific
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    QualifierType: SMT/ExampleValue/CustomerSpecific
+    AttributeKey: value
+    AttributeValue: customer specific
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    QualifierType: SMT/ExampleValue/CustomerSpecific
+    AttributeKey: valueId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystem
+    QualifierType: SMT/ExampleValue/CustomerSpecific
+    AttributeKey: valueId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#07-ACB894#001
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-07-ACB894-001
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystemUrl
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystemUrl
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystemUrl
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystemUrl
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ClassificationSystemUrl
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ProductClassCodedName
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ProductClassCodedName
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ProductClassCodedName
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ProductClassCodedName
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ProductClassCodedName
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ProductClassName
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ProductClassName
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ProductClassName
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ProductClassName
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ProductClassName
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ReferenceToTechnicalPropertyArea
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ReferenceToTechnicalPropertyArea
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ReferenceToTechnicalPropertyArea
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications[0].ReferenceToTechnicalPropertyArea
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications[0].ReferenceToTechnicalPropertyArea
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitrarySMC
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitrarySMC
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitrarySMC
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitrarySMC
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitrarySMC
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitrarySML
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitrarySML
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitrarySML
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitrarySML
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitrarySML
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitraryRange
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitraryRange
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitraryRange
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitraryRange
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].Section.ArbitraryRange
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.Section
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.Section
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.Section
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.Section
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.Section
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitrarySMC
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitrarySMC
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitrarySMC
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitrarySMC
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitrarySMC
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitrarySML
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitrarySML
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitrarySML
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitrarySML
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitrarySML
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitraryRange
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitraryRange
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitraryRange
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitraryRange
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySMC.ArbitraryRange
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySML
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySML
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySML
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySML
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitrarySML
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitraryRange
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitraryRange
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitraryRange
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitraryRange
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalPropertyAreas[0].ArbitraryRange
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0]
+    QualifierType: Naming
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0]
+    QualifierType: Naming
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Naming/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0]
+    QualifierType: Naming
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0]
+    QualifierType: Naming
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0]
+    QualifierType: Naming
+    AttributeKey: value
+    AttributeValue: Name of SMC is use case or application
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].Section
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].Section
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].Section
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].Section
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].Section
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].Section.Section
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].Section.Section
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].Section.Section
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].Section.Section
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].Section.Section
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitrarySMC
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitrarySMC
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitrarySMC
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitrarySMC
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitrarySMC
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitrarySML
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitrarySML
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitrarySML
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitrarySML
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitrarySML
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitraryRange
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitraryRange
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitraryRange
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitraryRange
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].Section.ArbitraryRange
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.Section
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.Section
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.Section
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.Section
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.Section
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitrarySMC
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitrarySMC
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitrarySMC
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitrarySMC
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitrarySMC
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitrarySML
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitrarySML
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitrarySML
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitrarySML
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitrarySML
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryRange
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryRange
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryRange
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryRange
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySMC.ArbitraryRange
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySML
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySML
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySML
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySML
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitrarySML
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitraryRange
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitraryRange
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/SMT/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitraryRange
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: SpecificDescriptions[0].ArbitraryRange
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: SpecificDescriptions[0].ArbitraryRange
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany

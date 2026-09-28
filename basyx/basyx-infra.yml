@@ -1,0 +1,13 @@
+# Endpoints of the AAS Web UI. The BaSyx Go AAS environment exposes discovery, registries and
+# repositories under one address, hence the template "mono-all": baseUrl is the root of the
+# service, and the UI appends the API paths (/shells, /shell-descriptors, /lookup/shells, ...).
+infrastructures:
+  default: tcn
+  tcn:
+    name: TCN demonstrator (BaSyx Go)
+    template: mono-all
+    components:
+      aasEnvironment:
+        baseUrl: http://localhost:8081
+    security:
+      type: none

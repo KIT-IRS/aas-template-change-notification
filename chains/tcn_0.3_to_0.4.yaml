@@ -1,0 +1,4280 @@
+header:
+  Family: TemplateChangeNotification
+  PreVersion: https://www.irs.kit.edu/SubmodelTemplate/modelchangenotifications/0/3
+  PostVersion: https://www.irs.kit.edu/SubmodelTemplate/TemplateChangeNotification/0/4
+  PreTemplate: ressources/Templates/Template_TemplateChangeNotification.v0_3.json
+  PostTemplate: ressources/Templates/Template_TemplateChangeNotification.v0_4.json
+  TemplateOwner: Karlsruhe Institute of Technology (KIT), Institute of Control Systems
+  ChangeURI: https://github.com/KIT-IRS/aas-template-change-notification
+sections:
+- title: 'T0: the submodel is renamed from ModelChangeNotifications to TemplateChangeNotifications'
+  origin: hand
+  items:
+  - ChangeOperation: UpdateIdShort
+    ElementPath: ''
+    NewIdShort: TemplateChangeNotifications
+- title: 'T2: the arguments are named as in the paper (Table 2); the owner address is the Address Information drop-in'
+  origin: hand
+  items:
+  - ChangeOperation: UpdateIdShort
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].ChangeOperator
+    NewIdShort: ChangeOperation
+  - ChangeOperation: UpdateIdShort
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.targetElementPath
+    NewIdShort: ElementPath
+  - ChangeOperation: UpdateIdShort
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.newIdShort
+    NewIdShort: NewIdShort
+  - ChangeOperation: UpdateIdShort
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.newParentPath
+    NewIdShort: NewParentPath
+  - ChangeOperation: UpdateIdShort
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.smeType
+    NewIdShort: SMEType
+  - ChangeOperation: UpdateIdShort
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.qualifierType
+    NewIdShort: QualifierType
+  - ChangeOperation: UpdateIdShort
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.attributeKey
+    NewIdShort: AttributeKey
+  - ChangeOperation: UpdateIdShort
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.attributeValue
+    NewIdShort: AttributeValue
+  - ChangeOperation: UpdateIdShort
+    ElementPath: MCNGroups[0].MCNRecords[0].TemplateOwner.PhysicalAddress
+    NewIdShort: AddressInformation
+- title: 'T3: syncMapping (the name of a transformation) becomes the collection TransferFunction with its Kind'
+  origin: hand
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateSME
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Kind
+    SMEType: Property
+  - ChangeOperation: UpdateAttr
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Kind
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Kind
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.syncMapping
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.syncMapping#value
+    TargetElementPaths:
+    - MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Kind#value
+    TransferFunction:
+      Kind: ValueMap
+      Pairs:
+        identity: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.syncMapping
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: RemoveSME
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.syncMapping
+- title: 'T4: paths lose the prefix ''<submodelId>::'', attribute values are JSON-encoded'
+  origin: hand
+  items:
+  - ChangeOperation: CreateAttr
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.ElementPath
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.ElementPath#value
+    TargetElementPaths:
+    - MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.ElementPath#value
+    TransferFunction:
+      Kind: Instruction
+      Text:
+        en: Remove the prefix '<submodelId>::' (up to and including the last '::'); keep the idShort path.
+  - ChangeOperation: CreateAttr
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.NewParentPath
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.NewParentPath#value
+    TargetElementPaths:
+    - MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.NewParentPath#value
+    TransferFunction:
+      Kind: Instruction
+      Text:
+        en: Remove the prefix '<submodelId>::' (up to and including the last '::'); keep the idShort path.
+  - ChangeOperation: CreateAttr
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.sourceElementPaths[0]
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.sourceElementPaths[0]#value
+    TargetElementPaths:
+    - MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.sourceElementPaths[0]#value
+    TransferFunction:
+      Kind: Instruction
+      Text:
+        en: Remove the prefix '<submodelId>::' (up to and including the last '::'); keep the idShort path. Keep the '#' attribute
+          selector.
+  - ChangeOperation: CreateAttr
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.targetElementPaths[0]
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.targetElementPaths[0]#value
+    TargetElementPaths:
+    - MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.targetElementPaths[0]#value
+    TransferFunction:
+      Kind: Instruction
+      Text:
+        en: Remove the prefix '<submodelId>::' (up to and including the last '::'); keep the idShort path. Keep the '#' attribute
+          selector.
+  - ChangeOperation: CreateAttr
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.AttributeValue
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.AttributeValue#value
+    TargetElementPaths:
+    - MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.AttributeValue#value
+    TransferFunction:
+      Kind: Instruction
+      Text:
+        en: Replace the literal value by its JSON encoding, e.g. xs:string by "xs:string".
+- title: 'T1: MCNGroups and MCNRecords become TCNGroups and TCNRecords; the path lists are capitalised'
+  origin: rule
+  rule:
+    RenameContainer:
+      MCNGroups: TCNGroups
+      MCNGroups[0].MCNRecords: TCNRecords
+      MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.sourceElementPaths: SourceElementPaths
+      MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.targetElementPaths: TargetElementPaths
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'One entry per observed Submodel Template. Multiplicity lives in this list: entries are addressed by position
+        and carry no idShort, so nothing collides and the entry''s ZeroToMany is satisfiable without any element having to
+        be renamed per instance.'
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups
+    AttributeKey: orderRelevant
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups
+    AttributeKey: orderRelevant
+    AttributeValue: false
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups
+    AttributeKey: semanticIdListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups
+    AttributeKey: semanticIdListElement
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/mcn/1/0/McnGroup
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups
+    AttributeKey: typeValueListElement
+    AttributeValue: SubmodelElementCollection
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - MCNGroups@SMT/Cardinality#value
+    TargetElementPaths:
+    - TCNGroups@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: MCNGroups
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: All Model Change Notifications concerning one observed Submodel Template. One entry of MCNGroups per template;
+        the ObservedSMT reference is its identity.
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/mcn/1/0/McnGroup
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - MCNGroups[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - TCNGroups[0]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: MCNGroups[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: MCNGroups[0].ObservedSMT
+    NewParentPath: TCNGroups[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: MCNGroups[0].SMInstance
+    NewParentPath: TCNGroups[0]
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords
+    AttributeKey: orderRelevant
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords
+    AttributeKey: orderRelevant
+    AttributeValue: true
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords
+    AttributeKey: semanticIdListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords
+    AttributeKey: semanticIdListElement
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/mcn/1/0/McnRecord
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords
+    AttributeKey: typeValueListElement
+    AttributeValue: SubmodelElementCollection
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - MCNGroups[0].MCNRecords@SMT/Cardinality#value
+    TargetElementPaths:
+    - TCNGroups[0].TCNRecords@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: MCNGroups[0].MCNRecords
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'One Model Change Notification as received: a single announced update to one information model, together with
+        the ordered operations that realise it — normally complex operations, occasionally a bare atomic operator.'
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/mcn/1/0/McnRecord
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - MCNGroups[0].MCNRecords[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - TCNGroups[0].TCNRecords[0]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: MCNGroups[0].MCNRecords[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: MCNGroups[0].MCNRecords[0].NotificationId
+    NewParentPath: TCNGroups[0].TCNRecords[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: MCNGroups[0].MCNRecords[0].ChangeURI
+    NewParentPath: TCNGroups[0].TCNRecords[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: MCNGroups[0].MCNRecords[0].PreVersion
+    NewParentPath: TCNGroups[0].TCNRecords[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: MCNGroups[0].MCNRecords[0].PostVersion
+    NewParentPath: TCNGroups[0].TCNRecords[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: MCNGroups[0].MCNRecords[0].DateOfRecord
+    NewParentPath: TCNGroups[0].TCNRecords[0]
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: The organisation issuing this notification, i.e. the owner of the observed template.
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/mcn/1/0/TemplateOwner
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - MCNGroups[0].MCNRecords[0].TemplateOwner@SMT/Cardinality#value
+    TargetElementPaths:
+    - TCNGroups[0].TCNRecords[0].TemplateOwner@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: MCNGroups[0].MCNRecords[0].TemplateOwner
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: MCNGroups[0].MCNRecords[0].TemplateOwner.TemplateOwnerName
+    NewParentPath: TCNGroups[0].TCNRecords[0].TemplateOwner
+  - ChangeOperation: UpdateParent
+    ElementPath: MCNGroups[0].MCNRecords[0].TemplateOwner.AddressInformation
+    NewParentPath: TCNGroups[0].TCNRecords[0].TemplateOwner
+  - ChangeOperation: RemoveSME
+    ElementPath: MCNGroups[0].MCNRecords[0].TemplateOwner
+  - ChangeOperation: UpdateParent
+    ElementPath: MCNGroups[0].MCNRecords[0].AffectedSMT
+    NewParentPath: TCNGroups[0].TCNRecords[0]
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].ReasonsOfChange
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ReasonsOfChange
+    AttributeKey: orderRelevant
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ReasonsOfChange
+    AttributeKey: orderRelevant
+    AttributeValue: false
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ReasonsOfChange
+    AttributeKey: semanticIdListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ReasonsOfChange
+    AttributeKey: semanticIdListElement
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/mcn/1/0/ReasonOfChange
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ReasonsOfChange
+    AttributeKey: typeValueListElement
+    AttributeValue: SubmodelElementCollection
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].ReasonsOfChange
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ReasonsOfChange
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ReasonsOfChange
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ReasonsOfChange
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ReasonsOfChange
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ReasonsOfChange
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ReasonsOfChange
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - MCNGroups[0].MCNRecords[0].ReasonsOfChange@SMT/Cardinality#value
+    TargetElementPaths:
+    - TCNGroups[0].TCNRecords[0].ReasonsOfChange@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: MCNGroups[0].MCNRecords[0].ReasonsOfChange
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].ReasonsOfChange[0]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ReasonsOfChange[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ReasonsOfChange[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: One classified reason for the change.
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ReasonsOfChange[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ReasonsOfChange[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/mcn/1/0/ReasonOfChange
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].ReasonsOfChange[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ReasonsOfChange[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ReasonsOfChange[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ReasonsOfChange[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ReasonsOfChange[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ReasonsOfChange[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ReasonsOfChange[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - MCNGroups[0].MCNRecords[0].ReasonsOfChange[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - TCNGroups[0].TCNRecords[0].ReasonsOfChange[0]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: MCNGroups[0].MCNRecords[0].ReasonsOfChange[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: MCNGroups[0].MCNRecords[0].ReasonsOfChange[0].ReasonClassificationSystem
+    NewParentPath: TCNGroups[0].TCNRecords[0].ReasonsOfChange[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: MCNGroups[0].MCNRecords[0].ReasonsOfChange[0].VersionOfClassificationSystem
+    NewParentPath: TCNGroups[0].TCNRecords[0].ReasonsOfChange[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: MCNGroups[0].MCNRecords[0].ReasonsOfChange[0].ReasonId
+    NewParentPath: TCNGroups[0].TCNRecords[0].ReasonsOfChange[0]
+  - ChangeOperation: RemoveSME
+    ElementPath: MCNGroups[0].MCNRecords[0].ReasonsOfChange[0]
+  - ChangeOperation: RemoveSME
+    ElementPath: MCNGroups[0].MCNRecords[0].ReasonsOfChange
+  - ChangeOperation: UpdateParent
+    ElementPath: MCNGroups[0].MCNRecords[0].McnReasonComment
+    NewParentPath: TCNGroups[0].TCNRecords[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: MCNGroups[0].MCNRecords[0].AdditionalInformation
+    NewParentPath: TCNGroups[0].TCNRecords[0]
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Ordered. Later items may depend on elements created by earlier ones -- a container move creates its parking container
+        before the UpdateParent operations that fill it. Reordering is not permitted.
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange
+    AttributeKey: orderRelevant
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange
+    AttributeKey: orderRelevant
+    AttributeValue: true
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange
+    AttributeKey: semanticIdListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange
+    AttributeKey: semanticIdListElement
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/mcn/1/0/ItemOfChange
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange
+    AttributeKey: typeValueListElement
+    AttributeValue: SubmodelElementCollection
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - MCNGroups[0].MCNRecords[0].ItemsOfChange@SMT/Cardinality#value
+    TargetElementPaths:
+    - TCNGroups[0].TCNRecords[0].ItemsOfChange@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: One requested operation -- usually a complex operation, occasionally a bare atomic operator. The ordered sequence
+        of items is the complete change; the decomposition of each complex operation into atomic steps is the receiver's business
+        and is recorded in its traceability log, not here.
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/mcn/1/0/ItemOfChange
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - MCNGroups[0].MCNRecords[0].ItemsOfChange[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - TCNGroups[0].TCNRecords[0].ItemsOfChange[0]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].ChangeOperation
+    NewParentPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0]
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Arguments to the operation named by ChangeOperator. The named arguments below are a flat union covering the ten
+        atomic operators; an operation uses the subset its signature requires and omits the rest. A complex operation whose
+        parameters are not among them carries those in AdditionalArguments.
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/mcn/1/0/OperationArguments
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments@SMT/Cardinality#value
+    TargetElementPaths:
+    - TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.ElementPath
+    NewParentPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments
+  - ChangeOperation: UpdateParent
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.NewIdShort
+    NewParentPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments
+  - ChangeOperation: UpdateParent
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.NewParentPath
+    NewParentPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments
+  - ChangeOperation: UpdateParent
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.SMEType
+    NewParentPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments
+  - ChangeOperation: UpdateParent
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.QualifierType
+    NewParentPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments
+  - ChangeOperation: UpdateParent
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.AttributeKey
+    NewParentPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments
+  - ChangeOperation: UpdateParent
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.AttributeValue
+    NewParentPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.SourceElementPaths
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.SourceElementPaths
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.SourceElementPaths
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Sync only: the source sequence X_src. Every entry carries a ''#'' attribute selector, since Sync reads attribute
+        values rather than elements.'
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.SourceElementPaths
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.SourceElementPaths
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/mcn/1/0/sourceElementPaths
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.SourceElementPaths
+    AttributeKey: orderRelevant
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.SourceElementPaths
+    AttributeKey: orderRelevant
+    AttributeValue: false
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.SourceElementPaths
+    AttributeKey: typeValueListElement
+    AttributeValue: Property
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.SourceElementPaths
+    AttributeKey: valueTypeListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.SourceElementPaths
+    AttributeKey: valueTypeListElement
+    AttributeValue: xs:string
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.SourceElementPaths
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.SourceElementPaths
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.SourceElementPaths
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.SourceElementPaths
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.SourceElementPaths
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.SourceElementPaths
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.SourceElementPaths
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.sourceElementPaths@SMT/Cardinality#value
+    TargetElementPaths:
+    - TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.SourceElementPaths@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.sourceElementPaths
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.sourceElementPaths[0]
+    NewParentPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.SourceElementPaths
+  - ChangeOperation: RemoveSME
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.sourceElementPaths
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TargetElementPaths
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TargetElementPaths
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TargetElementPaths
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Sync only: the target sequence X_tgt. Every entry carries a ''#'' attribute selector, and the sequence pairs
+        positionally with sourceElementPaths -- X_tgt[i] receives X_src[i] -- so the two must be of equal length.'
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TargetElementPaths
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TargetElementPaths
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/mcn/1/0/targetElementPaths
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TargetElementPaths
+    AttributeKey: orderRelevant
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TargetElementPaths
+    AttributeKey: orderRelevant
+    AttributeValue: false
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TargetElementPaths
+    AttributeKey: typeValueListElement
+    AttributeValue: Property
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TargetElementPaths
+    AttributeKey: valueTypeListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TargetElementPaths
+    AttributeKey: valueTypeListElement
+    AttributeValue: xs:string
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TargetElementPaths
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TargetElementPaths
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TargetElementPaths
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TargetElementPaths
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TargetElementPaths
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TargetElementPaths
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TargetElementPaths
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.targetElementPaths@SMT/Cardinality#value
+    TargetElementPaths:
+    - TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TargetElementPaths@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.targetElementPaths
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.targetElementPaths[0]
+    NewParentPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TargetElementPaths
+  - ChangeOperation: RemoveSME
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.targetElementPaths
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Arguments that are not among the named ones, as name/value pairs. This is what lets a complex operation defined
+        after this template was written state its parameters without the template having to be revised for each new operation.
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/mcn/1/0/AdditionalArguments
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments
+    AttributeKey: orderRelevant
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments
+    AttributeKey: orderRelevant
+    AttributeValue: false
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments
+    AttributeKey: semanticIdListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments
+    AttributeKey: semanticIdListElement
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/mcn/1/0/OperationArgument
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments
+    AttributeKey: typeValueListElement
+    AttributeValue: SubmodelElementCollection
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments@SMT/Cardinality#value
+    TargetElementPaths:
+    - TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments[0]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: One argument, as a name and a value.
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/mcn/1/0/OperationArgument
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments[0]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments[0].ArgumentName
+    NewParentPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments[0].ArgumentValue
+    NewParentPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments[0]
+  - ChangeOperation: RemoveSME
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments[0]
+  - ChangeOperation: RemoveSME
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: UpdateParent
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Kind
+    NewParentPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction
+  - ChangeOperation: RemoveSME
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction
+  - ChangeOperation: RemoveSME
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments
+  - ChangeOperation: RemoveSME
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange[0]
+  - ChangeOperation: RemoveSME
+    ElementPath: MCNGroups[0].MCNRecords[0].ItemsOfChange
+  - ChangeOperation: RemoveSME
+    ElementPath: MCNGroups[0].MCNRecords[0]
+  - ChangeOperation: RemoveSME
+    ElementPath: MCNGroups[0].MCNRecords
+  - ChangeOperation: RemoveSME
+    ElementPath: MCNGroups[0]
+  - ChangeOperation: RemoveSME
+    ElementPath: MCNGroups
+- title: 'Completion: removed elements and qualifiers'
+  origin: generated
+  items:
+  - ChangeOperation: RemoveQual
+    ElementPath: TCNGroups[0].TCNRecords[0].ReasonsOfChange[0].ReasonClassificationSystem
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: TCNGroups[0].TCNRecords[0].ReasonsOfChange[0].VersionOfClassificationSystem
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: TCNGroups[0].TCNRecords[0].ReasonsOfChange[0].ReasonId
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: TCNGroups[0].TCNRecords[0].McnReasonComment
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: TCNGroups[0].TCNRecords[0].AdditionalInformation
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments[0].ArgumentName
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments[0].ArgumentValue
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: TCNGroups[0].TCNRecords[0].ReasonsOfChange
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: TCNGroups[0].TCNRecords[0].ReasonsOfChange[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: RemoveSME
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments[0].ArgumentValue
+  - ChangeOperation: RemoveSME
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments[0].ArgumentName
+  - ChangeOperation: RemoveSME
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments[0]
+  - ChangeOperation: RemoveSME
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments
+  - ChangeOperation: RemoveSME
+    ElementPath: TCNGroups[0].TCNRecords[0].ReasonsOfChange[0].VersionOfClassificationSystem
+  - ChangeOperation: RemoveSME
+    ElementPath: TCNGroups[0].TCNRecords[0].ReasonsOfChange[0].ReasonClassificationSystem
+  - ChangeOperation: RemoveSME
+    ElementPath: TCNGroups[0].TCNRecords[0].ReasonsOfChange[0].ReasonId
+  - ChangeOperation: RemoveSME
+    ElementPath: TCNGroups[0].TCNRecords[0].AdditionalInformation
+  - ChangeOperation: RemoveSME
+    ElementPath: TCNGroups[0].TCNRecords[0].ReasonsOfChange[0]
+  - ChangeOperation: RemoveSME
+    ElementPath: TCNGroups[0].TCNRecords[0].McnReasonComment
+  - ChangeOperation: RemoveSME
+    ElementPath: TCNGroups[0].TCNRecords[0].ReasonsOfChange
+- title: 'Completion: created elements and qualifiers'
+  origin: generated
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.RoleOfContactPerson
+    SMEType: Property
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.NationalCode
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Language
+    SMEType: Property
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.TimeZone
+    SMEType: Property
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.CityTown
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Company
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Department
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone.TelephoneNumber
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone.TypeOfTelephone
+    SMEType: Property
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone.AvailableTime
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Fax
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Fax.FaxNumber
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Fax.TypeOfFaxNumber
+    SMEType: Property
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.EmailAddress
+    SMEType: Property
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.PublicKey
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.TypeOfEmailAddress
+    SMEType: Property
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.TypeOfPublicKey
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__.AddressOfAdditionalLink
+    SMEType: Property
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__.TypeOfCommunication
+    SMEType: Property
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__.AvailableTime
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Street
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Zipcode
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.POBox
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.ZipCodeOfPOBox
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.StateCounty
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.NameOfContact
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.FirstName
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.MiddleNames
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Title
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.AcademicTitle
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.FurtherDetailsOfContact
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.AddressOfAdditionalLink
+    SMEType: Property
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap[0]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap[0].SourceValue
+    SMEType: Property
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap[0].TargetValue
+    SMEType: Property
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ExpressionLanguage
+    SMEType: Property
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Expression
+    SMEType: Property
+  - ChangeOperation: CreateSME
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Instruction
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.RoleOfContactPerson
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.NationalCode
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Language
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.TimeZone
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.CityTown
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Company
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Department
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone.TelephoneNumber
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone.TypeOfTelephone
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone.AvailableTime
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Fax
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Fax.FaxNumber
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Fax.TypeOfFaxNumber
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.EmailAddress
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.PublicKey
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.TypeOfEmailAddress
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.TypeOfPublicKey
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__.AddressOfAdditionalLink
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__.TypeOfCommunication
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__.AvailableTime
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Street
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Zipcode
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.POBox
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.ZipCodeOfPOBox
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.StateCounty
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.NameOfContact
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.FirstName
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.MiddleNames
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Title
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.AcademicTitle
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.FurtherDetailsOfContact
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.AddressOfAdditionalLink
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Kind
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap[0].SourceValue
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap[0].TargetValue
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ExpressionLanguage
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Expression
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Instruction
+    QualifierType: SMT/Cardinality
+- title: 'Completion: attributes'
+  origin: generated
+  items:
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Template Change Notifications: the operation chains of the version transitions of observed Submodel Templates.'
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    AttributeKey: administration
+    AttributeValue:
+      version: '0'
+      revision: '4'
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    AttributeKey: id
+    AttributeValue: https://www.irs.kit.edu/SubmodelTemplate/TemplateChangeNotification/0/4
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/SubmodelTemplate/TemplateChangeNotification/0/4
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: one group per observed template
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/TCNGroups
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups
+    AttributeKey: semanticIdListElement
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/TCNGroup
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: notifications of one observed template
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/TCNGroup
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].ObservedSMT
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: the observed Submodel Template
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].ObservedSMT
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/ObservedSMT
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].SMInstance
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: the submodel conforming to it
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].SMInstance
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/SMInstance
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: one record per version transition
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/TCNRecords
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords
+    AttributeKey: orderRelevant
+    AttributeValue: false
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords
+    AttributeKey: semanticIdListElement
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/TCNRecord
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: one version transition of the observed template
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/TCNRecord
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].NotificationId
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: identifier of the notification
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].NotificationId
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/NotificationId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ChangeURI
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: publication of the change
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ChangeURI
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/ChangeURI
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].PreVersion
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: identifier of the template version before the change
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].PreVersion
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/PreVersion
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].PostVersion
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: identifier of the template version after the change
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].PostVersion
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/PostVersion
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].DateOfRecord
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: date of the record
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].DateOfRecord
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/DateOfRecord
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: issuing template owner
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/TemplateOwner
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.TemplateOwnerName
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.TemplateOwnerName
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: name of the template owner
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.TemplateOwnerName
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.TemplateOwnerName
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/TemplateOwnerName
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: this set of information is defined by SMT drop-in "Address Information"'
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/zvei/nameplate/1/0/ContactInformations/AddressInformation
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/smt-dropin/smt-dropin-use/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].AffectedSMT
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: template the record applies to
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].AffectedSMT
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/AffectedSMT
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: the operation chain, in order
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/ItemsOfChange
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange
+    AttributeKey: semanticIdListElement
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/ItemOfChange
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: one atomic operation
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/ItemOfChange
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].ChangeOperation
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: CreateSME | CreateQual | CreateAttr | UpdateIdShort | UpdateParent | UpdateAttr | RemoveSME | RemoveQual | RemoveAttr
+        | Sync
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].ChangeOperation
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/ChangeOperation
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: arguments of the operation (paper, Table 2)
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/OperationArguments
+  - ChangeOperation: RemoveAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.ElementPath
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.ElementPath
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: idShort path of the element, or of the owner of the qualifier or attribute
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.ElementPath
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/ElementPath
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.NewIdShort
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'UpdateIdShort: new idShort'
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.NewIdShort
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/NewIdShort
+  - ChangeOperation: RemoveAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.NewParentPath
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.NewParentPath
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'UpdateParent: idShort path of the new parent'
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.NewParentPath
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/NewParentPath
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.SMEType
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'CreateSME: model type of the created element'
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.SMEType
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/SMEType
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.QualifierType
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: type of the qualifier, or of the qualifier owning the attribute
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.QualifierType
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/QualifierType
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AttributeKey
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: name of the attribute (key of the AAS JSON serialisation)
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AttributeKey
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/AttributeKey
+  - ChangeOperation: RemoveAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AttributeValue
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AttributeValue
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'UpdateAttr: new value, JSON-encoded'
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AttributeValue
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/AttributeValue
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.SourceElementPaths
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Sync: source attributes <path>[@<qualifierType>]#<attribute>'
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.SourceElementPaths
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/SourceElementPaths
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.SourceElementPaths
+    AttributeKey: semanticIdListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.SourceElementPaths
+    AttributeKey: semanticIdListElement
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/SourceElementPath
+  - ChangeOperation: RemoveAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.SourceElementPaths[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.SourceElementPaths[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.SourceElementPaths[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/SourceElementPath
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TargetElementPaths
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Sync: target attributes, paired positionally with the sources'
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TargetElementPaths
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/TargetElementPaths
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TargetElementPaths
+    AttributeKey: semanticIdListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TargetElementPaths
+    AttributeKey: semanticIdListElement
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/TargetElementPath
+  - ChangeOperation: RemoveAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TargetElementPaths[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TargetElementPaths[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TargetElementPaths[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/TargetElementPath
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Sync: transfer function f'
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/TransferFunction
+  - ChangeOperation: RemoveAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Kind
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Kind
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Kind
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Identity | ValueMap | Expression | Instruction
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Kind
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Kind
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/Kind
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.RoleOfContactPerson
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.RoleOfContactPerson
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'enumeration: 0173-1#07-AAS927#001 (administrativ contact), 0173-1#07-AAS928#001 (commercial contact), 0173-1#07-AAS929#001
+        (other contact), 0173-1#07-AAS930#001 (hazardous goods contact), 0173-1#07-AAS931#001 (technical contact). Note: the
+        above mentioned ECLASS enumeration should be declared as “open” for further addition. ECLASS enumeration IRDI is preferable.
+        If no IRDI available, custom input as String may also be accepted.'
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.RoleOfContactPerson
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.RoleOfContactPerson
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO204#003
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.RoleOfContactPerson
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.RoleOfContactPerson
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.RoleOfContactPerson
+    AttributeKey: value
+    AttributeValue: 0173-1#07-AAS931#001
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.NationalCode
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.NationalCode
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: ' Note: country codes defined accord. to ISO 3166-1. Recommendation: property declaration as MLP is required by
+        its semantic definition. As the property value is language independent, users are recommended to provide maximal 1
+        string in any language of the user’s choice.'
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.NationalCode
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.NationalCode
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO134#002
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.NationalCode
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.NationalCode
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: DE
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Language
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Language
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: language codes defined accord. to ISO 639-1. Note: as per ECLASS definition, Expression and representation
+        of thoughts, information, feelings, ideas through characters.'
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Language
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Language
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/zvei/nameplate/1/0/ContactInformations/ContactInformation/Language
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Language
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Language
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Language
+    AttributeKey: value
+    AttributeValue: de
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.TimeZone
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.TimeZone
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: notation accord. to ISO 8601 Note: for time in UTC the zone designator “Z” is to be used'
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.TimeZone
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.TimeZone
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/zvei/nameplate/1/0/ContactInformations/ContactInformation/TimeZone
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.TimeZone
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.TimeZone
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.TimeZone
+    AttributeKey: value
+    AttributeValue: Z
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.CityTown
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.CityTown
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO132#002
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.CityTown
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.CityTown
+    AttributeKey: value
+    AttributeValue:
+    - language: de
+      text: Musterstadt
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Company
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Company
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAW001#001
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Company
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Company
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: ABC Company
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Department
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Department
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO127#003
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Department
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Department
+    AttributeKey: value
+    AttributeValue:
+    - language: de
+      text: Vertrieb
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/zvei/nameplate/1/0/ContactInformations/ContactInformation/Phone
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone.TelephoneNumber
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone.TelephoneNumber
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Recommendation: property declaration as MLP is required by its semantic definition. As the property value is
+        language independent, users are recommended to provide maximal 1 string in any language of the user’s choice.'
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone.TelephoneNumber
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone.TelephoneNumber
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO136#002
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone.TelephoneNumber
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone.TelephoneNumber
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: '+491234567890'
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone.TypeOfTelephone
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone.TypeOfTelephone
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: ' enumeration: 0173-1#07-AAS754#001 (office), 0173-1#07-AAS755#001 (office mobile), 0173-1#07-AAS756#001 (secretary),
+        0173-1#07-AAS757#001 (substitute), 0173-1#07-AAS758#001 (home), 0173-1#07-AAS759#001 (private mobile)'
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone.TypeOfTelephone
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone.TypeOfTelephone
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO137#003
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone.TypeOfTelephone
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone.TypeOfTelephone
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone.TypeOfTelephone
+    AttributeKey: value
+    AttributeValue: 0173-1#07-AAS754#001
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone.AvailableTime
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone.AvailableTime
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/zvei/nameplate/1/0/ContactInformations/ContactInformation/AvailableTime/
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone.AvailableTime
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone.AvailableTime
+    AttributeKey: value
+    AttributeValue:
+    - language: de
+      text: Montag – Freitag 08:00 bis 16:00
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Fax
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Fax
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAQ834#005
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Fax.FaxNumber
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Fax.FaxNumber
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Recommendation: property declaration as MLP is required by its semantic definition. As the property value is
+        language independent, users are recommended to provide maximal 1 string in any language of the user’s choice.'
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Fax.FaxNumber
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Fax.FaxNumber
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO195#002
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Fax.FaxNumber
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Fax.FaxNumber
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: '+491234567890'
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Fax.TypeOfFaxNumber
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Fax.TypeOfFaxNumber
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'enumeration: 0173-1#07-AAS754#001 (office), 0173-1#07-AAS756#001 (secretary), 0173-1#07-AAS758#001 (home)'
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Fax.TypeOfFaxNumber
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Fax.TypeOfFaxNumber
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO196#003
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Fax.TypeOfFaxNumber
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Fax.TypeOfFaxNumber
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Fax.TypeOfFaxNumber
+    AttributeKey: value
+    AttributeValue: 0173-1#07-AAS754#001
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAQ836#005
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.EmailAddress
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.EmailAddress
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO198#002
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.EmailAddress
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.EmailAddress
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.EmailAddress
+    AttributeKey: value
+    AttributeValue: email@muster-ag.de
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.PublicKey
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.PublicKey
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Recommendation: property declaration as MLP is required by its semantic definition. As the property value is
+        language independent, users are recommended to provide maximal 1 string in any language of the user’s choice.'
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.PublicKey
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.PublicKey
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO200#002
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.PublicKey
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.PublicKey
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: PGPKEY-12345
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.TypeOfEmailAddress
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.TypeOfEmailAddress
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'enumeration: 0173-1#07-AAS754#001 (office), 0173-1#07-AAS756#001 (secretary), 0173-1#07-AAS757#001 (substitute),
+        0173-1#07-AAS758#001 (home)'
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.TypeOfEmailAddress
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.TypeOfEmailAddress
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO199#003
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.TypeOfEmailAddress
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.TypeOfEmailAddress
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.TypeOfEmailAddress
+    AttributeKey: value
+    AttributeValue: 0173-1#07-AAS754#001
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.TypeOfPublicKey
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.TypeOfPublicKey
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO201#002
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.TypeOfPublicKey
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.TypeOfPublicKey
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: PGP
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/zvei/nameplate/1/0/ContactInformations/ContactInformation/IPCommunication
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__.AddressOfAdditionalLink
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__.AddressOfAdditionalLink
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAQ326#002
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__.AddressOfAdditionalLink
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__.TypeOfCommunication
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__.TypeOfCommunication
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/zvei/nameplate/1/0/ContactInformations/ContactInformation/IPCommunication/TypeOfCommunication
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__.TypeOfCommunication
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__.TypeOfCommunication
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__.TypeOfCommunication
+    AttributeKey: value
+    AttributeValue: Chat
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__.AvailableTime
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__.AvailableTime
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/zvei/nameplate/1/0/ContactInformations/ContactInformation/AvailableTime/
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__.AvailableTime
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__.AvailableTime
+    AttributeKey: value
+    AttributeValue:
+    - language: de
+      text: Montag – Freitag 08:00 bis 16:00
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Street
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Street
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO128#002
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Street
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Street
+    AttributeKey: value
+    AttributeValue:
+    - language: de
+      text: Musterstraße 1
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Zipcode
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Zipcode
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Recommendation: property declaration as MLP is required by its semantic definition. As the property value is
+        language independent, users are recommended to provide maximal 1 string in any language of the user’s choice.'
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Zipcode
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Zipcode
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO129#002
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Zipcode
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Zipcode
+    AttributeKey: value
+    AttributeValue:
+    - language: de
+      text: '12345'
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.POBox
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.POBox
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO130#002
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.POBox
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.POBox
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: PF 1234
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.ZipCodeOfPOBox
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.ZipCodeOfPOBox
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Recommendation: property declaration as MLP is required by its semantic definition. As the property value is
+        language independent, users are recommended to provide maximal 1 string in any language of the user’s choice.'
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.ZipCodeOfPOBox
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.ZipCodeOfPOBox
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO131#002
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.ZipCodeOfPOBox
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.ZipCodeOfPOBox
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: '12345'
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.StateCounty
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.StateCounty
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO133#002
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.StateCounty
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.StateCounty
+    AttributeKey: value
+    AttributeValue:
+    - language: de
+      text: Muster-Bundesland
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.NameOfContact
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.NameOfContact
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO205#002
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.NameOfContact
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.NameOfContact
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: Doe
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.FirstName
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.FirstName
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO206#002
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.FirstName
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.FirstName
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: John
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.MiddleNames
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.MiddleNames
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO207#002
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.MiddleNames
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.MiddleNames
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: A.
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Title
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Title
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO208#003
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Title
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Title
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: Mr.
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.AcademicTitle
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.AcademicTitle
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO209#003
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.AcademicTitle
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.AcademicTitle
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: Dr.
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.FurtherDetailsOfContact
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.FurtherDetailsOfContact
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO210#002
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.FurtherDetailsOfContact
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.FurtherDetailsOfContact
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: Contact available weekdays only
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.AddressOfAdditionalLink
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.AddressOfAdditionalLink
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAQ326#002
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.AddressOfAdditionalLink
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.AddressOfAdditionalLink
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.AddressOfAdditionalLink
+    AttributeKey: value
+    AttributeValue: AddressOfAdditionalLink
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: pairs of source and target values
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/ValueMap
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap
+    AttributeKey: orderRelevant
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap
+    AttributeKey: orderRelevant
+    AttributeValue: false
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap
+    AttributeKey: semanticIdListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap
+    AttributeKey: semanticIdListElement
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/ValuePair
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap
+    AttributeKey: typeValueListElement
+    AttributeValue: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/ValuePair
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap[0].SourceValue
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap[0].SourceValue
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/SourceValue
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap[0].SourceValue
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap[0].TargetValue
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap[0].TargetValue
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/TargetValue
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap[0].TargetValue
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ExpressionLanguage
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ExpressionLanguage
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: URI of a side-effect-free expression language, e.g. https://github.com/google/cel-spec (CEL); a receiver evaluates
+        only languages it supports, never code
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ExpressionLanguage
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ExpressionLanguage
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/ExpressionLanguage
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ExpressionLanguage
+    AttributeKey: valueType
+    AttributeValue: xs:anyURI
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Expression
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Expression
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: expression over the source values `src`, yielding the target value(s)
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Expression
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Expression
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/Expression
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Expression
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Instruction
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Instruction
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: instruction for the asset maintainer; with an Expression, for receivers that do not evaluate its language
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Instruction
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Instruction
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://www.irs.kit.edu/idta/tcn/0/4/Instruction
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.RoleOfContactPerson
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.RoleOfContactPerson
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.RoleOfContactPerson
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.RoleOfContactPerson
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.RoleOfContactPerson
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.NationalCode
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.NationalCode
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.NationalCode
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.NationalCode
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.NationalCode
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Language
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Language
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Language
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Language
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Language
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.TimeZone
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.TimeZone
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.TimeZone
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.TimeZone
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.TimeZone
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.CityTown
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.CityTown
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.CityTown
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.CityTown
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.CityTown
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Company
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Company
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Company
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Company
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Company
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Department
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Department
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Department
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Department
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Department
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone.TelephoneNumber
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone.TelephoneNumber
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone.TelephoneNumber
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone.TelephoneNumber
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone.TelephoneNumber
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone.TypeOfTelephone
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone.TypeOfTelephone
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone.TypeOfTelephone
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone.TypeOfTelephone
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone.TypeOfTelephone
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone.AvailableTime
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone.AvailableTime
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone.AvailableTime
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone.AvailableTime
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Phone.AvailableTime
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Fax
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Fax
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Fax
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Fax
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Fax
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Fax.FaxNumber
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Fax.FaxNumber
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Fax.FaxNumber
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Fax.FaxNumber
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Fax.FaxNumber
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Fax.TypeOfFaxNumber
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Fax.TypeOfFaxNumber
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Fax.TypeOfFaxNumber
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Fax.TypeOfFaxNumber
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Fax.TypeOfFaxNumber
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.EmailAddress
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.EmailAddress
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.EmailAddress
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.EmailAddress
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.EmailAddress
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.PublicKey
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.PublicKey
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.PublicKey
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.PublicKey
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.PublicKey
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.TypeOfEmailAddress
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.TypeOfEmailAddress
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.TypeOfEmailAddress
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.TypeOfEmailAddress
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.TypeOfEmailAddress
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.TypeOfPublicKey
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.TypeOfPublicKey
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.TypeOfPublicKey
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.TypeOfPublicKey
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Email.TypeOfPublicKey
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__.AddressOfAdditionalLink
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__.AddressOfAdditionalLink
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__.AddressOfAdditionalLink
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__.AddressOfAdditionalLink
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__.AddressOfAdditionalLink
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__.TypeOfCommunication
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__.TypeOfCommunication
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__.TypeOfCommunication
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__.TypeOfCommunication
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__.TypeOfCommunication
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__.AvailableTime
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__.AvailableTime
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__.AvailableTime
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__.AvailableTime
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.IPCommunication__00__.AvailableTime
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Street
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Street
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Street
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Street
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Street
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Zipcode
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Zipcode
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Zipcode
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Zipcode
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Zipcode
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.POBox
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.POBox
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.POBox
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.POBox
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.POBox
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.ZipCodeOfPOBox
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.ZipCodeOfPOBox
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.ZipCodeOfPOBox
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.ZipCodeOfPOBox
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.ZipCodeOfPOBox
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.StateCounty
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.StateCounty
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.StateCounty
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.StateCounty
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.StateCounty
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.NameOfContact
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.NameOfContact
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.NameOfContact
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.NameOfContact
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.NameOfContact
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.FirstName
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.FirstName
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.FirstName
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.FirstName
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.FirstName
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.MiddleNames
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.MiddleNames
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.MiddleNames
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.MiddleNames
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.MiddleNames
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Title
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Title
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Title
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Title
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.Title
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.AcademicTitle
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.AcademicTitle
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.AcademicTitle
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.AcademicTitle
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.AcademicTitle
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.FurtherDetailsOfContact
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.FurtherDetailsOfContact
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.FurtherDetailsOfContact
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.FurtherDetailsOfContact
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.FurtherDetailsOfContact
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.AddressOfAdditionalLink
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.AddressOfAdditionalLink
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.AddressOfAdditionalLink
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.AddressOfAdditionalLink
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].TemplateOwner.AddressInformation.AddressOfAdditionalLink
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Kind
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Kind
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Kind
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Kind
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Kind
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Kind
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Kind
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: OneToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap[0].SourceValue
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap[0].SourceValue
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap[0].SourceValue
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap[0].SourceValue
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap[0].SourceValue
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap[0].SourceValue
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap[0].SourceValue
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap[0].TargetValue
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap[0].TargetValue
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap[0].TargetValue
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap[0].TargetValue
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap[0].TargetValue
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap[0].TargetValue
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ValueMap[0].TargetValue
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ExpressionLanguage
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ExpressionLanguage
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ExpressionLanguage
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ExpressionLanguage
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ExpressionLanguage
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ExpressionLanguage
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.ExpressionLanguage
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Expression
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Expression
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Expression
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Expression
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Expression
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Expression
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Expression
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Instruction
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Instruction
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Instruction
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Instruction
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Instruction
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Instruction
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Instruction
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToOne

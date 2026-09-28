@@ -1,0 +1,50 @@
+# Expected outcome of applying nameplate_2.0_to_3.0 to fixtures/nameplate_2.0.yaml.
+# Derived by hand from the change log of IDTA 02006 v3.0 before running the chain.
+chain: chains/nameplate_2.0_to_3.0.yaml
+instance: fixtures/nameplate_2.0.yaml
+
+retained:
+  URIOfTheProduct: https://example.com/products/EX-100-200/SN0042          # BT: value type only
+  SerialNumber: SN0042
+  YearOfConstruction: "2024"                                               # B6: cardinality only
+  DateOfManufacture: "2024-03-12"
+  CountryOfOrigin: DE
+  "Markings[0].MarkingName": CE                                            # B2: one entry per marking
+  "Markings[0].IssueDate": "2024-01-10"
+  "Markings[0].MarkingFile": /aasx/files/ce.pdf
+  "Markings[1].MarkingName": UKCA
+  "Markings[1].IssueDate": "2024-02-01"
+  "Markings[1].MarkingFile": /aasx/files/ukca.pdf
+  "AssetSpecificProperties.GuidelineSpecificProperties[0].GuidelineForConformityDeclaration": 2014/30/EU   # B8
+  "AssetSpecificProperties.GuidelineSpecificProperties[0].EmissionClass": Class A
+  "AssetSpecificProperties.GuidelineSpecificProperties[1].GuidelineForConformityDeclaration": 2014/35/EU
+  "AssetSpecificProperties.GuidelineSpecificProperties[1].RatedVoltage": 24 V DC
+  AssetSpecificProperties.ProtectionClass: IP20
+  ManufacturerProductType: EX-100-200                                      # BT: multi-language -> string (CEL)
+  OrderCodeOfManufacturer: EX100200
+  ProductArticleNumberOfManufacturer: EX-100-200-A
+  HardwareVersion: "2.1"
+  FirmwareVersion: "4.0.3"
+  SoftwareVersion: "4.0.3"
+  InternalInventoryNumber: INV-2024-0815
+  AddressInformation.Street: [{language: en, text: Examplestreet 1}]      # B4: drop-in Address Information
+  AddressInformation.Zipcode: [{language: en, text: "12345"}]
+  AddressInformation.CityTown: [{language: en, text: Exampletown}]
+  AddressInformation.NationalCode: [{language: en, text: DE}]
+  AddressInformation.Company: [{language: en, text: Example Manufacturer GmbH}]
+
+control:
+  InternalInventoryNumber: InternalInventoryNumber
+  AssetSpecificProperties.ProtectionClass: AssetSpecificProperties.ProtectionClass
+  AssetSpecificProperties.GuidelineSpecificProperties01.EmissionClass: "AssetSpecificProperties.GuidelineSpecificProperties[0].EmissionClass"
+  AssetSpecificProperties.GuidelineSpecificProperties02.RatedVoltage: "AssetSpecificProperties.GuidelineSpecificProperties[1].RatedVoltage"
+
+manual: []
+
+# Conformance of the result to v3.0
+conforms: true
+violations: []
+
+# Values the change removes without carrying them over (reported before consent). The contact data
+# is retained in AddressInformation, the use of the drop-in Address Information (B4).
+removed: []

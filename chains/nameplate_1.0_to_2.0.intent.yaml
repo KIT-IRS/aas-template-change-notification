@@ -1,0 +1,108 @@
+# Template Change Notification: ZVEI Digital Nameplate v1.0 -> IDTA 02006 Digital Nameplate v2.0
+# (intent, hand-written). IDTA 02006-2-0 publishes no change log; the two renames below are the ones
+# its text describes (§3.2 ContactInformation, §3.13 GuidelineSpecificProperties{00}). Everything
+# else is completed mechanically by `uv run tcn owner complete`.
+
+header:
+  Family: DigitalNameplate
+  PreVersion: https://admin-shell.io/idta/SubmodelTemplate/DigitalNameplate/1/0
+  PostVersion: https://admin-shell.io/idta/SubmodelTemplate/DigitalNameplate/2/0
+  PreTemplate: ressources/Templates/SMT_qualified_ZVEI_Digital_Nameplate_V10.json
+  PostTemplate: "ressources/Templates/IDTA 02006-2-0_Template_Digital Nameplate.json"
+  TemplateOwner: Industrial Digital Twin Association (IDTA)
+  TemplateOwnerAddress:
+    Company: Industrial Digital Twin Association e.V.
+    Street: Lyoner Straße 18
+    Zipcode: "60528"
+    CityTown: Frankfurt am Main
+    NationalCode: DE
+  ChangeURI: https://industrialdigitaltwin.io/content-hub/downloads/idta-02006-2-0-digital-nameplate
+
+sections:
+  - title: "A1 (§3.2): Address becomes ContactInformation; its properties are retained"
+    origin: hand
+    items:
+      # a container is renamed only without children: ContactInformation is created beside
+      # Address, the properties move into it, and the emptied Address is removed
+      - {ChangeOperation: CreateSME, ElementPath: ContactInformation, SMEType: SubmodelElementCollection}
+      # the cardinality constraint of Address continues to apply to ContactInformation
+      - {ChangeOperation: CreateQual, ElementPath: ContactInformation, QualifierType: Multiplicity}
+      - {ChangeOperation: UpdateAttr, ElementPath: ContactInformation, QualifierType: Multiplicity, AttributeKey: valueType, AttributeValue: xs:string}
+      - {ChangeOperation: CreateAttr, ElementPath: ContactInformation, QualifierType: Multiplicity, AttributeKey: value}
+      - {ChangeOperation: Sync, SourceElementPaths: ["Address@Multiplicity#value"], TargetElementPaths: ["ContactInformation@Multiplicity#value"],
+         TransferFunction: {Kind: Identity}}
+      - {ChangeOperation: RemoveQual, ElementPath: Address, QualifierType: Multiplicity}
+      - {ChangeOperation: RemoveQual, ElementPath: Address, QualifierType: FormInfo}
+      - {ChangeOperation: UpdateParent, ElementPath: Address.Department, NewParentPath: ContactInformation}
+      - {ChangeOperation: UpdateParent, ElementPath: Address.Street, NewParentPath: ContactInformation}
+      - {ChangeOperation: UpdateParent, ElementPath: Address.Zipcode, NewParentPath: ContactInformation}
+      - {ChangeOperation: UpdateParent, ElementPath: Address.POBox, NewParentPath: ContactInformation}
+      - {ChangeOperation: UpdateParent, ElementPath: Address.ZipCodeOfPOBox, NewParentPath: ContactInformation}
+      - {ChangeOperation: UpdateParent, ElementPath: Address.CityTown, NewParentPath: ContactInformation}
+      - {ChangeOperation: UpdateParent, ElementPath: Address.StateCounty, NewParentPath: ContactInformation}
+      - {ChangeOperation: UpdateParent, ElementPath: Address.NationalCode, NewParentPath: ContactInformation}
+      - {ChangeOperation: UpdateParent, ElementPath: Address.AddressOfAdditionalLink, NewParentPath: ContactInformation}
+      - {ChangeOperation: CreateSME, ElementPath: ContactInformation.Phone, SMEType: SubmodelElementCollection}
+      # Phone: at most one in v2.0 (was ZeroToMany)
+      - {ChangeOperation: CreateQual, ElementPath: ContactInformation.Phone, QualifierType: Multiplicity}
+      - {ChangeOperation: UpdateAttr, ElementPath: ContactInformation.Phone, QualifierType: Multiplicity, AttributeKey: valueType, AttributeValue: xs:string}
+      - {ChangeOperation: CreateAttr, ElementPath: ContactInformation.Phone, QualifierType: Multiplicity, AttributeKey: value}
+      - {ChangeOperation: Sync, SourceElementPaths: ["Address.Phone@Multiplicity#value"], TargetElementPaths: ["ContactInformation.Phone@Multiplicity#value"],
+         TransferFunction: {Kind: ValueMap, Pairs: {ZeroToMany: ZeroToOne}}}
+      - {ChangeOperation: RemoveQual, ElementPath: Address.Phone, QualifierType: Multiplicity}
+      - {ChangeOperation: RemoveQual, ElementPath: Address.Phone, QualifierType: FormInfo}
+      - {ChangeOperation: UpdateParent, ElementPath: Address.Phone.TelephoneNumber, NewParentPath: ContactInformation.Phone}
+      - {ChangeOperation: UpdateParent, ElementPath: Address.Phone.TypeOfTelephone, NewParentPath: ContactInformation.Phone}
+      - {ChangeOperation: RemoveSME, ElementPath: Address.Phone}
+      - {ChangeOperation: CreateSME, ElementPath: ContactInformation.Fax, SMEType: SubmodelElementCollection}
+      # Fax: at most one in v2.0 (was ZeroToMany)
+      - {ChangeOperation: CreateQual, ElementPath: ContactInformation.Fax, QualifierType: Multiplicity}
+      - {ChangeOperation: UpdateAttr, ElementPath: ContactInformation.Fax, QualifierType: Multiplicity, AttributeKey: valueType, AttributeValue: xs:string}
+      - {ChangeOperation: CreateAttr, ElementPath: ContactInformation.Fax, QualifierType: Multiplicity, AttributeKey: value}
+      - {ChangeOperation: Sync, SourceElementPaths: ["Address.Fax@Multiplicity#value"], TargetElementPaths: ["ContactInformation.Fax@Multiplicity#value"],
+         TransferFunction: {Kind: ValueMap, Pairs: {ZeroToMany: ZeroToOne}}}
+      - {ChangeOperation: RemoveQual, ElementPath: Address.Fax, QualifierType: Multiplicity}
+      - {ChangeOperation: RemoveQual, ElementPath: Address.Fax, QualifierType: FormInfo}
+      - {ChangeOperation: UpdateParent, ElementPath: Address.Fax.FaxNumber, NewParentPath: ContactInformation.Fax}
+      - {ChangeOperation: UpdateParent, ElementPath: Address.Fax.TypeOfFaxNumber, NewParentPath: ContactInformation.Fax}
+      - {ChangeOperation: RemoveSME, ElementPath: Address.Fax}
+      - {ChangeOperation: CreateSME, ElementPath: ContactInformation.Email, SMEType: SubmodelElementCollection}
+      # Email: at most one in v2.0 (was ZeroToMany)
+      - {ChangeOperation: CreateQual, ElementPath: ContactInformation.Email, QualifierType: Multiplicity}
+      - {ChangeOperation: UpdateAttr, ElementPath: ContactInformation.Email, QualifierType: Multiplicity, AttributeKey: valueType, AttributeValue: xs:string}
+      - {ChangeOperation: CreateAttr, ElementPath: ContactInformation.Email, QualifierType: Multiplicity, AttributeKey: value}
+      - {ChangeOperation: Sync, SourceElementPaths: ["Address.Email@Multiplicity#value"], TargetElementPaths: ["ContactInformation.Email@Multiplicity#value"],
+         TransferFunction: {Kind: ValueMap, Pairs: {ZeroToMany: ZeroToOne}}}
+      - {ChangeOperation: RemoveQual, ElementPath: Address.Email, QualifierType: Multiplicity}
+      - {ChangeOperation: RemoveQual, ElementPath: Address.Email, QualifierType: FormInfo}
+      - {ChangeOperation: UpdateParent, ElementPath: Address.Email.EmailAddress, NewParentPath: ContactInformation.Email}
+      - {ChangeOperation: UpdateParent, ElementPath: Address.Email.PublicKey, NewParentPath: ContactInformation.Email}
+      - {ChangeOperation: UpdateParent, ElementPath: Address.Email.TypeOfEmailAddress, NewParentPath: ContactInformation.Email}
+      - {ChangeOperation: UpdateParent, ElementPath: Address.Email.TypeOfPublickKey, NewParentPath: ContactInformation.Email}
+      - {ChangeOperation: RemoveSME, ElementPath: Address.Email}
+      # the typo in the idShort is corrected; the semanticId is the same, so is the property
+      - {ChangeOperation: UpdateIdShort, ElementPath: ContactInformation.Email.TypeOfPublickKey, NewIdShort: TypeOfPublicKey}
+      # VATNumber and AddressRemarks are not continued in v2.0
+      - {ChangeOperation: RemoveQual, ElementPath: Address.VATNumber, QualifierType: Multiplicity}
+      - {ChangeOperation: RemoveQual, ElementPath: Address.VATNumber, QualifierType: FormInfo}
+      - {ChangeOperation: RemoveSME, ElementPath: Address.VATNumber}
+      - {ChangeOperation: RemoveQual, ElementPath: Address.AddressRemarks, QualifierType: Multiplicity}
+      - {ChangeOperation: RemoveQual, ElementPath: Address.AddressRemarks, QualifierType: FormInfo}
+      - {ChangeOperation: RemoveSME, ElementPath: Address.AddressRemarks}
+      - {ChangeOperation: RemoveSME, ElementPath: Address}
+
+  - title: "A2 (§3.13): GuidelineSpecificProperties becomes GuidelineSpecificProperties__00__"
+    origin: hand
+    items:
+      - {ChangeOperation: CreateSME, ElementPath: AssetSpecificProperties.GuidelineSpecificProperties__00__,
+         SMEType: SubmodelElementCollection}
+      - {ChangeOperation: CreateQual, ElementPath: AssetSpecificProperties.GuidelineSpecificProperties__00__, QualifierType: Multiplicity}
+      - {ChangeOperation: UpdateAttr, ElementPath: AssetSpecificProperties.GuidelineSpecificProperties__00__, QualifierType: Multiplicity, AttributeKey: valueType, AttributeValue: xs:string}
+      - {ChangeOperation: CreateAttr, ElementPath: AssetSpecificProperties.GuidelineSpecificProperties__00__, QualifierType: Multiplicity, AttributeKey: value}
+      - {ChangeOperation: Sync, SourceElementPaths: ["AssetSpecificProperties.GuidelineSpecificProperties@Multiplicity#value"], TargetElementPaths: ["AssetSpecificProperties.GuidelineSpecificProperties__00__@Multiplicity#value"],
+         TransferFunction: {Kind: Identity}}
+      - {ChangeOperation: RemoveQual, ElementPath: AssetSpecificProperties.GuidelineSpecificProperties, QualifierType: Multiplicity}
+      - {ChangeOperation: RemoveQual, ElementPath: AssetSpecificProperties.GuidelineSpecificProperties, QualifierType: FormInfo}
+      - {ChangeOperation: UpdateParent, ElementPath: AssetSpecificProperties.GuidelineSpecificProperties.GuidelineForConformityDeclaration,
+         NewParentPath: AssetSpecificProperties.GuidelineSpecificProperties__00__}
+      - {ChangeOperation: RemoveSME, ElementPath: AssetSpecificProperties.GuidelineSpecificProperties}

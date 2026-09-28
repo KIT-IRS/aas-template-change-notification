@@ -1,0 +1,32 @@
+# Submodel instance conforming to the ZVEI Digital Nameplate v1.0. Illustrative values of an example device.
+template: ressources/Templates/SMT_qualified_ZVEI_Digital_Nameplate_V10.json
+id: https://example.com/ids/sm/example-device/Nameplate
+
+omit:
+  - Address.Fax                                   # optional (ZeroToMany)
+
+repeat:
+  Markings.Marking: [Marking01, Marking02]
+
+values:
+  ManufacturerName: {en: Example Manufacturer GmbH}
+  ManufacturerProductDesignation: {en: Compact I/O controller}
+  Address.Street: {en: Examplestreet 1}
+  Address.Zipcode: {en: "12345"}
+  Address.CityTown: {en: Exampletown}
+  Address.NationalCode: {en: DE}
+  Address.VATNumber: {en: DE123456789}
+  Address.Phone.TelephoneNumber: {en: "+49 123 4567"}
+  Address.Email.EmailAddress: info@example.com
+  ManufacturerProductFamily: {en: EX-100}
+  SerialNumber: SN0042
+  YearOfConstruction: "2024"
+  Markings.Marking01.MarkingName: CE
+  Markings.Marking01.MarkingFile: /aasx/files/ce.pdf
+  Markings.Marking02.MarkingName: UKCA
+  Markings.Marking02.MarkingFile: /aasx/files/ukca.pdf
+  AssetSpecificProperties.GuidelineSpecificProperties.GuidelineForConformityDeclaration: 2014/30/EU
+
+add:
+  "":                   # local extension of the asset maintainer, described by no template
+    - {modelType: Property, idShort: InternalInventoryNumber, valueType: xs:string, value: INV-2024-0815}

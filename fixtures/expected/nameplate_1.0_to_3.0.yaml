@@ -1,0 +1,40 @@
+# Expected outcome of applying two records in order (V5): ZVEI Nameplate v1.0 -> IDTA v2.0 -> v3.0,
+# to fixtures/nameplate_1.0.yaml. Derived by hand from IDTA 02006-2-0 §3.2/§3.13 and the change log
+# of IDTA 02006-3-0 before running the chains.
+chains:
+  - chains/nameplate_1.0_to_2.0.yaml
+  - chains/nameplate_2.0_to_3.0.yaml
+instance: fixtures/nameplate_1.0.yaml
+
+retained:
+  SerialNumber: SN0042
+  YearOfConstruction: "2024"
+  "Markings[0].MarkingName": CE                        # 3.0 B2: one entry per marking
+  "Markings[0].MarkingFile": /aasx/files/ce.pdf
+  "Markings[1].MarkingName": UKCA
+  "Markings[1].MarkingFile": /aasx/files/ukca.pdf
+  "AssetSpecificProperties.GuidelineSpecificProperties[0].GuidelineForConformityDeclaration": 2014/30/EU   # 2.0 §3.13, 3.0 B8
+  InternalInventoryNumber: INV-2024-0815
+  AddressInformation.Street: [{language: en, text: Examplestreet 1}]      # 2.0 §3.2, 3.0 B4 (drop-in)
+  AddressInformation.CityTown: [{language: en, text: Exampletown}]
+  AddressInformation.Phone.TelephoneNumber: [{language: en, text: "+49 123 4567"}]
+  AddressInformation.Email.EmailAddress: info@example.com
+
+control:
+  InternalInventoryNumber: InternalInventoryNumber
+
+# Values the asset maintainer has to provide: mandatory in 2.0 (URIOfTheProduct), made mandatory in
+# 3.0 (OrderCodeOfManufacturer; not stated in the change log, see V2)
+manual:
+  - URIOfTheProduct
+  - OrderCodeOfManufacturer
+
+# Conformance of the result to v3.0
+conforms: false
+violations:
+  - [VALUE_MISSING, URIOfTheProduct]            # mandatory since v2.0, not in v1.0
+  - [VALUE_MISSING, OrderCodeOfManufacturer]    # mandatory since v3.0, not in v1.0
+
+# Values the change removes without carrying them over (reported before consent)
+removed:
+  - Address.VATNumber        # not continued in v2.0

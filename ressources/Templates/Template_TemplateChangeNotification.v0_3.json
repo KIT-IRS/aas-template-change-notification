@@ -1,0 +1,2464 @@
+{
+  "assetAdministrationShells": [
+    {
+      "assetInformation": {
+        "assetKind": "Type",
+        "assetType": "https://www.irs.kit.edu/assettype/modelchangenotifications/0/3",
+        "globalAssetId": "https://www.irs.kit.edu/aas/modelchangenotifications/0/3"
+      },
+      "id": "https://www.irs.kit.edu/aas/modelchangenotifications/0/3",
+      "idShort": "ModelChangeNotificationsAAS",
+      "modelType": "AssetAdministrationShell",
+      "submodels": [
+        {
+          "keys": [
+            {
+              "type": "Submodel",
+              "value": "https://www.irs.kit.edu/SubmodelTemplate/modelchangenotifications/0/3"
+            }
+          ],
+          "type": "ModelReference"
+        }
+      ]
+    }
+  ],
+  "submodels": [
+    {
+      "administration": {
+        "revision": "2",
+        "version": "0"
+      },
+      "description": [
+        {
+          "language": "en",
+          "text": "Announces changes to the definition of an information model (a Submodel Template), decomposed into the ten atomic operators of the MCN operator set."
+        }
+      ],
+      "id": "https://www.irs.kit.edu/SubmodelTemplate/modelchangenotifications/0/3",
+      "idShort": "ModelChangeNotifications",
+      "kind": "Template",
+      "modelType": "Submodel",
+      "semanticId": {
+        "keys": [
+          {
+            "type": "GlobalReference",
+            "value": "https://www.irs.kit.edu/SubmodelTemplate/modelchangenotifications/0/3"
+          }
+        ],
+        "type": "ExternalReference"
+      },
+      "submodelElements": [
+        {
+          "modelType": "SubmodelElementList",
+          "idShort": "MCNGroups",
+          "description": [
+            {
+              "language": "en",
+              "text": "One entry per observed Submodel Template. Multiplicity lives in this list: entries are addressed by position and carry no idShort, so nothing collides and the entry's ZeroToMany is satisfiable without any element having to be renamed per instance."
+            }
+          ],
+          "qualifiers": [
+            {
+              "kind": "TemplateQualifier",
+              "semanticId": {
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                  }
+                ],
+                "type": "ExternalReference"
+              },
+              "type": "SMT/Cardinality",
+              "value": "One",
+              "valueType": "xs:string"
+            }
+          ],
+          "orderRelevant": false,
+          "typeValueListElement": "SubmodelElementCollection",
+          "value": [
+            {
+              "modelType": "SubmodelElementCollection",
+              "description": [
+                {
+                  "language": "en",
+                  "text": "All Model Change Notifications concerning one observed Submodel Template. One entry of MCNGroups per template; the ObservedSMT reference is its identity."
+                }
+              ],
+              "semanticId": {
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://www.irs.kit.edu/idta/mcn/1/0/McnGroup"
+                  }
+                ],
+                "type": "ExternalReference"
+              },
+              "qualifiers": [
+                {
+                  "kind": "TemplateQualifier",
+                  "semanticId": {
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                      }
+                    ],
+                    "type": "ExternalReference"
+                  },
+                  "type": "SMT/Cardinality",
+                  "value": "ZeroToMany",
+                  "valueType": "xs:string"
+                }
+              ],
+              "value": [
+                {
+                  "modelType": "ReferenceElement",
+                  "idShort": "ObservedSMT",
+                  "description": [
+                    {
+                      "language": "en",
+                      "text": "The Submodel Template this group of notifications is about: what a subscriber watches, and the group's identity. Which template a given record's change directly targets is stated by that record's AffectedSMT, which is omitted when it is this one."
+                    }
+                  ],
+                  "semanticId": {
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "https://www.irs.kit.edu/idta/mcn/1/0/ObservedSMT"
+                      }
+                    ],
+                    "type": "ExternalReference"
+                  },
+                  "qualifiers": [
+                    {
+                      "kind": "TemplateQualifier",
+                      "semanticId": {
+                        "keys": [
+                          {
+                            "type": "GlobalReference",
+                            "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                          }
+                        ],
+                        "type": "ExternalReference"
+                      },
+                      "type": "SMT/Cardinality",
+                      "value": "One",
+                      "valueType": "xs:string"
+                    }
+                  ]
+                },
+                {
+                  "modelType": "ReferenceElement",
+                  "idShort": "SMInstance",
+                  "description": [
+                    {
+                      "language": "en",
+                      "text": "A Submodel instance derived from ObservedSMT that is affected by the change."
+                    }
+                  ],
+                  "semanticId": {
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "https://www.irs.kit.edu/idta/mcn/1/0/SMInstance"
+                      }
+                    ],
+                    "type": "ExternalReference"
+                  },
+                  "qualifiers": [
+                    {
+                      "kind": "TemplateQualifier",
+                      "semanticId": {
+                        "keys": [
+                          {
+                            "type": "GlobalReference",
+                            "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                          }
+                        ],
+                        "type": "ExternalReference"
+                      },
+                      "type": "SMT/Cardinality",
+                      "value": "ZeroToOne",
+                      "valueType": "xs:string"
+                    }
+                  ]
+                },
+                {
+                  "modelType": "SubmodelElementList",
+                  "idShort": "MCNRecords",
+                  "qualifiers": [
+                    {
+                      "kind": "TemplateQualifier",
+                      "semanticId": {
+                        "keys": [
+                          {
+                            "type": "GlobalReference",
+                            "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                          }
+                        ],
+                        "type": "ExternalReference"
+                      },
+                      "type": "SMT/Cardinality",
+                      "value": "One",
+                      "valueType": "xs:string"
+                    }
+                  ],
+                  "orderRelevant": true,
+                  "typeValueListElement": "SubmodelElementCollection",
+                  "value": [
+                    {
+                      "modelType": "SubmodelElementCollection",
+                      "description": [
+                        {
+                          "language": "en",
+                          "text": "One Model Change Notification as received: a single announced update to one information model, together with the ordered operations that realise it — normally complex operations, occasionally a bare atomic operator."
+                        }
+                      ],
+                      "semanticId": {
+                        "keys": [
+                          {
+                            "type": "GlobalReference",
+                            "value": "https://www.irs.kit.edu/idta/mcn/1/0/McnRecord"
+                          }
+                        ],
+                        "type": "ExternalReference"
+                      },
+                      "qualifiers": [
+                        {
+                          "kind": "TemplateQualifier",
+                          "semanticId": {
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                              }
+                            ],
+                            "type": "ExternalReference"
+                          },
+                          "type": "SMT/Cardinality",
+                          "value": "OneToMany",
+                          "valueType": "xs:string"
+                        }
+                      ],
+                      "value": [
+                        {
+                          "modelType": "Property",
+                          "idShort": "NotificationId",
+                          "description": [
+                            {
+                              "language": "en",
+                              "text": "Identifier of the transport envelope that delivered this record. Sender-generated, unique per message and stable across redelivery. Correlates the record with its traceability and quarantine entries, and is what makes redelivery detectable."
+                            }
+                          ],
+                          "semanticId": {
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "https://www.irs.kit.edu/idta/mcn/1/0/NotificationId"
+                              }
+                            ],
+                            "type": "ExternalReference"
+                          },
+                          "qualifiers": [
+                            {
+                              "kind": "TemplateQualifier",
+                              "semanticId": {
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                  }
+                                ],
+                                "type": "ExternalReference"
+                              },
+                              "type": "SMT/Cardinality",
+                              "value": "One",
+                              "valueType": "xs:string"
+                            }
+                          ],
+                          "valueType": "xs:string"
+                        },
+                        {
+                          "modelType": "Property",
+                          "idShort": "ChangeURI",
+                          "description": [
+                            {
+                              "language": "en",
+                              "text": "Identifier of the announced change, resolvable to its human-readable documentation. Unique per change and never reused; several records may share one. Compared as an opaque string, so that reorganising the documentation does not rewrite identity."
+                            }
+                          ],
+                          "semanticId": {
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "https://www.irs.kit.edu/idta/mcn/1/0/ChangeURI"
+                              }
+                            ],
+                            "type": "ExternalReference"
+                          },
+                          "qualifiers": [
+                            {
+                              "kind": "TemplateQualifier",
+                              "semanticId": {
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                  }
+                                ],
+                                "type": "ExternalReference"
+                              },
+                              "type": "SMT/Cardinality",
+                              "value": "One",
+                              "valueType": "xs:string"
+                            }
+                          ],
+                          "valueType": "xs:anyURI"
+                        },
+                        {
+                          "modelType": "Property",
+                          "idShort": "PreVersion",
+                          "description": [
+                            {
+                              "language": "en",
+                              "text": "semanticId of the observed Submodel Template before this change set was applied. An instance conforms to a template by stating that semanticId, so this is what a consumer compares its own model against to decide whether the change applies to it."
+                            }
+                          ],
+                          "semanticId": {
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "https://www.irs.kit.edu/idta/mcn/1/0/PreVersion"
+                              }
+                            ],
+                            "type": "ExternalReference"
+                          },
+                          "qualifiers": [
+                            {
+                              "kind": "TemplateQualifier",
+                              "semanticId": {
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                  }
+                                ],
+                                "type": "ExternalReference"
+                              },
+                              "type": "SMT/Cardinality",
+                              "value": "One",
+                              "valueType": "xs:string"
+                            }
+                          ],
+                          "valueType": "xs:anyURI"
+                        },
+                        {
+                          "modelType": "Property",
+                          "idShort": "PostVersion",
+                          "description": [
+                            {
+                              "language": "en",
+                              "text": "semanticId of the observed Submodel Template after this change set was applied. A consumer that applies the change sets this as its instance's semanticId, which is what makes the next change in a chain applicable."
+                            }
+                          ],
+                          "semanticId": {
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "https://www.irs.kit.edu/idta/mcn/1/0/PostVersion"
+                              }
+                            ],
+                            "type": "ExternalReference"
+                          },
+                          "qualifiers": [
+                            {
+                              "kind": "TemplateQualifier",
+                              "semanticId": {
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                  }
+                                ],
+                                "type": "ExternalReference"
+                              },
+                              "type": "SMT/Cardinality",
+                              "value": "One",
+                              "valueType": "xs:string"
+                            }
+                          ],
+                          "valueType": "xs:anyURI"
+                        },
+                        {
+                          "modelType": "Property",
+                          "idShort": "DateOfRecord",
+                          "description": [
+                            {
+                              "language": "en",
+                              "text": "Point in time at which this notification record was issued."
+                            }
+                          ],
+                          "semanticId": {
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "https://www.irs.kit.edu/idta/mcn/1/0/DateOfRecord"
+                              }
+                            ],
+                            "type": "ExternalReference"
+                          },
+                          "qualifiers": [
+                            {
+                              "kind": "TemplateQualifier",
+                              "semanticId": {
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                  }
+                                ],
+                                "type": "ExternalReference"
+                              },
+                              "type": "SMT/Cardinality",
+                              "value": "One",
+                              "valueType": "xs:string"
+                            }
+                          ],
+                          "valueType": "xs:dateTime"
+                        },
+                        {
+                          "modelType": "SubmodelElementCollection",
+                          "idShort": "TemplateOwner",
+                          "description": [
+                            {
+                              "language": "en",
+                              "text": "The organisation issuing this notification, i.e. the owner of the observed template."
+                            }
+                          ],
+                          "semanticId": {
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "https://www.irs.kit.edu/idta/mcn/1/0/TemplateOwner"
+                              }
+                            ],
+                            "type": "ExternalReference"
+                          },
+                          "qualifiers": [
+                            {
+                              "kind": "TemplateQualifier",
+                              "semanticId": {
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                  }
+                                ],
+                                "type": "ExternalReference"
+                              },
+                              "type": "SMT/Cardinality",
+                              "value": "One",
+                              "valueType": "xs:string"
+                            }
+                          ],
+                          "value": [
+                            {
+                              "modelType": "MultiLanguageProperty",
+                              "idShort": "TemplateOwnerName",
+                              "qualifiers": [
+                                {
+                                  "kind": "TemplateQualifier",
+                                  "semanticId": {
+                                    "keys": [
+                                      {
+                                        "type": "GlobalReference",
+                                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                      }
+                                    ],
+                                    "type": "ExternalReference"
+                                  },
+                                  "type": "SMT/Cardinality",
+                                  "value": "One",
+                                  "valueType": "xs:string"
+                                }
+                              ]
+                            },
+                            {
+                              "modelType": "SubmodelElementCollection",
+                              "idShort": "PhysicalAddress",
+                              "description": [
+                                {
+                                  "language": "en",
+                                  "text": "Structure is governed entirely by the referenced ZVEI ContactInformation concept and is not restated here."
+                                }
+                              ],
+                              "semanticId": {
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/zvei/nameplate/1/0/ContactInformations/ContactInformation"
+                                  }
+                                ],
+                                "type": "ExternalReference"
+                              },
+                              "qualifiers": [
+                                {
+                                  "kind": "TemplateQualifier",
+                                  "semanticId": {
+                                    "keys": [
+                                      {
+                                        "type": "GlobalReference",
+                                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                      }
+                                    ],
+                                    "type": "ExternalReference"
+                                  },
+                                  "type": "SMT/Cardinality",
+                                  "value": "ZeroToOne",
+                                  "valueType": "xs:string"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "modelType": "ReferenceElement",
+                          "idShort": "AffectedSMT",
+                          "description": [
+                            {
+                              "language": "en",
+                              "text": "The Submodel Template that this record's change directly targets. Omitted when that is the group's ObservedSMT, which is the ordinary case; a consumer reading no AffectedSMT shall resolve the target to the group's ObservedSMT."
+                            }
+                          ],
+                          "semanticId": {
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "https://www.irs.kit.edu/idta/mcn/1/0/AffectedSMT"
+                              }
+                            ],
+                            "type": "ExternalReference"
+                          },
+                          "qualifiers": [
+                            {
+                              "kind": "TemplateQualifier",
+                              "semanticId": {
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                  }
+                                ],
+                                "type": "ExternalReference"
+                              },
+                              "type": "SMT/Cardinality",
+                              "value": "ZeroToOne",
+                              "valueType": "xs:string"
+                            }
+                          ]
+                        },
+                        {
+                          "modelType": "SubmodelElementList",
+                          "idShort": "ReasonsOfChange",
+                          "qualifiers": [
+                            {
+                              "kind": "TemplateQualifier",
+                              "semanticId": {
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                  }
+                                ],
+                                "type": "ExternalReference"
+                              },
+                              "type": "SMT/Cardinality",
+                              "value": "ZeroToOne",
+                              "valueType": "xs:string"
+                            }
+                          ],
+                          "orderRelevant": false,
+                          "typeValueListElement": "SubmodelElementCollection",
+                          "value": [
+                            {
+                              "modelType": "SubmodelElementCollection",
+                              "description": [
+                                {
+                                  "language": "en",
+                                  "text": "One classified reason for the change."
+                                }
+                              ],
+                              "semanticId": {
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://www.irs.kit.edu/idta/mcn/1/0/ReasonOfChange"
+                                  }
+                                ],
+                                "type": "ExternalReference"
+                              },
+                              "qualifiers": [
+                                {
+                                  "kind": "TemplateQualifier",
+                                  "semanticId": {
+                                    "keys": [
+                                      {
+                                        "type": "GlobalReference",
+                                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                      }
+                                    ],
+                                    "type": "ExternalReference"
+                                  },
+                                  "type": "SMT/Cardinality",
+                                  "value": "OneToMany",
+                                  "valueType": "xs:string"
+                                }
+                              ],
+                              "value": [
+                                {
+                                  "modelType": "Property",
+                                  "idShort": "ReasonClassificationSystem",
+                                  "qualifiers": [
+                                    {
+                                      "kind": "TemplateQualifier",
+                                      "semanticId": {
+                                        "keys": [
+                                          {
+                                            "type": "GlobalReference",
+                                            "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                          }
+                                        ],
+                                        "type": "ExternalReference"
+                                      },
+                                      "type": "SMT/Cardinality",
+                                      "value": "One",
+                                      "valueType": "xs:string"
+                                    }
+                                  ],
+                                  "valueType": "xs:string",
+                                  "value": "VDMA24903"
+                                },
+                                {
+                                  "modelType": "Property",
+                                  "idShort": "VersionOfClassificationSystem",
+                                  "qualifiers": [
+                                    {
+                                      "kind": "TemplateQualifier",
+                                      "semanticId": {
+                                        "keys": [
+                                          {
+                                            "type": "GlobalReference",
+                                            "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                          }
+                                        ],
+                                        "type": "ExternalReference"
+                                      },
+                                      "type": "SMT/Cardinality",
+                                      "value": "ZeroToOne",
+                                      "valueType": "xs:string"
+                                    }
+                                  ],
+                                  "valueType": "xs:string",
+                                  "value": "2017"
+                                },
+                                {
+                                  "modelType": "Property",
+                                  "idShort": "ReasonId",
+                                  "qualifiers": [
+                                    {
+                                      "kind": "TemplateQualifier",
+                                      "semanticId": {
+                                        "keys": [
+                                          {
+                                            "type": "GlobalReference",
+                                            "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                          }
+                                        ],
+                                        "type": "ExternalReference"
+                                      },
+                                      "type": "SMT/Cardinality",
+                                      "value": "One",
+                                      "valueType": "xs:string"
+                                    }
+                                  ],
+                                  "valueType": "xs:string"
+                                }
+                              ]
+                            }
+                          ],
+                          "semanticIdListElement": {
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "https://www.irs.kit.edu/idta/mcn/1/0/ReasonOfChange"
+                              }
+                            ],
+                            "type": "ExternalReference"
+                          }
+                        },
+                        {
+                          "modelType": "MultiLanguageProperty",
+                          "idShort": "McnReasonComment",
+                          "qualifiers": [
+                            {
+                              "kind": "TemplateQualifier",
+                              "semanticId": {
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                  }
+                                ],
+                                "type": "ExternalReference"
+                              },
+                              "type": "SMT/Cardinality",
+                              "value": "ZeroToOne",
+                              "valueType": "xs:string"
+                            }
+                          ]
+                        },
+                        {
+                          "modelType": "SubmodelElementList",
+                          "idShort": "AdditionalInformation",
+                          "qualifiers": [
+                            {
+                              "kind": "TemplateQualifier",
+                              "semanticId": {
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                  }
+                                ],
+                                "type": "ExternalReference"
+                              },
+                              "type": "SMT/Cardinality",
+                              "value": "ZeroToOne",
+                              "valueType": "xs:string"
+                            }
+                          ],
+                          "orderRelevant": false,
+                          "typeValueListElement": "File"
+                        },
+                        {
+                          "modelType": "SubmodelElementList",
+                          "idShort": "ItemsOfChange",
+                          "description": [
+                            {
+                              "language": "en",
+                              "text": "Ordered. Later items may depend on elements created by earlier ones -- a container move creates its parking container before the UpdateParent operations that fill it. Reordering is not permitted."
+                            }
+                          ],
+                          "qualifiers": [
+                            {
+                              "kind": "TemplateQualifier",
+                              "semanticId": {
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                  }
+                                ],
+                                "type": "ExternalReference"
+                              },
+                              "type": "SMT/Cardinality",
+                              "value": "One",
+                              "valueType": "xs:string"
+                            }
+                          ],
+                          "orderRelevant": true,
+                          "typeValueListElement": "SubmodelElementCollection",
+                          "value": [
+                            {
+                              "modelType": "SubmodelElementCollection",
+                              "description": [
+                                {
+                                  "language": "en",
+                                  "text": "One requested operation -- usually a complex operation, occasionally a bare atomic operator. The ordered sequence of items is the complete change; the decomposition of each complex operation into atomic steps is the receiver's business and is recorded in its traceability log, not here."
+                                }
+                              ],
+                              "semanticId": {
+                                "keys": [
+                                  {
+                                    "type": "GlobalReference",
+                                    "value": "https://www.irs.kit.edu/idta/mcn/1/0/ItemOfChange"
+                                  }
+                                ],
+                                "type": "ExternalReference"
+                              },
+                              "qualifiers": [
+                                {
+                                  "kind": "TemplateQualifier",
+                                  "semanticId": {
+                                    "keys": [
+                                      {
+                                        "type": "GlobalReference",
+                                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                      }
+                                    ],
+                                    "type": "ExternalReference"
+                                  },
+                                  "type": "SMT/Cardinality",
+                                  "value": "OneToMany",
+                                  "valueType": "xs:string"
+                                }
+                              ],
+                              "value": [
+                                {
+                                  "modelType": "Property",
+                                  "idShort": "ChangeOperator",
+                                  "description": [
+                                    {
+                                      "language": "en",
+                                      "text": "The operation this item requests. Normally a complex operation defined for the MCN submodel -- a composed, multi-step transformation named as a single intent. The ten atomic operators (CreateSME, CreateQual, CreateAttr, UpdateIdShort, UpdateParent, UpdateAttr, RemoveSME, RemoveQual, RemoveAttr, Sync) may also be named directly, but that is the edge case: a primitive requested on its own rather than as part of a composed change. Names resolve against the complex operations first and the atomic operators second, so the two share one namespace and must not collide."
+                                    }
+                                  ],
+                                  "semanticId": {
+                                    "keys": [
+                                      {
+                                        "type": "GlobalReference",
+                                        "value": "https://www.irs.kit.edu/idta/mcn/1/0/ChangeOperator"
+                                      }
+                                    ],
+                                    "type": "ExternalReference"
+                                  },
+                                  "qualifiers": [
+                                    {
+                                      "kind": "TemplateQualifier",
+                                      "semanticId": {
+                                        "keys": [
+                                          {
+                                            "type": "GlobalReference",
+                                            "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                          }
+                                        ],
+                                        "type": "ExternalReference"
+                                      },
+                                      "type": "SMT/Cardinality",
+                                      "value": "One",
+                                      "valueType": "xs:string"
+                                    }
+                                  ],
+                                  "valueType": "xs:string"
+                                },
+                                {
+                                  "modelType": "SubmodelElementCollection",
+                                  "idShort": "OperationArguments",
+                                  "description": [
+                                    {
+                                      "language": "en",
+                                      "text": "Arguments to the operation named by ChangeOperator. The named arguments below are a flat union covering the ten atomic operators; an operation uses the subset its signature requires and omits the rest. A complex operation whose parameters are not among them carries those in AdditionalArguments."
+                                    }
+                                  ],
+                                  "semanticId": {
+                                    "keys": [
+                                      {
+                                        "type": "GlobalReference",
+                                        "value": "https://www.irs.kit.edu/idta/mcn/1/0/OperationArguments"
+                                      }
+                                    ],
+                                    "type": "ExternalReference"
+                                  },
+                                  "qualifiers": [
+                                    {
+                                      "kind": "TemplateQualifier",
+                                      "semanticId": {
+                                        "keys": [
+                                          {
+                                            "type": "GlobalReference",
+                                            "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                          }
+                                        ],
+                                        "type": "ExternalReference"
+                                      },
+                                      "type": "SMT/Cardinality",
+                                      "value": "One",
+                                      "valueType": "xs:string"
+                                    }
+                                  ],
+                                  "value": [
+                                    {
+                                      "modelType": "Property",
+                                      "idShort": "targetElementPath",
+                                      "description": [
+                                        {
+                                          "language": "en",
+                                          "text": "The element the operator acts on or produces. The path grammar is '<submodelId>::<segment>(.<segment>)*[#<attribute>]', where a segment is an idShort or a '[index]' addressing an entry of a SubmodelElementList. Split on the last '::': the metamodel confines idShort to ^[a-zA-Z][a-zA-Z0-9_-]*[a-zA-Z0-9_]+$, so nothing past that separator is ambiguous even when the submodel id is an IRDI containing '#'. The '#' attribute selector is not permitted here -- the Attr operators name their attribute in attributeKey -- and is required only on Sync's path lists. For CreateSME this is the path of the element being created; its parent is the path minus its last segment."
+                                        }
+                                      ],
+                                      "semanticId": {
+                                        "keys": [
+                                          {
+                                            "type": "GlobalReference",
+                                            "value": "https://www.irs.kit.edu/idta/mcn/1/0/targetElementPath"
+                                          }
+                                        ],
+                                        "type": "ExternalReference"
+                                      },
+                                      "qualifiers": [
+                                        {
+                                          "kind": "TemplateQualifier",
+                                          "semanticId": {
+                                            "keys": [
+                                              {
+                                                "type": "GlobalReference",
+                                                "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                              }
+                                            ],
+                                            "type": "ExternalReference"
+                                          },
+                                          "type": "SMT/Cardinality",
+                                          "value": "ZeroToOne",
+                                          "valueType": "xs:string"
+                                        }
+                                      ],
+                                      "valueType": "xs:string"
+                                    },
+                                    {
+                                      "modelType": "Property",
+                                      "idShort": "newIdShort",
+                                      "description": [
+                                        {
+                                          "language": "en",
+                                          "text": "UpdateIdShort only: the element's new idShort -- a name matching the metamodel's idShort production, never a path. UpdateIdShort renames in place; the element keeps the parent it has, which is what makes the intent recoverable from the operator alone."
+                                        }
+                                      ],
+                                      "semanticId": {
+                                        "keys": [
+                                          {
+                                            "type": "GlobalReference",
+                                            "value": "https://www.irs.kit.edu/idta/mcn/1/0/newIdShort"
+                                          }
+                                        ],
+                                        "type": "ExternalReference"
+                                      },
+                                      "qualifiers": [
+                                        {
+                                          "kind": "TemplateQualifier",
+                                          "semanticId": {
+                                            "keys": [
+                                              {
+                                                "type": "GlobalReference",
+                                                "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                              }
+                                            ],
+                                            "type": "ExternalReference"
+                                          },
+                                          "type": "SMT/Cardinality",
+                                          "value": "ZeroToOne",
+                                          "valueType": "xs:string"
+                                        }
+                                      ],
+                                      "valueType": "xs:string"
+                                    },
+                                    {
+                                      "modelType": "Property",
+                                      "idShort": "newParentPath",
+                                      "description": [
+                                        {
+                                          "language": "en",
+                                          "text": "UpdateParent only: the path of the element's new parent, and nothing further -- no '#' attribute selector and no '@' qualifier selector, and never the position the element lands at (that is derived, not stated). The Submodel root is '<submodelId>::', a path with no segments. Relocating into a SubmodelElementList drops the element's idShort (AASd-108/114/115: position is the only identity a list entry reliably has)."
+                                        }
+                                      ],
+                                      "semanticId": {
+                                        "keys": [
+                                          {
+                                            "type": "GlobalReference",
+                                            "value": "https://www.irs.kit.edu/idta/mcn/1/0/newParentPath"
+                                          }
+                                        ],
+                                        "type": "ExternalReference"
+                                      },
+                                      "qualifiers": [
+                                        {
+                                          "kind": "TemplateQualifier",
+                                          "semanticId": {
+                                            "keys": [
+                                              {
+                                                "type": "GlobalReference",
+                                                "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                              }
+                                            ],
+                                            "type": "ExternalReference"
+                                          },
+                                          "type": "SMT/Cardinality",
+                                          "value": "ZeroToOne",
+                                          "valueType": "xs:string"
+                                        }
+                                      ],
+                                      "valueType": "xs:string"
+                                    },
+                                    {
+                                      "modelType": "Property",
+                                      "idShort": "smeType",
+                                      "description": [
+                                        {
+                                          "language": "en",
+                                          "text": "CreateSME only: the modelType of the element to create. One of Property, MultiLanguageProperty, Range, Blob, File, ReferenceElement, RelationshipElement, AnnotatedRelationshipElement, Entity, Operation, BasicEventElement, SubmodelElementCollection, SubmodelElementList. Where the chosen type has attributes the AAS metamodel declares mandatory -- typeValueListElement on a SubmodelElementList, valueType on a Property or Range, contentType on a File -- they are set by a CreateAttr that opens a slot and the UpdateAttr that fills it, both closing the same validation unit, not by further arguments here."
+                                        }
+                                      ],
+                                      "semanticId": {
+                                        "keys": [
+                                          {
+                                            "type": "GlobalReference",
+                                            "value": "https://www.irs.kit.edu/idta/mcn/1/0/smeType"
+                                          }
+                                        ],
+                                        "type": "ExternalReference"
+                                      },
+                                      "qualifiers": [
+                                        {
+                                          "kind": "TemplateQualifier",
+                                          "semanticId": {
+                                            "keys": [
+                                              {
+                                                "type": "GlobalReference",
+                                                "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                              }
+                                            ],
+                                            "type": "ExternalReference"
+                                          },
+                                          "type": "SMT/Cardinality",
+                                          "value": "ZeroToOne",
+                                          "valueType": "xs:string"
+                                        }
+                                      ],
+                                      "valueType": "xs:string"
+                                    },
+                                    {
+                                      "modelType": "Property",
+                                      "idShort": "qualifierType",
+                                      "description": [
+                                        {
+                                          "language": "en",
+                                          "text": "The Qualifier/type key. CreateQual's third argument -- it fixes what the qualifier *is*. RemoveQual names the qualifier to remove. A qualifier's value, valueType and kind are written afterwards by CreateAttr/UpdateAttr against its '@type' address."
+                                        }
+                                      ],
+                                      "semanticId": {
+                                        "keys": [
+                                          {
+                                            "type": "GlobalReference",
+                                            "value": "https://www.irs.kit.edu/idta/mcn/1/0/qualifierType"
+                                          }
+                                        ],
+                                        "type": "ExternalReference"
+                                      },
+                                      "qualifiers": [
+                                        {
+                                          "kind": "TemplateQualifier",
+                                          "semanticId": {
+                                            "keys": [
+                                              {
+                                                "type": "GlobalReference",
+                                                "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                              }
+                                            ],
+                                            "type": "ExternalReference"
+                                          },
+                                          "type": "SMT/Cardinality",
+                                          "value": "ZeroToOne",
+                                          "valueType": "xs:string"
+                                        }
+                                      ],
+                                      "valueType": "xs:string"
+                                    },
+                                    {
+                                      "modelType": "Property",
+                                      "idShort": "attributeKey",
+                                      "description": [
+                                        {
+                                          "language": "en",
+                                          "text": "The attribute addressed by CreateAttr, UpdateAttr or RemoveAttr. On any SME: semanticId, supplementalSemanticId, category, description, displayName. On Property and Range: valueType, value, min, max. On SubmodelElementList: typeValueListElement, valueTypeListElement, orderRelevant, semanticIdListElement. On Entity: entityType. On File and Blob: contentType. On RelationshipElement and AnnotatedRelationshipElement: first, second. On BasicEventElement: observed, direction, state. A key not defined for the target's type is refused. Deliberately excludes idShort, over which only UpdateIdShort has authority; kind is included -- it is a qualifier attribute, and AASd-129 is checked when it is written."
+                                        }
+                                      ],
+                                      "semanticId": {
+                                        "keys": [
+                                          {
+                                            "type": "GlobalReference",
+                                            "value": "https://www.irs.kit.edu/idta/mcn/1/0/attributeKey"
+                                          }
+                                        ],
+                                        "type": "ExternalReference"
+                                      },
+                                      "qualifiers": [
+                                        {
+                                          "kind": "TemplateQualifier",
+                                          "semanticId": {
+                                            "keys": [
+                                              {
+                                                "type": "GlobalReference",
+                                                "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                              }
+                                            ],
+                                            "type": "ExternalReference"
+                                          },
+                                          "type": "SMT/Cardinality",
+                                          "value": "ZeroToOne",
+                                          "valueType": "xs:string"
+                                        }
+                                      ],
+                                      "valueType": "xs:string"
+                                    },
+                                    {
+                                      "modelType": "Property",
+                                      "idShort": "attributeValue",
+                                      "description": [
+                                        {
+                                          "language": "en",
+                                          "text": "UpdateAttr only: the attribute value, taken literally. CreateAttr carries none -- it opens an empty slot the following UpdateAttr fills."
+                                        }
+                                      ],
+                                      "semanticId": {
+                                        "keys": [
+                                          {
+                                            "type": "GlobalReference",
+                                            "value": "https://www.irs.kit.edu/idta/mcn/1/0/attributeValue"
+                                          }
+                                        ],
+                                        "type": "ExternalReference"
+                                      },
+                                      "qualifiers": [
+                                        {
+                                          "kind": "TemplateQualifier",
+                                          "semanticId": {
+                                            "keys": [
+                                              {
+                                                "type": "GlobalReference",
+                                                "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                              }
+                                            ],
+                                            "type": "ExternalReference"
+                                          },
+                                          "type": "SMT/Cardinality",
+                                          "value": "ZeroToOne",
+                                          "valueType": "xs:string"
+                                        }
+                                      ],
+                                      "valueType": "xs:string"
+                                    },
+                                    {
+                                      "modelType": "SubmodelElementList",
+                                      "idShort": "sourceElementPaths",
+                                      "description": [
+                                        {
+                                          "language": "en",
+                                          "text": "Sync only: the source sequence X_src. Every entry carries a '#' attribute selector, since Sync reads attribute values rather than elements."
+                                        }
+                                      ],
+                                      "semanticId": {
+                                        "keys": [
+                                          {
+                                            "type": "GlobalReference",
+                                            "value": "https://www.irs.kit.edu/idta/mcn/1/0/sourceElementPaths"
+                                          }
+                                        ],
+                                        "type": "ExternalReference"
+                                      },
+                                      "qualifiers": [
+                                        {
+                                          "kind": "TemplateQualifier",
+                                          "semanticId": {
+                                            "keys": [
+                                              {
+                                                "type": "GlobalReference",
+                                                "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                              }
+                                            ],
+                                            "type": "ExternalReference"
+                                          },
+                                          "type": "SMT/Cardinality",
+                                          "value": "ZeroToOne",
+                                          "valueType": "xs:string"
+                                        }
+                                      ],
+                                      "orderRelevant": false,
+                                      "typeValueListElement": "Property",
+                                      "value": [
+                                        {
+                                          "modelType": "Property",
+                                          "qualifiers": [
+                                            {
+                                              "kind": "TemplateQualifier",
+                                              "semanticId": {
+                                                "keys": [
+                                                  {
+                                                    "type": "GlobalReference",
+                                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                                  }
+                                                ],
+                                                "type": "ExternalReference"
+                                              },
+                                              "type": "SMT/Cardinality",
+                                              "value": "OneToMany",
+                                              "valueType": "xs:string"
+                                            }
+                                          ],
+                                          "valueType": "xs:string"
+                                        }
+                                      ],
+                                      "valueTypeListElement": "xs:string"
+                                    },
+                                    {
+                                      "modelType": "SubmodelElementList",
+                                      "idShort": "targetElementPaths",
+                                      "description": [
+                                        {
+                                          "language": "en",
+                                          "text": "Sync only: the target sequence X_tgt. Every entry carries a '#' attribute selector, and the sequence pairs positionally with sourceElementPaths -- X_tgt[i] receives X_src[i] -- so the two must be of equal length."
+                                        }
+                                      ],
+                                      "semanticId": {
+                                        "keys": [
+                                          {
+                                            "type": "GlobalReference",
+                                            "value": "https://www.irs.kit.edu/idta/mcn/1/0/targetElementPaths"
+                                          }
+                                        ],
+                                        "type": "ExternalReference"
+                                      },
+                                      "qualifiers": [
+                                        {
+                                          "kind": "TemplateQualifier",
+                                          "semanticId": {
+                                            "keys": [
+                                              {
+                                                "type": "GlobalReference",
+                                                "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                              }
+                                            ],
+                                            "type": "ExternalReference"
+                                          },
+                                          "type": "SMT/Cardinality",
+                                          "value": "ZeroToOne",
+                                          "valueType": "xs:string"
+                                        }
+                                      ],
+                                      "orderRelevant": false,
+                                      "typeValueListElement": "Property",
+                                      "value": [
+                                        {
+                                          "modelType": "Property",
+                                          "qualifiers": [
+                                            {
+                                              "kind": "TemplateQualifier",
+                                              "semanticId": {
+                                                "keys": [
+                                                  {
+                                                    "type": "GlobalReference",
+                                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                                  }
+                                                ],
+                                                "type": "ExternalReference"
+                                              },
+                                              "type": "SMT/Cardinality",
+                                              "value": "OneToMany",
+                                              "valueType": "xs:string"
+                                            }
+                                          ],
+                                          "valueType": "xs:string"
+                                        }
+                                      ],
+                                      "valueTypeListElement": "xs:string"
+                                    },
+                                    {
+                                      "modelType": "Property",
+                                      "idShort": "syncMapping",
+                                      "description": [
+                                        {
+                                          "language": "en",
+                                          "text": "Sync only: the name of the transformation, resolved against the receiver's fixed catalogue (atomic_operators.md §11.1). The catalogue currently holds 'identity'; a name it does not hold, or one incompatible with the operands' declared types, is refused SYNC_TYPE_MISMATCH."
+                                        }
+                                      ],
+                                      "semanticId": {
+                                        "keys": [
+                                          {
+                                            "type": "GlobalReference",
+                                            "value": "https://www.irs.kit.edu/idta/mcn/1/0/syncMapping"
+                                          }
+                                        ],
+                                        "type": "ExternalReference"
+                                      },
+                                      "qualifiers": [
+                                        {
+                                          "kind": "TemplateQualifier",
+                                          "semanticId": {
+                                            "keys": [
+                                              {
+                                                "type": "GlobalReference",
+                                                "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                              }
+                                            ],
+                                            "type": "ExternalReference"
+                                          },
+                                          "type": "SMT/Cardinality",
+                                          "value": "ZeroToOne",
+                                          "valueType": "xs:string"
+                                        }
+                                      ],
+                                      "valueType": "xs:string"
+                                    },
+                                    {
+                                      "modelType": "SubmodelElementList",
+                                      "idShort": "AdditionalArguments",
+                                      "description": [
+                                        {
+                                          "language": "en",
+                                          "text": "Arguments that are not among the named ones, as name/value pairs. This is what lets a complex operation defined after this template was written state its parameters without the template having to be revised for each new operation."
+                                        }
+                                      ],
+                                      "semanticId": {
+                                        "keys": [
+                                          {
+                                            "type": "GlobalReference",
+                                            "value": "https://www.irs.kit.edu/idta/mcn/1/0/AdditionalArguments"
+                                          }
+                                        ],
+                                        "type": "ExternalReference"
+                                      },
+                                      "qualifiers": [
+                                        {
+                                          "kind": "TemplateQualifier",
+                                          "semanticId": {
+                                            "keys": [
+                                              {
+                                                "type": "GlobalReference",
+                                                "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                              }
+                                            ],
+                                            "type": "ExternalReference"
+                                          },
+                                          "type": "SMT/Cardinality",
+                                          "value": "ZeroToOne",
+                                          "valueType": "xs:string"
+                                        }
+                                      ],
+                                      "orderRelevant": false,
+                                      "typeValueListElement": "SubmodelElementCollection",
+                                      "value": [
+                                        {
+                                          "modelType": "SubmodelElementCollection",
+                                          "description": [
+                                            {
+                                              "language": "en",
+                                              "text": "One argument, as a name and a value."
+                                            }
+                                          ],
+                                          "semanticId": {
+                                            "keys": [
+                                              {
+                                                "type": "GlobalReference",
+                                                "value": "https://www.irs.kit.edu/idta/mcn/1/0/OperationArgument"
+                                              }
+                                            ],
+                                            "type": "ExternalReference"
+                                          },
+                                          "qualifiers": [
+                                            {
+                                              "kind": "TemplateQualifier",
+                                              "semanticId": {
+                                                "keys": [
+                                                  {
+                                                    "type": "GlobalReference",
+                                                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                                  }
+                                                ],
+                                                "type": "ExternalReference"
+                                              },
+                                              "type": "SMT/Cardinality",
+                                              "value": "OneToMany",
+                                              "valueType": "xs:string"
+                                            }
+                                          ],
+                                          "value": [
+                                            {
+                                              "modelType": "Property",
+                                              "idShort": "ArgumentName",
+                                              "description": [
+                                                {
+                                                  "language": "en",
+                                                  "text": "The parameter name, as declared by the operation being invoked."
+                                                }
+                                              ],
+                                              "semanticId": {
+                                                "keys": [
+                                                  {
+                                                    "type": "GlobalReference",
+                                                    "value": "https://www.irs.kit.edu/idta/mcn/1/0/ArgumentName"
+                                                  }
+                                                ],
+                                                "type": "ExternalReference"
+                                              },
+                                              "qualifiers": [
+                                                {
+                                                  "kind": "TemplateQualifier",
+                                                  "semanticId": {
+                                                    "keys": [
+                                                      {
+                                                        "type": "GlobalReference",
+                                                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                                      }
+                                                    ],
+                                                    "type": "ExternalReference"
+                                                  },
+                                                  "type": "SMT/Cardinality",
+                                                  "value": "One",
+                                                  "valueType": "xs:string"
+                                                }
+                                              ],
+                                              "valueType": "xs:string"
+                                            },
+                                            {
+                                              "modelType": "Property",
+                                              "idShort": "ArgumentValue",
+                                              "description": [
+                                                {
+                                                  "language": "en",
+                                                  "text": "The argument's value. Element paths follow the grammar under targetElementPath; a set-valued argument is a JSON array in this string."
+                                                }
+                                              ],
+                                              "semanticId": {
+                                                "keys": [
+                                                  {
+                                                    "type": "GlobalReference",
+                                                    "value": "https://www.irs.kit.edu/idta/mcn/1/0/ArgumentValue"
+                                                  }
+                                                ],
+                                                "type": "ExternalReference"
+                                              },
+                                              "qualifiers": [
+                                                {
+                                                  "kind": "TemplateQualifier",
+                                                  "semanticId": {
+                                                    "keys": [
+                                                      {
+                                                        "type": "GlobalReference",
+                                                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                                                      }
+                                                    ],
+                                                    "type": "ExternalReference"
+                                                  },
+                                                  "type": "SMT/Cardinality",
+                                                  "value": "One",
+                                                  "valueType": "xs:string"
+                                                }
+                                              ],
+                                              "valueType": "xs:string"
+                                            }
+                                          ]
+                                        }
+                                      ],
+                                      "semanticIdListElement": {
+                                        "keys": [
+                                          {
+                                            "type": "GlobalReference",
+                                            "value": "https://www.irs.kit.edu/idta/mcn/1/0/OperationArgument"
+                                          }
+                                        ],
+                                        "type": "ExternalReference"
+                                      }
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ],
+                          "semanticIdListElement": {
+                            "keys": [
+                              {
+                                "type": "GlobalReference",
+                                "value": "https://www.irs.kit.edu/idta/mcn/1/0/ItemOfChange"
+                              }
+                            ],
+                            "type": "ExternalReference"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "semanticIdListElement": {
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "https://www.irs.kit.edu/idta/mcn/1/0/McnRecord"
+                      }
+                    ],
+                    "type": "ExternalReference"
+                  }
+                }
+              ]
+            }
+          ],
+          "semanticIdListElement": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://www.irs.kit.edu/idta/mcn/1/0/McnGroup"
+              }
+            ],
+            "type": "ExternalReference"
+          }
+        }
+      ]
+    }
+  ],
+  "conceptDescriptions": [
+    {
+      "id": "https://www.irs.kit.edu/idta/mcn/1/0/AdditionalArguments",
+      "idShort": "AdditionalArguments",
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "AdditionalArguments"
+              }
+            ],
+            "definition": [
+              {
+                "language": "en",
+                "text": "Arguments that are not among the named ones, as name/value pairs. This is what lets a complex operation defined after this template was written state its parameters without the template having to be revised for each new operation."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "https://www.irs.kit.edu/idta/mcn/1/0/AffectedSMT",
+      "idShort": "AffectedSMT",
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "AffectedSMT"
+              }
+            ],
+            "definition": [
+              {
+                "language": "en",
+                "text": "The Submodel Template that this record's change directly targets. Omitted when that is the group's ObservedSMT, which is the ordinary case; a consumer reading no AffectedSMT shall resolve the target to the group's ObservedSMT."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "https://www.irs.kit.edu/idta/mcn/1/0/ArgumentName",
+      "idShort": "ArgumentName",
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "ArgumentName"
+              }
+            ],
+            "definition": [
+              {
+                "language": "en",
+                "text": "The parameter name, as declared by the operation being invoked."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "https://www.irs.kit.edu/idta/mcn/1/0/ArgumentValue",
+      "idShort": "ArgumentValue",
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "ArgumentValue"
+              }
+            ],
+            "definition": [
+              {
+                "language": "en",
+                "text": "The argument's value. Element paths follow the grammar under targetElementPath; a set-valued argument is a JSON array in this string."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "https://www.irs.kit.edu/idta/mcn/1/0/ChangeOperator",
+      "idShort": "ChangeOperator",
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "ChangeOperator"
+              }
+            ],
+            "definition": [
+              {
+                "language": "en",
+                "text": "The operation this item requests. Normally a complex operation defined for the MCN submodel -- a composed, multi-step transformation named as a single intent. The ten atomic operators (CreateSME, CreateQual, CreateAttr, UpdateIdShort, UpdateParent, UpdateAttr, RemoveSME, RemoveQual, RemoveAttr, Sync) may also be named directly, but that is the edge case: a primitive requested on its own rather than as part of a composed change. Names resolve against the complex operations first and the atomic operators second, so the two share one namespace and must not collide."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "https://www.irs.kit.edu/idta/mcn/1/0/ChangeURI",
+      "idShort": "ChangeURI",
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "ChangeURI"
+              }
+            ],
+            "definition": [
+              {
+                "language": "en",
+                "text": "Identifier of the announced change, resolvable to its human-readable documentation. Unique per change and never reused; several records may share one. Compared as an opaque string, so that reorganising the documentation does not rewrite identity."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "https://www.irs.kit.edu/idta/mcn/1/0/DateOfRecord",
+      "idShort": "DateOfRecord",
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "DateOfRecord"
+              }
+            ],
+            "definition": [
+              {
+                "language": "en",
+                "text": "Point in time at which this notification record was issued."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "https://www.irs.kit.edu/idta/mcn/1/0/ItemOfChange",
+      "idShort": "ItemOfChange",
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "ItemOfChange"
+              }
+            ],
+            "definition": [
+              {
+                "language": "en",
+                "text": "One requested operation -- usually a complex operation, occasionally a bare atomic operator. The ordered sequence of items is the complete change; the decomposition of each complex operation into atomic steps is the receiver's business and is recorded in its traceability log, not here."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "https://www.irs.kit.edu/idta/mcn/1/0/McnGroup",
+      "idShort": "McnGroup",
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "McnGroup"
+              }
+            ],
+            "definition": [
+              {
+                "language": "en",
+                "text": "All Model Change Notifications concerning one observed Submodel Template. One entry of MCNGroups per template; the ObservedSMT reference is its identity."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "https://www.irs.kit.edu/idta/mcn/1/0/McnRecord",
+      "idShort": "McnRecord",
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "McnRecord"
+              }
+            ],
+            "definition": [
+              {
+                "language": "en",
+                "text": "One Model Change Notification as received: a single announced update to one information model, together with the ordered operations that realise it — normally complex operations, occasionally a bare atomic operator."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "https://www.irs.kit.edu/idta/mcn/1/0/NotificationId",
+      "idShort": "NotificationId",
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "NotificationId"
+              }
+            ],
+            "definition": [
+              {
+                "language": "en",
+                "text": "Identifier of the transport envelope that delivered this record. Sender-generated, unique per message and stable across redelivery. Correlates the record with its traceability and quarantine entries, and is what makes redelivery detectable."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "https://www.irs.kit.edu/idta/mcn/1/0/ObservedSMT",
+      "idShort": "ObservedSMT",
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "ObservedSMT"
+              }
+            ],
+            "definition": [
+              {
+                "language": "en",
+                "text": "The Submodel Template this group of notifications is about: what a subscriber watches, and the group's identity. Which template a given record's change directly targets is stated by that record's AffectedSMT, which is omitted when it is this one."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "https://www.irs.kit.edu/idta/mcn/1/0/OperationArgument",
+      "idShort": "OperationArgument",
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "OperationArgument"
+              }
+            ],
+            "definition": [
+              {
+                "language": "en",
+                "text": "One argument, as a name and a value."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "https://www.irs.kit.edu/idta/mcn/1/0/OperationArguments",
+      "idShort": "OperationArguments",
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "OperationArguments"
+              }
+            ],
+            "definition": [
+              {
+                "language": "en",
+                "text": "Arguments to the operation named by ChangeOperator. The named arguments below are a flat union covering the ten atomic operators; an operation uses the subset its signature requires and omits the rest. A complex operation whose parameters are not among them carries those in AdditionalArguments."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "https://www.irs.kit.edu/idta/mcn/1/0/PostVersion",
+      "idShort": "PostVersion",
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "PostVersion"
+              }
+            ],
+            "definition": [
+              {
+                "language": "en",
+                "text": "semanticId of the observed Submodel Template after this change set was applied. A consumer that applies the change sets this as its instance's semanticId, which is what makes the next change in a chain applicable."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "https://www.irs.kit.edu/idta/mcn/1/0/PreVersion",
+      "idShort": "PreVersion",
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "PreVersion"
+              }
+            ],
+            "definition": [
+              {
+                "language": "en",
+                "text": "semanticId of the observed Submodel Template before this change set was applied. An instance conforms to a template by stating that semanticId, so this is what a consumer compares its own model against to decide whether the change applies to it."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "https://www.irs.kit.edu/idta/mcn/1/0/ReasonOfChange",
+      "idShort": "ReasonOfChange",
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "ReasonOfChange"
+              }
+            ],
+            "definition": [
+              {
+                "language": "en",
+                "text": "One classified reason for the change."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "https://www.irs.kit.edu/idta/mcn/1/0/SMInstance",
+      "idShort": "SMInstance",
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "SMInstance"
+              }
+            ],
+            "definition": [
+              {
+                "language": "en",
+                "text": "A Submodel instance derived from ObservedSMT that is affected by the change."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "https://www.irs.kit.edu/idta/mcn/1/0/TemplateOwner",
+      "idShort": "TemplateOwner",
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "TemplateOwner"
+              }
+            ],
+            "definition": [
+              {
+                "language": "en",
+                "text": "The organisation issuing this notification, i.e. the owner of the observed template."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "https://www.irs.kit.edu/idta/mcn/1/0/attributeKey",
+      "idShort": "attributeKey",
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "attributeKey"
+              }
+            ],
+            "definition": [
+              {
+                "language": "en",
+                "text": "The attribute addressed by CreateAttr, UpdateAttr or RemoveAttr. On any SME: semanticId, supplementalSemanticId, category, description, displayName. On Property and Range: valueType, value, min, max. On SubmodelElementList: typeValueListElement, valueTypeListElement, orderRelevant, semanticIdListElement. On Entity: entityType. On File and Blob: contentType. On RelationshipElement and AnnotatedRelationshipElement: first, second. On BasicEventElement: observed, direction, state. A key not defined for the target's type is refused. Deliberately excludes idShort, over which only UpdateIdShort has authority; kind is included -- it is a qualifier attribute, and AASd-129 is checked when it is written."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "https://www.irs.kit.edu/idta/mcn/1/0/attributeValue",
+      "idShort": "attributeValue",
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "attributeValue"
+              }
+            ],
+            "definition": [
+              {
+                "language": "en",
+                "text": "UpdateAttr only: the attribute value, taken literally. CreateAttr carries none -- it opens an empty slot the following UpdateAttr fills."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "https://www.irs.kit.edu/idta/mcn/1/0/newIdShort",
+      "idShort": "newIdShort",
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "newIdShort"
+              }
+            ],
+            "definition": [
+              {
+                "language": "en",
+                "text": "UpdateIdShort only: the element's new idShort -- a name matching the metamodel's idShort production, never a path. UpdateIdShort renames in place; the element keeps the parent it has, which is what makes the intent recoverable from the operator alone."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "https://www.irs.kit.edu/idta/mcn/1/0/newParentPath",
+      "idShort": "newParentPath",
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "newParentPath"
+              }
+            ],
+            "definition": [
+              {
+                "language": "en",
+                "text": "UpdateParent only: the path of the element's new parent, and nothing further -- no '#' attribute selector and no '@' qualifier selector, and never the position the element lands at (that is derived, not stated). The Submodel root is '<submodelId>::', a path with no segments. Relocating into a SubmodelElementList drops the element's idShort (AASd-108/114/115: position is the only identity a list entry reliably has)."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "https://www.irs.kit.edu/idta/mcn/1/0/qualifierType",
+      "idShort": "qualifierType",
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "qualifierType"
+              }
+            ],
+            "definition": [
+              {
+                "language": "en",
+                "text": "The Qualifier/type key. CreateQual's third argument -- it fixes what the qualifier *is*. RemoveQual names the qualifier to remove. A qualifier's value, valueType and kind are written afterwards by CreateAttr/UpdateAttr against its '@type' address."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "https://www.irs.kit.edu/idta/mcn/1/0/smeType",
+      "idShort": "smeType",
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "smeType"
+              }
+            ],
+            "definition": [
+              {
+                "language": "en",
+                "text": "CreateSME only: the modelType of the element to create. One of Property, MultiLanguageProperty, Range, Blob, File, ReferenceElement, RelationshipElement, AnnotatedRelationshipElement, Entity, Operation, BasicEventElement, SubmodelElementCollection, SubmodelElementList. Where the chosen type has attributes the AAS metamodel declares mandatory -- typeValueListElement on a SubmodelElementList, valueType on a Property or Range, contentType on a File -- they are set by a CreateAttr that opens a slot and the UpdateAttr that fills it, both closing the same validation unit, not by further arguments here."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "https://www.irs.kit.edu/idta/mcn/1/0/sourceElementPaths",
+      "idShort": "sourceElementPaths",
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "sourceElementPaths"
+              }
+            ],
+            "definition": [
+              {
+                "language": "en",
+                "text": "Sync only: the source sequence X_src. Every entry carries a '#' attribute selector, since Sync reads attribute values rather than elements."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "https://www.irs.kit.edu/idta/mcn/1/0/syncMapping",
+      "idShort": "syncMapping",
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "syncMapping"
+              }
+            ],
+            "definition": [
+              {
+                "language": "en",
+                "text": "Sync only: the name of the transformation, resolved against the receiver's fixed catalogue (atomic_operators.md §11.1). The catalogue currently holds 'identity'; a name it does not hold, or one incompatible with the operands' declared types, is refused SYNC_TYPE_MISMATCH."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "https://www.irs.kit.edu/idta/mcn/1/0/targetElementPath",
+      "idShort": "targetElementPath",
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "targetElementPath"
+              }
+            ],
+            "definition": [
+              {
+                "language": "en",
+                "text": "The element the operator acts on or produces. The path grammar is '<submodelId>::<segment>(.<segment>)*[#<attribute>]', where a segment is an idShort or a '[index]' addressing an entry of a SubmodelElementList. Split on the last '::': the metamodel confines idShort to ^[a-zA-Z][a-zA-Z0-9_-]*[a-zA-Z0-9_]+$, so nothing past that separator is ambiguous even when the submodel id is an IRDI containing '#'. The '#' attribute selector is not permitted here -- the Attr operators name their attribute in attributeKey -- and is required only on Sync's path lists. For CreateSME this is the path of the element being created; its parent is the path minus its last segment."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "https://www.irs.kit.edu/idta/mcn/1/0/targetElementPaths",
+      "idShort": "targetElementPaths",
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "targetElementPaths"
+              }
+            ],
+            "definition": [
+              {
+                "language": "en",
+                "text": "Sync only: the target sequence X_tgt. Every entry carries a '#' attribute selector, and the sequence pairs positionally with sourceElementPaths -- X_tgt[i] receives X_src[i] -- so the two must be of equal length."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

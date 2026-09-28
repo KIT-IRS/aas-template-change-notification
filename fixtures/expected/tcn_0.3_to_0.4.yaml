@@ -1,0 +1,42 @@
+# Expected outcome of applying tcn_0.3_to_0.4 (self-application) to fixtures/tcn_0.3.yaml: a TCN
+# submodel whose record is encoded in v0.3. Derived by hand from the differences between the two
+# template versions (chains/tcn_0.3_to_0.4.intent.yaml) before running the chain.
+chain: chains/tcn_0.3_to_0.4.yaml
+instance: fixtures/tcn_0.3.yaml
+
+retained:
+  "TCNGroups[0].TCNRecords[0].NotificationId": urn:uuid:00000000-0000-4000-8000-000000000003
+  "TCNGroups[0].TCNRecords[0].PreVersion": https://admin-shell.io/ZVEI/TechnicalData/Submodel/1/2
+  "TCNGroups[0].TCNRecords[0].PostVersion": https://admin-shell.io/idta/SubmodelTemplate/TechnicalData/2/0
+  "TCNGroups[0].TCNRecords[0].ItemsOfChange[0].ChangeOperation": UpdateIdShort        # T2 renames
+  "TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.NewIdShort": CompanyLogo
+  "TCNGroups[0].TCNRecords[0].ItemsOfChange[1].ChangeOperation": UpdateAttr
+  "TCNGroups[0].TCNRecords[0].ItemsOfChange[1].OperationArguments.AttributeKey": typeValueListElement
+  "TCNGroups[0].TCNRecords[0].ItemsOfChange[2].ChangeOperation": Sync
+  "TCNGroups[0].TCNRecords[0].ItemsOfChange[2].OperationArguments.TransferFunction.Kind": Identity   # T3 (ValueMap)
+  "TCNGroups[0].TCNRecords[0].ItemsOfChange[3].ChangeOperation": UpdateParent
+  # T4: values in the v0.3 encoding, retained until the asset maintainer rewrites them (manual)
+  "TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.ElementPath": "https://admin-shell.io/ZVEI/TechnicalData/Submodel/1/2::GeneralInformation.ManufacturerLogo"
+  "TCNGroups[0].TCNRecords[0].ItemsOfChange[1].OperationArguments.AttributeValue": SubmodelElementCollection
+  InternalNote: migrated from the MCN prototype
+
+control:
+  InternalNote: InternalNote
+
+manual:
+  - "TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.ElementPath"
+  - "TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.NewParentPath"
+  - "TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.SourceElementPaths[0]"
+  - "TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TargetElementPaths[0]"
+  - "TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AttributeValue"
+
+# Conformance of the result to v0.4: the structure conforms; the encoding of the values listed
+# under manual is not visible to a structural check
+conforms: true
+violations: []
+
+# Values the change removes without carrying them over (reported before consent): v0.4 has no
+# ReasonsOfChange
+removed:
+  - "MCNGroups[0].MCNRecords[0].ReasonsOfChange[0].ReasonClassificationSystem"
+  - "MCNGroups[0].MCNRecords[0].ReasonsOfChange[0].ReasonId"

@@ -1,0 +1,45 @@
+# Expected outcome of applying technicaldata_1.2_to_2.0 to fixtures/technicaldata_1.2.yaml.
+# Derived by hand from the change log of IDTA 02003 v2.0 (Annex B) before running the chain.
+chain: chains/technicaldata_1.2_to_2.0.yaml
+instance: fixtures/technicaldata_1.2.yaml
+
+# Instance values that must be retained: path after the change -> value
+retained:
+  GeneralInformation.ManufacturerName: Example Manufacturer GmbH
+  GeneralInformation.ManufacturerArticleNumber: EX-100-200
+  GeneralInformation.ManufacturerOrderCode: EX100200
+  GeneralInformation.CompanyLogo: /aasx/files/logo.png                     # G1 rename
+  "GeneralInformation.ProductImages[0].ImageFile": /aasx/files/front.jpg   # G2: one entry per image
+  "GeneralInformation.ProductImages[1].ImageFile": /aasx/files/side.jpg
+  "ProductClassifications[0].ClassificationSystem": ECLASS                 # G4: one entry per item, G4a rename
+  "ProductClassifications[0].ClassificationSystemVersion": "13.0"
+  "ProductClassifications[0].ProductClassId": 27-24-22-01
+  "ProductClassifications[1].ClassificationSystem": UNSPSC
+  "ProductClassifications[1].ProductClassId": "32151705"
+  "TechnicalPropertyAreas[0].Width": "62.4"                                # G5: one area for all properties
+  "TechnicalPropertyAreas[0].Weight": "0.21"
+  "TechnicalPropertyAreas[0].MainSection01.SubSection01.RatedVoltage": "24"
+  FurtherInformation.ValidDate: "2025-06-30"
+  GeneralInformation.InternalInventoryNumber: INV-2024-0815
+
+# Control set: elements the revision does not concern. All their attributes are unchanged;
+# the path may change where a container they belong to is relocated.
+control:
+  GeneralInformation.InternalInventoryNumber: GeneralInformation.InternalInventoryNumber
+  TechnicalProperties.Width: "TechnicalPropertyAreas[0].Width"
+  TechnicalProperties.Weight: "TechnicalPropertyAreas[0].Weight"
+  TechnicalProperties.HousingColour: "TechnicalPropertyAreas[0].HousingColour"
+  TechnicalProperties.MainSection01.SubSection01.RatedVoltage: "TechnicalPropertyAreas[0].MainSection01.SubSection01.RatedVoltage"
+
+# Values the asset maintainer has to provide: mandatory elements new in v2.0
+manual:
+  - "ProductClassifications[0].ProductClassCodedName"
+
+# Conformance of the result to v2.0: violations that remain for the asset maintainer
+conforms: false
+violations:
+  - [VALUE_MISSING, "ProductClassifications[0].ProductClassCodedName"]   # mandatory, new in v2.0
+  - [VALUE_MISSING, "ProductClassifications[1].ProductClassCodedName"]
+
+# Values the change removes without carrying them over (reported before consent)
+removed: []

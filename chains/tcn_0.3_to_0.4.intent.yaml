@@ -1,0 +1,88 @@
+# Template Change Notification: TCN Submodel Template v0.3 (MCN naming) -> v0.4 (paper naming)
+# (intent, hand-written). Self-application: the TCN states the revision of its own template.
+# `uv run tcn owner complete` expands the rule section and completes the chain mechanically.
+
+header:
+  Family: TemplateChangeNotification
+  PreVersion: https://www.irs.kit.edu/SubmodelTemplate/modelchangenotifications/0/3
+  PostVersion: https://www.irs.kit.edu/SubmodelTemplate/TemplateChangeNotification/0/4
+  PreTemplate: ressources/Templates/Template_TemplateChangeNotification.v0_3.json
+  PostTemplate: ressources/Templates/Template_TemplateChangeNotification.v0_4.json
+  TemplateOwner: Karlsruhe Institute of Technology (KIT), Institute of Control Systems
+  ChangeURI: https://github.com/KIT-IRS/aas-template-change-notification
+
+sections:
+  - title: "T0: the submodel is renamed from ModelChangeNotifications to TemplateChangeNotifications"
+    origin: hand
+    items:
+      - {ChangeOperation: UpdateIdShort, ElementPath: "", NewIdShort: TemplateChangeNotifications}
+
+  - title: "T2: the arguments are named as in the paper (Table 2); the owner address is the Address Information drop-in"
+    origin: hand
+    items:
+      - {ChangeOperation: UpdateIdShort, ElementPath: "MCNGroups[0].MCNRecords[0].ItemsOfChange[0].ChangeOperator", NewIdShort: ChangeOperation}
+      - {ChangeOperation: UpdateIdShort, ElementPath: "MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.targetElementPath", NewIdShort: ElementPath}
+      - {ChangeOperation: UpdateIdShort, ElementPath: "MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.newIdShort", NewIdShort: NewIdShort}
+      - {ChangeOperation: UpdateIdShort, ElementPath: "MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.newParentPath", NewIdShort: NewParentPath}
+      - {ChangeOperation: UpdateIdShort, ElementPath: "MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.smeType", NewIdShort: SMEType}
+      - {ChangeOperation: UpdateIdShort, ElementPath: "MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.qualifierType", NewIdShort: QualifierType}
+      - {ChangeOperation: UpdateIdShort, ElementPath: "MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.attributeKey", NewIdShort: AttributeKey}
+      - {ChangeOperation: UpdateIdShort, ElementPath: "MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.attributeValue", NewIdShort: AttributeValue}
+      - {ChangeOperation: UpdateIdShort, ElementPath: "MCNGroups[0].MCNRecords[0].TemplateOwner.PhysicalAddress", NewIdShort: AddressInformation}
+
+  - title: "T3: syncMapping (the name of a transformation) becomes the collection TransferFunction with its Kind"
+    origin: hand
+    items:
+      - {ChangeOperation: CreateSME, ElementPath: "MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction", SMEType: SubmodelElementCollection}
+      - {ChangeOperation: CreateSME, ElementPath: "MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Kind", SMEType: Property}
+      - {ChangeOperation: UpdateAttr, ElementPath: "MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Kind", AttributeKey: valueType, AttributeValue: xs:string}
+      - {ChangeOperation: CreateAttr, ElementPath: "MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Kind", AttributeKey: value}
+      # v0.3 names its catalogue of transformations: it holds 'identity'. The template populates no
+      # value, so the value slot is opened before it is linked.
+      - {ChangeOperation: CreateAttr, ElementPath: "MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.syncMapping", AttributeKey: value}
+      - ChangeOperation: Sync
+        SourceElementPaths: ["MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.syncMapping#value"]
+        TargetElementPaths: ["MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.TransferFunction.Kind#value"]
+        TransferFunction: {Kind: ValueMap, Pairs: {identity: Identity}}
+      - {ChangeOperation: RemoveQual, ElementPath: "MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.syncMapping", QualifierType: SMT/Cardinality}
+      - {ChangeOperation: RemoveSME, ElementPath: "MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.syncMapping"}
+
+  - title: "T4: paths lose the prefix '<submodelId>::', attribute values are JSON-encoded"
+    origin: hand
+    items:
+      # Core CEL has no string functions to rewrite these values; the transformation is an instruction.
+      # The template populates none of these values: each value slot is opened before it is linked.
+      - {ChangeOperation: CreateAttr, ElementPath: "MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.ElementPath", AttributeKey: value}
+      - ChangeOperation: Sync
+        SourceElementPaths: ["MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.ElementPath#value"]
+        TargetElementPaths: ["MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.ElementPath#value"]
+        TransferFunction: {Kind: Instruction, Text: {en: "Remove the prefix '<submodelId>::' (up to and including the last '::'); keep the idShort path."}}
+      - {ChangeOperation: CreateAttr, ElementPath: "MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.NewParentPath", AttributeKey: value}
+      - ChangeOperation: Sync
+        SourceElementPaths: ["MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.NewParentPath#value"]
+        TargetElementPaths: ["MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.NewParentPath#value"]
+        TransferFunction: {Kind: Instruction, Text: {en: "Remove the prefix '<submodelId>::' (up to and including the last '::'); keep the idShort path."}}
+      - {ChangeOperation: CreateAttr, ElementPath: "MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.sourceElementPaths[0]", AttributeKey: value}
+      - ChangeOperation: Sync
+        SourceElementPaths: ["MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.sourceElementPaths[0]#value"]
+        TargetElementPaths: ["MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.sourceElementPaths[0]#value"]
+        TransferFunction: {Kind: Instruction, Text: {en: "Remove the prefix '<submodelId>::' (up to and including the last '::'); keep the idShort path. Keep the '#' attribute selector."}}
+      - {ChangeOperation: CreateAttr, ElementPath: "MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.targetElementPaths[0]", AttributeKey: value}
+      - ChangeOperation: Sync
+        SourceElementPaths: ["MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.targetElementPaths[0]#value"]
+        TargetElementPaths: ["MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.targetElementPaths[0]#value"]
+        TransferFunction: {Kind: Instruction, Text: {en: "Remove the prefix '<submodelId>::' (up to and including the last '::'); keep the idShort path. Keep the '#' attribute selector."}}
+      - {ChangeOperation: CreateAttr, ElementPath: "MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.AttributeValue", AttributeKey: value}
+      - ChangeOperation: Sync
+        SourceElementPaths: ["MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.AttributeValue#value"]
+        TargetElementPaths: ["MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.AttributeValue#value"]
+        TransferFunction: {Kind: Instruction, Text: {en: "Replace the literal value by its JSON encoding, e.g. xs:string by \"xs:string\"."}}
+
+  - title: "T1: MCNGroups and MCNRecords become TCNGroups and TCNRecords; the path lists are capitalised"
+    origin: rule
+    rule:
+      RenameContainer:
+        MCNGroups: TCNGroups
+        "MCNGroups[0].MCNRecords": TCNRecords
+        "MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.sourceElementPaths": SourceElementPaths
+        "MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.targetElementPaths": TargetElementPaths

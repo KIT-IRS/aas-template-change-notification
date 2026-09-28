@@ -1,0 +1,1 @@
+"""Template Change Notification demonstrator."""

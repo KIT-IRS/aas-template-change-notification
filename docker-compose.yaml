@@ -1,0 +1,119 @@
+# Validation environment: Eclipse BaSyx (Go components, PostgreSQL) and RabbitMQ (MQTT).
+# Image versions are pinned, so that a validation run is reproducible.
+# basyx/rsa-key.pem is a PRE-CONFIGURED DEMO KEY for an easy start; replace it with your own key
+# before using the environment beyond local validation (see README, "Setup").
+
+networks:
+  tcn-network:
+    driver: bridge
+    name: tcn-network
+
+services:
+  aas-environment:
+    image: eclipsebasyx/aasenvironment-go:1.1.0
+    ports:
+      - '8081:8082'   # host 8081: on some Windows hosts, 8082 is reserved by HTTP.sys
+    environment:
+      - SERVER_PORT=8082
+      - CORS_ALLOWEDORIGINS=*
+      - CORS_ALLOWEDHEADERS=*
+      - CORS_ALLOWEDCREDENTIALS=true
+      - CORS_ALLOWEDMETHODS=GET,POST,PUT,PATCH,DELETE,OPTIONS
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin123
+      - POSTGRES_DBNAME=basyxTestDB
+      - POSTGRES_MAXOPENCONNECTIONS=500
+      - POSTGRES_MAXIDLECONNECTIONS=500
+      - POSTGRES_CONNMAXLIFETIMEMINUTES=5
+      - JWS_PRIVATEKEYPATH=/app/rsa-key.pem
+      - ABAC_ENABLED=false
+      - GENERAL_AASREGISTRYINTEGRATION=true
+      - GENERAL_SUBMODELREGISTRYINTEGRATION=true
+      - GENERAL_DISCOVERYINTEGRATION=true
+      - GENERAL_EXTERNALURL=http://localhost:8081
+    volumes:
+      - ./basyx/rsa-key.pem:/app/rsa-key.pem:ro
+    depends_on:
+      basyx_configuration:
+        condition: service_completed_successfully
+    networks:
+      - tcn-network
+    restart: unless-stopped
+
+  db:
+    image: postgres:18
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin123
+      POSTGRES_DB: basyxTestDB
+    command:
+      - postgres
+      - '-c'
+      - listen_addresses=*
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U admin -d basyxTestDB
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - tcn-network
+    restart: unless-stopped
+
+  basyx_configuration:
+    image: eclipsebasyx/basyxconfigurationservice-go:1.1.0   # same release as aasenvironment-go
+    environment:
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin123
+      - POSTGRES_DBNAME=basyxTestDB
+      - POSTGRES_MAXOPENCONNECTIONS=500
+      - POSTGRES_MAXIDLECONNECTIONS=500
+      - POSTGRES_CONNMAXLIFETIMEMINUTES=5
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - tcn-network
+
+  aas-ui:
+    image: eclipsebasyx/aas-gui:v2-260924
+    ports:
+      - '3000:3000'
+    environment:
+      ENDPOINT_CONFIG_AVAILABLE: 'true'
+      ALLOW_EDITING: 'true'
+      ALLOW_UPLOADING: 'true'
+      ALLOW_LOGOUT: 'true'
+      SM_VIEWER_EDITOR: 'true'
+      START_PAGE_ROUTE_NAME: AASEditor
+      PRIMARY_LIGHT_COLOR: '#009172'
+      PRIMARY_DARK_COLOR: '#01487B'
+    volumes:
+      - ./basyx/basyx-infra.yml:/basyx-infra.yml:ro
+    depends_on:
+      aas-environment:
+        condition: service_started
+    networks:
+      - tcn-network
+    restart: unless-stopped
+
+  rabbitmq-broker:
+    image: rabbitmq:4.3.4-management
+    ports:
+      - "1883:1883"   # MQTT
+      - "15675:15675" # MQTT over WebSocket
+      - "15672:15672" # management UI
+    networks:
+      - tcn-network
+    restart: unless-stopped
+    entrypoint:
+      - bash
+      - -c
+      - |
+        rabbitmq-plugins enable --offline rabbitmq_mqtt rabbitmq_web_mqtt &&
+        exec docker-entrypoint.sh rabbitmq-server

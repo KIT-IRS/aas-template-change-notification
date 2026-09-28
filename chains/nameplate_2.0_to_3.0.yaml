@@ -1,0 +1,3743 @@
+header:
+  Family: DigitalNameplate
+  PreVersion: https://admin-shell.io/idta/SubmodelTemplate/DigitalNameplate/2/0
+  PostVersion: https://admin-shell.io/idta/SubmodelTemplate/DigitalNameplate/3/0
+  PreTemplate: ressources/Templates/IDTA 02006-2-0_Template_Digital Nameplate.json
+  PostTemplate: ressources/Templates/IDTA 02006-3-0-1_Template_Digital Nameplate.json
+  TemplateOwner: Industrial Digital Twin Association (IDTA)
+  TemplateOwnerAddress:
+    Company: Industrial Digital Twin Association e.V.
+    Street: Lyoner Straße 18
+    Zipcode: '60528'
+    CityTown: Frankfurt am Main
+    NationalCode: DE
+  ChangeURI: https://github.com/admin-shell-io/submodel-templates/tree/main/published/Digital%20nameplate/3/0
+sections:
+- title: 'B3: ExplosionSafeties is removed; to be defined in supplementary submodel templates'
+  origin: rule
+  rule:
+    RemoveSubtree:
+    - Markings.Marking.ExplosionSafeties
+  items:
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.DesignationOfCertificateOrApproval
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.TypeOfApproval
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ApprovalAgencyTestingAgency
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.TypeOfProtection
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.RatedInsulationVoltage
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.InstructionsControlDrawing
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.SpecificConditionsForUse
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.IncompleteDevice
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.AmbientConditions
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.AmbientConditions.DeviceCategory
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.AmbientConditions.EquipmentProtectionLevel
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.AmbientConditions.RegionalSpecificMarking
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.AmbientConditions.TypeOfProtection
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.AmbientConditions.ExplosionGroup
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.AmbientConditions.MinimumAmbientTemperature
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.AmbientConditions.MaxAmbientTemperature
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.AmbientConditions.MaxSurfaceTemperatureForDustProof
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.AmbientConditions.TemperatureClass
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ProcessConditions
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ProcessConditions.DeviceCategory
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ProcessConditions.EquipmentProtectionLevel
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ProcessConditions.RegionalSpecificMarking
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ProcessConditions.TypeOfProtection
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ProcessConditions.ExplosionGroup
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ProcessConditions.LowerLimitingValueOfProcessTemperature
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ProcessConditions.UpperLimitingValueOfProcessTemperature
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ProcessConditions.MaxSurfaceTemperatureForDustProof
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ProcessConditions.TemperatureClass
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit.DesignationOfElectricalTerminal
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit.TypeOfProtection
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit.EquipmentProtectionLevel
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit.ExplosionGroup
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit.Characteristics
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit.Fisco
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit.TwoWISE
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit.SafetyRelatedPropertiesForPassiveBehaviour
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit.SafetyRelatedPropertiesForPassiveBehaviour.MaxInputPower
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit.SafetyRelatedPropertiesForPassiveBehaviour.MaxInputVoltage
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit.SafetyRelatedPropertiesForPassiveBehaviour.MaxInputCurrent
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit.SafetyRelatedPropertiesForPassiveBehaviour.MaxInternalCapacitance
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit.SafetyRelatedPropertiesForPassiveBehaviour.MaxInternalInductance
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit.SafetyRelatedPropertiesForActiveBehaviour
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit.SafetyRelatedPropertiesForActiveBehaviour.MaxOutputPower
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit.SafetyRelatedPropertiesForActiveBehaviour.MaxOutputVoltage
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit.SafetyRelatedPropertiesForActiveBehaviour.MaxOutputCurrent
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit.SafetyRelatedPropertiesForActiveBehaviour.MaxExternalCapacitance
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit.SafetyRelatedPropertiesForActiveBehaviour.MaxExternalInductance
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit.SafetyRelatedPropertiesForActiveBehaviour.MaxExternalInductanceResistanceRatio
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit.SafetyRelatedPropertiesForActiveBehaviour.MaxExternalInductanceResistanceRatio
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit.SafetyRelatedPropertiesForPassiveBehaviour.MaxInternalCapacitance
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit.SafetyRelatedPropertiesForPassiveBehaviour.MaxInternalInductance
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit.SafetyRelatedPropertiesForActiveBehaviour.MaxExternalCapacitance
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit.SafetyRelatedPropertiesForActiveBehaviour.MaxExternalInductance
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit.SafetyRelatedPropertiesForPassiveBehaviour.MaxInputVoltage
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit.SafetyRelatedPropertiesForPassiveBehaviour.MaxInputCurrent
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit.SafetyRelatedPropertiesForActiveBehaviour.MaxOutputVoltage
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit.SafetyRelatedPropertiesForActiveBehaviour.MaxOutputCurrent
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit.SafetyRelatedPropertiesForPassiveBehaviour.MaxInputPower
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit.SafetyRelatedPropertiesForActiveBehaviour.MaxOutputPower
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit.SafetyRelatedPropertiesForPassiveBehaviour
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit.SafetyRelatedPropertiesForActiveBehaviour
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit.DesignationOfElectricalTerminal
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ProcessConditions.LowerLimitingValueOfProcessTemperature
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ProcessConditions.UpperLimitingValueOfProcessTemperature
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.AmbientConditions.MaxSurfaceTemperatureForDustProof
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ProcessConditions.MaxSurfaceTemperatureForDustProof
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit.EquipmentProtectionLevel
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.AmbientConditions.MinimumAmbientTemperature
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ProcessConditions.EquipmentProtectionLevel
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.AmbientConditions.EquipmentProtectionLevel
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit.TypeOfProtection
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit.Characteristics
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ProcessConditions.RegionalSpecificMarking
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.AmbientConditions.RegionalSpecificMarking
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit.ExplosionGroup
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.AmbientConditions.MaxAmbientTemperature
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.AmbientConditions.TemperatureClass
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.DesignationOfCertificateOrApproval
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ProcessConditions.TypeOfProtection
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ProcessConditions.TemperatureClass
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.AmbientConditions.TypeOfProtection
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit.TwoWISE
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ProcessConditions.DeviceCategory
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ProcessConditions.ExplosionGroup
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.AmbientConditions.DeviceCategory
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.AmbientConditions.ExplosionGroup
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit.Fisco
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ApprovalAgencyTestingAgency
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.InstructionsControlDrawing
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ExternalElectricalCircuit
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.SpecificConditionsForUse
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.RatedInsulationVoltage
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.ProcessConditions
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.AmbientConditions
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.TypeOfProtection
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.IncompleteDevice
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety.TypeOfApproval
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties.ExplosionSafety
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking.ExplosionSafeties
+- title: 'B4: ContactInformation becomes AddressInformation, the use of the SMT drop-in Address Information'
+  origin: rule
+  rule:
+    RenameContainer:
+      ContactInformation: AddressInformation
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: AddressInformation
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'The SMC “ContactInformation” contains information on how to contact the manufacturer or an authorised service
+        provider, e.g. when a maintenance service is required. Note: physical address is a mandatory property according to
+        EU Machine Directive 2006/42/EC'
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/zvei/nameplate/1/0/ContactInformations/ContactInformation
+  - ChangeOperation: CreateQual
+    ElementPath: AddressInformation
+    QualifierType: Multiplicity
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - ContactInformation@Multiplicity#value
+    TargetElementPaths:
+    - AddressInformation@Multiplicity#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: ContactInformation
+    QualifierType: Multiplicity
+  - ChangeOperation: UpdateParent
+    ElementPath: ContactInformation.RoleOfContactPerson
+    NewParentPath: AddressInformation
+  - ChangeOperation: UpdateParent
+    ElementPath: ContactInformation.NationalCode
+    NewParentPath: AddressInformation
+  - ChangeOperation: UpdateParent
+    ElementPath: ContactInformation.Language
+    NewParentPath: AddressInformation
+  - ChangeOperation: UpdateParent
+    ElementPath: ContactInformation.TimeZone
+    NewParentPath: AddressInformation
+  - ChangeOperation: UpdateParent
+    ElementPath: ContactInformation.CityTown
+    NewParentPath: AddressInformation
+  - ChangeOperation: UpdateParent
+    ElementPath: ContactInformation.Company
+    NewParentPath: AddressInformation
+  - ChangeOperation: UpdateParent
+    ElementPath: ContactInformation.Department
+    NewParentPath: AddressInformation
+  - ChangeOperation: CreateSME
+    ElementPath: AddressInformation.Phone
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.Phone
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.Phone
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/zvei/nameplate/1/0/ContactInformations/ContactInformation/Phone
+  - ChangeOperation: CreateQual
+    ElementPath: AddressInformation.Phone
+    QualifierType: Multiplicity
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.Phone
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.Phone
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - ContactInformation.Phone@Multiplicity#value
+    TargetElementPaths:
+    - AddressInformation.Phone@Multiplicity#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: ContactInformation.Phone
+    QualifierType: Multiplicity
+  - ChangeOperation: UpdateParent
+    ElementPath: ContactInformation.Phone.TelephoneNumber
+    NewParentPath: AddressInformation.Phone
+  - ChangeOperation: UpdateParent
+    ElementPath: ContactInformation.Phone.TypeOfTelephone
+    NewParentPath: AddressInformation.Phone
+  - ChangeOperation: UpdateParent
+    ElementPath: ContactInformation.Phone.AvailableTime
+    NewParentPath: AddressInformation.Phone
+  - ChangeOperation: RemoveSME
+    ElementPath: ContactInformation.Phone
+  - ChangeOperation: CreateSME
+    ElementPath: AddressInformation.Fax
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.Fax
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.Fax
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAQ834#005
+  - ChangeOperation: CreateQual
+    ElementPath: AddressInformation.Fax
+    QualifierType: Multiplicity
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.Fax
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.Fax
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - ContactInformation.Fax@Multiplicity#value
+    TargetElementPaths:
+    - AddressInformation.Fax@Multiplicity#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: ContactInformation.Fax
+    QualifierType: Multiplicity
+  - ChangeOperation: UpdateParent
+    ElementPath: ContactInformation.Fax.FaxNumber
+    NewParentPath: AddressInformation.Fax
+  - ChangeOperation: UpdateParent
+    ElementPath: ContactInformation.Fax.TypeOfFaxNumber
+    NewParentPath: AddressInformation.Fax
+  - ChangeOperation: RemoveSME
+    ElementPath: ContactInformation.Fax
+  - ChangeOperation: CreateSME
+    ElementPath: AddressInformation.Email
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.Email
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.Email
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAQ836#005
+  - ChangeOperation: CreateQual
+    ElementPath: AddressInformation.Email
+    QualifierType: Multiplicity
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.Email
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.Email
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - ContactInformation.Email@Multiplicity#value
+    TargetElementPaths:
+    - AddressInformation.Email@Multiplicity#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: ContactInformation.Email
+    QualifierType: Multiplicity
+  - ChangeOperation: UpdateParent
+    ElementPath: ContactInformation.Email.EmailAddress
+    NewParentPath: AddressInformation.Email
+  - ChangeOperation: UpdateParent
+    ElementPath: ContactInformation.Email.PublicKey
+    NewParentPath: AddressInformation.Email
+  - ChangeOperation: UpdateParent
+    ElementPath: ContactInformation.Email.TypeOfEmailAddress
+    NewParentPath: AddressInformation.Email
+  - ChangeOperation: UpdateParent
+    ElementPath: ContactInformation.Email.TypeOfPublicKey
+    NewParentPath: AddressInformation.Email
+  - ChangeOperation: RemoveSME
+    ElementPath: ContactInformation.Email
+  - ChangeOperation: CreateSME
+    ElementPath: AddressInformation.IPCommunication__00__
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.IPCommunication__00__
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.IPCommunication__00__
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/zvei/nameplate/1/0/ContactInformations/
+  - ChangeOperation: CreateQual
+    ElementPath: AddressInformation.IPCommunication__00__
+    QualifierType: Multiplicity
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.IPCommunication__00__
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.IPCommunication__00__
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - ContactInformation.IPCommunication__00__@Multiplicity#value
+    TargetElementPaths:
+    - AddressInformation.IPCommunication__00__@Multiplicity#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: ContactInformation.IPCommunication__00__
+    QualifierType: Multiplicity
+  - ChangeOperation: UpdateParent
+    ElementPath: ContactInformation.IPCommunication__00__.AddressOfAdditionalLink
+    NewParentPath: AddressInformation.IPCommunication__00__
+  - ChangeOperation: UpdateParent
+    ElementPath: ContactInformation.IPCommunication__00__.TypeOfCommunication
+    NewParentPath: AddressInformation.IPCommunication__00__
+  - ChangeOperation: UpdateParent
+    ElementPath: ContactInformation.IPCommunication__00__.AvailableTime
+    NewParentPath: AddressInformation.IPCommunication__00__
+  - ChangeOperation: RemoveSME
+    ElementPath: ContactInformation.IPCommunication__00__
+  - ChangeOperation: UpdateParent
+    ElementPath: ContactInformation.Street
+    NewParentPath: AddressInformation
+  - ChangeOperation: UpdateParent
+    ElementPath: ContactInformation.Zipcode
+    NewParentPath: AddressInformation
+  - ChangeOperation: UpdateParent
+    ElementPath: ContactInformation.POBox
+    NewParentPath: AddressInformation
+  - ChangeOperation: UpdateParent
+    ElementPath: ContactInformation.ZipCodeOfPOBox
+    NewParentPath: AddressInformation
+  - ChangeOperation: UpdateParent
+    ElementPath: ContactInformation.StateCounty
+    NewParentPath: AddressInformation
+  - ChangeOperation: UpdateParent
+    ElementPath: ContactInformation.NameOfContact
+    NewParentPath: AddressInformation
+  - ChangeOperation: UpdateParent
+    ElementPath: ContactInformation.FirstName
+    NewParentPath: AddressInformation
+  - ChangeOperation: UpdateParent
+    ElementPath: ContactInformation.MiddleNames
+    NewParentPath: AddressInformation
+  - ChangeOperation: UpdateParent
+    ElementPath: ContactInformation.Title
+    NewParentPath: AddressInformation
+  - ChangeOperation: UpdateParent
+    ElementPath: ContactInformation.AcademicTitle
+    NewParentPath: AddressInformation
+  - ChangeOperation: UpdateParent
+    ElementPath: ContactInformation.FurtherDetailsOfContact
+    NewParentPath: AddressInformation
+  - ChangeOperation: UpdateParent
+    ElementPath: ContactInformation.AddressOfAdditionalLink
+    NewParentPath: AddressInformation
+  - ChangeOperation: RemoveSME
+    ElementPath: ContactInformation
+- title: 'B2: Markings becomes a list; Marking becomes its entry'
+  origin: hand
+  items:
+  - ChangeOperation: UpdateParent
+    ElementPath: Markings.Marking.MarkingName
+    NewParentPath: ''
+  - ChangeOperation: UpdateParent
+    ElementPath: Markings.Marking.DesignationOfCertificateOrApproval
+    NewParentPath: ''
+  - ChangeOperation: UpdateParent
+    ElementPath: Markings.Marking.IssueDate
+    NewParentPath: ''
+  - ChangeOperation: UpdateParent
+    ElementPath: Markings.Marking.ExpiryDate
+    NewParentPath: ''
+  - ChangeOperation: UpdateParent
+    ElementPath: Markings.Marking.MarkingFile
+    NewParentPath: ''
+  - ChangeOperation: UpdateParent
+    ElementPath: Markings.Marking.MarkingAdditionalText
+    NewParentPath: ''
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings.Marking
+  - ChangeOperation: CreateSME
+    ElementPath: MarkingsList
+    SMEType: SubmodelElementList
+  - ChangeOperation: UpdateAttr
+    ElementPath: MarkingsList
+    AttributeKey: typeValueListElement
+    AttributeValue: SubmodelElementCollection
+  - ChangeOperation: CreateQual
+    ElementPath: MarkingsList
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: MarkingsList
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: MarkingsList
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Markings@Multiplicity#value
+    TargetElementPaths:
+    - MarkingsList@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveSME
+    ElementPath: Markings
+  - ChangeOperation: UpdateIdShort
+    ElementPath: MarkingsList
+    NewIdShort: Markings
+  - ChangeOperation: CreateSME
+    ElementPath: Markings[0]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: UpdateParent
+    ElementPath: MarkingName
+    NewParentPath: Markings[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: DesignationOfCertificateOrApproval
+    NewParentPath: Markings[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: IssueDate
+    NewParentPath: Markings[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: ExpiryDate
+    NewParentPath: Markings[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: MarkingFile
+    NewParentPath: Markings[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: MarkingAdditionalText
+    NewParentPath: Markings[0]
+- title: 'B8: GuidelineSpecificProperties becomes a list; arbitrary properties are named by their type'
+  origin: hand
+  items:
+  - ChangeOperation: UpdateParent
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties__00__.GuidelineForConformityDeclaration
+    NewParentPath: ''
+  - ChangeOperation: UpdateParent
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties__00__.arbitrary
+    NewParentPath: ''
+  - ChangeOperation: CreateSME
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties
+    SMEType: SubmodelElementList
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties
+    AttributeKey: typeValueListElement
+    AttributeValue: SubmodelElementCollection
+  - ChangeOperation: CreateSME
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateQual
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - AssetSpecificProperties.GuidelineSpecificProperties__00__@Multiplicity#value
+    TargetElementPaths:
+    - AssetSpecificProperties.GuidelineSpecificProperties[0]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties__00__
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveSME
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties__00__
+  - ChangeOperation: UpdateParent
+    ElementPath: GuidelineForConformityDeclaration
+    NewParentPath: AssetSpecificProperties.GuidelineSpecificProperties[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: arbitrary
+    NewParentPath: AssetSpecificProperties.GuidelineSpecificProperties[0]
+  - ChangeOperation: UpdateIdShort
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].arbitrary
+    NewIdShort: ArbitraryProperty
+  - ChangeOperation: UpdateIdShort
+    ElementPath: AssetSpecificProperties.arbitrary
+    NewIdShort: ArbitraryProperty
+- title: 'BT: multi-language properties become properties of type xs:string'
+  origin: hand
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: ManufacturerProductTypeRetyped
+    SMEType: Property
+  - ChangeOperation: UpdateAttr
+    ElementPath: ManufacturerProductTypeRetyped
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ManufacturerProductTypeRetyped
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - ManufacturerProductType#value
+    TargetElementPaths:
+    - ManufacturerProductTypeRetyped#value
+    TransferFunction:
+      Kind: Expression
+      ExpressionLanguage: https://github.com/google/cel-spec
+      Expression: 'src[0].exists(s, s.language == ''en'') ? src[0].filter(s, s.language == ''en'')[0].text : src[0][0].text'
+      Text:
+        en: Take the text of the English language string as the value of the property.
+  - ChangeOperation: CreateQual
+    ElementPath: ManufacturerProductTypeRetyped
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: ManufacturerProductTypeRetyped
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ManufacturerProductTypeRetyped
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - ManufacturerProductType@Multiplicity#value
+    TargetElementPaths:
+    - ManufacturerProductTypeRetyped@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: ManufacturerProductType
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveSME
+    ElementPath: ManufacturerProductType
+  - ChangeOperation: UpdateIdShort
+    ElementPath: ManufacturerProductTypeRetyped
+    NewIdShort: ManufacturerProductType
+  - ChangeOperation: CreateSME
+    ElementPath: OrderCodeOfManufacturerRetyped
+    SMEType: Property
+  - ChangeOperation: UpdateAttr
+    ElementPath: OrderCodeOfManufacturerRetyped
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: OrderCodeOfManufacturerRetyped
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - OrderCodeOfManufacturer#value
+    TargetElementPaths:
+    - OrderCodeOfManufacturerRetyped#value
+    TransferFunction:
+      Kind: Expression
+      ExpressionLanguage: https://github.com/google/cel-spec
+      Expression: 'src[0].exists(s, s.language == ''en'') ? src[0].filter(s, s.language == ''en'')[0].text : src[0][0].text'
+      Text:
+        en: Take the text of the English language string as the value of the property.
+  - ChangeOperation: CreateQual
+    ElementPath: OrderCodeOfManufacturerRetyped
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: OrderCodeOfManufacturerRetyped
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: OrderCodeOfManufacturerRetyped
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - OrderCodeOfManufacturer@Multiplicity#value
+    TargetElementPaths:
+    - OrderCodeOfManufacturerRetyped@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: OrderCodeOfManufacturer
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveSME
+    ElementPath: OrderCodeOfManufacturer
+  - ChangeOperation: UpdateIdShort
+    ElementPath: OrderCodeOfManufacturerRetyped
+    NewIdShort: OrderCodeOfManufacturer
+  - ChangeOperation: CreateSME
+    ElementPath: ProductArticleNumberOfManufacturerRetyped
+    SMEType: Property
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductArticleNumberOfManufacturerRetyped
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductArticleNumberOfManufacturerRetyped
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - ProductArticleNumberOfManufacturer#value
+    TargetElementPaths:
+    - ProductArticleNumberOfManufacturerRetyped#value
+    TransferFunction:
+      Kind: Expression
+      ExpressionLanguage: https://github.com/google/cel-spec
+      Expression: 'src[0].exists(s, s.language == ''en'') ? src[0].filter(s, s.language == ''en'')[0].text : src[0][0].text'
+      Text:
+        en: Take the text of the English language string as the value of the property.
+  - ChangeOperation: CreateQual
+    ElementPath: ProductArticleNumberOfManufacturerRetyped
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductArticleNumberOfManufacturerRetyped
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductArticleNumberOfManufacturerRetyped
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - ProductArticleNumberOfManufacturer@Multiplicity#value
+    TargetElementPaths:
+    - ProductArticleNumberOfManufacturerRetyped@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: ProductArticleNumberOfManufacturer
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveSME
+    ElementPath: ProductArticleNumberOfManufacturer
+  - ChangeOperation: UpdateIdShort
+    ElementPath: ProductArticleNumberOfManufacturerRetyped
+    NewIdShort: ProductArticleNumberOfManufacturer
+  - ChangeOperation: CreateSME
+    ElementPath: HardwareVersionRetyped
+    SMEType: Property
+  - ChangeOperation: UpdateAttr
+    ElementPath: HardwareVersionRetyped
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: HardwareVersionRetyped
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - HardwareVersion#value
+    TargetElementPaths:
+    - HardwareVersionRetyped#value
+    TransferFunction:
+      Kind: Expression
+      ExpressionLanguage: https://github.com/google/cel-spec
+      Expression: 'src[0].exists(s, s.language == ''en'') ? src[0].filter(s, s.language == ''en'')[0].text : src[0][0].text'
+      Text:
+        en: Take the text of the English language string as the value of the property.
+  - ChangeOperation: CreateQual
+    ElementPath: HardwareVersionRetyped
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: HardwareVersionRetyped
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: HardwareVersionRetyped
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - HardwareVersion@Multiplicity#value
+    TargetElementPaths:
+    - HardwareVersionRetyped@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: HardwareVersion
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveSME
+    ElementPath: HardwareVersion
+  - ChangeOperation: UpdateIdShort
+    ElementPath: HardwareVersionRetyped
+    NewIdShort: HardwareVersion
+  - ChangeOperation: CreateSME
+    ElementPath: FirmwareVersionRetyped
+    SMEType: Property
+  - ChangeOperation: UpdateAttr
+    ElementPath: FirmwareVersionRetyped
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: FirmwareVersionRetyped
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - FirmwareVersion#value
+    TargetElementPaths:
+    - FirmwareVersionRetyped#value
+    TransferFunction:
+      Kind: Expression
+      ExpressionLanguage: https://github.com/google/cel-spec
+      Expression: 'src[0].exists(s, s.language == ''en'') ? src[0].filter(s, s.language == ''en'')[0].text : src[0][0].text'
+      Text:
+        en: Take the text of the English language string as the value of the property.
+  - ChangeOperation: CreateQual
+    ElementPath: FirmwareVersionRetyped
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: FirmwareVersionRetyped
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: FirmwareVersionRetyped
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - FirmwareVersion@Multiplicity#value
+    TargetElementPaths:
+    - FirmwareVersionRetyped@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: FirmwareVersion
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveSME
+    ElementPath: FirmwareVersion
+  - ChangeOperation: UpdateIdShort
+    ElementPath: FirmwareVersionRetyped
+    NewIdShort: FirmwareVersion
+  - ChangeOperation: CreateSME
+    ElementPath: SoftwareVersionRetyped
+    SMEType: Property
+  - ChangeOperation: UpdateAttr
+    ElementPath: SoftwareVersionRetyped
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: SoftwareVersionRetyped
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - SoftwareVersion#value
+    TargetElementPaths:
+    - SoftwareVersionRetyped#value
+    TransferFunction:
+      Kind: Expression
+      ExpressionLanguage: https://github.com/google/cel-spec
+      Expression: 'src[0].exists(s, s.language == ''en'') ? src[0].filter(s, s.language == ''en'')[0].text : src[0][0].text'
+      Text:
+        en: Take the text of the English language string as the value of the property.
+  - ChangeOperation: CreateQual
+    ElementPath: SoftwareVersionRetyped
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: SoftwareVersionRetyped
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: SoftwareVersionRetyped
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - SoftwareVersion@Multiplicity#value
+    TargetElementPaths:
+    - SoftwareVersionRetyped@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: SoftwareVersion
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveSME
+    ElementPath: SoftwareVersion
+  - ChangeOperation: UpdateIdShort
+    ElementPath: SoftwareVersionRetyped
+    NewIdShort: SoftwareVersion
+- title: 'BT: further data type changes'
+  origin: hand
+  items:
+  - ChangeOperation: UpdateAttr
+    ElementPath: URIOfTheProduct
+    AttributeKey: valueType
+    AttributeValue: xs:anyURI
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings[0].IssueDate
+    AttributeKey: valueType
+    AttributeValue: xs:date
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings[0].ExpiryDate
+    AttributeKey: valueType
+    AttributeValue: xs:date
+- title: 'B6: YearOfConstruction becomes optional'
+  origin: hand
+  items:
+  - ChangeOperation: CreateQual
+    ElementPath: YearOfConstruction
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: YearOfConstruction
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: YearOfConstruction
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - YearOfConstruction@Multiplicity#value
+    TargetElementPaths:
+    - YearOfConstruction@SMT/Cardinality#value
+    TransferFunction:
+      Kind: ValueMap
+      Pairs:
+        One: ZeroToOne
+  - ChangeOperation: RemoveQual
+    ElementPath: YearOfConstruction
+    QualifierType: Multiplicity
+- title: 'B5: UniqueFacilityIdentifier is added'
+  origin: hand
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: UniqueFacilityIdentifier
+    SMEType: Property
+  - ChangeOperation: UpdateAttr
+    ElementPath: UniqueFacilityIdentifier
+    AttributeKey: valueType
+    AttributeValue: xs:string
+- title: 'B1: the cardinality vocabulary changes from Multiplicity to SMT/Cardinality'
+  origin: rule
+  rule:
+    QualifierTypeRenames:
+      Multiplicity: SMT/Cardinality
+  items:
+  - ChangeOperation: CreateQual
+    ElementPath: URIOfTheProduct
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: URIOfTheProduct
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: URIOfTheProduct
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - URIOfTheProduct@Multiplicity#value
+    TargetElementPaths:
+    - URIOfTheProduct@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: URIOfTheProduct
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ManufacturerName
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: ManufacturerName
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ManufacturerName
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - ManufacturerName@Multiplicity#value
+    TargetElementPaths:
+    - ManufacturerName@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: ManufacturerName
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ManufacturerProductDesignation
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: ManufacturerProductDesignation
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ManufacturerProductDesignation
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - ManufacturerProductDesignation@Multiplicity#value
+    TargetElementPaths:
+    - ManufacturerProductDesignation@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: ManufacturerProductDesignation
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ManufacturerProductRoot
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: ManufacturerProductRoot
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ManufacturerProductRoot
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - ManufacturerProductRoot@Multiplicity#value
+    TargetElementPaths:
+    - ManufacturerProductRoot@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: ManufacturerProductRoot
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ManufacturerProductFamily
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: ManufacturerProductFamily
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ManufacturerProductFamily
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - ManufacturerProductFamily@Multiplicity#value
+    TargetElementPaths:
+    - ManufacturerProductFamily@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: ManufacturerProductFamily
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: SerialNumber
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: SerialNumber
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: SerialNumber
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - SerialNumber@Multiplicity#value
+    TargetElementPaths:
+    - SerialNumber@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: SerialNumber
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: DateOfManufacture
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: DateOfManufacture
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: DateOfManufacture
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - DateOfManufacture@Multiplicity#value
+    TargetElementPaths:
+    - DateOfManufacture@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: DateOfManufacture
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: CountryOfOrigin
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: CountryOfOrigin
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: CountryOfOrigin
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - CountryOfOrigin@Multiplicity#value
+    TargetElementPaths:
+    - CountryOfOrigin@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: CountryOfOrigin
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: CompanyLogo
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: CompanyLogo
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: CompanyLogo
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - CompanyLogo@Multiplicity#value
+    TargetElementPaths:
+    - CompanyLogo@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: CompanyLogo
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: Markings[0].MarkingName
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings[0].MarkingName
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Markings[0].MarkingName
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Markings[0].MarkingName@Multiplicity#value
+    TargetElementPaths:
+    - Markings[0].MarkingName@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings[0].MarkingName
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: Markings[0].DesignationOfCertificateOrApproval
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings[0].DesignationOfCertificateOrApproval
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Markings[0].DesignationOfCertificateOrApproval
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Markings[0].DesignationOfCertificateOrApproval@Multiplicity#value
+    TargetElementPaths:
+    - Markings[0].DesignationOfCertificateOrApproval@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings[0].DesignationOfCertificateOrApproval
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: Markings[0].IssueDate
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings[0].IssueDate
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Markings[0].IssueDate
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Markings[0].IssueDate@Multiplicity#value
+    TargetElementPaths:
+    - Markings[0].IssueDate@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings[0].IssueDate
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: Markings[0].ExpiryDate
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings[0].ExpiryDate
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Markings[0].ExpiryDate
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Markings[0].ExpiryDate@Multiplicity#value
+    TargetElementPaths:
+    - Markings[0].ExpiryDate@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings[0].ExpiryDate
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: Markings[0].MarkingFile
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings[0].MarkingFile
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Markings[0].MarkingFile
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Markings[0].MarkingFile@Multiplicity#value
+    TargetElementPaths:
+    - Markings[0].MarkingFile@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings[0].MarkingFile
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: Markings[0].MarkingAdditionalText
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings[0].MarkingAdditionalText
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Markings[0].MarkingAdditionalText
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Markings[0].MarkingAdditionalText@Multiplicity#value
+    TargetElementPaths:
+    - Markings[0].MarkingAdditionalText@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Markings[0].MarkingAdditionalText
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: AssetSpecificProperties
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - AssetSpecificProperties@Multiplicity#value
+    TargetElementPaths:
+    - AssetSpecificProperties@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: AssetSpecificProperties
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].GuidelineForConformityDeclaration
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].GuidelineForConformityDeclaration
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].GuidelineForConformityDeclaration
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - AssetSpecificProperties.GuidelineSpecificProperties[0].GuidelineForConformityDeclaration@Multiplicity#value
+    TargetElementPaths:
+    - AssetSpecificProperties.GuidelineSpecificProperties[0].GuidelineForConformityDeclaration@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].GuidelineForConformityDeclaration
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryProperty
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryProperty@Multiplicity#value
+    TargetElementPaths:
+    - AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryProperty@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryProperty
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: AssetSpecificProperties.ArbitraryProperty
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - AssetSpecificProperties.ArbitraryProperty@Multiplicity#value
+    TargetElementPaths:
+    - AssetSpecificProperties.ArbitraryProperty@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: AssetSpecificProperties.ArbitraryProperty
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: AddressInformation
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - AddressInformation@Multiplicity#value
+    TargetElementPaths:
+    - AddressInformation@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: AddressInformation
+    QualifierType: Multiplicity
+- title: 'Completion: removed elements and qualifiers'
+  origin: generated
+  items: []
+- title: 'Completion: created elements and qualifiers'
+  origin: generated
+  items:
+  - ChangeOperation: UpdateIdShort
+    ElementPath: ''
+    NewIdShort: Nameplate
+  - ChangeOperation: CreateSME
+    ElementPath: AssetSpecificProperties.ArbitraryMLP
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: AssetSpecificProperties.ArbitraryFile
+    SMEType: File
+  - ChangeOperation: CreateSME
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryFile
+    SMEType: File
+  - ChangeOperation: CreateSME
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryMLP
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateQual
+    ElementPath: UniqueFacilityIdentifier
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: Markings[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: AssetSpecificProperties.ArbitraryMLP
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: AssetSpecificProperties.ArbitraryFile
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryFile
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryMLP
+    QualifierType: SMT/Cardinality
+- title: 'Completion: attributes'
+  origin: generated
+  items:
+  - ChangeOperation: CreateAttr
+    ElementPath: ''
+    AttributeKey: administration
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    AttributeKey: administration
+    AttributeValue:
+      version: '3'
+      revision: '0'
+      templateId: https://admin-shell.io/idta-02006-3-0
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    AttributeKey: id
+    AttributeValue: https://admin-shell.io/idta/SubmodelTemplate/DigitalNameplate/3/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/nameplate/3/0/Nameplate
+  - ChangeOperation: RemoveAttr
+    ElementPath: URIOfTheProduct
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: URIOfTheProduct
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0112/2///61987#ABN590#002
+  - ChangeOperation: CreateAttr
+    ElementPath: URIOfTheProduct
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: URIOfTheProduct
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABH173#003
+  - ChangeOperation: RemoveAttr
+    ElementPath: ManufacturerName
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ManufacturerName
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0112/2///61987#ABA565#009
+  - ChangeOperation: CreateAttr
+    ElementPath: ManufacturerName
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: ManufacturerName
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO677#004
+  - ChangeOperation: UpdateAttr
+    ElementPath: ManufacturerName
+    AttributeKey: value
+    AttributeValue:
+    - language: de
+      text: '"Muster AG"'
+  - ChangeOperation: RemoveAttr
+    ElementPath: ManufacturerProductDesignation
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ManufacturerProductDesignation
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0112/2///61987#ABA567#009
+  - ChangeOperation: CreateAttr
+    ElementPath: ManufacturerProductDesignation
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: ManufacturerProductDesignation
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAW338#003
+  - ChangeOperation: UpdateAttr
+    ElementPath: ManufacturerProductDesignation
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: '"ABC-123"'
+  - ChangeOperation: UpdateAttr
+    ElementPath: ManufacturerProductRoot
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0112/2///61360_7#AAS011#001
+  - ChangeOperation: CreateAttr
+    ElementPath: ManufacturerProductRoot
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: ManufacturerProductRoot
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAU732#003
+  - ChangeOperation: UpdateAttr
+    ElementPath: ManufacturerProductRoot
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: '"flow meter"'
+  - ChangeOperation: CreateAttr
+    ElementPath: ManufacturerProductRoot
+    AttributeKey: valueId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ManufacturerProductRoot
+    AttributeKey: valueId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0112/2///61987#ABP464#002
+  - ChangeOperation: RemoveAttr
+    ElementPath: ManufacturerProductFamily
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ManufacturerProductFamily
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0112/2///61987#ABP464#002
+  - ChangeOperation: CreateAttr
+    ElementPath: ManufacturerProductFamily
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: ManufacturerProductFamily
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAU731#003
+  - ChangeOperation: UpdateAttr
+    ElementPath: ManufacturerProductFamily
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: '"Type ABC"'
+  - ChangeOperation: RemoveAttr
+    ElementPath: SerialNumber
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: SerialNumber
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0112/2///61987#ABA951#009
+  - ChangeOperation: CreateAttr
+    ElementPath: SerialNumber
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: SerialNumber
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAM556#004
+  - ChangeOperation: RemoveAttr
+    ElementPath: YearOfConstruction
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: YearOfConstruction
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0112/2///61987#ABP000#002
+  - ChangeOperation: CreateAttr
+    ElementPath: YearOfConstruction
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: YearOfConstruction
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAP906#003
+  - ChangeOperation: RemoveAttr
+    ElementPath: DateOfManufacture
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: DateOfManufacture
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0112/2///61987#ABB757#007
+  - ChangeOperation: CreateAttr
+    ElementPath: DateOfManufacture
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: DateOfManufacture
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAR972#004
+  - ChangeOperation: UpdateAttr
+    ElementPath: CountryOfOrigin
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: Country codes defined accord. to DIN EN ISO 3166-1 alpha-2 codes'
+  - ChangeOperation: UpdateAttr
+    ElementPath: CountryOfOrigin
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0112/2///61987#ABP462#001
+  - ChangeOperation: CreateAttr
+    ElementPath: CountryOfOrigin
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: CountryOfOrigin
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO259#007
+  - ChangeOperation: UpdateAttr
+    ElementPath: CompanyLogo
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0112/2///61987#ABP463#001
+  - ChangeOperation: CreateAttr
+    ElementPath: CompanyLogo
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: CompanyLogo
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI776#002
+  - ChangeOperation: UpdateAttr
+    ElementPath: CompanyLogo
+    AttributeKey: contentType
+    AttributeValue: image/png
+  - ChangeOperation: RemoveAttr
+    ElementPath: AssetSpecificProperties
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI218#003/0173-1#01-AGZ672#004
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.ArbitraryProperty
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.ArbitraryProperty
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: Every property can be used.'
+    - language: en
+      text: 'Note: The idShort is arbitrary'
+    - language: en
+      text: 'Note: The use of a displayName is recommended.'
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.ArbitraryProperty
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/ArbitraryProp
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: this set of information is defined by SMT drop-in "Address Information"'
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/zvei/nameplate/1/0/ContactInformations/AddressInformation
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/smt-dropin/smt-dropin-use/1/0
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0112/2///61360_7#AAS002#001
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAQ837#008/0173-1#01-ADR448#008
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.NationalCode
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: ' Note: country codes defined accord. to ISO 3166-1. Recommendation: property declaration as MLP is required by
+        its semantic definition. As the property value is language independent, users are recommended to provide maximal 1
+        string in any language of the user’s choice.'
+  - ChangeOperation: RemoveAttr
+    ElementPath: AddressInformation.CityTown
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.Fax.TypeOfFaxNumber
+    AttributeKey: value
+    AttributeValue: 0173-1#07-AAS754#001
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.Email.PublicKey
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.Email.PublicKey
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: PGPKEY-12345
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.Email.TypeOfPublicKey
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.Email.TypeOfPublicKey
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: PGP
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.IPCommunication__00__
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/zvei/nameplate/1/0/ContactInformations/ContactInformation/IPCommunication
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.IPCommunication__00__.TypeOfCommunication
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/zvei/nameplate/1/0/ContactInformations/ContactInformation/IPCommunication/TypeOfCommunication
+  - ChangeOperation: RemoveAttr
+    ElementPath: AddressInformation.Street
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.Zipcode
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Recommendation: property declaration as MLP is required by its semantic definition. As the property value is
+        language independent, users are recommended to provide maximal 1 string in any language of the user’s choice.'
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.NameOfContact
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.NameOfContact
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: Doe
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.FirstName
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.FirstName
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: John
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.MiddleNames
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.MiddleNames
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: A.
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.Title
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.Title
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: Mr.
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.AcademicTitle
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.AcademicTitle
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: Dr.
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.FurtherDetailsOfContact
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.FurtherDetailsOfContact
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: Contact available weekdays only
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.AddressOfAdditionalLink
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.AddressOfAdditionalLink
+    AttributeKey: value
+    AttributeValue: AddressOfAdditionalLink
+  - ChangeOperation: CreateAttr
+    ElementPath: Markings
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: CE marking is declared as mandatory according to EU Blue Guide'
+  - ChangeOperation: CreateAttr
+    ElementPath: Markings
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0112/2///61360_7#AAS006#001
+  - ChangeOperation: CreateAttr
+    ElementPath: Markings
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI563#003/0173-1#01-AHF849#003
+  - ChangeOperation: CreateAttr
+    ElementPath: Markings[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: CE marking is declared as mandatory according to the Blue Guide of the EU-Commission'
+  - ChangeOperation: CreateAttr
+    ElementPath: Markings[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0112/2///61360_7#AAS009#001
+  - ChangeOperation: CreateAttr
+    ElementPath: Markings[0]
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings[0]
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI564#003/0173-1#01-AHF850#003
+  - ChangeOperation: RemoveAttr
+    ElementPath: Markings[0].MarkingName
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings[0].MarkingName
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0112/2///61987#ABA231#009
+  - ChangeOperation: CreateAttr
+    ElementPath: Markings[0].MarkingName
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings[0].MarkingName
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI190#003
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings[0].DesignationOfCertificateOrApproval
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0112/2///61987#ABH783#003
+  - ChangeOperation: CreateAttr
+    ElementPath: Markings[0].DesignationOfCertificateOrApproval
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings[0].DesignationOfCertificateOrApproval
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI975#002
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings[0].IssueDate
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0112/2///61987#ABO097#001
+  - ChangeOperation: CreateAttr
+    ElementPath: Markings[0].IssueDate
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings[0].IssueDate
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABL774#001
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings[0].ExpiryDate
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: format by lexical representation: CCYY-MM-DD Note: to be specified to the day '
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings[0].ExpiryDate
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0112/2///61987#ABH830#002
+  - ChangeOperation: CreateAttr
+    ElementPath: Markings[0].ExpiryDate
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings[0].ExpiryDate
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABL775#001
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings[0].MarkingFile
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0112/2///61987#ABO100#002
+  - ChangeOperation: CreateAttr
+    ElementPath: Markings[0].MarkingFile
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings[0].MarkingFile
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI191#003
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings[0].MarkingFile
+    AttributeKey: contentType
+    AttributeValue: image/png
+  - ChangeOperation: RemoveAttr
+    ElementPath: Markings[0].MarkingAdditionalText
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings[0].MarkingAdditionalText
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0112/2///61987#ABB146#007
+  - ChangeOperation: CreateAttr
+    ElementPath: Markings[0].MarkingAdditionalText
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings[0].MarkingAdditionalText
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI192#003
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI219#003/0173-1#01-AHD205#004
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#01-AHD205#004
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryProperty
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryProperty
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: Every property can be used.'
+    - language: en
+      text: 'Note: The idShort is arbitrary'
+    - language: en
+      text: 'Note: The use of a displayName is recommended.'
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryProperty
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/ArbitraryProp
+  - ChangeOperation: CreateAttr
+    ElementPath: ManufacturerProductType
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ManufacturerProductType
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0112/2///61987#ABA300#008
+  - ChangeOperation: CreateAttr
+    ElementPath: ManufacturerProductType
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: ManufacturerProductType
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO057#004
+  - ChangeOperation: CreateAttr
+    ElementPath: OrderCodeOfManufacturer
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: OrderCodeOfManufacturer
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0112/2///61987#ABA950#008
+  - ChangeOperation: CreateAttr
+    ElementPath: OrderCodeOfManufacturer
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: OrderCodeOfManufacturer
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO227#004
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductArticleNumberOfManufacturer
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductArticleNumberOfManufacturer
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0112/2///61987#ABA581#007
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductArticleNumberOfManufacturer
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductArticleNumberOfManufacturer
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO676#005
+  - ChangeOperation: CreateAttr
+    ElementPath: HardwareVersion
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: HardwareVersion
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0112/2///61987#ABA926#008
+  - ChangeOperation: CreateAttr
+    ElementPath: HardwareVersion
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: HardwareVersion
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAN270#004
+  - ChangeOperation: CreateAttr
+    ElementPath: FirmwareVersion
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: FirmwareVersion
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0112/2///61987#ABA302#006
+  - ChangeOperation: CreateAttr
+    ElementPath: FirmwareVersion
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: FirmwareVersion
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAM985#004
+  - ChangeOperation: UpdateAttr
+    ElementPath: FirmwareVersion
+    AttributeKey: value
+    AttributeValue: 1.0.0
+  - ChangeOperation: CreateAttr
+    ElementPath: SoftwareVersion
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SoftwareVersion
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0112/2///61987#ABA601#008
+  - ChangeOperation: CreateAttr
+    ElementPath: SoftwareVersion
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: SoftwareVersion
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAM737#004
+  - ChangeOperation: CreateAttr
+    ElementPath: UniqueFacilityIdentifier
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: UniqueFacilityIdentifier
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/nameplate/3/0/UniqueFacilityIdentifier
+  - ChangeOperation: CreateAttr
+    ElementPath: UniqueFacilityIdentifier
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: UniqueFacilityIdentifier
+    AttributeKey: value
+    AttributeValue: '987654321'
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.ArbitraryMLP
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.ArbitraryMLP
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: Every multilanguage property can be used.'
+    - language: en
+      text: 'Note: The idShort is arbitrary'
+    - language: en
+      text: 'Note: The use of a displayName is recommended.'
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.ArbitraryMLP
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.ArbitraryMLP
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/ArbitraryMLP
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.ArbitraryMLP
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.ArbitraryMLP
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: '"sample"'
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.ArbitraryFile
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.ArbitraryFile
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: Every file can be used.'
+    - language: en
+      text: The idShort is arbitrary
+    - language: en
+      text: 'Note: The use of a displayName is recommended.'
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.ArbitraryFile
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.ArbitraryFile
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/ArbitraryFile
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.ArbitraryFile
+    AttributeKey: contentType
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.ArbitraryFile
+    AttributeKey: contentType
+    AttributeValue: application/pdf
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryFile
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryFile
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: Every file can be used.'
+    - language: en
+      text: The idShort is arbitrary
+    - language: en
+      text: 'Note: The use of a displayName is recommended.'
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryFile
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryFile
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/ArbitraryFile
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryFile
+    AttributeKey: contentType
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryFile
+    AttributeKey: contentType
+    AttributeValue: image/png
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryMLP
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryMLP
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: Every multilanguage property can be used.'
+    - language: en
+      text: 'Note: The idShort is arbitrary'
+    - language: en
+      text: 'Note: The use of a displayName is recommended.'
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryMLP
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryMLP
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/ArbitraryMLP
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryMLP
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryMLP
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: '"sample"'
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.RoleOfContactPerson
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.RoleOfContactPerson
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.NationalCode
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.NationalCode
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.Language
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.Language
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.TimeZone
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.TimeZone
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.CityTown
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.CityTown
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.Company
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.Company
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.Department
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.Department
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.Phone.TelephoneNumber
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.Phone.TelephoneNumber
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.Phone.TypeOfTelephone
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.Phone.TypeOfTelephone
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.Phone.AvailableTime
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.Phone.AvailableTime
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.Fax.FaxNumber
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.Fax.FaxNumber
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.Fax.TypeOfFaxNumber
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.Fax.TypeOfFaxNumber
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.Email.EmailAddress
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.Email.EmailAddress
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.Email.PublicKey
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.Email.PublicKey
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.Email.TypeOfEmailAddress
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.Email.TypeOfEmailAddress
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.Email.TypeOfPublicKey
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.Email.TypeOfPublicKey
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.IPCommunication__00__.AddressOfAdditionalLink
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.IPCommunication__00__.AddressOfAdditionalLink
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.IPCommunication__00__.TypeOfCommunication
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.IPCommunication__00__.TypeOfCommunication
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.IPCommunication__00__.AvailableTime
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.IPCommunication__00__.AvailableTime
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.Street
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.Street
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.Zipcode
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.Zipcode
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.POBox
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.POBox
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.ZipCodeOfPOBox
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.ZipCodeOfPOBox
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.StateCounty
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.StateCounty
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.NameOfContact
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.NameOfContact
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.FirstName
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.FirstName
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.MiddleNames
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.MiddleNames
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.Title
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.Title
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.AcademicTitle
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.AcademicTitle
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.FurtherDetailsOfContact
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.FurtherDetailsOfContact
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.AddressOfAdditionalLink
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.AddressOfAdditionalLink
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.Phone
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.Phone
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.Fax
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.Fax
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.Email
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.Email
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation.IPCommunication__00__
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation.IPCommunication__00__
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: Markings
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Markings
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: ManufacturerProductType
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ManufacturerProductType
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: ManufacturerProductType
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ManufacturerProductType
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: OrderCodeOfManufacturer
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: OrderCodeOfManufacturer
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: OrderCodeOfManufacturer
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: OrderCodeOfManufacturer
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: OrderCodeOfManufacturer
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductArticleNumberOfManufacturer
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductArticleNumberOfManufacturer
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductArticleNumberOfManufacturer
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductArticleNumberOfManufacturer
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: HardwareVersion
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: HardwareVersion
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: HardwareVersion
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: HardwareVersion
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: FirmwareVersion
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: FirmwareVersion
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: FirmwareVersion
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: FirmwareVersion
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SoftwareVersion
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SoftwareVersion
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: SoftwareVersion
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SoftwareVersion
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: YearOfConstruction
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: YearOfConstruction
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: YearOfConstruction
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: YearOfConstruction
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: URIOfTheProduct
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: URIOfTheProduct
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: URIOfTheProduct
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: URIOfTheProduct
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: ManufacturerName
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ManufacturerName
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: ManufacturerName
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ManufacturerName
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: ManufacturerProductDesignation
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ManufacturerProductDesignation
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: ManufacturerProductDesignation
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ManufacturerProductDesignation
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: ManufacturerProductRoot
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ManufacturerProductRoot
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: ManufacturerProductRoot
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ManufacturerProductRoot
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: ManufacturerProductFamily
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ManufacturerProductFamily
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: ManufacturerProductFamily
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ManufacturerProductFamily
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SerialNumber
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: SerialNumber
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: SerialNumber
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SerialNumber
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: DateOfManufacture
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: DateOfManufacture
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: DateOfManufacture
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: DateOfManufacture
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: CountryOfOrigin
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: CountryOfOrigin
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: CountryOfOrigin
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: CountryOfOrigin
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: CompanyLogo
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: CompanyLogo
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: CompanyLogo
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: CompanyLogo
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: Markings[0].MarkingName
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings[0].MarkingName
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Markings[0].MarkingName
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings[0].MarkingName
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: Markings[0].DesignationOfCertificateOrApproval
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings[0].DesignationOfCertificateOrApproval
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Markings[0].DesignationOfCertificateOrApproval
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings[0].DesignationOfCertificateOrApproval
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: Markings[0].IssueDate
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings[0].IssueDate
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Markings[0].IssueDate
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings[0].IssueDate
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: Markings[0].ExpiryDate
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings[0].ExpiryDate
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Markings[0].ExpiryDate
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings[0].ExpiryDate
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: Markings[0].MarkingFile
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings[0].MarkingFile
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Markings[0].MarkingFile
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings[0].MarkingFile
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: Markings[0].MarkingAdditionalText
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings[0].MarkingAdditionalText
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Markings[0].MarkingAdditionalText
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings[0].MarkingAdditionalText
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].GuidelineForConformityDeclaration
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].GuidelineForConformityDeclaration
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].GuidelineForConformityDeclaration
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].GuidelineForConformityDeclaration
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.ArbitraryProperty
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: AddressInformation
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AddressInformation
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: UniqueFacilityIdentifier
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: UniqueFacilityIdentifier
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: UniqueFacilityIdentifier
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: UniqueFacilityIdentifier
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: UniqueFacilityIdentifier
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: UniqueFacilityIdentifier
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: UniqueFacilityIdentifier
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: Markings[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Markings[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Markings[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: Markings[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: OneToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.ArbitraryFile
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.ArbitraryFile
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.ArbitraryFile
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.ArbitraryFile
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.ArbitraryFile
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.ArbitraryFile
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.ArbitraryFile
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryFile
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryFile
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryFile
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryFile
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryFile
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryFile
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryFile
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: AssetSpecificProperties.GuidelineSpecificProperties[0].ArbitraryMLP
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany

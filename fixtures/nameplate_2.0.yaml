@@ -1,0 +1,53 @@
+# Submodel instance conforming to IDTA 02006 Digital Nameplate v2.0. Illustrative values of an example device.
+template: ressources/Templates/IDTA 02006-2-0_Template_Digital Nameplate.json
+id: https://example.com/ids/sm/example-device/Nameplate
+
+omit:
+  - ContactInformation.Phone
+  - ContactInformation.Fax
+  - ContactInformation.Email
+  - ContactInformation.IPCommunication__00__
+  - Markings.Marking.ExplosionSafeties     # optional; the device has no explosion protection
+
+repeat:
+  Markings.Marking: [Marking01, Marking02]
+  AssetSpecificProperties.GuidelineSpecificProperties__00__: [GuidelineSpecificProperties01, GuidelineSpecificProperties02]
+
+values:
+  URIOfTheProduct: https://example.com/products/EX-100-200/SN0042
+  ManufacturerName: {en: Example Manufacturer GmbH}
+  ManufacturerProductDesignation: {en: Compact I/O controller}
+  ContactInformation.Company: {en: Example Manufacturer GmbH}
+  ContactInformation.Street: {en: Examplestreet 1}
+  ContactInformation.Zipcode: {en: "12345"}
+  ContactInformation.CityTown: {en: Exampletown}
+  ContactInformation.NationalCode: {en: DE}
+  ManufacturerProductFamily: {en: EX-100}
+  ManufacturerProductType: {en: EX-100-200}
+  OrderCodeOfManufacturer: {en: EX100200}
+  ProductArticleNumberOfManufacturer: {en: EX-100-200-A}
+  SerialNumber: SN0042
+  YearOfConstruction: "2024"
+  DateOfManufacture: "2024-03-12"
+  HardwareVersion: {en: "2.1"}
+  FirmwareVersion: {en: "4.0.3"}
+  SoftwareVersion: {en: "4.0.3"}
+  CountryOfOrigin: DE
+  Markings.Marking01.MarkingName: CE
+  Markings.Marking01.IssueDate: "2024-01-10"
+  Markings.Marking01.MarkingFile: /aasx/files/ce.pdf
+  Markings.Marking02.MarkingName: UKCA
+  Markings.Marking02.IssueDate: "2024-02-01"
+  Markings.Marking02.MarkingFile: /aasx/files/ukca.pdf
+  AssetSpecificProperties.GuidelineSpecificProperties01.GuidelineForConformityDeclaration: 2014/30/EU
+  AssetSpecificProperties.GuidelineSpecificProperties02.GuidelineForConformityDeclaration: 2014/35/EU
+
+add:
+  "":                   # local extension of the asset maintainer, described by no template
+    - {modelType: Property, idShort: InternalInventoryNumber, valueType: xs:string, value: INV-2024-0815}
+  AssetSpecificProperties:
+    - {modelType: Property, idShort: ProtectionClass, valueType: xs:string, value: IP20}
+  AssetSpecificProperties.GuidelineSpecificProperties01:
+    - {modelType: Property, idShort: EmissionClass, valueType: xs:string, value: Class A}
+  AssetSpecificProperties.GuidelineSpecificProperties02:
+    - {modelType: Property, idShort: RatedVoltage, valueType: xs:string, value: 24 V DC}

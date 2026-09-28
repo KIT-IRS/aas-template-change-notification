@@ -1,0 +1,238 @@
+# Template Change Notification: IDTA 02006 Digital Nameplate v2.0 -> v3.0 (intent, hand-written)
+#
+# This file states the intent of the revision. `uv run tcn owner complete` expands the rule sections
+# in place and appends the mechanical completion; the result is nameplate_2.0_to_3.0.yaml.
+# Groups B1-B9 follow the change log of IDTA 02006 v3.0; BT are the listed data type changes.
+
+header:
+  Family: DigitalNameplate
+  PreVersion: https://admin-shell.io/idta/SubmodelTemplate/DigitalNameplate/2/0
+  PostVersion: https://admin-shell.io/idta/SubmodelTemplate/DigitalNameplate/3/0
+  PreTemplate: "ressources/Templates/IDTA 02006-2-0_Template_Digital Nameplate.json"
+  PostTemplate: "ressources/Templates/IDTA 02006-3-0-1_Template_Digital Nameplate.json"
+  TemplateOwner: Industrial Digital Twin Association (IDTA)
+  TemplateOwnerAddress:
+    Company: Industrial Digital Twin Association e.V.
+    Street: Lyoner Straße 18
+    Zipcode: "60528"
+    CityTown: Frankfurt am Main
+    NationalCode: DE
+  ChangeURI: https://github.com/admin-shell-io/submodel-templates/tree/main/published/Digital%20nameplate/3/0
+
+# A multi-language value cannot be mapped to a string by Identity or ValueMap. The transformation is
+# stated as a CEL expression over the source values `src`: the English text, else the first one.
+# The instruction is the fallback for receivers that do not evaluate CEL.
+definitions:
+  mlp_to_string: &mlp_to_string
+    Kind: Expression
+    ExpressionLanguage: https://github.com/google/cel-spec
+    Expression: >-
+      src[0].exists(s, s.language == 'en') ? src[0].filter(s, s.language == 'en')[0].text : src[0][0].text
+    Text: {en: "Take the text of the English language string as the value of the property."}
+
+sections:
+  - title: "B3: ExplosionSafeties is removed; to be defined in supplementary submodel templates"
+    origin: rule
+    rule:
+      RemoveSubtree: [Markings.Marking.ExplosionSafeties]
+
+  - title: "B4: ContactInformation becomes AddressInformation, the use of the SMT drop-in Address Information"
+    origin: rule
+    # The drop-in (IDTA 02006-3-0 §3.4) re-uses SMC ContactInformation of IDTA 02002, which has the
+    # same properties with the same semanticIds: the contact data is retained. A container with
+    # children is renamed by rebuilding it.
+    rule:
+      RenameContainer: {ContactInformation: AddressInformation}
+
+  - title: "B2: Markings becomes a list; Marking becomes its entry"
+    origin: hand
+    items:
+      # the properties of a marking are retained; they are parked at the root while the containers are replaced
+      - {ChangeOperation: UpdateParent, ElementPath: Markings.Marking.MarkingName, NewParentPath: ""}
+      - {ChangeOperation: UpdateParent, ElementPath: Markings.Marking.DesignationOfCertificateOrApproval, NewParentPath: ""}
+      - {ChangeOperation: UpdateParent, ElementPath: Markings.Marking.IssueDate, NewParentPath: ""}
+      - {ChangeOperation: UpdateParent, ElementPath: Markings.Marking.ExpiryDate, NewParentPath: ""}
+      - {ChangeOperation: UpdateParent, ElementPath: Markings.Marking.MarkingFile, NewParentPath: ""}
+      - {ChangeOperation: UpdateParent, ElementPath: Markings.Marking.MarkingAdditionalText, NewParentPath: ""}
+      - {ChangeOperation: RemoveSME, ElementPath: Markings.Marking}
+      # an element's type cannot be updated: the list is created beside the collection, takes over
+      # its cardinality constraint, and is renamed once the collection is removed
+      - {ChangeOperation: CreateSME, ElementPath: MarkingsList, SMEType: SubmodelElementList}
+      - {ChangeOperation: UpdateAttr, ElementPath: MarkingsList, AttributeKey: typeValueListElement,
+         AttributeValue: SubmodelElementCollection}
+      - {ChangeOperation: CreateQual, ElementPath: MarkingsList, QualifierType: SMT/Cardinality}
+      - {ChangeOperation: UpdateAttr, ElementPath: MarkingsList, QualifierType: SMT/Cardinality, AttributeKey: valueType,
+         AttributeValue: xs:string}
+      - {ChangeOperation: CreateAttr, ElementPath: MarkingsList, QualifierType: SMT/Cardinality, AttributeKey: value}
+      - {ChangeOperation: Sync, SourceElementPaths: ["Markings@Multiplicity#value"],
+         TargetElementPaths: ["MarkingsList@SMT/Cardinality#value"], TransferFunction: {Kind: Identity}}
+      - {ChangeOperation: RemoveQual, ElementPath: Markings, QualifierType: Multiplicity}
+      - {ChangeOperation: RemoveSME, ElementPath: Markings}
+      - {ChangeOperation: UpdateIdShort, ElementPath: MarkingsList, NewIdShort: Markings}
+      # the parked properties move into the list entry
+      - {ChangeOperation: CreateSME, ElementPath: "Markings[0]", SMEType: SubmodelElementCollection}
+      - {ChangeOperation: UpdateParent, ElementPath: MarkingName, NewParentPath: "Markings[0]"}
+      - {ChangeOperation: UpdateParent, ElementPath: DesignationOfCertificateOrApproval, NewParentPath: "Markings[0]"}
+      - {ChangeOperation: UpdateParent, ElementPath: IssueDate, NewParentPath: "Markings[0]"}
+      - {ChangeOperation: UpdateParent, ElementPath: ExpiryDate, NewParentPath: "Markings[0]"}
+      - {ChangeOperation: UpdateParent, ElementPath: MarkingFile, NewParentPath: "Markings[0]"}
+      - {ChangeOperation: UpdateParent, ElementPath: MarkingAdditionalText, NewParentPath: "Markings[0]"}
+
+  - title: "B8: GuidelineSpecificProperties becomes a list; arbitrary properties are named by their type"
+    origin: hand
+    items:
+      - {ChangeOperation: UpdateParent, ElementPath: AssetSpecificProperties.GuidelineSpecificProperties__00__.GuidelineForConformityDeclaration,
+         NewParentPath: ""}
+      - {ChangeOperation: UpdateParent, ElementPath: AssetSpecificProperties.GuidelineSpecificProperties__00__.arbitrary,
+         NewParentPath: ""}
+      - {ChangeOperation: CreateSME, ElementPath: AssetSpecificProperties.GuidelineSpecificProperties,
+         SMEType: SubmodelElementList}
+      - {ChangeOperation: UpdateAttr, ElementPath: AssetSpecificProperties.GuidelineSpecificProperties,
+         AttributeKey: typeValueListElement, AttributeValue: SubmodelElementCollection}
+      - {ChangeOperation: CreateSME, ElementPath: "AssetSpecificProperties.GuidelineSpecificProperties[0]",
+         SMEType: SubmodelElementCollection}
+      # the multiplicity of the former collection (1..*) now constrains the list entry
+      - {ChangeOperation: CreateQual, ElementPath: "AssetSpecificProperties.GuidelineSpecificProperties[0]",
+         QualifierType: SMT/Cardinality}
+      - {ChangeOperation: UpdateAttr, ElementPath: "AssetSpecificProperties.GuidelineSpecificProperties[0]",
+         QualifierType: SMT/Cardinality, AttributeKey: valueType, AttributeValue: xs:string}
+      - {ChangeOperation: CreateAttr, ElementPath: "AssetSpecificProperties.GuidelineSpecificProperties[0]",
+         QualifierType: SMT/Cardinality, AttributeKey: value}
+      - {ChangeOperation: Sync,
+         SourceElementPaths: ["AssetSpecificProperties.GuidelineSpecificProperties__00__@Multiplicity#value"],
+         TargetElementPaths: ["AssetSpecificProperties.GuidelineSpecificProperties[0]@SMT/Cardinality#value"],
+         TransferFunction: {Kind: Identity}}
+      - {ChangeOperation: RemoveQual, ElementPath: AssetSpecificProperties.GuidelineSpecificProperties__00__,
+         QualifierType: Multiplicity}
+      - {ChangeOperation: RemoveSME, ElementPath: AssetSpecificProperties.GuidelineSpecificProperties__00__}
+      - {ChangeOperation: UpdateParent, ElementPath: GuidelineForConformityDeclaration,
+         NewParentPath: "AssetSpecificProperties.GuidelineSpecificProperties[0]"}
+      - {ChangeOperation: UpdateParent, ElementPath: arbitrary,
+         NewParentPath: "AssetSpecificProperties.GuidelineSpecificProperties[0]"}
+      - {ChangeOperation: UpdateIdShort, ElementPath: "AssetSpecificProperties.GuidelineSpecificProperties[0].arbitrary",
+         NewIdShort: ArbitraryProperty}
+      - {ChangeOperation: UpdateIdShort, ElementPath: AssetSpecificProperties.arbitrary, NewIdShort: ArbitraryProperty}
+
+  - title: "BT: multi-language properties become properties of type xs:string"
+    origin: hand
+    items:
+      # ManufacturerProductType
+      - {ChangeOperation: CreateSME, ElementPath: ManufacturerProductTypeRetyped, SMEType: Property}
+      - {ChangeOperation: UpdateAttr, ElementPath: ManufacturerProductTypeRetyped, AttributeKey: valueType, AttributeValue: xs:string}
+      - {ChangeOperation: CreateAttr, ElementPath: ManufacturerProductTypeRetyped, AttributeKey: value}
+      - {ChangeOperation: Sync, SourceElementPaths: ["ManufacturerProductType#value"], TargetElementPaths: ["ManufacturerProductTypeRetyped#value"],
+         TransferFunction: *mlp_to_string}
+      - {ChangeOperation: CreateQual, ElementPath: ManufacturerProductTypeRetyped, QualifierType: SMT/Cardinality}
+      - {ChangeOperation: UpdateAttr, ElementPath: ManufacturerProductTypeRetyped, QualifierType: SMT/Cardinality, AttributeKey: valueType,
+         AttributeValue: xs:string}
+      - {ChangeOperation: CreateAttr, ElementPath: ManufacturerProductTypeRetyped, QualifierType: SMT/Cardinality, AttributeKey: value}
+      - {ChangeOperation: Sync, SourceElementPaths: ["ManufacturerProductType@Multiplicity#value"],
+         TargetElementPaths: ["ManufacturerProductTypeRetyped@SMT/Cardinality#value"], TransferFunction: {Kind: Identity}}
+      - {ChangeOperation: RemoveQual, ElementPath: ManufacturerProductType, QualifierType: Multiplicity}
+      - {ChangeOperation: RemoveSME, ElementPath: ManufacturerProductType}
+      - {ChangeOperation: UpdateIdShort, ElementPath: ManufacturerProductTypeRetyped, NewIdShort: ManufacturerProductType}
+      # OrderCodeOfManufacturer
+      - {ChangeOperation: CreateSME, ElementPath: OrderCodeOfManufacturerRetyped, SMEType: Property}
+      - {ChangeOperation: UpdateAttr, ElementPath: OrderCodeOfManufacturerRetyped, AttributeKey: valueType, AttributeValue: xs:string}
+      - {ChangeOperation: CreateAttr, ElementPath: OrderCodeOfManufacturerRetyped, AttributeKey: value}
+      - {ChangeOperation: Sync, SourceElementPaths: ["OrderCodeOfManufacturer#value"], TargetElementPaths: ["OrderCodeOfManufacturerRetyped#value"],
+         TransferFunction: *mlp_to_string}
+      - {ChangeOperation: CreateQual, ElementPath: OrderCodeOfManufacturerRetyped, QualifierType: SMT/Cardinality}
+      - {ChangeOperation: UpdateAttr, ElementPath: OrderCodeOfManufacturerRetyped, QualifierType: SMT/Cardinality, AttributeKey: valueType,
+         AttributeValue: xs:string}
+      - {ChangeOperation: CreateAttr, ElementPath: OrderCodeOfManufacturerRetyped, QualifierType: SMT/Cardinality, AttributeKey: value}
+      - {ChangeOperation: Sync, SourceElementPaths: ["OrderCodeOfManufacturer@Multiplicity#value"],
+         TargetElementPaths: ["OrderCodeOfManufacturerRetyped@SMT/Cardinality#value"], TransferFunction: {Kind: Identity}}
+      - {ChangeOperation: RemoveQual, ElementPath: OrderCodeOfManufacturer, QualifierType: Multiplicity}
+      - {ChangeOperation: RemoveSME, ElementPath: OrderCodeOfManufacturer}
+      - {ChangeOperation: UpdateIdShort, ElementPath: OrderCodeOfManufacturerRetyped, NewIdShort: OrderCodeOfManufacturer}
+      # ProductArticleNumberOfManufacturer
+      - {ChangeOperation: CreateSME, ElementPath: ProductArticleNumberOfManufacturerRetyped, SMEType: Property}
+      - {ChangeOperation: UpdateAttr, ElementPath: ProductArticleNumberOfManufacturerRetyped, AttributeKey: valueType, AttributeValue: xs:string}
+      - {ChangeOperation: CreateAttr, ElementPath: ProductArticleNumberOfManufacturerRetyped, AttributeKey: value}
+      - {ChangeOperation: Sync, SourceElementPaths: ["ProductArticleNumberOfManufacturer#value"], TargetElementPaths: ["ProductArticleNumberOfManufacturerRetyped#value"],
+         TransferFunction: *mlp_to_string}
+      - {ChangeOperation: CreateQual, ElementPath: ProductArticleNumberOfManufacturerRetyped, QualifierType: SMT/Cardinality}
+      - {ChangeOperation: UpdateAttr, ElementPath: ProductArticleNumberOfManufacturerRetyped, QualifierType: SMT/Cardinality, AttributeKey: valueType,
+         AttributeValue: xs:string}
+      - {ChangeOperation: CreateAttr, ElementPath: ProductArticleNumberOfManufacturerRetyped, QualifierType: SMT/Cardinality, AttributeKey: value}
+      - {ChangeOperation: Sync, SourceElementPaths: ["ProductArticleNumberOfManufacturer@Multiplicity#value"],
+         TargetElementPaths: ["ProductArticleNumberOfManufacturerRetyped@SMT/Cardinality#value"], TransferFunction: {Kind: Identity}}
+      - {ChangeOperation: RemoveQual, ElementPath: ProductArticleNumberOfManufacturer, QualifierType: Multiplicity}
+      - {ChangeOperation: RemoveSME, ElementPath: ProductArticleNumberOfManufacturer}
+      - {ChangeOperation: UpdateIdShort, ElementPath: ProductArticleNumberOfManufacturerRetyped, NewIdShort: ProductArticleNumberOfManufacturer}
+      # HardwareVersion
+      - {ChangeOperation: CreateSME, ElementPath: HardwareVersionRetyped, SMEType: Property}
+      - {ChangeOperation: UpdateAttr, ElementPath: HardwareVersionRetyped, AttributeKey: valueType, AttributeValue: xs:string}
+      - {ChangeOperation: CreateAttr, ElementPath: HardwareVersionRetyped, AttributeKey: value}
+      - {ChangeOperation: Sync, SourceElementPaths: ["HardwareVersion#value"], TargetElementPaths: ["HardwareVersionRetyped#value"],
+         TransferFunction: *mlp_to_string}
+      - {ChangeOperation: CreateQual, ElementPath: HardwareVersionRetyped, QualifierType: SMT/Cardinality}
+      - {ChangeOperation: UpdateAttr, ElementPath: HardwareVersionRetyped, QualifierType: SMT/Cardinality, AttributeKey: valueType,
+         AttributeValue: xs:string}
+      - {ChangeOperation: CreateAttr, ElementPath: HardwareVersionRetyped, QualifierType: SMT/Cardinality, AttributeKey: value}
+      - {ChangeOperation: Sync, SourceElementPaths: ["HardwareVersion@Multiplicity#value"],
+         TargetElementPaths: ["HardwareVersionRetyped@SMT/Cardinality#value"], TransferFunction: {Kind: Identity}}
+      - {ChangeOperation: RemoveQual, ElementPath: HardwareVersion, QualifierType: Multiplicity}
+      - {ChangeOperation: RemoveSME, ElementPath: HardwareVersion}
+      - {ChangeOperation: UpdateIdShort, ElementPath: HardwareVersionRetyped, NewIdShort: HardwareVersion}
+      # FirmwareVersion
+      - {ChangeOperation: CreateSME, ElementPath: FirmwareVersionRetyped, SMEType: Property}
+      - {ChangeOperation: UpdateAttr, ElementPath: FirmwareVersionRetyped, AttributeKey: valueType, AttributeValue: xs:string}
+      - {ChangeOperation: CreateAttr, ElementPath: FirmwareVersionRetyped, AttributeKey: value}
+      - {ChangeOperation: Sync, SourceElementPaths: ["FirmwareVersion#value"], TargetElementPaths: ["FirmwareVersionRetyped#value"],
+         TransferFunction: *mlp_to_string}
+      - {ChangeOperation: CreateQual, ElementPath: FirmwareVersionRetyped, QualifierType: SMT/Cardinality}
+      - {ChangeOperation: UpdateAttr, ElementPath: FirmwareVersionRetyped, QualifierType: SMT/Cardinality, AttributeKey: valueType,
+         AttributeValue: xs:string}
+      - {ChangeOperation: CreateAttr, ElementPath: FirmwareVersionRetyped, QualifierType: SMT/Cardinality, AttributeKey: value}
+      - {ChangeOperation: Sync, SourceElementPaths: ["FirmwareVersion@Multiplicity#value"],
+         TargetElementPaths: ["FirmwareVersionRetyped@SMT/Cardinality#value"], TransferFunction: {Kind: Identity}}
+      - {ChangeOperation: RemoveQual, ElementPath: FirmwareVersion, QualifierType: Multiplicity}
+      - {ChangeOperation: RemoveSME, ElementPath: FirmwareVersion}
+      - {ChangeOperation: UpdateIdShort, ElementPath: FirmwareVersionRetyped, NewIdShort: FirmwareVersion}
+      # SoftwareVersion
+      - {ChangeOperation: CreateSME, ElementPath: SoftwareVersionRetyped, SMEType: Property}
+      - {ChangeOperation: UpdateAttr, ElementPath: SoftwareVersionRetyped, AttributeKey: valueType, AttributeValue: xs:string}
+      - {ChangeOperation: CreateAttr, ElementPath: SoftwareVersionRetyped, AttributeKey: value}
+      - {ChangeOperation: Sync, SourceElementPaths: ["SoftwareVersion#value"], TargetElementPaths: ["SoftwareVersionRetyped#value"],
+         TransferFunction: *mlp_to_string}
+      - {ChangeOperation: CreateQual, ElementPath: SoftwareVersionRetyped, QualifierType: SMT/Cardinality}
+      - {ChangeOperation: UpdateAttr, ElementPath: SoftwareVersionRetyped, QualifierType: SMT/Cardinality, AttributeKey: valueType,
+         AttributeValue: xs:string}
+      - {ChangeOperation: CreateAttr, ElementPath: SoftwareVersionRetyped, QualifierType: SMT/Cardinality, AttributeKey: value}
+      - {ChangeOperation: Sync, SourceElementPaths: ["SoftwareVersion@Multiplicity#value"],
+         TargetElementPaths: ["SoftwareVersionRetyped@SMT/Cardinality#value"], TransferFunction: {Kind: Identity}}
+      - {ChangeOperation: RemoveQual, ElementPath: SoftwareVersion, QualifierType: Multiplicity}
+      - {ChangeOperation: RemoveSME, ElementPath: SoftwareVersion}
+      - {ChangeOperation: UpdateIdShort, ElementPath: SoftwareVersionRetyped, NewIdShort: SoftwareVersion}
+
+  - title: "BT: further data type changes"
+    origin: hand
+    items:
+      - {ChangeOperation: UpdateAttr, ElementPath: URIOfTheProduct, AttributeKey: valueType, AttributeValue: xs:anyURI}
+      - {ChangeOperation: UpdateAttr, ElementPath: "Markings[0].IssueDate", AttributeKey: valueType, AttributeValue: xs:date}
+      - {ChangeOperation: UpdateAttr, ElementPath: "Markings[0].ExpiryDate", AttributeKey: valueType, AttributeValue: xs:date}
+
+  - title: "B6: YearOfConstruction becomes optional"
+    origin: hand
+    items:
+      - {ChangeOperation: CreateQual, ElementPath: YearOfConstruction, QualifierType: SMT/Cardinality}
+      - {ChangeOperation: UpdateAttr, ElementPath: YearOfConstruction, QualifierType: SMT/Cardinality,
+         AttributeKey: valueType, AttributeValue: xs:string}
+      - {ChangeOperation: CreateAttr, ElementPath: YearOfConstruction, QualifierType: SMT/Cardinality, AttributeKey: value}
+      - {ChangeOperation: Sync, SourceElementPaths: ["YearOfConstruction@Multiplicity#value"],
+         TargetElementPaths: ["YearOfConstruction@SMT/Cardinality#value"],
+         TransferFunction: {Kind: ValueMap, Pairs: {One: ZeroToOne}}}
+      - {ChangeOperation: RemoveQual, ElementPath: YearOfConstruction, QualifierType: Multiplicity}
+
+  - title: "B5: UniqueFacilityIdentifier is added"
+    origin: hand
+    items:
+      - {ChangeOperation: CreateSME, ElementPath: UniqueFacilityIdentifier, SMEType: Property}
+      - {ChangeOperation: UpdateAttr, ElementPath: UniqueFacilityIdentifier, AttributeKey: valueType, AttributeValue: xs:string}
+
+  - title: "B1: the cardinality vocabulary changes from Multiplicity to SMT/Cardinality"
+    origin: rule
+    rule:
+      QualifierTypeRenames: {Multiplicity: SMT/Cardinality}

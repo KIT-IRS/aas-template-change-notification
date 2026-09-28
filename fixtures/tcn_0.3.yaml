@@ -1,0 +1,41 @@
+# TCN submodel conforming to the TCN Submodel Template v0.3 (MCN naming), holding one record in the
+# v0.3 encoding: paths prefixed by '<submodelId>::', attribute values literal, Sync mappings named.
+template: ressources/Templates/Template_TemplateChangeNotification.v0_3.json
+id: https://example.com/ids/sm/example-device/MCN
+drop_empty: true
+
+repeat:
+  "MCNGroups[0].MCNRecords[0].ItemsOfChange[0]": 4
+
+values:
+  "MCNGroups[0].ObservedSMT": https://admin-shell.io/ZVEI/TechnicalData/Submodel/1/2
+  "MCNGroups[0].MCNRecords[0].NotificationId": urn:uuid:00000000-0000-4000-8000-000000000003
+  "MCNGroups[0].MCNRecords[0].ChangeURI": https://github.com/admin-shell-io/submodel-templates/tree/main/published/Technical_Data/2/0
+  "MCNGroups[0].MCNRecords[0].PreVersion": https://admin-shell.io/ZVEI/TechnicalData/Submodel/1/2
+  "MCNGroups[0].MCNRecords[0].PostVersion": https://admin-shell.io/idta/SubmodelTemplate/TechnicalData/2/0
+  "MCNGroups[0].MCNRecords[0].DateOfRecord": "2026-06-01T00:00:00Z"
+  "MCNGroups[0].MCNRecords[0].TemplateOwner.TemplateOwnerName": {en: Industrial Digital Twin Association (IDTA)}
+  "MCNGroups[0].MCNRecords[0].ReasonsOfChange[0].ReasonClassificationSystem": VDMA24903
+  "MCNGroups[0].MCNRecords[0].ReasonsOfChange[0].ReasonId": "B1"
+  # item 1: UpdateIdShort
+  "MCNGroups[0].MCNRecords[0].ItemsOfChange[0].ChangeOperator": UpdateIdShort
+  "MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.targetElementPath": "https://admin-shell.io/ZVEI/TechnicalData/Submodel/1/2::GeneralInformation.ManufacturerLogo"
+  "MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.newIdShort": CompanyLogo
+  # item 2: UpdateAttr
+  "MCNGroups[0].MCNRecords[0].ItemsOfChange[1].ChangeOperator": UpdateAttr
+  "MCNGroups[0].MCNRecords[0].ItemsOfChange[1].OperationArguments.targetElementPath": "https://admin-shell.io/ZVEI/TechnicalData/Submodel/1/2::TechnicalPropertyAreas"
+  "MCNGroups[0].MCNRecords[0].ItemsOfChange[1].OperationArguments.attributeKey": typeValueListElement
+  "MCNGroups[0].MCNRecords[0].ItemsOfChange[1].OperationArguments.attributeValue": SubmodelElementCollection
+  # item 3: Sync
+  "MCNGroups[0].MCNRecords[0].ItemsOfChange[2].ChangeOperator": Sync
+  "MCNGroups[0].MCNRecords[0].ItemsOfChange[2].OperationArguments.sourceElementPaths[0]": "https://admin-shell.io/ZVEI/TechnicalData/Submodel/1/2::TechnicalProperties@Cardinality#value"
+  "MCNGroups[0].MCNRecords[0].ItemsOfChange[2].OperationArguments.targetElementPaths[0]": "https://admin-shell.io/ZVEI/TechnicalData/Submodel/1/2::TechnicalPropertyAreas@SMT/Cardinality#value"
+  "MCNGroups[0].MCNRecords[0].ItemsOfChange[2].OperationArguments.syncMapping": identity
+  # item 4: UpdateParent
+  "MCNGroups[0].MCNRecords[0].ItemsOfChange[3].ChangeOperator": UpdateParent
+  "MCNGroups[0].MCNRecords[0].ItemsOfChange[3].OperationArguments.targetElementPath": "https://admin-shell.io/ZVEI/TechnicalData/Submodel/1/2::GeneralInformation.ProductImage"
+  "MCNGroups[0].MCNRecords[0].ItemsOfChange[3].OperationArguments.newParentPath": "https://admin-shell.io/ZVEI/TechnicalData/Submodel/1/2::GeneralInformation.ProductImages[0]"
+
+add:
+  "":                   # local extension of the asset maintainer, described by no template
+    - {modelType: Property, idShort: InternalNote, valueType: xs:string, value: migrated from the MCN prototype}
