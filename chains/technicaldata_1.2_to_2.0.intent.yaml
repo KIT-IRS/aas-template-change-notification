@@ -2,7 +2,10 @@
 #
 # This file states the intent of the revision. `uv run tcn owner complete` expands the rules and
 # appends the mechanical, attribute-level completion; the result is technicaldata_1.2_to_2.0.yaml.
-# Groups G1-G8 follow the change log of IDTA 02003 v2.0 (Annex B).
+# Groups G2-G8 follow the change log of IDTA 02003 v2.0 (Annex B); G8 is listed there only as part of
+# the update to schema version 3.0. G1 is not in the change log; it is taken from the published
+# templates. The change log also lists a rename of ClassificationSystemVersion, which the published
+# templates do not carry out; the chain therefore does not state it.
 
 header:
   Family: TechnicalData

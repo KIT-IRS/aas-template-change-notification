@@ -2,7 +2,11 @@
 #
 # This file states the intent of the revision. `uv run tcn owner complete` expands the rule sections
 # in place and appends the mechanical completion; the result is nameplate_2.0_to_3.0.yaml.
-# Groups B1-B9 follow the change log of IDTA 02006 v3.0; BT are the listed data type changes.
+# Groups B1-B9 follow the change log of IDTA 02006 v3.0; BT are the listed data type changes. B1 is
+# listed there only as part of the metamodel update, and the conversion of GuidelineSpecificProperties
+# into a list (B8) is not in the change log; both are taken from the published templates. The rename
+# of the root idShort and the changed cardinality of both ArbitraryProperty are not in the change log
+# either; the mechanical completion states them.
 
 header:
   Family: DigitalNameplate

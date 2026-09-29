@@ -1,5 +1,6 @@
 # Expected outcome of applying technicaldata_1.2_to_2.0 to fixtures/technicaldata_1.2.yaml.
-# Derived by hand from the change log of IDTA 02003 v2.0 (Annex B) before running the chain.
+# Derived by hand before running the chain, from the change log of IDTA 02003 v2.0 (Annex B) and
+# the published templates (the rename ManufacturerLogo -> CompanyLogo is not in the change log).
 chain: chains/technicaldata_1.2_to_2.0.yaml
 instance: fixtures/technicaldata_1.2.yaml
 
