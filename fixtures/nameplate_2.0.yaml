@@ -23,13 +23,13 @@ values:
   ContactInformation.CityTown: {en: Exampletown}
   ContactInformation.NationalCode: {en: DE}
   ManufacturerProductFamily: {en: EX-100}
-  ManufacturerProductType: {en: EX-100-200}
+  ManufacturerProductType: {de: EX-100-200 Kompakt, en: EX-100-200 Compact}   # several variants: English is taken
   OrderCodeOfManufacturer: {en: EX100200}
   ProductArticleNumberOfManufacturer: {en: EX-100-200-A}
   SerialNumber: SN0042
   YearOfConstruction: "2024"
   DateOfManufacture: "2024-03-12"
-  HardwareVersion: {en: "2.1"}
+  HardwareVersion: {de: "Rev. 2.1", fr: "Rév. 2.1"}                         # no English variant: the first is taken
   FirmwareVersion: {en: "4.0.3"}
   SoftwareVersion: {en: "4.0.3"}
   CountryOfOrigin: DE

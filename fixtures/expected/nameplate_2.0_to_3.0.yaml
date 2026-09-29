@@ -20,10 +20,10 @@ retained:
   "AssetSpecificProperties.GuidelineSpecificProperties[1].GuidelineForConformityDeclaration": 2014/35/EU
   "AssetSpecificProperties.GuidelineSpecificProperties[1].RatedVoltage": 24 V DC
   AssetSpecificProperties.ProtectionClass: IP20
-  ManufacturerProductType: EX-100-200                                      # BT: multi-language -> string (CEL)
+  ManufacturerProductType: EX-100-200 Compact                              # BT: multi-language -> string (CEL): English
   OrderCodeOfManufacturer: EX100200
   ProductArticleNumberOfManufacturer: EX-100-200-A
-  HardwareVersion: "2.1"
+  HardwareVersion: Rev. 2.1                                                # BT: no English text: the first one
   FirmwareVersion: "4.0.3"
   SoftwareVersion: "4.0.3"
   InternalInventoryNumber: INV-2024-0815
