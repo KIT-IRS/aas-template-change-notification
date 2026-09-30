@@ -1,7 +1,6 @@
 # Template Change Notifications for AAS Submodel Templates
 
-Prototype and validation harness of the paper *"The Old Template is Dead, Long Live the New
-Template! Template Change Notifications for Asset Administration Shell Submodel Templates"*
+Prototype and validation harness of the paper *"Template Change Notification: Propagating Submodel Template Evolution to Asset Administration Shell Instances"*
 (Auer et al., at – Automatisierungstechnik, 2026).
 
 The paper specifies the Template Change Notification (TCN), describes the architecture of this
