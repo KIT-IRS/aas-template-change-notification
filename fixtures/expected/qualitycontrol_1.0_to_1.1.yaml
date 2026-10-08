@@ -1,0 +1,32 @@
+# Expected outcome of applying qualitycontrol_1.0_to_1.1 to fixtures/qualitycontrol_1.0.yaml.
+# Derived by hand before running the chain: the bug-fix release removes the idShorts of the list
+# entries (F1, AASd-120); each entry is rebuilt in place and keeps its values, in their order.
+chain: chains/qualitycontrol_1.0_to_1.1.yaml
+instance: fixtures/qualitycontrol_1.0.yaml
+
+retained:
+  "QualityFeatures.LinearFeaturesList[0].LinearFeatureName": Bore diameter
+  "QualityFeatures.LinearFeaturesList[0].NominalValue": "12.0"
+  "QualityFeatures.LinearFeaturesList[0].GeometryReferenceList[0]": {type: ExternalReference, keys: [{type: GlobalReference, value: "https://example.com/ids/cad/housing#bore-1"}]}
+  "QualityFeatures.LinearFeaturesList[0].IDList3DModel[0]": F-0001
+  "QualityFeatures.LinearFeaturesList[0].IDList3DModel[1]": F-0002
+  "QualityFeatures.LinearFeaturesList[0].Reference2DList[0].Page": "2"
+  "QualityFeatures.LinearFeaturesList[1].LinearFeatureName": Overall length
+  "QualityFeatures.LinearFeaturesList[1].IDList3DModel[1]": F-0011
+  PartInformation.PartIdentifier: https://example.com/ids/parts/housing/SN0042
+  "QualityResponsibilityList[0].Role": inspector
+  "TestingDevicesList[0].DeviceName": CMM Contura
+  MetrologyJobResults.JobOrderNumber: JO-4711
+  "MetrologyJobResults.MetrologyResultsList[0].QualityInSpec": "true"
+  "MetrologyJobResults.MetrologyResultsList[0].MeasuredValuesList[0]": "12.004"
+  "MetrologyJobResults.MetrologyResultsList[0].MeasuredValuesList[1]": "12.006"
+  "MetrologyJobResults.MetrologyResultsList[0].MeasuredValuesList[2]": "12.005"
+  InternalInventoryNumber: INV-2026-0042
+
+control:
+  InternalInventoryNumber: InternalInventoryNumber
+
+manual: []
+conforms: true
+violations: []
+removed: []

@@ -1,0 +1,3849 @@
+header:
+  Family: QualityControlForMachining
+  PreVersion: https://admin-shell.io/idta/QualityControlForMachining/1/0
+  PostVersion: https://admin-shell.io/idta/QualityControlForMachining/1/0
+  PreTemplate: ressources/Templates/IDTA 02049-1-0_Template_QualityControlForMachining.json
+  PostTemplate: ressources/Templates/IDTA 02049-1-1_Template_QualityControlForMachining.json
+  TemplateOwner: Industrial Digital Twin Association (IDTA)
+  TemplateOwnerAddress:
+    Company: Industrial Digital Twin Association e.V.
+    Street: Lyoner Straße 18
+    Zipcode: '60528'
+    CityTown: Frankfurt am Main
+    NationalCode: DE
+  ChangeURI: https://github.com/admin-shell-io/submodel-templates/tree/main/published/Quality%20Control%20for%20Machining/1/1
+sections:
+- title: 'F1: entries of a list carry no idShort (AASd-120); entries without children are rebuilt, their values carried over'
+  origin: hand
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: QualityFeatures.LinearFeaturesList[0].GeometryReferenceList[1]
+    SMEType: ReferenceElement
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[0].GeometryReferenceList[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[0].GeometryReferenceList[1]
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.LinearFeaturesList[0].GeometryReferenceList[0]#value
+    TargetElementPaths:
+    - QualityFeatures.LinearFeaturesList[0].GeometryReferenceList[1]#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: CreateQual
+    ElementPath: QualityFeatures.LinearFeaturesList[0].GeometryReferenceList[1]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[0].GeometryReferenceList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[0].GeometryReferenceList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.LinearFeaturesList[0].GeometryReferenceList[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - QualityFeatures.LinearFeaturesList[0].GeometryReferenceList[1]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: QualityFeatures.LinearFeaturesList[0].GeometryReferenceList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: RemoveSME
+    ElementPath: QualityFeatures.LinearFeaturesList[0].GeometryReferenceList[0]
+  - ChangeOperation: CreateSME
+    ElementPath: QualityFeatures.LinearFeaturesList[0].IDList3DModel[1]
+    SMEType: Property
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[0].IDList3DModel[1]
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[0].IDList3DModel[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[0].IDList3DModel[1]
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.LinearFeaturesList[0].IDList3DModel[0]#value
+    TargetElementPaths:
+    - QualityFeatures.LinearFeaturesList[0].IDList3DModel[1]#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: CreateQual
+    ElementPath: QualityFeatures.LinearFeaturesList[0].IDList3DModel[1]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[0].IDList3DModel[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[0].IDList3DModel[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.LinearFeaturesList[0].IDList3DModel[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - QualityFeatures.LinearFeaturesList[0].IDList3DModel[1]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: QualityFeatures.LinearFeaturesList[0].IDList3DModel[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: RemoveSME
+    ElementPath: QualityFeatures.LinearFeaturesList[0].IDList3DModel[0]
+  - ChangeOperation: CreateSME
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].GeometryReferenceList[1]
+    SMEType: ReferenceElement
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].GeometryReferenceList[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].GeometryReferenceList[1]
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.AttributiveFeaturesList[0].GeometryReferenceList[0]#value
+    TargetElementPaths:
+    - QualityFeatures.AttributiveFeaturesList[0].GeometryReferenceList[1]#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: CreateQual
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].GeometryReferenceList[1]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].GeometryReferenceList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].GeometryReferenceList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.AttributiveFeaturesList[0].GeometryReferenceList[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - QualityFeatures.AttributiveFeaturesList[0].GeometryReferenceList[1]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].GeometryReferenceList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: RemoveSME
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].GeometryReferenceList[0]
+  - ChangeOperation: CreateSME
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].IDList3DModel[1]
+    SMEType: Property
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].IDList3DModel[1]
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].IDList3DModel[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].IDList3DModel[1]
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.AttributiveFeaturesList[0].IDList3DModel[0]#value
+    TargetElementPaths:
+    - QualityFeatures.AttributiveFeaturesList[0].IDList3DModel[1]#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: CreateQual
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].IDList3DModel[1]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].IDList3DModel[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].IDList3DModel[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.AttributiveFeaturesList[0].IDList3DModel[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - QualityFeatures.AttributiveFeaturesList[0].IDList3DModel[1]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].IDList3DModel[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: RemoveSME
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].IDList3DModel[0]
+  - ChangeOperation: CreateSME
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].OKAttributesList[1]
+    SMEType: Property
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].OKAttributesList[1]
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].OKAttributesList[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].OKAttributesList[1]
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.AttributiveFeaturesList[0].OKAttributesList[0]#value
+    TargetElementPaths:
+    - QualityFeatures.AttributiveFeaturesList[0].OKAttributesList[1]#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: CreateQual
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].OKAttributesList[1]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].OKAttributesList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].OKAttributesList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.AttributiveFeaturesList[0].OKAttributesList[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - QualityFeatures.AttributiveFeaturesList[0].OKAttributesList[1]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].OKAttributesList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: RemoveSME
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].OKAttributesList[0]
+  - ChangeOperation: CreateSME
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].NOKAttributesList[1]
+    SMEType: Property
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].NOKAttributesList[1]
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].NOKAttributesList[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].NOKAttributesList[1]
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.AttributiveFeaturesList[0].NOKAttributesList[0]#value
+    TargetElementPaths:
+    - QualityFeatures.AttributiveFeaturesList[0].NOKAttributesList[1]#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: CreateQual
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].NOKAttributesList[1]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].NOKAttributesList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].NOKAttributesList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.AttributiveFeaturesList[0].NOKAttributesList[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - QualityFeatures.AttributiveFeaturesList[0].NOKAttributesList[1]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].NOKAttributesList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: RemoveSME
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].NOKAttributesList[0]
+  - ChangeOperation: CreateSME
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].GeometryReferenceList[1]
+    SMEType: ReferenceElement
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].GeometryReferenceList[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].GeometryReferenceList[1]
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.GeometricFeaturesList[0].GeometryReferenceList[0]#value
+    TargetElementPaths:
+    - QualityFeatures.GeometricFeaturesList[0].GeometryReferenceList[1]#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: CreateQual
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].GeometryReferenceList[1]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].GeometryReferenceList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].GeometryReferenceList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.GeometricFeaturesList[0].GeometryReferenceList[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - QualityFeatures.GeometricFeaturesList[0].GeometryReferenceList[1]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].GeometryReferenceList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: RemoveSME
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].GeometryReferenceList[0]
+  - ChangeOperation: CreateSME
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].IDList3DModel[1]
+    SMEType: Property
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].IDList3DModel[1]
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].IDList3DModel[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].IDList3DModel[1]
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.GeometricFeaturesList[0].IDList3DModel[0]#value
+    TargetElementPaths:
+    - QualityFeatures.GeometricFeaturesList[0].IDList3DModel[1]#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: CreateQual
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].IDList3DModel[1]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].IDList3DModel[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].IDList3DModel[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.GeometricFeaturesList[0].IDList3DModel[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - QualityFeatures.GeometricFeaturesList[0].IDList3DModel[1]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].IDList3DModel[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: RemoveSME
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].IDList3DModel[0]
+  - ChangeOperation: CreateSME
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].GeometryReferenceList[1]
+    SMEType: ReferenceElement
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].GeometryReferenceList[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].GeometryReferenceList[1]
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.ArealSurfaceFeaturesList[0].GeometryReferenceList[0]#value
+    TargetElementPaths:
+    - QualityFeatures.ArealSurfaceFeaturesList[0].GeometryReferenceList[1]#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: CreateQual
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].GeometryReferenceList[1]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].GeometryReferenceList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].GeometryReferenceList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.ArealSurfaceFeaturesList[0].GeometryReferenceList[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - QualityFeatures.ArealSurfaceFeaturesList[0].GeometryReferenceList[1]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].GeometryReferenceList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: RemoveSME
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].GeometryReferenceList[0]
+  - ChangeOperation: CreateSME
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].IDList3DModel[1]
+    SMEType: Property
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].IDList3DModel[1]
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].IDList3DModel[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].IDList3DModel[1]
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.ArealSurfaceFeaturesList[0].IDList3DModel[0]#value
+    TargetElementPaths:
+    - QualityFeatures.ArealSurfaceFeaturesList[0].IDList3DModel[1]#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: CreateQual
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].IDList3DModel[1]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].IDList3DModel[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].IDList3DModel[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.ArealSurfaceFeaturesList[0].IDList3DModel[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - QualityFeatures.ArealSurfaceFeaturesList[0].IDList3DModel[1]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].IDList3DModel[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: RemoveSME
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].IDList3DModel[0]
+  - ChangeOperation: CreateSME
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0].MeasuredValuesList[1]
+    SMEType: Property
+  - ChangeOperation: UpdateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0].MeasuredValuesList[1]
+    AttributeKey: valueType
+    AttributeValue: xs:double
+  - ChangeOperation: CreateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0].MeasuredValuesList[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0].MeasuredValuesList[1]
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - MetrologyJobResults.MetrologyResultsList[0].MeasuredValuesList[0]#value
+    TargetElementPaths:
+    - MetrologyJobResults.MetrologyResultsList[0].MeasuredValuesList[1]#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: CreateQual
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0].MeasuredValuesList[1]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0].MeasuredValuesList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0].MeasuredValuesList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - MetrologyJobResults.MetrologyResultsList[0].MeasuredValuesList[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - MetrologyJobResults.MetrologyResultsList[0].MeasuredValuesList[1]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0].MeasuredValuesList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: RemoveSME
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0].MeasuredValuesList[0]
+- title: 'F1: entries of a list carry no idShort (AASd-120); entries with children are rebuilt by hollow-out'
+  origin: rule
+  rule:
+    RenameContainer:
+      QualityFeatures.LinearFeaturesList[0]: null
+      QualityFeatures.LinearFeaturesList[0].Reference2DList[0]: null
+      QualityFeatures.AttributiveFeaturesList[0]: null
+      QualityFeatures.AttributiveFeaturesList[0].Reference2DList[0]: null
+      QualityFeatures.GeometricFeaturesList[0]: null
+      QualityFeatures.GeometricFeaturesList[0].Reference2DList[0]: null
+      QualityFeatures.GeometricFeaturesList[0].AdditionalInformationList[0]: null
+      QualityFeatures.ArealSurfaceFeaturesList[0]: null
+      QualityFeatures.ArealSurfaceFeaturesList[0].Reference2DList[0]: null
+      QualityResponsibilityList[0]: null
+      TestingDevicesList[0]: null
+      MetrologyJobResults.MetrologyResultsList[0]: null
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: QualityFeatures.LinearFeaturesList[1]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Description of the definition of a linear quality characteristic such as length, weight, angle, according to
+        DIN EN ISO 14405-1: Dimensional tolerancing - Part 1: Linear size dimensions'
+    - language: de
+      text: 'Beschreibung der Definition eines linearen Qualitätsmerkmals wie z.B. Länge, Gewicht, Winkel, gemäß DIN EN ISO
+        14405-1: Dimensionelle Tolerierung – Teil 1: Lineare Größenmaße'
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/LinearFeature/1/0
+  - ChangeOperation: CreateQual
+    ElementPath: QualityFeatures.LinearFeaturesList[1]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.LinearFeaturesList[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - QualityFeatures.LinearFeaturesList[1]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: QualityFeatures.LinearFeaturesList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.LinearFeaturesList[0].LinearFeatureName
+    NewParentPath: QualityFeatures.LinearFeaturesList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.LinearFeaturesList[0].DimensionDescription
+    NewParentPath: QualityFeatures.LinearFeaturesList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.LinearFeaturesList[0].MeasurementProcedure
+    NewParentPath: QualityFeatures.LinearFeaturesList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.LinearFeaturesList[0].InspectionRelevant
+    NewParentPath: QualityFeatures.LinearFeaturesList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.LinearFeaturesList[0].ToleranceNorm
+    NewParentPath: QualityFeatures.LinearFeaturesList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.LinearFeaturesList[0].NominalValue
+    NewParentPath: QualityFeatures.LinearFeaturesList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.LinearFeaturesList[0].UpperTolerance
+    NewParentPath: QualityFeatures.LinearFeaturesList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.LinearFeaturesList[0].LowerTolerance
+    NewParentPath: QualityFeatures.LinearFeaturesList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.LinearFeaturesList[0].OneSided
+    NewParentPath: QualityFeatures.LinearFeaturesList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.LinearFeaturesList[0].EngineeringUnit
+    NewParentPath: QualityFeatures.LinearFeaturesList[1]
+  - ChangeOperation: CreateSME
+    ElementPath: QualityFeatures.LinearFeaturesList[1].GeometryReferenceList
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].GeometryReferenceList
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].GeometryReferenceList
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Geomtery Reference List in Submodel Provision of 3D Models
+    - language: de
+      text: Geometriereferenzliste im Teilmodell Provision of 3D Models
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].GeometryReferenceList
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].GeometryReferenceList
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/GeometryReferenceList/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].GeometryReferenceList
+    AttributeKey: typeValueListElement
+    AttributeValue: ReferenceElement
+  - ChangeOperation: CreateQual
+    ElementPath: QualityFeatures.LinearFeaturesList[1].GeometryReferenceList
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].GeometryReferenceList
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].GeometryReferenceList
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].GeometryReferenceList
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].GeometryReferenceList
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].GeometryReferenceList
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].GeometryReferenceList
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.LinearFeaturesList[0].GeometryReferenceList@SMT/Cardinality#value
+    TargetElementPaths:
+    - QualityFeatures.LinearFeaturesList[1].GeometryReferenceList@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: QualityFeatures.LinearFeaturesList[0].GeometryReferenceList
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.LinearFeaturesList[0].GeometryReferenceList[0]
+    NewParentPath: QualityFeatures.LinearFeaturesList[1].GeometryReferenceList
+  - ChangeOperation: RemoveSME
+    ElementPath: QualityFeatures.LinearFeaturesList[0].GeometryReferenceList
+  - ChangeOperation: CreateSME
+    ElementPath: QualityFeatures.LinearFeaturesList[1].IDList3DModel
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].IDList3DModel
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].IDList3DModel
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: List of IDs in 3D Model which relate to the quality feature
+    - language: de
+      text: Liste von IDs im 3D Modell, die sich auf das Qualitätsmerkmal beziehen
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].IDList3DModel
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].IDList3DModel
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/IDList3DModel/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].IDList3DModel
+    AttributeKey: typeValueListElement
+    AttributeValue: Property
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].IDList3DModel
+    AttributeKey: valueTypeListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].IDList3DModel
+    AttributeKey: valueTypeListElement
+    AttributeValue: xs:string
+  - ChangeOperation: CreateQual
+    ElementPath: QualityFeatures.LinearFeaturesList[1].IDList3DModel
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].IDList3DModel
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].IDList3DModel
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].IDList3DModel
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].IDList3DModel
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].IDList3DModel
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].IDList3DModel
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.LinearFeaturesList[0].IDList3DModel@SMT/Cardinality#value
+    TargetElementPaths:
+    - QualityFeatures.LinearFeaturesList[1].IDList3DModel@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: QualityFeatures.LinearFeaturesList[0].IDList3DModel
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.LinearFeaturesList[0].IDList3DModel[0]
+    NewParentPath: QualityFeatures.LinearFeaturesList[1].IDList3DModel
+  - ChangeOperation: RemoveSME
+    ElementPath: QualityFeatures.LinearFeaturesList[0].IDList3DModel
+  - ChangeOperation: CreateSME
+    ElementPath: QualityFeatures.LinearFeaturesList[1].Reference2DList
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].Reference2DList
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].Reference2DList
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: List of references to a 2D drawing intended as a reference for humans, not for automation, as unambiguous interpretation
+        cannot be guaranteed
+    - language: de
+      text: Liste mit Referenzen zu einer 2D Zeichnung als Nachschlagewerk für Menschen, nicht für Automatisierung gedacht,
+        da Eindeutigkeit nicht gewährleistet werden kann
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].Reference2DList
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].Reference2DList
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/Reference2DList/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].Reference2DList
+    AttributeKey: typeValueListElement
+    AttributeValue: SubmodelElementCollection
+  - ChangeOperation: CreateQual
+    ElementPath: QualityFeatures.LinearFeaturesList[1].Reference2DList
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].Reference2DList
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].Reference2DList
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].Reference2DList
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].Reference2DList
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].Reference2DList
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].Reference2DList
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.LinearFeaturesList[0].Reference2DList@SMT/Cardinality#value
+    TargetElementPaths:
+    - QualityFeatures.LinearFeaturesList[1].Reference2DList@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: QualityFeatures.LinearFeaturesList[0].Reference2DList
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateSME
+    ElementPath: QualityFeatures.LinearFeaturesList[1].Reference2DList[0]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].Reference2DList[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].Reference2DList[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Reference to an element in a 2D drawing intended as a reference for humans, not for automation, as unambiguous
+        interpretation cannot be guaranteed
+    - language: de
+      text: Referenz zu einem Element in einer 2D Zeichnung als Nachschlagewerk für Menschen, nicht für Automatisierung gedacht,
+        da Eindeutigkeit nicht gewährleistet werden kann
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].Reference2DList[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].Reference2DList[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/Reference2D/1/0
+  - ChangeOperation: CreateQual
+    ElementPath: QualityFeatures.LinearFeaturesList[1].Reference2DList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].Reference2DList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].Reference2DList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].Reference2DList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].Reference2DList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].Reference2DList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[1].Reference2DList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.LinearFeaturesList[0].Reference2DList[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - QualityFeatures.LinearFeaturesList[1].Reference2DList[0]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: QualityFeatures.LinearFeaturesList[0].Reference2DList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.LinearFeaturesList[0].Reference2DList[0].Page
+    NewParentPath: QualityFeatures.LinearFeaturesList[1].Reference2DList[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.LinearFeaturesList[0].Reference2DList[0].Coordinate
+    NewParentPath: QualityFeatures.LinearFeaturesList[1].Reference2DList[0]
+  - ChangeOperation: RemoveSME
+    ElementPath: QualityFeatures.LinearFeaturesList[0].Reference2DList[0]
+  - ChangeOperation: RemoveSME
+    ElementPath: QualityFeatures.LinearFeaturesList[0].Reference2DList
+  - ChangeOperation: RemoveSME
+    ElementPath: QualityFeatures.LinearFeaturesList[0]
+  - ChangeOperation: CreateSME
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Information about an attributive quality feature
+    - language: de
+      text: Informationen zu einem attributiven Qualitätsmerkmal
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/AttributiveFeature/1/0
+  - ChangeOperation: CreateQual
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.AttributiveFeaturesList[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - QualityFeatures.AttributiveFeaturesList[1]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].AttributiveFeatureName
+    NewParentPath: QualityFeatures.AttributiveFeaturesList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].AttibutiveFeatureDescription
+    NewParentPath: QualityFeatures.AttributiveFeaturesList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].MeasurementProcedure
+    NewParentPath: QualityFeatures.AttributiveFeaturesList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].ToleranceNorm
+    NewParentPath: QualityFeatures.AttributiveFeaturesList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].InspectionRelevant
+    NewParentPath: QualityFeatures.AttributiveFeaturesList[1]
+  - ChangeOperation: CreateSME
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].GeometryReferenceList
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].GeometryReferenceList
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].GeometryReferenceList
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Geomtery Reference List in Submodel Provision of 3D Models
+    - language: de
+      text: Geometriereferenzliste im Teilmodell Provision of 3D Models
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].GeometryReferenceList
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].GeometryReferenceList
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/GeometryReferenceList/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].GeometryReferenceList
+    AttributeKey: typeValueListElement
+    AttributeValue: ReferenceElement
+  - ChangeOperation: CreateQual
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].GeometryReferenceList
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].GeometryReferenceList
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].GeometryReferenceList
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].GeometryReferenceList
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].GeometryReferenceList
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].GeometryReferenceList
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].GeometryReferenceList
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.AttributiveFeaturesList[0].GeometryReferenceList@SMT/Cardinality#value
+    TargetElementPaths:
+    - QualityFeatures.AttributiveFeaturesList[1].GeometryReferenceList@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].GeometryReferenceList
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].GeometryReferenceList[0]
+    NewParentPath: QualityFeatures.AttributiveFeaturesList[1].GeometryReferenceList
+  - ChangeOperation: RemoveSME
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].GeometryReferenceList
+  - ChangeOperation: CreateSME
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].IDList3DModel
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].IDList3DModel
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].IDList3DModel
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: List of IDs in 3D Model which relate to the quality feature
+    - language: de
+      text: Liste von IDs im 3D Modell, die sich auf das Qualitätsmerkmal beziehen
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].IDList3DModel
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].IDList3DModel
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/IDList3DModel/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].IDList3DModel
+    AttributeKey: typeValueListElement
+    AttributeValue: Property
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].IDList3DModel
+    AttributeKey: valueTypeListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].IDList3DModel
+    AttributeKey: valueTypeListElement
+    AttributeValue: xs:string
+  - ChangeOperation: CreateQual
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].IDList3DModel
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].IDList3DModel
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].IDList3DModel
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].IDList3DModel
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].IDList3DModel
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].IDList3DModel
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].IDList3DModel
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.AttributiveFeaturesList[0].IDList3DModel@SMT/Cardinality#value
+    TargetElementPaths:
+    - QualityFeatures.AttributiveFeaturesList[1].IDList3DModel@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].IDList3DModel
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].IDList3DModel[0]
+    NewParentPath: QualityFeatures.AttributiveFeaturesList[1].IDList3DModel
+  - ChangeOperation: RemoveSME
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].IDList3DModel
+  - ChangeOperation: CreateSME
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].Reference2DList
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].Reference2DList
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].Reference2DList
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: List of references to a 2D drawing intended as a reference for humans, not for automation, as unambiguous interpretation
+        cannot be guaranteed
+    - language: de
+      text: Liste mit Referenzen zu einer 2D Zeichnung als Nachschlagewerk für Menschen, nicht für Automatisierung gedacht,
+        da Eindeutigkeit nicht gewährleistet werden kann
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].Reference2DList
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].Reference2DList
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/Reference2DList/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].Reference2DList
+    AttributeKey: typeValueListElement
+    AttributeValue: SubmodelElementCollection
+  - ChangeOperation: CreateQual
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].Reference2DList
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].Reference2DList
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].Reference2DList
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].Reference2DList
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].Reference2DList
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].Reference2DList
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].Reference2DList
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.AttributiveFeaturesList[0].Reference2DList@SMT/Cardinality#value
+    TargetElementPaths:
+    - QualityFeatures.AttributiveFeaturesList[1].Reference2DList@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].Reference2DList
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateSME
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].Reference2DList[0]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].Reference2DList[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].Reference2DList[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Reference to an element in a 2D drawing intended as a reference for humans, not for automation, as unambiguous
+        interpretation cannot be guaranteed
+    - language: de
+      text: Referenz zu einem Element in einer 2D Zeichnung als Nachschlagewerk für Menschen, nicht für Automatisierung gedacht,
+        da Eindeutigkeit nicht gewährleistet werden kann
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].Reference2DList[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].Reference2DList[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/Reference2D/1/0
+  - ChangeOperation: CreateQual
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].Reference2DList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].Reference2DList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].Reference2DList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].Reference2DList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].Reference2DList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].Reference2DList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].Reference2DList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.AttributiveFeaturesList[0].Reference2DList[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - QualityFeatures.AttributiveFeaturesList[1].Reference2DList[0]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].Reference2DList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].Reference2DList[0].Page
+    NewParentPath: QualityFeatures.AttributiveFeaturesList[1].Reference2DList[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].Reference2DList[0].Coordinate
+    NewParentPath: QualityFeatures.AttributiveFeaturesList[1].Reference2DList[0]
+  - ChangeOperation: RemoveSME
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].Reference2DList[0]
+  - ChangeOperation: RemoveSME
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].Reference2DList
+  - ChangeOperation: CreateSME
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].OKAttributesList
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].OKAttributesList
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].OKAttributesList
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: List of attributes that are accepted or tolerable in terms of quality assurance (OK attributes)
+    - language: de
+      text: Liste der Attribute, die akzeptiert bzw. im Sinne der Qualitätssicherung tolerabel sind (i.O.-Attribute)
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].OKAttributesList
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].OKAttributesList
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/OKAttributesList/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].OKAttributesList
+    AttributeKey: typeValueListElement
+    AttributeValue: Property
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].OKAttributesList
+    AttributeKey: valueTypeListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].OKAttributesList
+    AttributeKey: valueTypeListElement
+    AttributeValue: xs:string
+  - ChangeOperation: CreateQual
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].OKAttributesList
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].OKAttributesList
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].OKAttributesList
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].OKAttributesList
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].OKAttributesList
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].OKAttributesList
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].OKAttributesList
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.AttributiveFeaturesList[0].OKAttributesList@SMT/Cardinality#value
+    TargetElementPaths:
+    - QualityFeatures.AttributiveFeaturesList[1].OKAttributesList@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].OKAttributesList
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].OKAttributesList[0]
+    NewParentPath: QualityFeatures.AttributiveFeaturesList[1].OKAttributesList
+  - ChangeOperation: RemoveSME
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].OKAttributesList
+  - ChangeOperation: CreateSME
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].NOKAttributesList
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].NOKAttributesList
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].NOKAttributesList
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: List of attributes that are not accepted or intolerable in terms of quality assurance (not OK attributes)
+    - language: de
+      text: Liste der Attribute, die nicht akzeptiert bzw. im Sinne der Qualitätssicherung intolerabel sind (n.i.O.-Attribute)
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].NOKAttributesList
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].NOKAttributesList
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/NOKAttributesList/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].NOKAttributesList
+    AttributeKey: typeValueListElement
+    AttributeValue: Property
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].NOKAttributesList
+    AttributeKey: valueTypeListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].NOKAttributesList
+    AttributeKey: valueTypeListElement
+    AttributeValue: xs:string
+  - ChangeOperation: CreateQual
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].NOKAttributesList
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].NOKAttributesList
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].NOKAttributesList
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].NOKAttributesList
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].NOKAttributesList
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].NOKAttributesList
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[1].NOKAttributesList
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.AttributiveFeaturesList[0].NOKAttributesList@SMT/Cardinality#value
+    TargetElementPaths:
+    - QualityFeatures.AttributiveFeaturesList[1].NOKAttributesList@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].NOKAttributesList
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].NOKAttributesList[0]
+    NewParentPath: QualityFeatures.AttributiveFeaturesList[1].NOKAttributesList
+  - ChangeOperation: RemoveSME
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].NOKAttributesList
+  - ChangeOperation: RemoveSME
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0]
+  - ChangeOperation: CreateSME
+    ElementPath: QualityFeatures.GeometricFeaturesList[1]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Information on a geometric quality feature according to DIN EN ISO 1101
+    - language: de
+      text: Angaben zu einem geometrischen Qualitätsmerkmal nach DIN EN ISO 1101
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/GeometricFeature/1/0
+  - ChangeOperation: CreateQual
+    ElementPath: QualityFeatures.GeometricFeaturesList[1]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.GeometricFeaturesList[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - QualityFeatures.GeometricFeaturesList[1]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: QualityFeatures.GeometricFeaturesList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].GPS_FeatureName
+    NewParentPath: QualityFeatures.GeometricFeaturesList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].GPS_Description
+    NewParentPath: QualityFeatures.GeometricFeaturesList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].MeasurementProcedure
+    NewParentPath: QualityFeatures.GeometricFeaturesList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].ToleranceNorm
+    NewParentPath: QualityFeatures.GeometricFeaturesList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].InspectionRelevant
+    NewParentPath: QualityFeatures.GeometricFeaturesList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].GPS_Type
+    NewParentPath: QualityFeatures.GeometricFeaturesList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].GPS_ReferenceRequired
+    NewParentPath: QualityFeatures.GeometricFeaturesList[1]
+  - ChangeOperation: CreateSME
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].GPS_ToleranceZone
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].GPS_ToleranceZone
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].GPS_ToleranceZone
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Tolerance zone according to DIN EN ISO 1101. The tolerance zone must be arranged symmetrically around the reference
+        geometry element, unless otherwise stated.
+    - language: de
+      text: Toleranzzone gemäß DIN EN ISO 1101. Die Toleranzzone muss symmetrisch um das Referenzgeometrieelement herum angeordnet
+        werden, soweit nichts anderes angegeben ist.
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].GPS_ToleranceZone
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].GPS_ToleranceZone
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/GPS_ToleranceZone/1/0
+  - ChangeOperation: CreateQual
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].GPS_ToleranceZone
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].GPS_ToleranceZone
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].GPS_ToleranceZone
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].GPS_ToleranceZone
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].GPS_ToleranceZone
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].GPS_ToleranceZone
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].GPS_ToleranceZone
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.GeometricFeaturesList[0].GPS_ToleranceZone@SMT/Cardinality#value
+    TargetElementPaths:
+    - QualityFeatures.GeometricFeaturesList[1].GPS_ToleranceZone@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].GPS_ToleranceZone
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].GPS_ToleranceZone.Shape
+    NewParentPath: QualityFeatures.GeometricFeaturesList[1].GPS_ToleranceZone
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].GPS_ToleranceZone.ToleranceZoneDescription
+    NewParentPath: QualityFeatures.GeometricFeaturesList[1].GPS_ToleranceZone
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].GPS_ToleranceZone.SpecificationModificator
+    NewParentPath: QualityFeatures.GeometricFeaturesList[1].GPS_ToleranceZone
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].GPS_ToleranceZone.WidthExtendValue
+    NewParentPath: QualityFeatures.GeometricFeaturesList[1].GPS_ToleranceZone
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].GPS_ToleranceZone.WidthExtendTolerance1
+    NewParentPath: QualityFeatures.GeometricFeaturesList[1].GPS_ToleranceZone
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].GPS_ToleranceZone.WidthExtendSign1
+    NewParentPath: QualityFeatures.GeometricFeaturesList[1].GPS_ToleranceZone
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].GPS_ToleranceZone.WidthExtendTolerance2
+    NewParentPath: QualityFeatures.GeometricFeaturesList[1].GPS_ToleranceZone
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].GPS_ToleranceZone.WidthExtendSign2
+    NewParentPath: QualityFeatures.GeometricFeaturesList[1].GPS_ToleranceZone
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].GPS_ToleranceZone.EngineeringUnit
+    NewParentPath: QualityFeatures.GeometricFeaturesList[1].GPS_ToleranceZone
+  - ChangeOperation: RemoveSME
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].GPS_ToleranceZone
+  - ChangeOperation: CreateSME
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].GeometryReferenceList
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].GeometryReferenceList
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].GeometryReferenceList
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Geomtery Reference List in Submodel Provision of 3D Models
+    - language: de
+      text: Geometriereferenzliste im Teilmodell Provision of 3D Models
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].GeometryReferenceList
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].GeometryReferenceList
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/GeometryReferenceList/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].GeometryReferenceList
+    AttributeKey: typeValueListElement
+    AttributeValue: ReferenceElement
+  - ChangeOperation: CreateQual
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].GeometryReferenceList
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].GeometryReferenceList
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].GeometryReferenceList
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].GeometryReferenceList
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].GeometryReferenceList
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].GeometryReferenceList
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].GeometryReferenceList
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.GeometricFeaturesList[0].GeometryReferenceList@SMT/Cardinality#value
+    TargetElementPaths:
+    - QualityFeatures.GeometricFeaturesList[1].GeometryReferenceList@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].GeometryReferenceList
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].GeometryReferenceList[0]
+    NewParentPath: QualityFeatures.GeometricFeaturesList[1].GeometryReferenceList
+  - ChangeOperation: RemoveSME
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].GeometryReferenceList
+  - ChangeOperation: CreateSME
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].IDList3DModel
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].IDList3DModel
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].IDList3DModel
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: List of IDs in 3D Model which relate to the quality feature
+    - language: de
+      text: Liste von IDs im 3D Modell, die sich auf das Qualitätsmerkmal beziehen
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].IDList3DModel
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].IDList3DModel
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/IDList3DModel/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].IDList3DModel
+    AttributeKey: typeValueListElement
+    AttributeValue: Property
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].IDList3DModel
+    AttributeKey: valueTypeListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].IDList3DModel
+    AttributeKey: valueTypeListElement
+    AttributeValue: xs:string
+  - ChangeOperation: CreateQual
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].IDList3DModel
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].IDList3DModel
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].IDList3DModel
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].IDList3DModel
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].IDList3DModel
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].IDList3DModel
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].IDList3DModel
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.GeometricFeaturesList[0].IDList3DModel@SMT/Cardinality#value
+    TargetElementPaths:
+    - QualityFeatures.GeometricFeaturesList[1].IDList3DModel@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].IDList3DModel
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].IDList3DModel[0]
+    NewParentPath: QualityFeatures.GeometricFeaturesList[1].IDList3DModel
+  - ChangeOperation: RemoveSME
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].IDList3DModel
+  - ChangeOperation: CreateSME
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].Reference2DList
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].Reference2DList
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].Reference2DList
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: List of references to a 2D drawing intended as a reference for humans, not for automation, as unambiguous interpretation
+        cannot be guaranteed
+    - language: de
+      text: Liste mit Referenzen zu einer 2D Zeichnung als Nachschlagewerk für Menschen, nicht für Automatisierung gedacht,
+        da Eindeutigkeit nicht gewährleistet werden kann
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].Reference2DList
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].Reference2DList
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/Reference2DList/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].Reference2DList
+    AttributeKey: typeValueListElement
+    AttributeValue: SubmodelElementCollection
+  - ChangeOperation: CreateQual
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].Reference2DList
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].Reference2DList
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].Reference2DList
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].Reference2DList
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].Reference2DList
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].Reference2DList
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].Reference2DList
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.GeometricFeaturesList[0].Reference2DList@SMT/Cardinality#value
+    TargetElementPaths:
+    - QualityFeatures.GeometricFeaturesList[1].Reference2DList@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].Reference2DList
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateSME
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].Reference2DList[0]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].Reference2DList[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].Reference2DList[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Reference to an element in a 2D drawing intended as a reference for humans, not for automation, as unambiguous
+        interpretation cannot be guaranteed
+    - language: de
+      text: Referenz zu einem Element in einer 2D Zeichnung als Nachschlagewerk für Menschen, nicht für Automatisierung gedacht,
+        da Eindeutigkeit nicht gewährleistet werden kann
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].Reference2DList[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].Reference2DList[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/Reference2D/1/0
+  - ChangeOperation: CreateQual
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].Reference2DList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].Reference2DList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].Reference2DList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].Reference2DList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].Reference2DList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].Reference2DList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].Reference2DList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.GeometricFeaturesList[0].Reference2DList[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - QualityFeatures.GeometricFeaturesList[1].Reference2DList[0]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].Reference2DList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].Reference2DList[0].Page
+    NewParentPath: QualityFeatures.GeometricFeaturesList[1].Reference2DList[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].Reference2DList[0].Coordinate
+    NewParentPath: QualityFeatures.GeometricFeaturesList[1].Reference2DList[0]
+  - ChangeOperation: RemoveSME
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].Reference2DList[0]
+  - ChangeOperation: RemoveSME
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].Reference2DList
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].DatumField1
+    NewParentPath: QualityFeatures.GeometricFeaturesList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].DatumField2
+    NewParentPath: QualityFeatures.GeometricFeaturesList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].DatumField3
+    NewParentPath: QualityFeatures.GeometricFeaturesList[1]
+  - ChangeOperation: CreateSME
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].AdditionalInformationList
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].AdditionalInformationList
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].AdditionalInformationList
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: List with information on other GPS fields in accordance with DIN EN 1101
+    - language: de
+      text: Liste mit Informationen zu weiteren GPS-Feldern gemäß DIN EN 1101
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].AdditionalInformationList
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].AdditionalInformationList
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/AdditionalInformationList/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].AdditionalInformationList
+    AttributeKey: typeValueListElement
+    AttributeValue: SubmodelElementCollection
+  - ChangeOperation: CreateQual
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].AdditionalInformationList
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].AdditionalInformationList
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].AdditionalInformationList
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].AdditionalInformationList
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].AdditionalInformationList
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].AdditionalInformationList
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].AdditionalInformationList
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.GeometricFeaturesList[0].AdditionalInformationList@SMT/Cardinality#value
+    TargetElementPaths:
+    - QualityFeatures.GeometricFeaturesList[1].AdditionalInformationList@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].AdditionalInformationList
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateSME
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].AdditionalInformationList[0]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].AdditionalInformationList[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].AdditionalInformationList[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Informationen zu weiteren GPS-Feldern gemäß DIN EN 1101
+    - language: de
+      text: Informationen zu weiteren GPS-Feldern gemäß DIN EN 1101
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].AdditionalInformationList[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].AdditionalInformationList[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/AdditionalInformation/1/0
+  - ChangeOperation: CreateQual
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].AdditionalInformationList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].AdditionalInformationList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].AdditionalInformationList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].AdditionalInformationList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].AdditionalInformationList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].AdditionalInformationList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[1].AdditionalInformationList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.GeometricFeaturesList[0].AdditionalInformationList[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - QualityFeatures.GeometricFeaturesList[1].AdditionalInformationList[0]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].AdditionalInformationList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].AdditionalInformationList[0].GPS_Identifier
+    NewParentPath: QualityFeatures.GeometricFeaturesList[1].AdditionalInformationList[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].AdditionalInformationList[0].GPS_Value
+    NewParentPath: QualityFeatures.GeometricFeaturesList[1].AdditionalInformationList[0]
+  - ChangeOperation: RemoveSME
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].AdditionalInformationList[0]
+  - ChangeOperation: RemoveSME
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].AdditionalInformationList
+  - ChangeOperation: RemoveSME
+    ElementPath: QualityFeatures.GeometricFeaturesList[0]
+  - ChangeOperation: CreateSME
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Definition of an areal surface parameter according to DIN EN ISO 25178-1
+    - language: de
+      text: Definition einer flächenhaften Oberflächenkenngröße gemäß DIN EN ISO 25178-1
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/ArealSurfaceFeature/1/0
+  - ChangeOperation: CreateQual
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.ArealSurfaceFeaturesList[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - QualityFeatures.ArealSurfaceFeaturesList[1]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].ASF_FeatureName
+    NewParentPath: QualityFeatures.ArealSurfaceFeaturesList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].ASF_Description
+    NewParentPath: QualityFeatures.ArealSurfaceFeaturesList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].MeasurementProcedure
+    NewParentPath: QualityFeatures.ArealSurfaceFeaturesList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].ToleranceNorm
+    NewParentPath: QualityFeatures.ArealSurfaceFeaturesList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].InspectionRelevant
+    NewParentPath: QualityFeatures.ArealSurfaceFeaturesList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].ArealSurfaceFeatureType
+    NewParentPath: QualityFeatures.ArealSurfaceFeaturesList[1]
+  - ChangeOperation: CreateSME
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].GeometryReferenceList
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].GeometryReferenceList
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].GeometryReferenceList
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Geomtery Reference List in Submodel Provision of 3D Models
+    - language: de
+      text: Geometriereferenzliste im Teilmodell Provision of 3D Models
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].GeometryReferenceList
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].GeometryReferenceList
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/GeometryReferenceList/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].GeometryReferenceList
+    AttributeKey: typeValueListElement
+    AttributeValue: ReferenceElement
+  - ChangeOperation: CreateQual
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].GeometryReferenceList
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].GeometryReferenceList
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].GeometryReferenceList
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].GeometryReferenceList
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].GeometryReferenceList
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].GeometryReferenceList
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].GeometryReferenceList
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.ArealSurfaceFeaturesList[0].GeometryReferenceList@SMT/Cardinality#value
+    TargetElementPaths:
+    - QualityFeatures.ArealSurfaceFeaturesList[1].GeometryReferenceList@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].GeometryReferenceList
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].GeometryReferenceList[0]
+    NewParentPath: QualityFeatures.ArealSurfaceFeaturesList[1].GeometryReferenceList
+  - ChangeOperation: RemoveSME
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].GeometryReferenceList
+  - ChangeOperation: CreateSME
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].IDList3DModel
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].IDList3DModel
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].IDList3DModel
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: List of IDs in 3D Model which relate to the quality feature
+    - language: de
+      text: Liste von IDs im 3D Modell, die sich auf das Qualitätsmerkmal beziehen
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].IDList3DModel
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].IDList3DModel
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/IDList3DModel/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].IDList3DModel
+    AttributeKey: typeValueListElement
+    AttributeValue: Property
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].IDList3DModel
+    AttributeKey: valueTypeListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].IDList3DModel
+    AttributeKey: valueTypeListElement
+    AttributeValue: xs:string
+  - ChangeOperation: CreateQual
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].IDList3DModel
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].IDList3DModel
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].IDList3DModel
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].IDList3DModel
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].IDList3DModel
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].IDList3DModel
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].IDList3DModel
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.ArealSurfaceFeaturesList[0].IDList3DModel@SMT/Cardinality#value
+    TargetElementPaths:
+    - QualityFeatures.ArealSurfaceFeaturesList[1].IDList3DModel@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].IDList3DModel
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].IDList3DModel[0]
+    NewParentPath: QualityFeatures.ArealSurfaceFeaturesList[1].IDList3DModel
+  - ChangeOperation: RemoveSME
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].IDList3DModel
+  - ChangeOperation: CreateSME
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].Reference2DList
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].Reference2DList
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].Reference2DList
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: List of references to a 2D drawing intended as a reference for humans, not for automation, as unambiguous interpretation
+        cannot be guaranteed
+    - language: de
+      text: Liste mit Referenzen zu einer 2D Zeichnung als Nachschlagewerk für Menschen, nicht für Automatisierung gedacht,
+        da Eindeutigkeit nicht gewährleistet werden kann
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].Reference2DList
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].Reference2DList
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/Reference2DList/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].Reference2DList
+    AttributeKey: typeValueListElement
+    AttributeValue: SubmodelElementCollection
+  - ChangeOperation: CreateQual
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].Reference2DList
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].Reference2DList
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].Reference2DList
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].Reference2DList
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].Reference2DList
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].Reference2DList
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].Reference2DList
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.ArealSurfaceFeaturesList[0].Reference2DList@SMT/Cardinality#value
+    TargetElementPaths:
+    - QualityFeatures.ArealSurfaceFeaturesList[1].Reference2DList@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].Reference2DList
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateSME
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].Reference2DList[0]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].Reference2DList[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].Reference2DList[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Reference to an element in a 2D drawing intended as a reference for humans, not for automation, as unambiguous
+        interpretation cannot be guaranteed
+    - language: de
+      text: Referenz zu einem Element in einer 2D Zeichnung als Nachschlagewerk für Menschen, nicht für Automatisierung gedacht,
+        da Eindeutigkeit nicht gewährleistet werden kann
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].Reference2DList[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].Reference2DList[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/Reference2D/1/0
+  - ChangeOperation: CreateQual
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].Reference2DList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].Reference2DList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].Reference2DList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].Reference2DList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].Reference2DList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].Reference2DList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].Reference2DList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.ArealSurfaceFeaturesList[0].Reference2DList[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - QualityFeatures.ArealSurfaceFeaturesList[1].Reference2DList[0]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].Reference2DList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].Reference2DList[0].Page
+    NewParentPath: QualityFeatures.ArealSurfaceFeaturesList[1].Reference2DList[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].Reference2DList[0].Coordinate
+    NewParentPath: QualityFeatures.ArealSurfaceFeaturesList[1].Reference2DList[0]
+  - ChangeOperation: RemoveSME
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].Reference2DList[0]
+  - ChangeOperation: RemoveSME
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].Reference2DList
+  - ChangeOperation: CreateSME
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].SL_Parameters
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].SL_Parameters
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].SL_Parameters
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Specification of an S-L surface finish according to DIN EN ISO 25178-1
+    - language: de
+      text: Spezifikation einer S-L-Oberflächenbeschaffenheit gemäß DIN EN ISO 25178-1
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].SL_Parameters
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].SL_Parameters
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/SL_Parameters/1/0
+  - ChangeOperation: CreateQual
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].SL_Parameters
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].SL_Parameters
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].SL_Parameters
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].SL_Parameters
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].SL_Parameters
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].SL_Parameters
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].SL_Parameters
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.ArealSurfaceFeaturesList[0].SL_Parameters@SMT/Cardinality#value
+    TargetElementPaths:
+    - QualityFeatures.ArealSurfaceFeaturesList[1].SL_Parameters@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].SL_Parameters
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].SL_Parameters.SL_ASP_Limit
+    NewParentPath: QualityFeatures.ArealSurfaceFeaturesList[1].SL_Parameters
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].SL_Parameters.SL_ASP_S_FilterType
+    NewParentPath: QualityFeatures.ArealSurfaceFeaturesList[1].SL_Parameters
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].SL_Parameters.SL_ASP_S_FilterNestingIndex
+    NewParentPath: QualityFeatures.ArealSurfaceFeaturesList[1].SL_Parameters
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].SL_Parameters.SL_ASP_L_FilterType
+    NewParentPath: QualityFeatures.ArealSurfaceFeaturesList[1].SL_Parameters
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].SL_Parameters.SL_ASP_L_FilterNestingIndex
+    NewParentPath: QualityFeatures.ArealSurfaceFeaturesList[1].SL_Parameters
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].SL_Parameters.SL_ASP_F_Operator
+    NewParentPath: QualityFeatures.ArealSurfaceFeaturesList[1].SL_Parameters
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].SL_Parameters.SL_ASP_Indicator
+    NewParentPath: QualityFeatures.ArealSurfaceFeaturesList[1].SL_Parameters
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].SL_Parameters.SL_ASP_Value
+    NewParentPath: QualityFeatures.ArealSurfaceFeaturesList[1].SL_Parameters
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].SL_Parameters.SL_ASP_Unit
+    NewParentPath: QualityFeatures.ArealSurfaceFeaturesList[1].SL_Parameters
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].SL_Parameters.SL_ASP_Or
+    NewParentPath: QualityFeatures.ArealSurfaceFeaturesList[1].SL_Parameters
+  - ChangeOperation: RemoveSME
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].SL_Parameters
+  - ChangeOperation: CreateSME
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].SF_Parameters
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].SF_Parameters
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].SF_Parameters
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Specification of an S-F surface finish, see ISO 25178-2:2012, 3.1.6
+    - language: de
+      text: Spezifikation einer S-F-Oberflächenbeschaffenheit, siehe ISO 25178-2:2012, 3.1.6
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].SF_Parameters
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].SF_Parameters
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/SF_Parameters/1/0
+  - ChangeOperation: CreateQual
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].SF_Parameters
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].SF_Parameters
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].SF_Parameters
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].SF_Parameters
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].SF_Parameters
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].SF_Parameters
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].SF_Parameters
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.ArealSurfaceFeaturesList[0].SF_Parameters@SMT/Cardinality#value
+    TargetElementPaths:
+    - QualityFeatures.ArealSurfaceFeaturesList[1].SF_Parameters@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].SF_Parameters
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].SF_Parameters.SF_ASP_Limit
+    NewParentPath: QualityFeatures.ArealSurfaceFeaturesList[1].SF_Parameters
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].SF_Parameters.SF_ASP_S_FilterType
+    NewParentPath: QualityFeatures.ArealSurfaceFeaturesList[1].SF_Parameters
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].SF_Parameters.SF_ASP_S_FilterNestingIndex
+    NewParentPath: QualityFeatures.ArealSurfaceFeaturesList[1].SF_Parameters
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].SF_Parameters.SF_ASP_F_Operator
+    NewParentPath: QualityFeatures.ArealSurfaceFeaturesList[1].SF_Parameters
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].SF_Parameters.SF_ASP_Indicator
+    NewParentPath: QualityFeatures.ArealSurfaceFeaturesList[1].SF_Parameters
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].SF_Parameters.SF_ASP_Value
+    NewParentPath: QualityFeatures.ArealSurfaceFeaturesList[1].SF_Parameters
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].SF_Parameters.SF_ASP_Unit
+    NewParentPath: QualityFeatures.ArealSurfaceFeaturesList[1].SF_Parameters
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].SF_Parameters.SF_ASP_ES
+    NewParentPath: QualityFeatures.ArealSurfaceFeaturesList[1].SF_Parameters
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].SF_Parameters.SF_ASP_Or
+    NewParentPath: QualityFeatures.ArealSurfaceFeaturesList[1].SF_Parameters
+  - ChangeOperation: RemoveSME
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].SF_Parameters
+  - ChangeOperation: CreateSME
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].Smr_Parameters
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].Smr_Parameters
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].Smr_Parameters
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Control elements for specifying the parameter value Smr for the material ratio in technical drawings, applies
+        to both S-L and S-F surface finishes, see also ISO 25178-2:2012, 3.1.6
+    - language: de
+      text: Steuerelemente für die Angabe des Kenngrößenwertes Smr für das Materialverhältnis in technischen Zeichnungen,
+        gilt sowohl für S-L als auch für S-F Oberflächenbeschaffenheiten, siehe auch ISO 25178-2:2012, 3.1.6
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].Smr_Parameters
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].Smr_Parameters
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/Smr_Parameters/1/0
+  - ChangeOperation: CreateQual
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].Smr_Parameters
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].Smr_Parameters
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].Smr_Parameters
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].Smr_Parameters
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].Smr_Parameters
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].Smr_Parameters
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].Smr_Parameters
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.ArealSurfaceFeaturesList[0].Smr_Parameters@SMT/Cardinality#value
+    TargetElementPaths:
+    - QualityFeatures.ArealSurfaceFeaturesList[1].Smr_Parameters@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].Smr_Parameters
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].Smr_Parameters.Smr_RefCValue
+    NewParentPath: QualityFeatures.ArealSurfaceFeaturesList[1].Smr_Parameters
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].Smr_Parameters.Smr_CValue
+    NewParentPath: QualityFeatures.ArealSurfaceFeaturesList[1].Smr_Parameters
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].Smr_Parameters.Smr_Value
+    NewParentPath: QualityFeatures.ArealSurfaceFeaturesList[1].Smr_Parameters
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].Smr_Parameters.Smr_Unit
+    NewParentPath: QualityFeatures.ArealSurfaceFeaturesList[1].Smr_Parameters
+  - ChangeOperation: RemoveSME
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].Smr_Parameters
+  - ChangeOperation: RemoveSME
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0]
+  - ChangeOperation: CreateSME
+    ElementPath: QualityResponsibilityList[1]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityResponsibilityList[1]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityResponsibilityList[1]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Information about an organizational unit responsible for quality assurance
+    - language: de
+      text: Informationen zu einer für Qualitätssicherung verantwortlichen Organisationseinheiten
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityResponsibilityList[1]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityResponsibilityList[1]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/QualityResponsibility/1/0
+  - ChangeOperation: CreateQual
+    ElementPath: QualityResponsibilityList[1]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityResponsibilityList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityResponsibilityList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityResponsibilityList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityResponsibilityList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityResponsibilityList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityResponsibilityList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityResponsibilityList[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - QualityResponsibilityList[1]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: QualityResponsibilityList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityResponsibilityList[0].DepartmentName
+    NewParentPath: QualityResponsibilityList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityResponsibilityList[0].Role
+    NewParentPath: QualityResponsibilityList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: QualityResponsibilityList[0].ContactInformation
+    NewParentPath: QualityResponsibilityList[1]
+  - ChangeOperation: RemoveSME
+    ElementPath: QualityResponsibilityList[0]
+  - ChangeOperation: CreateSME
+    ElementPath: TestingDevicesList[1]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: TestingDevicesList[1]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TestingDevicesList[1]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: QS relevant information about the test device
+    - language: de
+      text: QS relelvante Informationen über das Prüfgerät
+  - ChangeOperation: CreateAttr
+    ElementPath: TestingDevicesList[1]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TestingDevicesList[1]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/TestingDeviceProperties/1/0
+  - ChangeOperation: CreateQual
+    ElementPath: TestingDevicesList[1]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: TestingDevicesList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TestingDevicesList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: TestingDevicesList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: TestingDevicesList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: TestingDevicesList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TestingDevicesList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - TestingDevicesList[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - TestingDevicesList[1]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: TestingDevicesList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: TestingDevicesList[0].Responsibility
+    NewParentPath: TestingDevicesList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: TestingDevicesList[0].DigitalNameplateTestingDevice
+    NewParentPath: TestingDevicesList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: TestingDevicesList[0].DeviceName
+    NewParentPath: TestingDevicesList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: TestingDevicesList[0].MeasuringType
+    NewParentPath: TestingDevicesList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: TestingDevicesList[0].MeasuringUnit
+    NewParentPath: TestingDevicesList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: TestingDevicesList[0].MeasuringRange
+    NewParentPath: TestingDevicesList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: TestingDevicesList[0].Resolution
+    NewParentPath: TestingDevicesList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: TestingDevicesList[0].Accuracy
+    NewParentPath: TestingDevicesList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: TestingDevicesList[0].Norm
+    NewParentPath: TestingDevicesList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: TestingDevicesList[0].CalibrationCertificate
+    NewParentPath: TestingDevicesList[1]
+  - ChangeOperation: RemoveSME
+    ElementPath: TestingDevicesList[0]
+  - ChangeOperation: CreateSME
+    ElementPath: MetrologyJobResults.MetrologyResultsList[1]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[1]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[1]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Measurement results a quality feature
+    - language: de
+      text: Messergebnisse einem Qualitätsmerkmal
+  - ChangeOperation: CreateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[1]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[1]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/MetrologyData/1/0
+  - ChangeOperation: CreateQual
+    ElementPath: MetrologyJobResults.MetrologyResultsList[1]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - MetrologyJobResults.MetrologyResultsList[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - MetrologyJobResults.MetrologyResultsList[1]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0].QualityFeatureReference
+    NewParentPath: MetrologyJobResults.MetrologyResultsList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0].TestingDeviceReference
+    NewParentPath: MetrologyJobResults.MetrologyResultsList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0].PartReference
+    NewParentPath: MetrologyJobResults.MetrologyResultsList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0].ID
+    NewParentPath: MetrologyJobResults.MetrologyResultsList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0].Description
+    NewParentPath: MetrologyJobResults.MetrologyResultsList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0].EngineeringUnit
+    NewParentPath: MetrologyJobResults.MetrologyResultsList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0].QualityActualValue
+    NewParentPath: MetrologyJobResults.MetrologyResultsList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0].QualityActualAttribute
+    NewParentPath: MetrologyJobResults.MetrologyResultsList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0].QualityInSpec
+    NewParentPath: MetrologyJobResults.MetrologyResultsList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0].Deviation
+    NewParentPath: MetrologyJobResults.MetrologyResultsList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0].AverageValue
+    NewParentPath: MetrologyJobResults.MetrologyResultsList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0].MinValue
+    NewParentPath: MetrologyJobResults.MetrologyResultsList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0].MaxValue
+    NewParentPath: MetrologyJobResults.MetrologyResultsList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0].Standarddeviation
+    NewParentPath: MetrologyJobResults.MetrologyResultsList[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0].DataAggregatedFromSeries
+    NewParentPath: MetrologyJobResults.MetrologyResultsList[1]
+  - ChangeOperation: CreateSME
+    ElementPath: MetrologyJobResults.MetrologyResultsList[1].MeasuredValuesList
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[1].MeasuredValuesList
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[1].MeasuredValuesList
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Optional list of measured values
+    - language: de
+      text: Optionale Liste gemessener Werte
+  - ChangeOperation: CreateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[1].MeasuredValuesList
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[1].MeasuredValuesList
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/MeasuredValuesList/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[1].MeasuredValuesList
+    AttributeKey: typeValueListElement
+    AttributeValue: Property
+  - ChangeOperation: CreateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[1].MeasuredValuesList
+    AttributeKey: valueTypeListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[1].MeasuredValuesList
+    AttributeKey: valueTypeListElement
+    AttributeValue: xs:double
+  - ChangeOperation: CreateQual
+    ElementPath: MetrologyJobResults.MetrologyResultsList[1].MeasuredValuesList
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[1].MeasuredValuesList
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[1].MeasuredValuesList
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[1].MeasuredValuesList
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[1].MeasuredValuesList
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[1].MeasuredValuesList
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[1].MeasuredValuesList
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - MetrologyJobResults.MetrologyResultsList[0].MeasuredValuesList@SMT/Cardinality#value
+    TargetElementPaths:
+    - MetrologyJobResults.MetrologyResultsList[1].MeasuredValuesList@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0].MeasuredValuesList
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0].MeasuredValuesList[0]
+    NewParentPath: MetrologyJobResults.MetrologyResultsList[1].MeasuredValuesList
+  - ChangeOperation: RemoveSME
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0].MeasuredValuesList
+  - ChangeOperation: CreateSME
+    ElementPath: MetrologyJobResults.MetrologyResultsList[1].MetrologyDataFile
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[1].MetrologyDataFile
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[1].MetrologyDataFile
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Optional measurement data file with the original measurement protocol
+    - language: de
+      text: Optionale Messdatendatei mit dem original Messprotokoll
+  - ChangeOperation: CreateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[1].MetrologyDataFile
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[1].MetrologyDataFile
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/MetrologyDataFile/1/0
+  - ChangeOperation: CreateQual
+    ElementPath: MetrologyJobResults.MetrologyResultsList[1].MetrologyDataFile
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[1].MetrologyDataFile
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[1].MetrologyDataFile
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[1].MetrologyDataFile
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[1].MetrologyDataFile
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[1].MetrologyDataFile
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[1].MetrologyDataFile
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - MetrologyJobResults.MetrologyResultsList[0].MetrologyDataFile@SMT/Cardinality#value
+    TargetElementPaths:
+    - MetrologyJobResults.MetrologyResultsList[1].MetrologyDataFile@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0].MetrologyDataFile
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0].MetrologyDataFile.FileLink
+    NewParentPath: MetrologyJobResults.MetrologyResultsList[1].MetrologyDataFile
+  - ChangeOperation: UpdateParent
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0].MetrologyDataFile.MimeType
+    NewParentPath: MetrologyJobResults.MetrologyResultsList[1].MetrologyDataFile
+  - ChangeOperation: RemoveSME
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0].MetrologyDataFile
+  - ChangeOperation: RemoveSME
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0]
+- title: 'Completion: removed elements and qualifiers'
+  origin: generated
+  items: []
+- title: 'Completion: created elements and qualifiers'
+  origin: generated
+  items: []
+- title: 'Completion: attributes'
+  origin: generated
+  items:
+  - ChangeOperation: RemoveAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[0].GeometryReferenceList[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[0].GeometryReferenceList[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[0].GeometryReferenceList[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Reference to a Geometry element described by a SMC Geometry in the Submodel Provision of 3D Models
+    - language: de
+      text: Referenz zu einer Geometrie, beschrieben durch eine SMC Geometry innerhalb des Teilmodells Provision of 3D Models
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[0].GeometryReferenceList[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[0].GeometryReferenceList[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/ReferenceGeometry3DModel/1/0
+  - ChangeOperation: RemoveAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[0].IDList3DModel[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[0].IDList3DModel[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[0].IDList3DModel[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: One element ID which relates to the quality feature
+    - language: de
+      text: Eine Element ID, auf das sich das Qualitätsmerkmal bezieht
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[0].IDList3DModel[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[0].IDList3DModel[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/ElementID/1/0
+  - ChangeOperation: RemoveAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].GeometryReferenceList[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].GeometryReferenceList[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].GeometryReferenceList[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Reference to a Geomatry element described by a SMC Geometry in the Submodel Provision of 3D Models
+    - language: de
+      text: Referenz zu einer Geometry beschrieben durch eine SMC Geometry innerhalb des Teilmodells Provision of 3D Models
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].GeometryReferenceList[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].GeometryReferenceList[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/ReferenceGeometry3DModel/1/0
+  - ChangeOperation: RemoveAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].IDList3DModel[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].IDList3DModel[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].IDList3DModel[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: One element ID which relates to the quality feature
+    - language: de
+      text: Eine Element ID, auf das sich das Qualitätsmerkmal bezieht
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].IDList3DModel[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].IDList3DModel[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/ElementID/1/0
+  - ChangeOperation: RemoveAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].OKAttributesList[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].OKAttributesList[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].OKAttributesList[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Name of an attribute that is accepted or tolerable in terms of quality assurance (OK attribute)
+    - language: de
+      text: Bezeichnung eines Attributs, das akzeptiert bzw. im Sinne der Qualitätssicherung tolerabel ist (i.O.-Attribut)
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].OKAttributesList[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].OKAttributesList[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/OKAttributName/1/0
+  - ChangeOperation: RemoveAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].NOKAttributesList[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].NOKAttributesList[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].NOKAttributesList[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Name of an attribute that is not accepted or intolerable in terms of quality assurance (not OK attribute)
+    - language: de
+      text: Bezeichnung eines Attributs, das nicht akzeptiert bzw. im Sinne der Qualitätssicherung intolerabel ist (n.i.O.-Attribut)
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].NOKAttributesList[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].NOKAttributesList[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/NOKAttributName/1/0
+  - ChangeOperation: RemoveAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].GeometryReferenceList[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].GeometryReferenceList[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].GeometryReferenceList[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Reference to a Geomatry element described by a SMC Geometry in the Submodel Provision of 3D Models
+    - language: de
+      text: Referenz zu einer Geometry beschrieben durch eine SMC Geometry innerhalb des Teilmodells Provision of 3D Models
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].GeometryReferenceList[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].GeometryReferenceList[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/ReferenceGeometry3DModel/1/0
+  - ChangeOperation: RemoveAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].IDList3DModel[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].IDList3DModel[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].IDList3DModel[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: One element ID which relates to the quality feature
+    - language: de
+      text: Eine Element ID, auf das sich das Qualitätsmerkmal bezieht
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].IDList3DModel[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].IDList3DModel[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/ElementID/1/0
+  - ChangeOperation: RemoveAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].GeometryReferenceList[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].GeometryReferenceList[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].GeometryReferenceList[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Reference to a Geomatry element described by a SMC Geometry in the Submodel Provision of 3D Models
+    - language: de
+      text: Referenz zu einer Geometry beschrieben durch eine SMC Geometry innerhalb des Teilmodells Provision of 3D Models
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].GeometryReferenceList[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].GeometryReferenceList[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/ReferenceGeometry3DModel/1/0
+  - ChangeOperation: RemoveAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].IDList3DModel[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].IDList3DModel[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].IDList3DModel[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: One element ID which relates to the quality feature
+    - language: de
+      text: Eine Element ID, auf das sich das Qualitätsmerkmal bezieht
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].IDList3DModel[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].IDList3DModel[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/ElementID/1/0
+  - ChangeOperation: RemoveAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0].MeasuredValuesList[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0].MeasuredValuesList[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0].MeasuredValuesList[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Measured value
+    - language: de
+      text: Gemessener Wert
+  - ChangeOperation: CreateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0].MeasuredValuesList[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0].MeasuredValuesList[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/QualityControlForMachining/MeasuredValue/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[0].GeometryReferenceList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[0].GeometryReferenceList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[0].GeometryReferenceList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[0].GeometryReferenceList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[0].IDList3DModel[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[0].IDList3DModel[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[0].IDList3DModel[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.LinearFeaturesList[0].IDList3DModel[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].GeometryReferenceList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].GeometryReferenceList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].GeometryReferenceList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].GeometryReferenceList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].IDList3DModel[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].IDList3DModel[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].IDList3DModel[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].IDList3DModel[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].OKAttributesList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].OKAttributesList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].OKAttributesList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].OKAttributesList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].NOKAttributesList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].NOKAttributesList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].NOKAttributesList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.AttributiveFeaturesList[0].NOKAttributesList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].GeometryReferenceList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].GeometryReferenceList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].GeometryReferenceList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].GeometryReferenceList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].IDList3DModel[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].IDList3DModel[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].IDList3DModel[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.GeometricFeaturesList[0].IDList3DModel[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].GeometryReferenceList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].GeometryReferenceList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].GeometryReferenceList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].GeometryReferenceList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].IDList3DModel[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].IDList3DModel[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].IDList3DModel[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[0].IDList3DModel[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0].MeasuredValuesList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0].MeasuredValuesList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0].MeasuredValuesList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: MetrologyJobResults.MetrologyResultsList[0].MeasuredValuesList[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier

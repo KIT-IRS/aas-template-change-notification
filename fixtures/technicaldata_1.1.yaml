@@ -1,0 +1,39 @@
+# Submodel instance conforming to ZVEI Technical Data v1.1. Illustrative values of an example device.
+template: ressources/Templates/SMT_qualified_Technical_Data_V11.json
+id: https://example.com/ids/sm/example-device/TechnicalData
+
+omit:
+  - TechnicalProperties.SemanticIdNotAvailable                       # stands for the arbitrary properties added below
+  - TechnicalProperties.MainSection.SemanticIdNotAvailable
+  - TechnicalProperties.MainSection.SubSection.SemanticIdNotAvailable
+
+repeat:
+  GeneralInformation.ProductImage: [ProductImage01]
+  ProductClassifications.ProductClassificationItem__00__: [ProductClassificationItem01, ProductClassificationItem02]
+  TechnicalProperties.MainSection: [MainSection01]
+  TechnicalProperties.MainSection01.SubSection: [SubSection01]
+
+values:
+  GeneralInformation.ManufacturerName: Example Manufacturer GmbH
+  GeneralInformation.ManufacturerProductDesignation: Compact I/O controller
+  GeneralInformation.ManufacturerPartNumber: EX-100-200
+  GeneralInformation.ManufacturerOrderCode: EX100200
+  GeneralInformation.ManufacturerLogo: /aasx/files/logo.png
+  GeneralInformation.ProductImage01: /aasx/files/front.jpg
+  ProductClassifications.ProductClassificationItem01.ProductClassificationSystem: ECLASS
+  ProductClassifications.ProductClassificationItem01.ClassificationSystemVersion: "13.0"
+  ProductClassifications.ProductClassificationItem01.ProductClassId: 27-24-22-01
+  ProductClassifications.ProductClassificationItem02.ProductClassificationSystem: UNSPSC
+  ProductClassifications.ProductClassificationItem02.ProductClassId: "32151705"
+  FurtherInformation.TextStatement: For indoor use only
+  FurtherInformation.ValidDate: "2025-06-30"
+
+add:
+  GeneralInformation:   # local extension of the asset maintainer, described by no template
+    - {modelType: Property, idShort: InternalInventoryNumber, valueType: xs:string, value: INV-2024-0815}
+  TechnicalProperties:
+    - {modelType: Property, idShort: Width, valueType: xs:double, value: "62.4",
+       semanticId: {type: ExternalReference, keys: [{type: GlobalReference, value: 0173-1#02-AAB950#006}]}}
+  TechnicalProperties.MainSection01.SubSection01:
+    - {modelType: Property, idShort: RatedVoltage, valueType: xs:double, value: "24",
+       semanticId: {type: ExternalReference, keys: [{type: GlobalReference, value: 0173-1#02-AAC958#004}]}}

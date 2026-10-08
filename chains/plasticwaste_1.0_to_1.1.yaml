@@ -1,0 +1,436 @@
+header:
+  Family: MaterialDataForPlasticWaste
+  PreVersion: https://admin-shell.io/idta/SubmodelTemplate/en18065materialdata/1/0
+  PostVersion: https://admin-shell.io/idta/SubmodelTemplate/en18065materialdata/1/0
+  PreTemplate: ressources/Templates/IDTA 02080-1-0_Template_Material Data for Plastic Waste.json
+  PostTemplate: ressources/Templates/IDTA 02080-1-1_Template_Material Data for Plastic Waste.json
+  TemplateOwner: Industrial Digital Twin Association (IDTA)
+  TemplateOwnerAddress:
+    Company: Industrial Digital Twin Association e.V.
+    Street: Lyoner Straße 18
+    Zipcode: '60528'
+    CityTown: Frankfurt am Main
+    NationalCode: DE
+  ChangeURI: https://github.com/admin-shell-io/submodel-templates/tree/main/published/Material%20Data%20for%20Plastic%20Waste/1/1
+sections:
+- title: 'F1: entries of a list carry no idShort (AASd-120); entries without children are rebuilt, their values carried over'
+  origin: hand
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: ApplicationSpecificStandards[1]
+    SMEType: Property
+  - ChangeOperation: UpdateAttr
+    ElementPath: ApplicationSpecificStandards[1]
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ApplicationSpecificStandards[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: ApplicationSpecificStandards[1]
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - ApplicationSpecificStandards[0]#value
+    TargetElementPaths:
+    - ApplicationSpecificStandards[1]#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: CreateQual
+    ElementPath: ApplicationSpecificStandards[1]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: ApplicationSpecificStandards[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ApplicationSpecificStandards[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - ApplicationSpecificStandards[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - ApplicationSpecificStandards[1]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: ApplicationSpecificStandards[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: RemoveSME
+    ElementPath: ApplicationSpecificStandards[0]
+- title: 'F1: entries of a list carry no idShort (AASd-120); entries with children are rebuilt by hollow-out'
+  origin: rule
+  rule:
+    RenameContainer:
+      InformationCharacteristics.TypesOfFillers[0]: null
+      InformationCharacteristics.PresenceOfModifyingAdditives[0]: null
+      PropertyCharacteristics.TensileProperties.MeasuredValues[0]: null
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: InformationCharacteristics.TypesOfFillers[1]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: InformationCharacteristics.TypesOfFillers[1]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: InformationCharacteristics.TypesOfFillers[1]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Type of filler
+  - ChangeOperation: CreateAttr
+    ElementPath: InformationCharacteristics.TypesOfFillers[1]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: InformationCharacteristics.TypesOfFillers[1]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Types of fillers and mass percentages
+  - ChangeOperation: CreateAttr
+    ElementPath: InformationCharacteristics.TypesOfFillers[1]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: InformationCharacteristics.TypesOfFillers[1]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/en18065materialdata/TypeOfFiller/1/0
+  - ChangeOperation: CreateQual
+    ElementPath: InformationCharacteristics.TypesOfFillers[1]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: InformationCharacteristics.TypesOfFillers[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: InformationCharacteristics.TypesOfFillers[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: InformationCharacteristics.TypesOfFillers[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: InformationCharacteristics.TypesOfFillers[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: InformationCharacteristics.TypesOfFillers[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: InformationCharacteristics.TypesOfFillers[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - InformationCharacteristics.TypesOfFillers[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - InformationCharacteristics.TypesOfFillers[1]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: InformationCharacteristics.TypesOfFillers[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: InformationCharacteristics.TypesOfFillers[0].Filler
+    NewParentPath: InformationCharacteristics.TypesOfFillers[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: InformationCharacteristics.TypesOfFillers[0].FillerMassPercentage
+    NewParentPath: InformationCharacteristics.TypesOfFillers[1]
+  - ChangeOperation: RemoveSME
+    ElementPath: InformationCharacteristics.TypesOfFillers[0]
+  - ChangeOperation: CreateSME
+    ElementPath: InformationCharacteristics.PresenceOfModifyingAdditives[1]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: InformationCharacteristics.PresenceOfModifyingAdditives[1]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: InformationCharacteristics.PresenceOfModifyingAdditives[1]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Modifying additive
+  - ChangeOperation: CreateAttr
+    ElementPath: InformationCharacteristics.PresenceOfModifyingAdditives[1]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: InformationCharacteristics.PresenceOfModifyingAdditives[1]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Modifying additive
+  - ChangeOperation: CreateAttr
+    ElementPath: InformationCharacteristics.PresenceOfModifyingAdditives[1]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: InformationCharacteristics.PresenceOfModifyingAdditives[1]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/en18065materialdata/PresenceOfModifyingAdditives/ModifyingAdditive/1/0
+  - ChangeOperation: CreateQual
+    ElementPath: InformationCharacteristics.PresenceOfModifyingAdditives[1]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: InformationCharacteristics.PresenceOfModifyingAdditives[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: InformationCharacteristics.PresenceOfModifyingAdditives[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: InformationCharacteristics.PresenceOfModifyingAdditives[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: InformationCharacteristics.PresenceOfModifyingAdditives[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: InformationCharacteristics.PresenceOfModifyingAdditives[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: InformationCharacteristics.PresenceOfModifyingAdditives[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - InformationCharacteristics.PresenceOfModifyingAdditives[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - InformationCharacteristics.PresenceOfModifyingAdditives[1]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: InformationCharacteristics.PresenceOfModifyingAdditives[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: InformationCharacteristics.PresenceOfModifyingAdditives[0].ModifyingAdditiveName
+    NewParentPath: InformationCharacteristics.PresenceOfModifyingAdditives[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: InformationCharacteristics.PresenceOfModifyingAdditives[0].ModifyingAdditiveCASNumber
+    NewParentPath: InformationCharacteristics.PresenceOfModifyingAdditives[1]
+  - ChangeOperation: RemoveSME
+    ElementPath: InformationCharacteristics.PresenceOfModifyingAdditives[0]
+  - ChangeOperation: CreateSME
+    ElementPath: PropertyCharacteristics.TensileProperties.MeasuredValues[1]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: PropertyCharacteristics.TensileProperties.MeasuredValues[1]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: PropertyCharacteristics.TensileProperties.MeasuredValues[1]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Measured Value
+  - ChangeOperation: CreateAttr
+    ElementPath: PropertyCharacteristics.TensileProperties.MeasuredValues[1]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: PropertyCharacteristics.TensileProperties.MeasuredValues[1]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: This is the measured value of the sensor output
+  - ChangeOperation: CreateAttr
+    ElementPath: PropertyCharacteristics.TensileProperties.MeasuredValues[1]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: PropertyCharacteristics.TensileProperties.MeasuredValues[1]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/measurementvalue/measuredvalue/1/0
+  - ChangeOperation: CreateQual
+    ElementPath: PropertyCharacteristics.TensileProperties.MeasuredValues[1]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: PropertyCharacteristics.TensileProperties.MeasuredValues[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: PropertyCharacteristics.TensileProperties.MeasuredValues[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - PropertyCharacteristics.TensileProperties.MeasuredValues[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - PropertyCharacteristics.TensileProperties.MeasuredValues[1]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: PropertyCharacteristics.TensileProperties.MeasuredValues[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: PropertyCharacteristics.TensileProperties.MeasuredValues[0].Value
+    NewParentPath: PropertyCharacteristics.TensileProperties.MeasuredValues[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: PropertyCharacteristics.TensileProperties.MeasuredValues[0].Unit
+    NewParentPath: PropertyCharacteristics.TensileProperties.MeasuredValues[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: PropertyCharacteristics.TensileProperties.MeasuredValues[0].Kind
+    NewParentPath: PropertyCharacteristics.TensileProperties.MeasuredValues[1]
+  - ChangeOperation: RemoveSME
+    ElementPath: PropertyCharacteristics.TensileProperties.MeasuredValues[0]
+- title: 'Completion: removed elements and qualifiers'
+  origin: generated
+  items: []
+- title: 'Completion: created elements and qualifiers'
+  origin: generated
+  items: []
+- title: 'Completion: attributes'
+  origin: generated
+  items:
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    AttributeKey: administration
+    AttributeValue:
+      version: '1'
+      revision: '0'
+      templateId: https://admin-shell.io/IDTA02080-1-0
+  - ChangeOperation: RemoveAttr
+    ElementPath: ApplicationSpecificStandards[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: ApplicationSpecificStandards[0]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: ApplicationSpecificStandards[0]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Application-specific standard
+  - ChangeOperation: CreateAttr
+    ElementPath: ApplicationSpecificStandards[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ApplicationSpecificStandards[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Standard or norm
+  - ChangeOperation: CreateAttr
+    ElementPath: ApplicationSpecificStandards[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ApplicationSpecificStandards[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/en18065materialdata/StandardOrNorm/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: PropertyCharacteristics.Viscosity.MeasuredValue
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: PropertyCharacteristics.Viscosity.MeasuredValue
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: PropertyCharacteristics.AshContent.MeasuredValue
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: PropertyCharacteristics.AshContent.MeasuredValue
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: PropertyCharacteristics.ResidualHumidity.MeasuredValue
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: PropertyCharacteristics.ResidualHumidity.MeasuredValue
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: PropertyCharacteristics.Density.MeasuredValue
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: PropertyCharacteristics.Density.MeasuredValue
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: PropertyCharacteristics.BulkDensity.MeasuredValue
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: PropertyCharacteristics.BulkDensity.MeasuredValue
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: PropertyCharacteristics.ParticleSizeDistribution.MeasuredValue
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: PropertyCharacteristics.ParticleSizeDistribution.MeasuredValue
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: ApplicationSpecificStandards[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ApplicationSpecificStandards[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: ApplicationSpecificStandards[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ApplicationSpecificStandards[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: PropertyCharacteristics.TensileProperties.MeasuredValues[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: PropertyCharacteristics.TensileProperties.MeasuredValues[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier

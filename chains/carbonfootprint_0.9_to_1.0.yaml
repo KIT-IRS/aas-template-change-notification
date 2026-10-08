@@ -1,0 +1,3648 @@
+header:
+  Family: CarbonFootprint
+  PreVersion: https://admin-shell.io/idta/SubmodelTemplate/CarbonFootprint/0/9
+  PostVersion: https://admin-shell.io/idta/SubmodelTemplate/CarbonFootprint/1/0
+  PreTemplate: ressources/Templates/IDTA 02023-0-9_Template_CarbonFootprint.json
+  PostTemplate: ressources/Templates/IDTA 02023-1-0_Template_CarbonFootprint.json
+  TemplateOwner: Industrial Digital Twin Association (IDTA)
+  TemplateOwnerAddress:
+    Company: Industrial Digital Twin Association e.V.
+    Street: Lyoner Straße 18
+    Zipcode: '60528'
+    CityTown: Frankfurt am Main
+    NationalCode: DE
+  ChangeURI: https://github.com/admin-shell-io/submodel-templates/tree/main/published/Carbon%20Footprint/1/0
+sections:
+- title: 'K1: ProductCarbonFootprint becomes an entry of the list ProductCarbonFootprints'
+  origin: hand
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints
+    SMEType: SubmodelElementList
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints
+    AttributeKey: typeValueListElement
+    AttributeValue: SubmodelElementCollection
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints[0]
+    SMEType: SubmodelElementCollection
+- title: 'K2: the PCF properties drop their prefix (same ECLASS IRDIs); PCFReferenceValueForCalculation becomes ReferenceImpactUnitForCalculation'
+  origin: hand
+  items:
+  - ChangeOperation: UpdateIdShort
+    ElementPath: ProductCarbonFootprint.PCFCO2eq
+    NewIdShort: PcfCO2eq
+  - ChangeOperation: UpdateIdShort
+    ElementPath: ProductCarbonFootprint.PCFReferenceValueForCalculation
+    NewIdShort: ReferenceImpactUnitForCalculation
+  - ChangeOperation: UpdateIdShort
+    ElementPath: ProductCarbonFootprint.PCFQuantityOfMeasureForCalculation
+    NewIdShort: QuantityOfMeasureForCalculation
+  - ChangeOperation: UpdateParent
+    ElementPath: ProductCarbonFootprint.PcfCO2eq
+    NewParentPath: ProductCarbonFootprints[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: ProductCarbonFootprint.ReferenceImpactUnitForCalculation
+    NewParentPath: ProductCarbonFootprints[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: ProductCarbonFootprint.QuantityOfMeasureForCalculation
+    NewParentPath: ProductCarbonFootprints[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: ProductCarbonFootprint.ExplanatoryStatement
+    NewParentPath: ProductCarbonFootprints[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: ProductCarbonFootprint.PublicationDate
+    NewParentPath: ProductCarbonFootprints[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: ProductCarbonFootprint.ExpirationDate
+    NewParentPath: ProductCarbonFootprints[0]
+- title: 'K3: the repeatable PCFCalculationMethod becomes the list PcfCalculationMethods; each method is one entry'
+  origin: hand
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints[0].PcfCalculationMethods
+    SMEType: SubmodelElementList
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].PcfCalculationMethods
+    AttributeKey: typeValueListElement
+    AttributeValue: Property
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints[0].PcfCalculationMethods[0]
+    SMEType: Property
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].PcfCalculationMethods[0]
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].PcfCalculationMethods[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprint.PCFCalculationMethod
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - ProductCarbonFootprint.PCFCalculationMethod#value
+    TargetElementPaths:
+    - ProductCarbonFootprints[0].PcfCalculationMethods[0]#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: ProductCarbonFootprint.PCFCalculationMethod
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveSME
+    ElementPath: ProductCarbonFootprint.PCFCalculationMethod
+- title: 'K4: the repeatable PCFLifeCyclePhase becomes the list LifeCyclePhases; each phase is one entry'
+  origin: hand
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints[0].LifeCyclePhases
+    SMEType: SubmodelElementList
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].LifeCyclePhases
+    AttributeKey: typeValueListElement
+    AttributeValue: Property
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints[0].LifeCyclePhases[0]
+    SMEType: Property
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].LifeCyclePhases[0]
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].LifeCyclePhases[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprint.PCFLifeCyclePhase
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - ProductCarbonFootprint.PCFLifeCyclePhase#value
+    TargetElementPaths:
+    - ProductCarbonFootprints[0].LifeCyclePhases[0]#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: ProductCarbonFootprint.PCFLifeCyclePhase
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveSME
+    ElementPath: ProductCarbonFootprint.PCFLifeCyclePhase
+- title: 'K5: PCFGoodsAddressHandover becomes GoodsHandoverAddress, the use of the SMT drop-in Address Information'
+  origin: hand
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Street
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Street
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprint.PCFGoodsAddressHandover.Street
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprint.PCFGoodsAddressHandover.HouseNumber
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - ProductCarbonFootprint.PCFGoodsAddressHandover.Street#value
+    - ProductCarbonFootprint.PCFGoodsAddressHandover.HouseNumber#value
+    TargetElementPaths:
+    - ProductCarbonFootprints[0].GoodsHandoverAddress.Street#value
+    TransferFunction:
+      Kind: Expression
+      ExpressionLanguage: https://github.com/google/cel-spec
+      Expression: 'type(src[0]) != string ? null : [[{"language": "en", "text": type(src[1]) == string && src[1] != "" ? src[0]
+        + " " + src[1] : src[0]}]]'
+      Text:
+        en: Take street and house number, separated by a blank, as the English text of Street.
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Zipcode
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Zipcode
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprint.PCFGoodsAddressHandover.ZipCode
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - ProductCarbonFootprint.PCFGoodsAddressHandover.ZipCode#value
+    TargetElementPaths:
+    - ProductCarbonFootprints[0].GoodsHandoverAddress.Zipcode#value
+    TransferFunction:
+      Kind: Expression
+      ExpressionLanguage: https://github.com/google/cel-spec
+      Expression: 'type(src[0]) == string ? [[{"language": "en", "text": src[0]}]] : null'
+      Text:
+        en: Take the value of the property as the English text of the multi-language property.
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.CityTown
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.CityTown
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprint.PCFGoodsAddressHandover.CityTown
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - ProductCarbonFootprint.PCFGoodsAddressHandover.CityTown#value
+    TargetElementPaths:
+    - ProductCarbonFootprints[0].GoodsHandoverAddress.CityTown#value
+    TransferFunction:
+      Kind: Expression
+      ExpressionLanguage: https://github.com/google/cel-spec
+      Expression: 'type(src[0]) == string ? [[{"language": "en", "text": src[0]}]] : null'
+      Text:
+        en: Take the value of the property as the English text of the multi-language property.
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.NationalCode
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.NationalCode
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprint.PCFGoodsAddressHandover.Country
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - ProductCarbonFootprint.PCFGoodsAddressHandover.Country#value
+    TargetElementPaths:
+    - ProductCarbonFootprints[0].GoodsHandoverAddress.NationalCode#value
+    TransferFunction:
+      Kind: Expression
+      ExpressionLanguage: https://github.com/google/cel-spec
+      Expression: 'type(src[0]) == string ? [[{"language": "en", "text": src[0]}]] : null'
+      Text:
+        en: Take the value of the property as the English text of the multi-language property.
+  - ChangeOperation: RemoveQual
+    ElementPath: ProductCarbonFootprint.PCFGoodsAddressHandover
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: ProductCarbonFootprint.PCFGoodsAddressHandover.Street
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: ProductCarbonFootprint.PCFGoodsAddressHandover.HouseNumber
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: ProductCarbonFootprint.PCFGoodsAddressHandover.ZipCode
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: ProductCarbonFootprint.PCFGoodsAddressHandover.CityTown
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: ProductCarbonFootprint.PCFGoodsAddressHandover.Country
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveSME
+    ElementPath: ProductCarbonFootprint.PCFGoodsAddressHandover.Street
+  - ChangeOperation: RemoveSME
+    ElementPath: ProductCarbonFootprint.PCFGoodsAddressHandover.HouseNumber
+  - ChangeOperation: RemoveSME
+    ElementPath: ProductCarbonFootprint.PCFGoodsAddressHandover.ZipCode
+  - ChangeOperation: RemoveSME
+    ElementPath: ProductCarbonFootprint.PCFGoodsAddressHandover.CityTown
+  - ChangeOperation: RemoveSME
+    ElementPath: ProductCarbonFootprint.PCFGoodsAddressHandover.Country
+  - ChangeOperation: RemoveSME
+    ElementPath: ProductCarbonFootprint.PCFGoodsAddressHandover
+- title: 'K1: the emptied ProductCarbonFootprint is removed'
+  origin: hand
+  items:
+  - ChangeOperation: RemoveQual
+    ElementPath: ProductCarbonFootprint
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveSME
+    ElementPath: ProductCarbonFootprint
+- title: 'K6: PublicationDate and ExpirationDate become dates with time (xs:dateTime)'
+  origin: hand
+  items:
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].PublicationDate
+    AttributeKey: valueType
+    AttributeValue: xs:dateTime
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].PublicationDate
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - ProductCarbonFootprints[0].PublicationDate#value
+    TargetElementPaths:
+    - ProductCarbonFootprints[0].PublicationDate#value
+    TransferFunction:
+      Kind: Expression
+      ExpressionLanguage: https://github.com/google/cel-spec
+      Expression: 'type(src[0]) != string ? null : src[0].contains("T") ? src[0] : src[0] + "T00:00:00Z"'
+      Text:
+        en: Write the date as a date and time (xs:dateTime), at 00:00:00 UTC unless a time is given.
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].ExpirationDate
+    AttributeKey: valueType
+    AttributeValue: xs:dateTime
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].ExpirationDate
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - ProductCarbonFootprints[0].ExpirationDate#value
+    TargetElementPaths:
+    - ProductCarbonFootprints[0].ExpirationDate#value
+    TransferFunction:
+      Kind: Expression
+      ExpressionLanguage: https://github.com/google/cel-spec
+      Expression: 'type(src[0]) != string ? null : src[0].contains("T") ? src[0] : src[0] + "T00:00:00Z"'
+      Text:
+        en: Write the date as a date and time (xs:dateTime), at 00:00:00 UTC unless a time is given.
+- title: 'K7: the transport carbon footprint (TCF) has no counterpart in v1.0'
+  origin: rule
+  rule:
+    RemoveSubtree:
+    - TransportCarbonFootprint
+  items:
+  - ChangeOperation: RemoveQual
+    ElementPath: TransportCarbonFootprint
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: TransportCarbonFootprint.TCFCalculationMethod
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: TransportCarbonFootprint.TCFCO2eq
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: TransportCarbonFootprint.TCFReferenceValueForCalculation
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: TransportCarbonFootprint.TCFQuantityOfMeasureForCalculation
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: TransportCarbonFootprint.TCFProcessesForGreenhouseGasEmissionInATransportService
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: TransportCarbonFootprint.ExplanatoryStatement
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: TransportCarbonFootprint.TCFGoodsTransportAddressTakeover
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: TransportCarbonFootprint.TCFGoodsTransportAddressTakeover.Street
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: TransportCarbonFootprint.TCFGoodsTransportAddressTakeover.HouseNumber
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: TransportCarbonFootprint.TCFGoodsTransportAddressTakeover.ZipCode
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: TransportCarbonFootprint.TCFGoodsTransportAddressTakeover.CityTown
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: TransportCarbonFootprint.TCFGoodsTransportAddressTakeover.Country
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: TransportCarbonFootprint.TCFGoodsTransportAddressHandover
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: TransportCarbonFootprint.TCFGoodsTransportAddressHandover.Street
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: TransportCarbonFootprint.TCFGoodsTransportAddressHandover.HouseNumber
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: TransportCarbonFootprint.TCFGoodsTransportAddressHandover.ZipCode
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: TransportCarbonFootprint.TCFGoodsTransportAddressHandover.CityTown
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: TransportCarbonFootprint.TCFGoodsTransportAddressHandover.Country
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: TransportCarbonFootprint.PublicationDate
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: TransportCarbonFootprint.ExpirationDate
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveSME
+    ElementPath: TransportCarbonFootprint.TCFProcessesForGreenhouseGasEmissionInATransportService
+  - ChangeOperation: RemoveSME
+    ElementPath: TransportCarbonFootprint.TCFGoodsTransportAddressHandover.HouseNumber
+  - ChangeOperation: RemoveSME
+    ElementPath: TransportCarbonFootprint.TCFGoodsTransportAddressTakeover.HouseNumber
+  - ChangeOperation: RemoveSME
+    ElementPath: TransportCarbonFootprint.TCFGoodsTransportAddressTakeover.CityTown
+  - ChangeOperation: RemoveSME
+    ElementPath: TransportCarbonFootprint.TCFGoodsTransportAddressHandover.CityTown
+  - ChangeOperation: RemoveSME
+    ElementPath: TransportCarbonFootprint.TCFGoodsTransportAddressTakeover.Country
+  - ChangeOperation: RemoveSME
+    ElementPath: TransportCarbonFootprint.TCFGoodsTransportAddressHandover.ZipCode
+  - ChangeOperation: RemoveSME
+    ElementPath: TransportCarbonFootprint.TCFGoodsTransportAddressTakeover.ZipCode
+  - ChangeOperation: RemoveSME
+    ElementPath: TransportCarbonFootprint.TCFGoodsTransportAddressHandover.Country
+  - ChangeOperation: RemoveSME
+    ElementPath: TransportCarbonFootprint.TCFGoodsTransportAddressHandover.Street
+  - ChangeOperation: RemoveSME
+    ElementPath: TransportCarbonFootprint.TCFGoodsTransportAddressTakeover.Street
+  - ChangeOperation: RemoveSME
+    ElementPath: TransportCarbonFootprint.TCFQuantityOfMeasureForCalculation
+  - ChangeOperation: RemoveSME
+    ElementPath: TransportCarbonFootprint.TCFGoodsTransportAddressHandover
+  - ChangeOperation: RemoveSME
+    ElementPath: TransportCarbonFootprint.TCFGoodsTransportAddressTakeover
+  - ChangeOperation: RemoveSME
+    ElementPath: TransportCarbonFootprint.TCFReferenceValueForCalculation
+  - ChangeOperation: RemoveSME
+    ElementPath: TransportCarbonFootprint.ExplanatoryStatement
+  - ChangeOperation: RemoveSME
+    ElementPath: TransportCarbonFootprint.TCFCalculationMethod
+  - ChangeOperation: RemoveSME
+    ElementPath: TransportCarbonFootprint.PublicationDate
+  - ChangeOperation: RemoveSME
+    ElementPath: TransportCarbonFootprint.ExpirationDate
+  - ChangeOperation: RemoveSME
+    ElementPath: TransportCarbonFootprint.TCFCO2eq
+  - ChangeOperation: RemoveSME
+    ElementPath: TransportCarbonFootprint
+- title: 'K8: the cardinality vocabulary changes from Cardinality to SMT/Cardinality'
+  origin: rule
+  rule:
+    QualifierTypeRenames:
+      Cardinality: SMT/Cardinality
+  items:
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].PcfCO2eq
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].PcfCO2eq
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].PcfCO2eq
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - ProductCarbonFootprints[0].PcfCO2eq@Cardinality#value
+    TargetElementPaths:
+    - ProductCarbonFootprints[0].PcfCO2eq@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: ProductCarbonFootprints[0].PcfCO2eq
+    QualifierType: Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].ReferenceImpactUnitForCalculation
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].ReferenceImpactUnitForCalculation
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].ReferenceImpactUnitForCalculation
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - ProductCarbonFootprints[0].ReferenceImpactUnitForCalculation@Cardinality#value
+    TargetElementPaths:
+    - ProductCarbonFootprints[0].ReferenceImpactUnitForCalculation@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: ProductCarbonFootprints[0].ReferenceImpactUnitForCalculation
+    QualifierType: Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].QuantityOfMeasureForCalculation
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].QuantityOfMeasureForCalculation
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].QuantityOfMeasureForCalculation
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - ProductCarbonFootprints[0].QuantityOfMeasureForCalculation@Cardinality#value
+    TargetElementPaths:
+    - ProductCarbonFootprints[0].QuantityOfMeasureForCalculation@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: ProductCarbonFootprints[0].QuantityOfMeasureForCalculation
+    QualifierType: Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].ExplanatoryStatement
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].ExplanatoryStatement
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].ExplanatoryStatement
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - ProductCarbonFootprints[0].ExplanatoryStatement@Cardinality#value
+    TargetElementPaths:
+    - ProductCarbonFootprints[0].ExplanatoryStatement@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: ProductCarbonFootprints[0].ExplanatoryStatement
+    QualifierType: Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].PublicationDate
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].PublicationDate
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].PublicationDate
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - ProductCarbonFootprints[0].PublicationDate@Cardinality#value
+    TargetElementPaths:
+    - ProductCarbonFootprints[0].PublicationDate@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: ProductCarbonFootprints[0].PublicationDate
+    QualifierType: Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].ExpirationDate
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].ExpirationDate
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].ExpirationDate
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - ProductCarbonFootprints[0].ExpirationDate@Cardinality#value
+    TargetElementPaths:
+    - ProductCarbonFootprints[0].ExpirationDate@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: ProductCarbonFootprints[0].ExpirationDate
+    QualifierType: Cardinality
+- title: 'Completion: removed elements and qualifiers'
+  origin: generated
+  items: []
+- title: 'Completion: created elements and qualifiers'
+  origin: generated
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.RoleOfContactPerson
+    SMEType: Property
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Language
+    SMEType: Property
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.TimeZone
+    SMEType: Property
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Company
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Department
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone.TelephoneNumber
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone.TypeOfTelephone
+    SMEType: Property
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone.AvailableTime
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Fax
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Fax.FaxNumber
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Fax.TypeOfFaxNumber
+    SMEType: Property
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.EmailAddress
+    SMEType: Property
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.PublicKey
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.TypeOfEmailAddress
+    SMEType: Property
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.TypeOfPublicKey
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__.AddressOfAdditionalLink
+    SMEType: Property
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__.TypeOfCommunication
+    SMEType: Property
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__.AvailableTime
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.POBox
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.ZipCodeOfPOBox
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.StateCounty
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.NameOfContact
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.FirstName
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.MiddleNames
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Title
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.AcademicTitle
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.FurtherDetailsOfContact
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.AddressOfAdditionalLink
+    SMEType: Property
+  - ChangeOperation: CreateSME
+    ElementPath: ProductOrSectorSpecificCarbonFootprints
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateSME
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateSME
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfCalculationMethods
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateSME
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfCalculationMethods[0]
+    SMEType: Property
+  - ChangeOperation: CreateSME
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateSME
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleOperator
+    SMEType: Property
+  - ChangeOperation: CreateSME
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleName
+    SMEType: Property
+  - ChangeOperation: CreateSME
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleVersion
+    SMEType: Property
+  - ChangeOperation: CreateSME
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleOnlineReference
+    SMEType: File
+  - ChangeOperation: CreateSME
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ExternalPcfApi
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateSME
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ExternalPcfApi.PcfApiEndpoint
+    SMEType: Property
+  - ChangeOperation: CreateSME
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ExternalPcfApi.PcfApiQuery
+    SMEType: Property
+  - ChangeOperation: CreateSME
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfInformation
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateSME
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfInformation.ArbitraryContent
+    SMEType: Property
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].PcfCalculationMethods
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].PcfCalculationMethods[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].LifeCyclePhases
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].LifeCyclePhases[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.RoleOfContactPerson
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.NationalCode
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Language
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.TimeZone
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.CityTown
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Company
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Department
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone.TelephoneNumber
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone.TypeOfTelephone
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone.AvailableTime
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Fax
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Fax.FaxNumber
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Fax.TypeOfFaxNumber
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.EmailAddress
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.PublicKey
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.TypeOfEmailAddress
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.TypeOfPublicKey
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__.AddressOfAdditionalLink
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__.TypeOfCommunication
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__.AvailableTime
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Street
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Zipcode
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.POBox
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.ZipCodeOfPOBox
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.StateCounty
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.NameOfContact
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.FirstName
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.MiddleNames
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Title
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.AcademicTitle
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.FurtherDetailsOfContact
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.AddressOfAdditionalLink
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ProductOrSectorSpecificCarbonFootprints
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfCalculationMethods
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfCalculationMethods[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleOperator
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleName
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleVersion
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleOnlineReference
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ExternalPcfApi
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ExternalPcfApi.PcfApiEndpoint
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ExternalPcfApi.PcfApiQuery
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfInformation
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfInformation.ArbitraryContent
+    QualifierType: SMT/Cardinality
+- title: 'Completion: attributes'
+  origin: generated
+  items:
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: The Submodel provides the means to access the Carbon Footprint of the asset.
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    AttributeKey: administration
+    AttributeValue:
+      version: '1'
+      revision: '0'
+      templateId: https://admin-shell.io/IDTA 02023-1-0
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    AttributeKey: id
+    AttributeValue: https://admin-shell.io/idta/SubmodelTemplate/CarbonFootprint/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/CarbonFootprint/CarbonFootprint/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints
+    AttributeKey: displayName
+    AttributeValue:
+    - language: de
+      text: Produkt CO2-Fußabdruck
+    - language: en
+      text: Product carbon footprint
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Balance of greenhouse gas emissions along the entire life cycle of a product in a defined application and in relation
+        to a defined unit of use.
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/CarbonFootprint/ProductCarbonFootprints/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints
+    AttributeKey: semanticIdListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints
+    AttributeKey: semanticIdListElement
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/CarbonFootprint/ProductCarbonFootprint/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: de
+      text: Produkt CO2-Fußabdruck
+    - language: en
+      text: Product carbon footprint
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Balance of greenhouse gas emissions along the entire life cycle of a product in a defined application and in relation
+        to a defined unit of use.
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/CarbonFootprint/ProductCarbonFootprint/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].PcfCO2eq
+    AttributeKey: displayName
+    AttributeValue:
+    - language: de
+      text: CO2-Äquivalent
+    - language: en
+      text: CO2 equivalent
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].PcfCO2eq
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Sum of all greenhouse gas emissions of a product according to the quantification requirements of the standard.
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].PcfCO2eq
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABG855#003
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].PcfCO2eq
+    AttributeKey: valueType
+    AttributeValue: xs:decimal
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].ReferenceImpactUnitForCalculation
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Quantity unit of the product to which the PCF information on the CO2 footprint refers.
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].ReferenceImpactUnitForCalculation
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABG856#003
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].QuantityOfMeasureForCalculation
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: provides the quantity number of pieces or mass or volume to compute the impact of climate change or product carbon
+        footprint.
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].QuantityOfMeasureForCalculation
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABG857#003
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].ExplanatoryStatement
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Explanation required or provided to ensure that a footprint communication can be properly understood by a purchaser,
+        potential purchaser, or user of the product.
+  - ChangeOperation: RemoveAttr
+    ElementPath: ProductCarbonFootprints[0].PublicationDate
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].PublicationDate
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: The UTC timestamp on which a Product Carbon Footprint (PCF) - a calculation of a product's total greenhouse gas
+        emissions - was created and published
+  - ChangeOperation: RemoveAttr
+    ElementPath: ProductCarbonFootprints[0].ExpirationDate
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].ExpirationDate
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: End date up to which a study or data collection for calculating an ecological footprint is considered current
+        and valid before an update or new calculation is required.
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].ExpirationDate
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/CarbonFootprint/ExpirationDate/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].PcfCalculationMethods
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].PcfCalculationMethods
+    AttributeKey: displayName
+    AttributeValue:
+    - language: de
+      text: Folgenabschätzungsmethoden
+    - language: en
+      text: impact assessment methods
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].PcfCalculationMethods
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].PcfCalculationMethods
+    AttributeKey: description
+    AttributeValue:
+    - language: de
+      text: Normen, Standards, Verfahren zur Ermittlung der Treibhausgas-Emissionen eines Produkts
+    - language: en
+      text: Standards, methods for determining the greenhouse gas emissions of a product.
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].PcfCalculationMethods
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].PcfCalculationMethods
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/CarbonFootprint/PcfCalculationMethods/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].PcfCalculationMethods
+    AttributeKey: semanticIdListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].PcfCalculationMethods
+    AttributeKey: semanticIdListElement
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABG854#003
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].PcfCalculationMethods
+    AttributeKey: valueTypeListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].PcfCalculationMethods
+    AttributeKey: valueTypeListElement
+    AttributeValue: xs:string
+  - ChangeOperation: RemoveAttr
+    ElementPath: ProductCarbonFootprints[0].PcfCalculationMethods[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].PcfCalculationMethods[0]
+    AttributeKey: category
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].PcfCalculationMethods[0]
+    AttributeKey: category
+    AttributeValue: PARAMETER
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].PcfCalculationMethods[0]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].PcfCalculationMethods[0]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: de
+      text: Folgenabschätzungsmethode / Berechnungsmethode
+    - language: en
+      text: impact assessment method / calculation method
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].PcfCalculationMethods[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].PcfCalculationMethods[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Standard, method for determining the greenhouse gas emissions of a product.
+    - language: de
+      text: Norm, Standard, Verfahren zur Ermittlung der Treibhausgas-Emissionen eines Produkts
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].PcfCalculationMethods[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].PcfCalculationMethods[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABG854#003
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].LifeCyclePhases
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].LifeCyclePhases
+    AttributeKey: displayName
+    AttributeValue:
+    - language: de
+      text: Lebenszyklusphasen
+    - language: en
+      text: life cycle phases
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].LifeCyclePhases
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].LifeCyclePhases
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: List of life cycle stages of the product according to the quantification requirements of the standard to which
+        the PCF carbon footprint statement refers
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].LifeCyclePhases
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].LifeCyclePhases
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/CarbonFootprint/LifeCyclePhases/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].LifeCyclePhases
+    AttributeKey: semanticIdListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].LifeCyclePhases
+    AttributeKey: semanticIdListElement
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABG858#003
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].LifeCyclePhases
+    AttributeKey: valueTypeListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].LifeCyclePhases
+    AttributeKey: valueTypeListElement
+    AttributeValue: xs:string
+  - ChangeOperation: RemoveAttr
+    ElementPath: ProductCarbonFootprints[0].LifeCyclePhases[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].LifeCyclePhases[0]
+    AttributeKey: category
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].LifeCyclePhases[0]
+    AttributeKey: category
+    AttributeValue: PARAMETER
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].LifeCyclePhases[0]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].LifeCyclePhases[0]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: de
+      text: Lebenszyklusphase
+    - language: en
+      text: life cycle phase
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].LifeCyclePhases[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].LifeCyclePhases[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Life cycle stages of the product according to the quantification requirements of the standard to which the PCF
+        carbon footprint statement refers
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].LifeCyclePhases[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].LifeCyclePhases[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABG858#003
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress
+    AttributeKey: displayName
+    AttributeValue:
+    - language: de
+      text: Warenübergabeadresse
+    - language: en
+      text: goods address hand-over
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Indicates the hand-over address of the goods transport
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/zvei/nameplate/1/0/ContactInformations/AddressInformation
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/smt-dropin/smt-dropin-use/1/0
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0112/2///61360_7#AAS002#001
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAQ837#008
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Street
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Street
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO128#002
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Street
+    AttributeKey: value
+    AttributeValue:
+    - language: de
+      text: Musterstraße 1
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Zipcode
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Zipcode
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Recommendation: property declaration as MLP is required by its semantic definition. As the property value is
+        language independent, users are recommended to provide maximal 1 string in any language of the user’s choice.'
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Zipcode
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Zipcode
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO129#002
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Zipcode
+    AttributeKey: value
+    AttributeValue:
+    - language: de
+      text: '12345'
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.CityTown
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.CityTown
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO132#002
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.CityTown
+    AttributeKey: value
+    AttributeValue:
+    - language: de
+      text: Musterstadt
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.NationalCode
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.NationalCode
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: ' Note: country codes defined accord. to ISO 3166-1. Recommendation: property declaration as MLP is required by
+        its semantic definition. As the property value is language independent, users are recommended to provide maximal 1
+        string in any language of the user’s choice.'
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.NationalCode
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.NationalCode
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO134#002
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.NationalCode
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: DE
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.RoleOfContactPerson
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.RoleOfContactPerson
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'enumeration: 0173-1#07-AAS927#001 (administrativ contact), 0173-1#07-AAS928#001 (commercial contact), 0173-1#07-AAS929#001
+        (other contact), 0173-1#07-AAS930#001 (hazardous goods contact), 0173-1#07-AAS931#001 (technical contact). Note: the
+        above mentioned ECLASS enumeration should be declared as “open” for further addition. ECLASS enumeration IRDI is preferable.
+        If no IRDI available, custom input as String may also be accepted.'
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.RoleOfContactPerson
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.RoleOfContactPerson
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO204#003
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.RoleOfContactPerson
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.RoleOfContactPerson
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.RoleOfContactPerson
+    AttributeKey: value
+    AttributeValue: 0173-1#07-AAS931#001
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Language
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Language
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: language codes defined accord. to ISO 639-1. Note: as per ECLASS definition, Expression and representation
+        of thoughts, information, feelings, ideas through characters.'
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Language
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Language
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/zvei/nameplate/1/0/ContactInformations/ContactInformation/Language
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Language
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Language
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Language
+    AttributeKey: value
+    AttributeValue: de
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.TimeZone
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.TimeZone
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: notation accord. to ISO 8601 Note: for time in UTC the zone designator “Z” is to be used'
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.TimeZone
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.TimeZone
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/zvei/nameplate/1/0/ContactInformations/ContactInformation/TimeZone
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.TimeZone
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.TimeZone
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.TimeZone
+    AttributeKey: value
+    AttributeValue: Z
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Company
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Company
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAW001#001
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Company
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Company
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: ABC Company
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Department
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Department
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO127#003
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Department
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Department
+    AttributeKey: value
+    AttributeValue:
+    - language: de
+      text: Vertrieb
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/zvei/nameplate/1/0/ContactInformations/ContactInformation/Phone
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone.TelephoneNumber
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone.TelephoneNumber
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Recommendation: property declaration as MLP is required by its semantic definition. As the property value is
+        language independent, users are recommended to provide maximal 1 string in any language of the user’s choice.'
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone.TelephoneNumber
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone.TelephoneNumber
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO136#002
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone.TelephoneNumber
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone.TelephoneNumber
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: '+491234567890'
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone.TypeOfTelephone
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone.TypeOfTelephone
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: ' enumeration: 0173-1#07-AAS754#001 (office), 0173-1#07-AAS755#001 (office mobile), 0173-1#07-AAS756#001 (secretary),
+        0173-1#07-AAS757#001 (substitute), 0173-1#07-AAS758#001 (home), 0173-1#07-AAS759#001 (private mobile)'
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone.TypeOfTelephone
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone.TypeOfTelephone
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO137#003
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone.TypeOfTelephone
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone.TypeOfTelephone
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone.TypeOfTelephone
+    AttributeKey: value
+    AttributeValue: 0173-1#07-AAS754#001
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone.AvailableTime
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone.AvailableTime
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/zvei/nameplate/1/0/ContactInformations/ContactInformation/AvailableTime/
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone.AvailableTime
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone.AvailableTime
+    AttributeKey: value
+    AttributeValue:
+    - language: de
+      text: Montag – Freitag 08:00 bis 16:00
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Fax
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Fax
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAQ834#005
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Fax.FaxNumber
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Fax.FaxNumber
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Recommendation: property declaration as MLP is required by its semantic definition. As the property value is
+        language independent, users are recommended to provide maximal 1 string in any language of the user’s choice.'
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Fax.FaxNumber
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Fax.FaxNumber
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO195#002
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Fax.FaxNumber
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Fax.FaxNumber
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: '+491234567890'
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Fax.TypeOfFaxNumber
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Fax.TypeOfFaxNumber
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'enumeration: 0173-1#07-AAS754#001 (office), 0173-1#07-AAS756#001 (secretary), 0173-1#07-AAS758#001 (home)'
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Fax.TypeOfFaxNumber
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Fax.TypeOfFaxNumber
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO196#003
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Fax.TypeOfFaxNumber
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Fax.TypeOfFaxNumber
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Fax.TypeOfFaxNumber
+    AttributeKey: value
+    AttributeValue: 0173-1#07-AAS754#001
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAQ836#005
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.EmailAddress
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.EmailAddress
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO198#002
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.EmailAddress
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.EmailAddress
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.EmailAddress
+    AttributeKey: value
+    AttributeValue: email@muster-ag.de
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.PublicKey
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.PublicKey
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Recommendation: property declaration as MLP is required by its semantic definition. As the property value is
+        language independent, users are recommended to provide maximal 1 string in any language of the user’s choice.'
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.PublicKey
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.PublicKey
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO200#002
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.PublicKey
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.PublicKey
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: PGPKEY-12345
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.TypeOfEmailAddress
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.TypeOfEmailAddress
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'enumeration: 0173-1#07-AAS754#001 (office), 0173-1#07-AAS756#001 (secretary), 0173-1#07-AAS757#001 (substitute),
+        0173-1#07-AAS758#001 (home)'
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.TypeOfEmailAddress
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.TypeOfEmailAddress
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO199#003
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.TypeOfEmailAddress
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.TypeOfEmailAddress
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.TypeOfEmailAddress
+    AttributeKey: value
+    AttributeValue: 0173-1#07-AAS754#001
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.TypeOfPublicKey
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.TypeOfPublicKey
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO201#002
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.TypeOfPublicKey
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.TypeOfPublicKey
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: PGP
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/zvei/nameplate/1/0/ContactInformations/ContactInformation/IPCommunication
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__.AddressOfAdditionalLink
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__.AddressOfAdditionalLink
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAQ326#002
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__.AddressOfAdditionalLink
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__.TypeOfCommunication
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__.TypeOfCommunication
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/zvei/nameplate/1/0/ContactInformations/ContactInformation/IPCommunication/TypeOfCommunication
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__.TypeOfCommunication
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__.TypeOfCommunication
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__.TypeOfCommunication
+    AttributeKey: value
+    AttributeValue: Chat
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__.AvailableTime
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__.AvailableTime
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/zvei/nameplate/1/0/ContactInformations/ContactInformation/AvailableTime/
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__.AvailableTime
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__.AvailableTime
+    AttributeKey: value
+    AttributeValue:
+    - language: de
+      text: Montag – Freitag 08:00 bis 16:00
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.POBox
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.POBox
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO130#002
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.POBox
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.POBox
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: PF 1234
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.ZipCodeOfPOBox
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.ZipCodeOfPOBox
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Recommendation: property declaration as MLP is required by its semantic definition. As the property value is
+        language independent, users are recommended to provide maximal 1 string in any language of the user’s choice.'
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.ZipCodeOfPOBox
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.ZipCodeOfPOBox
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO131#002
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.ZipCodeOfPOBox
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.ZipCodeOfPOBox
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: '12345'
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.StateCounty
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.StateCounty
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO133#002
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.StateCounty
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.StateCounty
+    AttributeKey: value
+    AttributeValue:
+    - language: de
+      text: Muster-Bundesland
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.NameOfContact
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.NameOfContact
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO205#002
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.NameOfContact
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.NameOfContact
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: Doe
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.FirstName
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.FirstName
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO206#002
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.FirstName
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.FirstName
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: John
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.MiddleNames
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.MiddleNames
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO207#002
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.MiddleNames
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.MiddleNames
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: A.
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Title
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Title
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO208#003
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Title
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Title
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: Mr.
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.AcademicTitle
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.AcademicTitle
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO209#003
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.AcademicTitle
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.AcademicTitle
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: Dr.
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.FurtherDetailsOfContact
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.FurtherDetailsOfContact
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO210#002
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.FurtherDetailsOfContact
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.FurtherDetailsOfContact
+    AttributeKey: value
+    AttributeValue:
+    - language: en
+      text: Contact available weekdays only
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.AddressOfAdditionalLink
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.AddressOfAdditionalLink
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAQ326#002
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.AddressOfAdditionalLink
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.AddressOfAdditionalLink
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.AddressOfAdditionalLink
+    AttributeKey: value
+    AttributeValue: AddressOfAdditionalLink
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Product Or Sector Specific Carbon Footprints
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Product Carbon Footprints, which is determined in accordance with sector or product group-specific rules or guidelines
+        and covers the life cycle or parts of a product life cycle.
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/CarbonFootprint/ProductOrSectorSpecificCarbonFootprints/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints
+    AttributeKey: semanticIdListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints
+    AttributeKey: semanticIdListElement
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/CarbonFootprint/ProductOrSectorSpecificCarbonFootprint/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints
+    AttributeKey: typeValueListElement
+    AttributeValue: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Product Carbon Footprint, which is determined in accordance with sector or product group-specific rules or guidelines
+        and covers the life cycle or parts of a product life cycle.
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/CarbonFootprint/ProductOrSectorSpecificCarbonFootprint/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfCalculationMethods
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfCalculationMethods
+    AttributeKey: displayName
+    AttributeValue:
+    - language: de
+      text: Folgenabschätzungsmethoden
+    - language: en
+      text: impact assessment methods
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfCalculationMethods
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfCalculationMethods
+    AttributeKey: description
+    AttributeValue:
+    - language: de
+      text: Normen, Standards, Verfahren zur Ermittlung der Treibhausgas-Emissionen eines Produkts
+    - language: en
+      text: Standards, methods for determining the greenhouse gas emissions of a product.
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfCalculationMethods
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfCalculationMethods
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/CarbonFootprint/PcfCalculationMethods/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfCalculationMethods
+    AttributeKey: semanticIdListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfCalculationMethods
+    AttributeKey: semanticIdListElement
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABG854#003
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfCalculationMethods
+    AttributeKey: typeValueListElement
+    AttributeValue: Property
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfCalculationMethods
+    AttributeKey: valueTypeListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfCalculationMethods
+    AttributeKey: valueTypeListElement
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfCalculationMethods[0]
+    AttributeKey: category
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfCalculationMethods[0]
+    AttributeKey: category
+    AttributeValue: PARAMETER
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfCalculationMethods[0]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfCalculationMethods[0]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: de
+      text: Folgenabschätzungsmethode / Berechnungsmethode
+    - language: en
+      text: impact assessment method / calculation method
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfCalculationMethods[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfCalculationMethods[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Standard, method for determining the greenhouse gas emissions of a product.
+    - language: de
+      text: Norm, Standard, Verfahren zur Ermittlung der Treibhausgas-Emissionen eines Produkts
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfCalculationMethods[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfCalculationMethods[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABG854#003
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfCalculationMethods[0]
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule
+    AttributeKey: displayName
+    AttributeValue:
+    - language: de
+      text: Produktspezifische oder sektorspezifische Regel
+    - language: en
+      text: Product or Sector Specific Rule
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule
+    AttributeKey: description
+    AttributeValue:
+    - language: de
+      text: 'Beinhaltet weiterführende Informationen zur produktspezifischen oder sektorspezifischen Regel, welche zur Berechnung
+        des CO2-Fußabdrucks eingesetzt wird. '
+    - language: en
+      text: Contains further information on the product-specific or sector-specific rule used to calculate the carbon footprint.
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/CarbonFootprint/ProductOrSectorSpecificRule/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleOperator
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleOperator
+    AttributeKey: displayName
+    AttributeValue:
+    - language: de
+      text: Herausgeber der PCF Berechnungsmethode
+    - language: en
+      text: Operator of the PCF calculation method
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleOperator
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleOperator
+    AttributeKey: description
+    AttributeValue:
+    - language: de
+      text: Einrichtung, welche spezifische Anweisungen und Methoden zur Berechnung und Überwachung des CO2-Fußabdrucks eines
+        Produkts oder Sektors definiert und umsetzt.
+    - language: en
+      text: Organization that defines and implements specific instructions and methods for calculating and monitoring the
+        carbon footprint of a product or sector.
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleOperator
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleOperator
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/CarbonFootprint/ProductOrSectorSpecificRule/Operator/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleOperator
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleName
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleName
+    AttributeKey: displayName
+    AttributeValue:
+    - language: de
+      text: Name der PCF Berechnungsmethode
+    - language: en
+      text: Name of the PCF calculation method
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleName
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleName
+    AttributeKey: description
+    AttributeValue:
+    - language: de
+      text: Folgenabschätzungsmethode / Berechnungsmethode
+    - language: en
+      text: Standard, method for determining the greenhouse gas emissions of a product
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleName
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleName
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/CarbonFootprint/ProductOrSectorSpecificRule/Name/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleName
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleVersion
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleVersion
+    AttributeKey: displayName
+    AttributeValue:
+    - language: de
+      text: Version der PCF Berechnungsmethode
+    - language: en
+      text: Version of the PCF calculation method
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleVersion
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleVersion
+    AttributeKey: description
+    AttributeValue:
+    - language: de
+      text: Spezifische Ausgabe oder Revision der Regel, die zur Berechnung des CO2-Fußabdrucks eines Produkts verwendet wird.
+    - language: en
+      text: Specific version or revision of the rule used to calculate the carbon footprint of a product.
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleVersion
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleVersion
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/CarbonFootprint/ProductOrSectorSpecificRule/Version/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleVersion
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleOnlineReference
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleOnlineReference
+    AttributeKey: displayName
+    AttributeValue:
+    - language: de
+      text: Online Referenz zur PCF Berechnungsmethode
+    - language: en
+      text: Online reference to the PCF calculation method
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleOnlineReference
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleOnlineReference
+    AttributeKey: description
+    AttributeValue:
+    - language: de
+      text: Online-Referenz zur PCF-Berechnungsmethodik, die detaillierte Anweisungen und Richtlinien zur Berechnung des CO2-Fußabdrucks
+        eines Produkts bereitstellt.
+    - language: en
+      text: Online PCF calculation methodology reference that provides detailed instructions and guidelines for calculating
+        a product's carbon footprint.
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleOnlineReference
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleOnlineReference
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/CarbonFootprint/ProductOrSectorSpecificRule/OnlineReference/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleOnlineReference
+    AttributeKey: contentType
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleOnlineReference
+    AttributeKey: contentType
+    AttributeValue: application/pdf
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ExternalPcfApi
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ExternalPcfApi
+    AttributeKey: displayName
+    AttributeValue:
+    - language: de
+      text: Externe API für PCF Informationen
+    - language: en
+      text: External API for PCF information
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ExternalPcfApi
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ExternalPcfApi
+    AttributeKey: description
+    AttributeValue:
+    - language: de
+      text: Ein externer Dienst, der über eine Schnittstelle Informationen zum CO2-Fußabdruck bereitstellt und den Abruf dieser
+        Daten auf Abruf ermöglicht.
+    - language: en
+      text: An external service that provides carbon footprint information via an interface, allowing on-demand retrieval
+        of this data when required.
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ExternalPcfApi
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ExternalPcfApi
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/CarbonFootprint/ExternalPcfApi/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ExternalPcfApi.PcfApiEndpoint
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ExternalPcfApi.PcfApiEndpoint
+    AttributeKey: displayName
+    AttributeValue:
+    - language: de
+      text: Endpunkt
+    - language: en
+      text: Endpoint
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ExternalPcfApi.PcfApiEndpoint
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ExternalPcfApi.PcfApiEndpoint
+    AttributeKey: description
+    AttributeValue:
+    - language: de
+      text: Spezifische URL oder Adresse, über die Daten zur Berechnung des CO2-Fußabdrucks eines Produkts von externen Quellen
+        abgerufen werden können.
+    - language: en
+      text: Specific URL or address that can be used to retrieve data from external sources to calculate the carbon footprint
+        of a product.
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ExternalPcfApi.PcfApiEndpoint
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ExternalPcfApi.PcfApiEndpoint
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/CarbonFootprint/ExternalPcfApi/Endpoint/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ExternalPcfApi.PcfApiEndpoint
+    AttributeKey: valueType
+    AttributeValue: xs:anyURI
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ExternalPcfApi.PcfApiQuery
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ExternalPcfApi.PcfApiQuery
+    AttributeKey: displayName
+    AttributeValue:
+    - language: de
+      text: Abfrage
+    - language: en
+      text: Query
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ExternalPcfApi.PcfApiQuery
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ExternalPcfApi.PcfApiQuery
+    AttributeKey: description
+    AttributeValue:
+    - language: de
+      text: Spezifische Abfrage, über die Daten zur Berechnung des CO2-Fußabdrucks eines Produkts von externen Quellen abgerufen
+        werden können.
+    - language: en
+      text: Specific query that can be used to retrieve data from external sources to calculate the carbon footprint of a
+        product.
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ExternalPcfApi.PcfApiQuery
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ExternalPcfApi.PcfApiQuery
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/CarbonFootprint/ExternalPcfApi/Query/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ExternalPcfApi.PcfApiQuery
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfInformation
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfInformation
+    AttributeKey: description
+    AttributeValue:
+    - language: de
+      text: Ein Abschnitt, in dem weitere Inhalte entsprechend der Berechnungsmethode zum Product Carbon Footprint aufgeführt
+        werden.
+    - language: en
+      text: A section in which further content is listed according to the calculation method for the Product Carbon Footprint.
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfInformation
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfInformation
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/CarbonFootprint/PcfInformation/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfInformation.ArbitraryContent
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfInformation.ArbitraryContent
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Free area for structured collection of specific items of a specific PCF.
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfInformation.ArbitraryContent
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfInformation.ArbitraryContent
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SMT/General/Arbitrary
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfInformation.ArbitraryContent
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].PcfCalculationMethods
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].PcfCalculationMethods
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].PcfCalculationMethods
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].PcfCalculationMethods[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].PcfCalculationMethods[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].PcfCalculationMethods[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].LifeCyclePhases
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].LifeCyclePhases
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].LifeCyclePhases
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].LifeCyclePhases[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].LifeCyclePhases[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].LifeCyclePhases[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.RoleOfContactPerson
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.RoleOfContactPerson
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.RoleOfContactPerson
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.RoleOfContactPerson
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.RoleOfContactPerson
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.NationalCode
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.NationalCode
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.NationalCode
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.NationalCode
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.NationalCode
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Language
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Language
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Language
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Language
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Language
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.TimeZone
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.TimeZone
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.TimeZone
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.TimeZone
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.TimeZone
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.CityTown
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.CityTown
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.CityTown
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.CityTown
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.CityTown
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Company
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Company
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Company
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Company
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Company
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Department
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Department
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Department
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Department
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Department
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone.TelephoneNumber
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone.TelephoneNumber
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone.TelephoneNumber
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone.TelephoneNumber
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone.TelephoneNumber
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone.TypeOfTelephone
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone.TypeOfTelephone
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone.TypeOfTelephone
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone.TypeOfTelephone
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone.TypeOfTelephone
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone.AvailableTime
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone.AvailableTime
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone.AvailableTime
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone.AvailableTime
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Phone.AvailableTime
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Fax
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Fax
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Fax
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Fax
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Fax
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Fax.FaxNumber
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Fax.FaxNumber
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Fax.FaxNumber
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Fax.FaxNumber
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Fax.FaxNumber
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Fax.TypeOfFaxNumber
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Fax.TypeOfFaxNumber
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Fax.TypeOfFaxNumber
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Fax.TypeOfFaxNumber
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Fax.TypeOfFaxNumber
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.EmailAddress
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.EmailAddress
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.EmailAddress
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.EmailAddress
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.EmailAddress
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.PublicKey
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.PublicKey
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.PublicKey
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.PublicKey
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.PublicKey
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.TypeOfEmailAddress
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.TypeOfEmailAddress
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.TypeOfEmailAddress
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.TypeOfEmailAddress
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.TypeOfEmailAddress
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.TypeOfPublicKey
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.TypeOfPublicKey
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.TypeOfPublicKey
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.TypeOfPublicKey
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Email.TypeOfPublicKey
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__.AddressOfAdditionalLink
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__.AddressOfAdditionalLink
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__.AddressOfAdditionalLink
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__.AddressOfAdditionalLink
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__.AddressOfAdditionalLink
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__.TypeOfCommunication
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__.TypeOfCommunication
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__.TypeOfCommunication
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__.TypeOfCommunication
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__.TypeOfCommunication
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__.AvailableTime
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__.AvailableTime
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__.AvailableTime
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__.AvailableTime
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.IPCommunication__00__.AvailableTime
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Street
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Street
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Street
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Street
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Street
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Zipcode
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Zipcode
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Zipcode
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Zipcode
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Zipcode
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.POBox
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.POBox
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.POBox
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.POBox
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.POBox
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.ZipCodeOfPOBox
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.ZipCodeOfPOBox
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.ZipCodeOfPOBox
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.ZipCodeOfPOBox
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.ZipCodeOfPOBox
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.StateCounty
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.StateCounty
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.StateCounty
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.StateCounty
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.StateCounty
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.NameOfContact
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.NameOfContact
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.NameOfContact
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.NameOfContact
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.NameOfContact
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.FirstName
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.FirstName
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.FirstName
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.FirstName
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.FirstName
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.MiddleNames
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.MiddleNames
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.MiddleNames
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.MiddleNames
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.MiddleNames
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Title
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Title
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Title
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Title
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.Title
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.AcademicTitle
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.AcademicTitle
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.AcademicTitle
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.AcademicTitle
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.AcademicTitle
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.FurtherDetailsOfContact
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.FurtherDetailsOfContact
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.FurtherDetailsOfContact
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.FurtherDetailsOfContact
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.FurtherDetailsOfContact
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.AddressOfAdditionalLink
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.AddressOfAdditionalLink
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.AddressOfAdditionalLink
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.AddressOfAdditionalLink
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductCarbonFootprints[0].GoodsHandoverAddress.AddressOfAdditionalLink
+    QualifierType: Multiplicity
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfCalculationMethods
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfCalculationMethods
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfCalculationMethods
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfCalculationMethods[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfCalculationMethods[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfCalculationMethods[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleOperator
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleOperator
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleOperator
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleName
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleName
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleName
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleVersion
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleVersion
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleVersion
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleOnlineReference
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleOnlineReference
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ProductOrSectorSpecificRule.PcfRuleOnlineReference
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ExternalPcfApi
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ExternalPcfApi
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ExternalPcfApi
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ExternalPcfApi.PcfApiEndpoint
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ExternalPcfApi.PcfApiEndpoint
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ExternalPcfApi.PcfApiEndpoint
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ExternalPcfApi.PcfApiQuery
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ExternalPcfApi.PcfApiQuery
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].ExternalPcfApi.PcfApiQuery
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfInformation
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfInformation
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfInformation
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfInformation.ArbitraryContent
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfInformation.ArbitraryContent
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductOrSectorSpecificCarbonFootprints[0].PcfInformation.ArbitraryContent
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany

@@ -1,0 +1,95 @@
+# Template Change Notification: ZVEI Technical Data v1.1 -> IDTA 02003 Technical Data v1.2 (intent, hand-written)
+#
+# This file states the intent of the revision. `uv run tcn owner complete` expands the rule sections
+# in place and appends the mechanical completion; the result is technicaldata_1.1_to_1.2.yaml.
+# v1.2 is the first version published by IDTA; no change log is published. The groups are taken from
+# the published templates (ZVEI SMT_qualified_Technical_Data_V11 and IDTA 02003-1-2). The semanticIds
+# change from the sandbox namespace to ZVEI and ECLASS; the mechanical completion states them. In v1.2,
+# ValidDate carries the semanticId of ManufacturerOrderCode; the completion states this as published.
+
+header:
+  Family: TechnicalData
+  PreVersion: https://admin-shell.io/idta/SubmodelTemplate/TechnicalData/1/1
+  PostVersion: https://admin-shell.io/ZVEI/TechnicalData/Submodel/1/2
+  PreTemplate: ressources/Templates/SMT_qualified_Technical_Data_V11.json
+  PostTemplate: ressources/Templates/IDTA_02003-1-2_Template_TechnicalData.json
+  TemplateOwner: Industrial Digital Twin Association (IDTA)
+  TemplateOwnerAddress:
+    Company: Industrial Digital Twin Association e.V.
+    Street: Lyoner Straße 18
+    Zipcode: "60528"
+    CityTown: Frankfurt am Main
+    NationalCode: DE
+  ChangeURI: https://github.com/admin-shell-io/submodel-templates/tree/main/deprecated/Technical_Data/1/2
+
+# A string cannot be mapped to a multi-language value by Identity or ValueMap. The transformation is
+# stated as a CEL expression over the source values `src`: the string becomes an English text. The
+# expression yields the list of target values, the value of the one target being a list of language
+# strings; an unpopulated source value (null) leaves the target unpopulated. The
+# instruction is the fallback for receivers that do not evaluate CEL.
+definitions:
+  string_to_mlp: &string_to_mlp
+    Kind: Expression
+    ExpressionLanguage: https://github.com/google/cel-spec
+    Expression: >-
+      type(src[0]) == string ? [[{"language": "en", "text": src[0]}]] : null
+    Text: {en: "Take the value of the property as the English text of the multi-language property."}
+
+sections:
+  - title: "T1: ManufacturerProductDesignation becomes a multi-language property"
+    origin: hand
+    items:
+      - {ChangeOperation: CreateSME, ElementPath: GeneralInformation.ManufacturerProductDesignationRetyped, SMEType: MultiLanguageProperty}
+      - {ChangeOperation: CreateAttr, ElementPath: GeneralInformation.ManufacturerProductDesignationRetyped, AttributeKey: value}
+      - {ChangeOperation: CreateAttr, ElementPath: GeneralInformation.ManufacturerProductDesignation, AttributeKey: value}
+      - {ChangeOperation: Sync, SourceElementPaths: ["GeneralInformation.ManufacturerProductDesignation#value"],
+         TargetElementPaths: ["GeneralInformation.ManufacturerProductDesignationRetyped#value"], TransferFunction: *string_to_mlp}
+      - {ChangeOperation: CreateQual, ElementPath: GeneralInformation.ManufacturerProductDesignationRetyped, QualifierType: Cardinality}
+      - {ChangeOperation: UpdateAttr, ElementPath: GeneralInformation.ManufacturerProductDesignationRetyped, QualifierType: Cardinality,
+         AttributeKey: valueType, AttributeValue: xs:string}
+      - {ChangeOperation: CreateAttr, ElementPath: GeneralInformation.ManufacturerProductDesignationRetyped, QualifierType: Cardinality,
+         AttributeKey: value}
+      - {ChangeOperation: Sync, SourceElementPaths: ["GeneralInformation.ManufacturerProductDesignation@Multiplicity#value"],
+         TargetElementPaths: ["GeneralInformation.ManufacturerProductDesignationRetyped@Cardinality#value"], TransferFunction: {Kind: Identity}}
+      - {ChangeOperation: RemoveQual, ElementPath: GeneralInformation.ManufacturerProductDesignation, QualifierType: Multiplicity}
+      - {ChangeOperation: RemoveSME, ElementPath: GeneralInformation.ManufacturerProductDesignation}
+      - {ChangeOperation: UpdateIdShort, ElementPath: GeneralInformation.ManufacturerProductDesignationRetyped,
+         NewIdShort: ManufacturerProductDesignation}
+
+  - title: "T2: ManufacturerPartNumber is renamed to ManufacturerArticleNumber"
+    origin: hand
+    items:
+      - {ChangeOperation: UpdateIdShort, ElementPath: GeneralInformation.ManufacturerPartNumber, NewIdShort: ManufacturerArticleNumber}
+
+  - title: "T3: TextStatement becomes a multi-language property"
+    origin: hand
+    items:
+      - {ChangeOperation: CreateSME, ElementPath: FurtherInformation.TextStatementRetyped, SMEType: MultiLanguageProperty}
+      - {ChangeOperation: CreateAttr, ElementPath: FurtherInformation.TextStatementRetyped, AttributeKey: value}
+      - {ChangeOperation: CreateAttr, ElementPath: FurtherInformation.TextStatement, AttributeKey: value}
+      - {ChangeOperation: Sync, SourceElementPaths: ["FurtherInformation.TextStatement#value"],
+         TargetElementPaths: ["FurtherInformation.TextStatementRetyped#value"], TransferFunction: *string_to_mlp}
+      - {ChangeOperation: CreateQual, ElementPath: FurtherInformation.TextStatementRetyped, QualifierType: Cardinality}
+      - {ChangeOperation: UpdateAttr, ElementPath: FurtherInformation.TextStatementRetyped, QualifierType: Cardinality,
+         AttributeKey: valueType, AttributeValue: xs:string}
+      - {ChangeOperation: CreateAttr, ElementPath: FurtherInformation.TextStatementRetyped, QualifierType: Cardinality, AttributeKey: value}
+      - {ChangeOperation: Sync, SourceElementPaths: ["FurtherInformation.TextStatement@Multiplicity#value"],
+         TargetElementPaths: ["FurtherInformation.TextStatementRetyped@Cardinality#value"], TransferFunction: {Kind: Identity}}
+      - {ChangeOperation: RemoveQual, ElementPath: FurtherInformation.TextStatement, QualifierType: Multiplicity}
+      - {ChangeOperation: RemoveSME, ElementPath: FurtherInformation.TextStatement}
+      - {ChangeOperation: UpdateIdShort, ElementPath: FurtherInformation.TextStatementRetyped, NewIdShort: TextStatement}
+
+  - title: "T4: the placeholder for arbitrary technical properties is named ID___arbitrary2__"
+    origin: hand
+    items:
+      - {ChangeOperation: UpdateIdShort, ElementPath: TechnicalProperties.SemanticIdNotAvailable, NewIdShort: ID___arbitrary2__}
+
+  - title: "T5: ProductClassificationItem__00__ is renamed to ProductClassificationItem"
+    origin: rule
+    rule:
+      RenameContainer: {ProductClassifications.ProductClassificationItem__00__: ProductClassificationItem}
+
+  - title: "T6: the cardinality vocabulary changes from Multiplicity to Cardinality"
+    origin: rule
+    rule:
+      QualifierTypeRenames: {Multiplicity: Cardinality}

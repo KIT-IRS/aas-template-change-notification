@@ -1,0 +1,19 @@
+# Submodel instance conforming to IDTA 02067 Production Calendar v1.0. Illustrative values of an example device.
+template: ressources/Templates/IDTA 02067-1-0_Template_ProductionCalendar.json
+id: https://example.com/ids/sm/example-device/ProductionCalendar
+
+omit:
+  - inheritedFrom                     # optional; the calendar is not inherited
+
+values:
+  calendar: /aasx/files/calendar-2026.ics
+  "specificationExtensionVariables[0].variableName": ShiftModel
+  "specificationExtensionVariables[0].variableSpecification": /aasx/files/shift-model.json
+  "specificationExtensionVariables[1].variableName": PlantHolidays
+  "specificationExtensionVariables[1].variableSpecification": /aasx/files/plant-holidays.json
+  "specificationExtensionVariables[2].variableName": MaintenanceWindows
+  "specificationExtensionVariables[2].variableSpecification": /aasx/files/maintenance-windows.json
+
+add:
+  "":                   # local extension of the asset maintainer, described by no template
+    - {modelType: Property, idShort: InternalInventoryNumber, valueType: xs:string, value: INV-2024-0815}

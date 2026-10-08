@@ -1,0 +1,26 @@
+# Expected outcome of applying simulationmodels_1.1_to_1.2 to fixtures/simulationmodels_1.1.yaml.
+# Derived by hand before running the chain: the bug-fix release 1.2 sets the kind of the qualifiers
+# (#159), a template construct, so the instance keeps every value.
+chain: chains/simulationmodels_1.1_to_1.2.yaml
+instance: fixtures/simulationmodels_1.1.yaml
+
+retained:
+  SimulationModel.Summary: [{language: en, text: Thermal model of the controller housing}]
+  SimulationModel.SimPurpose.PosSimPurpose: ThermalAnalysis
+  SimulationModel.ScopeOfModel: Component
+  SimulationModel.ModelFile.ModelFileVersion.ModelVersionId: "1.0.3"
+  SimulationModel.ModelFile.ModelFileVersion.DigitalFile: /aasx/files/controller-thermal.fmu
+  SimulationModel.DefaultSimTime: "3600"
+  SimulationModel.Ports.PortsConnector.PortConnectorName: HeatPort
+  SimulationModel.Ports.PortsConnector.PortConDescription: [{language: en, text: Thermal port of the housing}]
+  InternalInventoryNumber: INV-2024-0815
+
+control:
+  InternalInventoryNumber: InternalInventoryNumber
+  SimulationModel.SimPurpose.PosSimPurpose: SimulationModel.SimPurpose.PosSimPurpose
+  SimulationModel.ModelFile.ModelFileVersion.DigitalFile: SimulationModel.ModelFile.ModelFileVersion.DigitalFile
+
+manual: []
+conforms: true
+violations: []
+removed: []

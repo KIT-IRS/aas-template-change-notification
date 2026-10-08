@@ -1,0 +1,77 @@
+# Template Change Notification: IDTA 02009 OPC UA Server Datasheet v1.0 -> v1.1 (intent, hand-written)
+#
+# This file states the intent of the revision. `uv run tcn owner complete` expands the rule sections
+# in place and appends the mechanical completion; the result is opcuaserver_1.0_to_1.1.yaml.
+# Bug-fix release: its change log is the list of issues it fixes (#187, #207, #208, #210 of
+# admin-shell-io/submodel-templates): the machine-readable artifacts are corrected, the specification
+# is carried over unchanged. Its submodel id and administration are those of the previous version.
+# F1 is the only structural correction; the qualifier kind (#159), semanticIds and language strings
+# are attribute-level corrections, stated by the mechanical completion.
+
+header:
+  Family: OPCUAServerDatasheet
+  PreVersion: https://admin-shell.io/idta/SubmodelTemplate/opcuaserverdatasheet/1/0
+  PostVersion: https://admin-shell.io/idta/SubmodelTemplate/opcuaserverdatasheet/1/0
+  PreTemplate: ressources/Templates/IDTA 02009-1-0_Template_OPCUA-Server Datasheet.json
+  PostTemplate: ressources/Templates/IDTA 02009-1-1_Template_OPCUA-Server Datasheet.json
+  TemplateOwner: Industrial Digital Twin Association (IDTA)
+  TemplateOwnerAddress:
+    Company: Industrial Digital Twin Association e.V.
+    Street: Lyoner Straße 18
+    Zipcode: '60528'
+    CityTown: Frankfurt am Main
+    NationalCode: DE
+  ChangeURI: https://github.com/admin-shell-io/submodel-templates/tree/main/published/OPC%20UA%20Server%20Datasheet/1/1
+
+sections:
+  - title: "F1: entries of a list carry no idShort (AASd-120); entries without children are rebuilt, their values carried over"
+    origin: hand
+    items:
+      - {ChangeOperation: CreateSME, ElementPath: 'Configuration.NodeSets[1]', SMEType: File}
+      - {ChangeOperation: CreateAttr, ElementPath: 'Configuration.NodeSets[1]', AttributeKey: value}
+      - {ChangeOperation: Sync, SourceElementPaths: ['Configuration.NodeSets[0]#value'], TargetElementPaths: ['Configuration.NodeSets[1]#value'], TransferFunction: {Kind: Identity}}
+      - {ChangeOperation: CreateQual, ElementPath: 'Configuration.NodeSets[1]', QualifierType: Cardinality}
+      - {ChangeOperation: UpdateAttr, ElementPath: 'Configuration.NodeSets[1]', QualifierType: Cardinality, AttributeKey: valueType, AttributeValue: 'xs:string'}
+      - {ChangeOperation: CreateAttr, ElementPath: 'Configuration.NodeSets[1]', QualifierType: Cardinality, AttributeKey: value}
+      - {ChangeOperation: Sync, SourceElementPaths: ['Configuration.NodeSets[0]@Cardinality#value'], TargetElementPaths: ['Configuration.NodeSets[1]@Cardinality#value'], TransferFunction: {Kind: Identity}}
+      - {ChangeOperation: RemoveQual, ElementPath: 'Configuration.NodeSets[0]', QualifierType: Cardinality}
+      - {ChangeOperation: RemoveSME, ElementPath: 'Configuration.NodeSets[0]'}
+      - {ChangeOperation: CreateSME, ElementPath: 'Configuration.SupportSecurityPolicyUris[1]', SMEType: Property}
+      - {ChangeOperation: UpdateAttr, ElementPath: 'Configuration.SupportSecurityPolicyUris[1]', AttributeKey: valueType, AttributeValue: 'xs:string'}
+      - {ChangeOperation: CreateAttr, ElementPath: 'Configuration.SupportSecurityPolicyUris[0]', AttributeKey: value}
+      - {ChangeOperation: CreateAttr, ElementPath: 'Configuration.SupportSecurityPolicyUris[1]', AttributeKey: value}
+      - {ChangeOperation: Sync, SourceElementPaths: ['Configuration.SupportSecurityPolicyUris[0]#value'], TargetElementPaths: ['Configuration.SupportSecurityPolicyUris[1]#value'], TransferFunction: {Kind: Identity}}
+      - {ChangeOperation: CreateQual, ElementPath: 'Configuration.SupportSecurityPolicyUris[1]', QualifierType: Cardinality}
+      - {ChangeOperation: UpdateAttr, ElementPath: 'Configuration.SupportSecurityPolicyUris[1]', QualifierType: Cardinality, AttributeKey: valueType, AttributeValue: 'xs:string'}
+      - {ChangeOperation: CreateAttr, ElementPath: 'Configuration.SupportSecurityPolicyUris[1]', QualifierType: Cardinality, AttributeKey: value}
+      - {ChangeOperation: Sync, SourceElementPaths: ['Configuration.SupportSecurityPolicyUris[0]@Cardinality#value'], TargetElementPaths: ['Configuration.SupportSecurityPolicyUris[1]@Cardinality#value'], TransferFunction: {Kind: Identity}}
+      - {ChangeOperation: RemoveQual, ElementPath: 'Configuration.SupportSecurityPolicyUris[0]', QualifierType: Cardinality}
+      - {ChangeOperation: RemoveSME, ElementPath: 'Configuration.SupportSecurityPolicyUris[0]'}
+      - {ChangeOperation: CreateSME, ElementPath: 'EndpointDescriptions[0].Server.DiscoveryUrls[1]', SMEType: Property}
+      - {ChangeOperation: UpdateAttr, ElementPath: 'EndpointDescriptions[0].Server.DiscoveryUrls[1]', AttributeKey: valueType, AttributeValue: 'xs:string'}
+      - {ChangeOperation: CreateAttr, ElementPath: 'EndpointDescriptions[0].Server.DiscoveryUrls[0]', AttributeKey: value}
+      - {ChangeOperation: CreateAttr, ElementPath: 'EndpointDescriptions[0].Server.DiscoveryUrls[1]', AttributeKey: value}
+      - {ChangeOperation: Sync, SourceElementPaths: ['EndpointDescriptions[0].Server.DiscoveryUrls[0]#value'], TargetElementPaths: ['EndpointDescriptions[0].Server.DiscoveryUrls[1]#value'], TransferFunction: {Kind: Identity}}
+      - {ChangeOperation: CreateQual, ElementPath: 'EndpointDescriptions[0].Server.DiscoveryUrls[1]', QualifierType: Cardinality}
+      - {ChangeOperation: UpdateAttr, ElementPath: 'EndpointDescriptions[0].Server.DiscoveryUrls[1]', QualifierType: Cardinality, AttributeKey: valueType, AttributeValue: 'xs:string'}
+      - {ChangeOperation: CreateAttr, ElementPath: 'EndpointDescriptions[0].Server.DiscoveryUrls[1]', QualifierType: Cardinality, AttributeKey: value}
+      - {ChangeOperation: Sync, SourceElementPaths: ['EndpointDescriptions[0].Server.DiscoveryUrls[0]@Cardinality#value'], TargetElementPaths: ['EndpointDescriptions[0].Server.DiscoveryUrls[1]@Cardinality#value'], TransferFunction: {Kind: Identity}}
+      - {ChangeOperation: RemoveQual, ElementPath: 'EndpointDescriptions[0].Server.DiscoveryUrls[0]', QualifierType: Cardinality}
+      - {ChangeOperation: RemoveSME, ElementPath: 'EndpointDescriptions[0].Server.DiscoveryUrls[0]'}
+      - {ChangeOperation: CreateSME, ElementPath: 'DiscoveryUrls[1]', SMEType: Property}
+      - {ChangeOperation: UpdateAttr, ElementPath: 'DiscoveryUrls[1]', AttributeKey: valueType, AttributeValue: 'xs:string'}
+      - {ChangeOperation: CreateAttr, ElementPath: 'DiscoveryUrls[0]', AttributeKey: value}
+      - {ChangeOperation: CreateAttr, ElementPath: 'DiscoveryUrls[1]', AttributeKey: value}
+      - {ChangeOperation: Sync, SourceElementPaths: ['DiscoveryUrls[0]#value'], TargetElementPaths: ['DiscoveryUrls[1]#value'], TransferFunction: {Kind: Identity}}
+      - {ChangeOperation: CreateQual, ElementPath: 'DiscoveryUrls[1]', QualifierType: Cardinality}
+      - {ChangeOperation: UpdateAttr, ElementPath: 'DiscoveryUrls[1]', QualifierType: Cardinality, AttributeKey: valueType, AttributeValue: 'xs:string'}
+      - {ChangeOperation: CreateAttr, ElementPath: 'DiscoveryUrls[1]', QualifierType: Cardinality, AttributeKey: value}
+      - {ChangeOperation: Sync, SourceElementPaths: ['DiscoveryUrls[0]@Cardinality#value'], TargetElementPaths: ['DiscoveryUrls[1]@Cardinality#value'], TransferFunction: {Kind: Identity}}
+      - {ChangeOperation: RemoveQual, ElementPath: 'DiscoveryUrls[0]', QualifierType: Cardinality}
+      - {ChangeOperation: RemoveSME, ElementPath: 'DiscoveryUrls[0]'}
+  - title: "F1: entries of a list carry no idShort (AASd-120); entries with children are rebuilt by hollow-out"
+    origin: rule
+    rule:
+      RenameContainer:
+        "EndpointDescriptions[0]": null
+        "EndpointDescriptions[0].UserIdentityTokens[0]": null

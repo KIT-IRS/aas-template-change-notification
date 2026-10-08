@@ -1,0 +1,35 @@
+# Submodel instance conforming to IDTA 02075 Factory Automation Data for Plant Planning v1.0.
+# Illustrative values of an example device. The entries of AutomationMLAttributeAndInterfaceList carry
+# the idShorts the template gives them.
+template: ressources/Templates/IDTA 02075-1-0_Template_FactoryAutomationDataForPlantPlanning.json
+id: https://example.com/ids/sm/example-device/PlantPlanning
+
+values:
+  AutomationMLData: /aasx/files/controller.aml
+  AutomationMLVersion: "3"
+  AutomationMLElementReference: https://example.com/ids/aml/controller#InternalElement
+  "AutomationMLAttributeAndInterfaceList[0].onOff": "true"
+  "AutomationMLAttributeAndInterfaceList[1].ArticleNumber": EX-100-200
+  "AutomationMLAttributeAndInterfaceList[2].NameOfSupplier": Example Manufacturer GmbH
+  "AutomationMLAttributeAndInterfaceList[3].name": EX-100 controller
+  "AutomationMLAttributeAndInterfaceList[4].description": Compact I/O controller
+  "AutomationMLAttributeAndInterfaceList[5].medium": air
+  "AutomationMLAttributeAndInterfaceList[6].comment": cabinet mounting
+  "AutomationMLAttributeAndInterfaceList[7].plant": Line 3
+  "AutomationMLAttributeAndInterfaceList[8].diameter": "0.12"
+  "AutomationMLAttributeAndInterfaceList[9].overallLength": "0.25"
+  "AutomationMLAttributeAndInterfaceList[10].NominalVoltage": "24"
+  "AutomationMLAttributeAndInterfaceList[11].nominalPowerConsumption": "12.5"
+  "AutomationMLAttributeAndInterfaceList[12].maximalPowerConsumption": "18.0"
+  "AutomationMLAttributeAndInterfaceList[13].powerNominal": "12.5"
+  "AutomationMLAttributeAndInterfaceList[14].powerMaximal": "18.0"
+  "AutomationMLAttributeAndInterfaceList[15].xframe": "1.20"
+  "AutomationMLAttributeAndInterfaceList[16].yframe": "0.40"
+  "AutomationMLAttributeAndInterfaceList[17].zframe": "0.95"
+  "AutomationMLAttributeAndInterfaceList[18].rxframe": "0"
+  "AutomationMLAttributeAndInterfaceList[19].ryframe": "0"
+  "AutomationMLAttributeAndInterfaceList[20].rzframe": "90"
+
+add:
+  "":                   # local extension of the asset maintainer, described by no template
+    - {modelType: Property, idShort: InternalInventoryNumber, valueType: xs:string, value: INV-2024-0815}

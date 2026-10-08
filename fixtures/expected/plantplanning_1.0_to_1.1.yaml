@@ -1,0 +1,23 @@
+# Expected outcome of applying plantplanning_1.0_to_1.1 to fixtures/plantplanning_1.0.yaml.
+# Derived by hand before running the chain: the bug-fix release removes the idShorts of the list
+# entries (F1, AASd-120); each entry is rebuilt in place and keeps its property and relation.
+chain: chains/plantplanning_1.0_to_1.1.yaml
+instance: fixtures/plantplanning_1.0.yaml
+
+retained:
+  AutomationMLData: /aasx/files/controller.aml
+  AutomationMLVersion: "3"
+  "AutomationMLAttributeAndInterfaceList[0].onOff": "true"
+  "AutomationMLAttributeAndInterfaceList[1].ArticleNumber": EX-100-200
+  "AutomationMLAttributeAndInterfaceList[7].plant": Line 3
+  "AutomationMLAttributeAndInterfaceList[10].NominalVoltage": "24"
+  "AutomationMLAttributeAndInterfaceList[20].rzframe": "90"
+  InternalInventoryNumber: INV-2024-0815
+
+control:
+  InternalInventoryNumber: InternalInventoryNumber
+
+manual: []
+conforms: true
+violations: []
+removed: []

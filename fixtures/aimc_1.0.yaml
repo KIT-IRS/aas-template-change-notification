@@ -1,0 +1,29 @@
+# Submodel instance conforming to IDTA 02027 Asset Interfaces Mapping Configuration v1.0. Illustrative
+# values of an example device: two mapping configurations, the first with two relations.
+template: ressources/Templates/IDTA 02027-1-0-1_Template_AIMC.json
+id: https://example.com/ids/sm/example-device/AIMC
+
+omit:
+  - "MappingConfigurations[0].MappingSourceSinkRelations[0]"   # the relations are added below
+
+repeat:
+  "MappingConfigurations[0]": 2
+
+values:
+  "MappingConfigurations[0].InterfaceReference": https://example.com/ids/sm/example-device/AID#MQTT
+  "MappingConfigurations[1].InterfaceReference": https://example.com/ids/sm/example-device/AID#HTTP
+
+add:
+  "MappingConfigurations[0].MappingSourceSinkRelations":
+    - {modelType: RelationshipElement,
+       first: {type: ModelReference, keys: [{type: Submodel, value: "https://example.com/ids/sm/example-device/AID"}, {type: SubmodelElementCollection, value: MQTT}, {type: SubmodelElementCollection, value: Temperature}]},
+       second: {type: ModelReference, keys: [{type: Submodel, value: "https://example.com/ids/sm/example-device/OperationalData"}, {type: Property, value: Temperature}]}}
+    - {modelType: RelationshipElement,
+       first: {type: ModelReference, keys: [{type: Submodel, value: "https://example.com/ids/sm/example-device/AID"}, {type: SubmodelElementCollection, value: MQTT}, {type: SubmodelElementCollection, value: Pressure}]},
+       second: {type: ModelReference, keys: [{type: Submodel, value: "https://example.com/ids/sm/example-device/OperationalData"}, {type: Property, value: Pressure}]}}
+  "MappingConfigurations[1].MappingSourceSinkRelations":
+    - {modelType: RelationshipElement,
+       first: {type: ModelReference, keys: [{type: Submodel, value: "https://example.com/ids/sm/example-device/AID"}, {type: SubmodelElementCollection, value: HTTP}, {type: SubmodelElementCollection, value: Status}]},
+       second: {type: ModelReference, keys: [{type: Submodel, value: "https://example.com/ids/sm/example-device/OperationalData"}, {type: Property, value: Status}]}}
+  "":                   # local extension of the asset maintainer, described by no template
+    - {modelType: Property, idShort: InternalInventoryNumber, valueType: xs:string, value: INV-2024-0815}

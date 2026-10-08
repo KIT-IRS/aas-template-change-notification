@@ -1,0 +1,47 @@
+# Template Change Notification: IDTA 02080 Material Data for Plastic Waste v1.0 -> v1.1 (intent, hand-written)
+#
+# This file states the intent of the revision. `uv run tcn owner complete` expands the rule sections
+# in place and appends the mechanical completion; the result is plasticwaste_1.0_to_1.1.yaml.
+# Bug-fix release: its change log is the list of issues it fixes (#187, #207, #208, #210 of
+# admin-shell-io/submodel-templates): the machine-readable artifacts are corrected, the specification
+# is carried over unchanged. Its submodel id and administration are those of the previous version.
+# F1 is the only structural correction; the qualifier kind (#159), semanticIds and language strings
+# are attribute-level corrections, stated by the mechanical completion.
+
+header:
+  Family: MaterialDataForPlasticWaste
+  PreVersion: https://admin-shell.io/idta/SubmodelTemplate/en18065materialdata/1/0
+  PostVersion: https://admin-shell.io/idta/SubmodelTemplate/en18065materialdata/1/0
+  PreTemplate: ressources/Templates/IDTA 02080-1-0_Template_Material Data for Plastic Waste.json
+  PostTemplate: ressources/Templates/IDTA 02080-1-1_Template_Material Data for Plastic Waste.json
+  TemplateOwner: Industrial Digital Twin Association (IDTA)
+  TemplateOwnerAddress:
+    Company: Industrial Digital Twin Association e.V.
+    Street: Lyoner Straße 18
+    Zipcode: '60528'
+    CityTown: Frankfurt am Main
+    NationalCode: DE
+  ChangeURI: https://github.com/admin-shell-io/submodel-templates/tree/main/published/Material%20Data%20for%20Plastic%20Waste/1/1
+
+sections:
+  - title: "F1: entries of a list carry no idShort (AASd-120); entries without children are rebuilt, their values carried over"
+    origin: hand
+    items:
+      - {ChangeOperation: CreateSME, ElementPath: 'ApplicationSpecificStandards[1]', SMEType: Property}
+      - {ChangeOperation: UpdateAttr, ElementPath: 'ApplicationSpecificStandards[1]', AttributeKey: valueType, AttributeValue: 'xs:string'}
+      - {ChangeOperation: CreateAttr, ElementPath: 'ApplicationSpecificStandards[0]', AttributeKey: value}
+      - {ChangeOperation: CreateAttr, ElementPath: 'ApplicationSpecificStandards[1]', AttributeKey: value}
+      - {ChangeOperation: Sync, SourceElementPaths: ['ApplicationSpecificStandards[0]#value'], TargetElementPaths: ['ApplicationSpecificStandards[1]#value'], TransferFunction: {Kind: Identity}}
+      - {ChangeOperation: CreateQual, ElementPath: 'ApplicationSpecificStandards[1]', QualifierType: SMT/Cardinality}
+      - {ChangeOperation: UpdateAttr, ElementPath: 'ApplicationSpecificStandards[1]', QualifierType: SMT/Cardinality, AttributeKey: valueType, AttributeValue: 'xs:string'}
+      - {ChangeOperation: CreateAttr, ElementPath: 'ApplicationSpecificStandards[1]', QualifierType: SMT/Cardinality, AttributeKey: value}
+      - {ChangeOperation: Sync, SourceElementPaths: ['ApplicationSpecificStandards[0]@SMT/Cardinality#value'], TargetElementPaths: ['ApplicationSpecificStandards[1]@SMT/Cardinality#value'], TransferFunction: {Kind: Identity}}
+      - {ChangeOperation: RemoveQual, ElementPath: 'ApplicationSpecificStandards[0]', QualifierType: SMT/Cardinality}
+      - {ChangeOperation: RemoveSME, ElementPath: 'ApplicationSpecificStandards[0]'}
+  - title: "F1: entries of a list carry no idShort (AASd-120); entries with children are rebuilt by hollow-out"
+    origin: rule
+    rule:
+      RenameContainer:
+        "InformationCharacteristics.TypesOfFillers[0]": null
+        "InformationCharacteristics.PresenceOfModifyingAdditives[0]": null
+        "PropertyCharacteristics.TensileProperties.MeasuredValues[0]": null

@@ -1,0 +1,2370 @@
+header:
+  Family: ProductChangeNotifications
+  PreVersion: https://admin-shell.io/idta/SubmodelTemplate/productchangenotifications/1/0
+  PostVersion: https://admin-shell.io/idta/SubmodelTemplate/productchangenotifications/1/0
+  PreTemplate: ressources/Templates/IDTA 02036-1-0_Template_ProductChangeNotifications.json
+  PostTemplate: ressources/Templates/IDTA 02036-1-1_Template_ProductChangeNotifications.json
+  TemplateOwner: Industrial Digital Twin Association (IDTA)
+  TemplateOwnerAddress:
+    Company: Industrial Digital Twin Association e.V.
+    Street: Lyoner Straße 18
+    Zipcode: '60528'
+    CityTown: Frankfurt am Main
+    NationalCode: DE
+  ChangeURI: https://github.com/admin-shell-io/submodel-templates/tree/main/published/Product%20Change%20Notifications/1/1
+sections:
+- title: 'F1: entries of a list carry no idShort (AASd-120); entries without children are rebuilt, their values carried over'
+  origin: hand
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: Records[0].AffectedPartNumbers[1]
+    SMEType: Property
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[0].AffectedPartNumbers[1]
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[0].AffectedPartNumbers[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[0].AffectedPartNumbers[1]
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Records[0].AffectedPartNumbers[0]#value
+    TargetElementPaths:
+    - Records[0].AffectedPartNumbers[1]#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: CreateQual
+    ElementPath: Records[0].AffectedPartNumbers[1]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[0].AffectedPartNumbers[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[0].AffectedPartNumbers[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Records[0].AffectedPartNumbers[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - Records[0].AffectedPartNumbers[1]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Records[0].AffectedPartNumbers[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: RemoveSME
+    ElementPath: Records[0].AffectedPartNumbers[0]
+  - ChangeOperation: CreateSME
+    ElementPath: Records[0].AdditionalInformation[1]
+    SMEType: File
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[0].AdditionalInformation[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[0].AdditionalInformation[1]
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Records[0].AdditionalInformation[0]#value
+    TargetElementPaths:
+    - Records[0].AdditionalInformation[1]#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: CreateQual
+    ElementPath: Records[0].AdditionalInformation[1]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[0].AdditionalInformation[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[0].AdditionalInformation[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Records[0].AdditionalInformation[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - Records[0].AdditionalInformation[1]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Records[0].AdditionalInformation[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: RemoveSME
+    ElementPath: Records[0].AdditionalInformation[0]
+- title: 'F1: entries of a list carry no idShort (AASd-120); entries with children are rebuilt by hollow-out'
+  origin: rule
+  rule:
+    RenameContainer:
+      Records[0]: null
+      Records[0].LifeCycleData[0]: null
+      Records[0].ReasonsOfChange[0]: null
+      Records[0].ItemCategories[0]: null
+      Records[0].ItemOfChange.ProductClassifications[0]: null
+      Records[0].ItemOfChange.TechnicalData_Changes[0]: null
+      Records[0].RecommendedItems[0]: null
+      Records[0].RecommendedItems[0].ProductClassifications[0]: null
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: Records[1]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI294#003/0173-1#01-AHE583#003
+  - ChangeOperation: CreateQual
+    ElementPath: Records[1]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Records[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - Records[1]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Records[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateSME
+    ElementPath: Records[1].Manufacturer
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].Manufacturer
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].Manufacturer
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI295#003/0173-1#01-AHE584#003
+  - ChangeOperation: CreateQual
+    ElementPath: Records[1].Manufacturer
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].Manufacturer
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].Manufacturer
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].Manufacturer
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].Manufacturer
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].Manufacturer
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].Manufacturer
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Records[0].Manufacturer@SMT/Cardinality#value
+    TargetElementPaths:
+    - Records[1].Manufacturer@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Records[0].Manufacturer
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].Manufacturer.ManufacturerName
+    NewParentPath: Records[1].Manufacturer
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].Manufacturer.PhysicalAddress__0__
+    NewParentPath: Records[1].Manufacturer
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].Manufacturer.PhysicalAddress__1__
+    NewParentPath: Records[1].Manufacturer
+  - ChangeOperation: RemoveSME
+    ElementPath: Records[0].Manufacturer
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].ManufacturerChangeID
+    NewParentPath: Records[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].PcnType
+    NewParentPath: Records[1]
+  - ChangeOperation: CreateSME
+    ElementPath: Records[1].LifeCycleData
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].LifeCycleData
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].LifeCycleData
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: http://admin-shell.io/VDMA/Fluidics/ProductChangeNotification/LifeCycleData/List/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].LifeCycleData
+    AttributeKey: semanticIdListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].LifeCycleData
+    AttributeKey: semanticIdListElement
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: http://admin-shell.io/VDMA/Fluidics/ProductChangeNotification/LifeCycleData/Milestone/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].LifeCycleData
+    AttributeKey: typeValueListElement
+    AttributeValue: SubmodelElementCollection
+  - ChangeOperation: CreateQual
+    ElementPath: Records[1].LifeCycleData
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].LifeCycleData
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].LifeCycleData
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].LifeCycleData
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].LifeCycleData
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].LifeCycleData
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].LifeCycleData
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Records[0].LifeCycleData@SMT/Cardinality#value
+    TargetElementPaths:
+    - Records[1].LifeCycleData@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Records[0].LifeCycleData
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateSME
+    ElementPath: Records[1].LifeCycleData[0]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].LifeCycleData[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].LifeCycleData[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: http://admin-shell.io/VDMA/Fluidics/ProductChangeNotification/LifeCycleData/Milestone/1/0
+  - ChangeOperation: CreateQual
+    ElementPath: Records[1].LifeCycleData[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].LifeCycleData[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].LifeCycleData[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].LifeCycleData[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].LifeCycleData[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].LifeCycleData[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].LifeCycleData[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Records[0].LifeCycleData[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - Records[1].LifeCycleData[0]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Records[0].LifeCycleData[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].LifeCycleData[0].MilestoneClassification
+    NewParentPath: Records[1].LifeCycleData[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].LifeCycleData[0].DateOfValidity
+    NewParentPath: Records[1].LifeCycleData[0]
+  - ChangeOperation: RemoveSME
+    ElementPath: Records[0].LifeCycleData[0]
+  - ChangeOperation: RemoveSME
+    ElementPath: Records[0].LifeCycleData
+  - ChangeOperation: CreateSME
+    ElementPath: Records[1].ReasonsOfChange
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ReasonsOfChange
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ReasonsOfChange
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: Multiple classification systems might be used.'
+    - language: en
+      text: 'Constraint: At least one reason according VDM24903 shall be given.'
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ReasonsOfChange
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ReasonsOfChange
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI296#002
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ReasonsOfChange
+    AttributeKey: semanticIdListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ReasonsOfChange
+    AttributeKey: semanticIdListElement
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI296#002/0173-1#01-AHE585#002
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ReasonsOfChange
+    AttributeKey: typeValueListElement
+    AttributeValue: SubmodelElementCollection
+  - ChangeOperation: CreateQual
+    ElementPath: Records[1].ReasonsOfChange
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ReasonsOfChange
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ReasonsOfChange
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ReasonsOfChange
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ReasonsOfChange
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ReasonsOfChange
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ReasonsOfChange
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Records[0].ReasonsOfChange@SMT/Cardinality#value
+    TargetElementPaths:
+    - Records[1].ReasonsOfChange@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Records[0].ReasonsOfChange
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateSME
+    ElementPath: Records[1].ReasonsOfChange[0]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ReasonsOfChange[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ReasonsOfChange[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI296#002/0173-1#01-AHE585#002
+  - ChangeOperation: CreateQual
+    ElementPath: Records[1].ReasonsOfChange[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ReasonsOfChange[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ReasonsOfChange[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ReasonsOfChange[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ReasonsOfChange[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ReasonsOfChange[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ReasonsOfChange[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Records[0].ReasonsOfChange[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - Records[1].ReasonsOfChange[0]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Records[0].ReasonsOfChange[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].ReasonsOfChange[0].ReasonClassificationSystem
+    NewParentPath: Records[1].ReasonsOfChange[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].ReasonsOfChange[0].VersionOfClassificationSystem
+    NewParentPath: Records[1].ReasonsOfChange[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].ReasonsOfChange[0].ReasonId
+    NewParentPath: Records[1].ReasonsOfChange[0]
+  - ChangeOperation: RemoveSME
+    ElementPath: Records[0].ReasonsOfChange[0]
+  - ChangeOperation: RemoveSME
+    ElementPath: Records[0].ReasonsOfChange
+  - ChangeOperation: CreateSME
+    ElementPath: Records[1].ItemCategories
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ItemCategories
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemCategories
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: Multiple classification systems might be used.'
+    - language: en
+      text: 'Constraint: At least one item category according VDM24903 shall be given.'
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ItemCategories
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemCategories
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: http://admin-shell.io/VDMA/Fluidics/ProductChangeNotification/ItemCategory/List/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ItemCategories
+    AttributeKey: semanticIdListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemCategories
+    AttributeKey: semanticIdListElement
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: http://admin-shell.io/VDMA/Fluidics/ProductChangeNotification/ItemCategory/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemCategories
+    AttributeKey: typeValueListElement
+    AttributeValue: SubmodelElementCollection
+  - ChangeOperation: CreateQual
+    ElementPath: Records[1].ItemCategories
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ItemCategories
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemCategories
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ItemCategories
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemCategories
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemCategories
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ItemCategories
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Records[0].ItemCategories@SMT/Cardinality#value
+    TargetElementPaths:
+    - Records[1].ItemCategories@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Records[0].ItemCategories
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateSME
+    ElementPath: Records[1].ItemCategories[0]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ItemCategories[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemCategories[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: http://admin-shell.io/VDMA/Fluidics/ProductChangeNotification/ItemCategory/1/0
+  - ChangeOperation: CreateQual
+    ElementPath: Records[1].ItemCategories[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ItemCategories[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemCategories[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ItemCategories[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemCategories[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemCategories[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ItemCategories[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Records[0].ItemCategories[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - Records[1].ItemCategories[0]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Records[0].ItemCategories[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].ItemCategories[0].ItemClassificationSystem
+    NewParentPath: Records[1].ItemCategories[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].ItemCategories[0].VersionOfClassificationSystem
+    NewParentPath: Records[1].ItemCategories[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].ItemCategories[0].ItemCategory
+    NewParentPath: Records[1].ItemCategories[0]
+  - ChangeOperation: RemoveSME
+    ElementPath: Records[0].ItemCategories[0]
+  - ChangeOperation: RemoveSME
+    ElementPath: Records[0].ItemCategories
+  - ChangeOperation: CreateSME
+    ElementPath: Records[1].AffectedPartNumbers
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].AffectedPartNumbers
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].AffectedPartNumbers
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Constraint: Affected part numbers shall only be listed, if not the full range of part numbers produced for this
+        item (product family and designation) is affected.'
+    - language: en
+      text: 'Note: Multiple single part numbers with wildcards or ranges of part numbers are listed.'
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].AffectedPartNumbers
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].AffectedPartNumbers
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: http://admin-shell.io/VDMA/Fluidics/ProductChangeNotification/AffectedPartNumber/List/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].AffectedPartNumbers
+    AttributeKey: semanticIdListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].AffectedPartNumbers
+    AttributeKey: semanticIdListElement
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: http://admin-shell.io/VDMA/Fluidics/ProductChangeNotification/AffectedPartNumber/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].AffectedPartNumbers
+    AttributeKey: typeValueListElement
+    AttributeValue: Property
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].AffectedPartNumbers
+    AttributeKey: valueTypeListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].AffectedPartNumbers
+    AttributeKey: valueTypeListElement
+    AttributeValue: xs:string
+  - ChangeOperation: CreateQual
+    ElementPath: Records[1].AffectedPartNumbers
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].AffectedPartNumbers
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].AffectedPartNumbers
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].AffectedPartNumbers
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].AffectedPartNumbers
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].AffectedPartNumbers
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].AffectedPartNumbers
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Records[0].AffectedPartNumbers@SMT/Cardinality#value
+    TargetElementPaths:
+    - Records[1].AffectedPartNumbers@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Records[0].AffectedPartNumbers
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].AffectedPartNumbers[0]
+    NewParentPath: Records[1].AffectedPartNumbers
+  - ChangeOperation: RemoveSME
+    ElementPath: Records[0].AffectedPartNumbers
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].PcnReasonComment
+    NewParentPath: Records[1]
+  - ChangeOperation: CreateSME
+    ElementPath: Records[1].PcnChangeInformation
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].PcnChangeInformation
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].PcnChangeInformation
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: http://admin-shell.io/VDMA/Fluidics/ProductChangeNotification/PcnChangeInformation/1/0
+  - ChangeOperation: CreateQual
+    ElementPath: Records[1].PcnChangeInformation
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].PcnChangeInformation
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].PcnChangeInformation
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].PcnChangeInformation
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].PcnChangeInformation
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].PcnChangeInformation
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].PcnChangeInformation
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Records[0].PcnChangeInformation@SMT/Cardinality#value
+    TargetElementPaths:
+    - Records[1].PcnChangeInformation@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Records[0].PcnChangeInformation
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].PcnChangeInformation.ChangeTitle
+    NewParentPath: Records[1].PcnChangeInformation
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].PcnChangeInformation.ChangeDetail
+    NewParentPath: Records[1].PcnChangeInformation
+  - ChangeOperation: RemoveSME
+    ElementPath: Records[0].PcnChangeInformation
+  - ChangeOperation: CreateSME
+    ElementPath: Records[1].AdditionalInformation
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].AdditionalInformation
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].AdditionalInformation
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: Suppliers are encouraged to add the conventional "product change information" documents and further details,
+        e.g. photo-based or geometric change information to the PCN record.'
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].AdditionalInformation
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].AdditionalInformation
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: http://admin-shell.io/VDMA/Fluidics/ProductChangeNotification/AdditionalInformation/List/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].AdditionalInformation
+    AttributeKey: semanticIdListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].AdditionalInformation
+    AttributeKey: semanticIdListElement
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: http://admin-shell.io/VDMA/Fluidics/ProductChangeNotification/AdditionalInformation/AdditionalInformation/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].AdditionalInformation
+    AttributeKey: typeValueListElement
+    AttributeValue: File
+  - ChangeOperation: CreateQual
+    ElementPath: Records[1].AdditionalInformation
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].AdditionalInformation
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].AdditionalInformation
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].AdditionalInformation
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].AdditionalInformation
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].AdditionalInformation
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].AdditionalInformation
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Records[0].AdditionalInformation@SMT/Cardinality#value
+    TargetElementPaths:
+    - Records[1].AdditionalInformation@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Records[0].AdditionalInformation
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].AdditionalInformation[0]
+    NewParentPath: Records[1].AdditionalInformation
+  - ChangeOperation: RemoveSME
+    ElementPath: Records[0].AdditionalInformation
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].DateOfRecord
+    NewParentPath: Records[1]
+  - ChangeOperation: CreateSME
+    ElementPath: Records[1].ItemOfChange
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ItemOfChange
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemOfChange
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI297#003/0173-1#01-AHE586#003
+  - ChangeOperation: CreateQual
+    ElementPath: Records[1].ItemOfChange
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ItemOfChange
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemOfChange
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ItemOfChange
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemOfChange
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemOfChange
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ItemOfChange
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Records[0].ItemOfChange@SMT/Cardinality#value
+    TargetElementPaths:
+    - Records[1].ItemOfChange@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Records[0].ItemOfChange
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].ItemOfChange.ManufacturerProductFamily
+    NewParentPath: Records[1].ItemOfChange
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].ItemOfChange.ManufacturerProductDesignation
+    NewParentPath: Records[1].ItemOfChange
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].ItemOfChange.OrderCodeOfManufacturer
+    NewParentPath: Records[1].ItemOfChange
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].ItemOfChange.ManufacturerAssetID
+    NewParentPath: Records[1].ItemOfChange
+  - ChangeOperation: CreateSME
+    ElementPath: Records[1].ItemOfChange.ProductClassifications
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ItemOfChange.ProductClassifications
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemOfChange.ProductClassifications
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: It is encouraged to provide the actual product classficiation, e.g. by ECLASS, in order to ease the identification
+        of relevant items by the industrial user.'
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ItemOfChange.ProductClassifications
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemOfChange.ProductClassifications
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI298#002
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ItemOfChange.ProductClassifications
+    AttributeKey: semanticIdListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemOfChange.ProductClassifications
+    AttributeKey: semanticIdListElement
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI298#002/0173-1#01-AHE587#002
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemOfChange.ProductClassifications
+    AttributeKey: typeValueListElement
+    AttributeValue: SubmodelElementCollection
+  - ChangeOperation: CreateQual
+    ElementPath: Records[1].ItemOfChange.ProductClassifications
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ItemOfChange.ProductClassifications
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemOfChange.ProductClassifications
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ItemOfChange.ProductClassifications
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemOfChange.ProductClassifications
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemOfChange.ProductClassifications
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ItemOfChange.ProductClassifications
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Records[0].ItemOfChange.ProductClassifications@SMT/Cardinality#value
+    TargetElementPaths:
+    - Records[1].ItemOfChange.ProductClassifications@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Records[0].ItemOfChange.ProductClassifications
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateSME
+    ElementPath: Records[1].ItemOfChange.ProductClassifications[0]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ItemOfChange.ProductClassifications[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemOfChange.ProductClassifications[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI298#002/0173-1#01-AHE587#002
+  - ChangeOperation: CreateQual
+    ElementPath: Records[1].ItemOfChange.ProductClassifications[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ItemOfChange.ProductClassifications[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemOfChange.ProductClassifications[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ItemOfChange.ProductClassifications[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemOfChange.ProductClassifications[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemOfChange.ProductClassifications[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ItemOfChange.ProductClassifications[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Records[0].ItemOfChange.ProductClassifications[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - Records[1].ItemOfChange.ProductClassifications[0]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Records[0].ItemOfChange.ProductClassifications[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].ItemOfChange.ProductClassifications[0].ClassificationSystem
+    NewParentPath: Records[1].ItemOfChange.ProductClassifications[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].ItemOfChange.ProductClassifications[0].VersionOfClassificationSystem
+    NewParentPath: Records[1].ItemOfChange.ProductClassifications[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].ItemOfChange.ProductClassifications[0].ProductClassId
+    NewParentPath: Records[1].ItemOfChange.ProductClassifications[0]
+  - ChangeOperation: RemoveSME
+    ElementPath: Records[0].ItemOfChange.ProductClassifications[0]
+  - ChangeOperation: RemoveSME
+    ElementPath: Records[0].ItemOfChange.ProductClassifications
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].ItemOfChange.HardwareVersion
+    NewParentPath: Records[1].ItemOfChange
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].ItemOfChange.RemainingAmountAvailable
+    NewParentPath: Records[1].ItemOfChange
+  - ChangeOperation: CreateSME
+    ElementPath: Records[1].ItemOfChange.TechnicalData_Changes
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ItemOfChange.TechnicalData_Changes
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemOfChange.TechnicalData_Changes
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: http://admin-shell.io/VDMA/Fluidics/ProductChangeNotification/TechnicalData_Changes/List/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ItemOfChange.TechnicalData_Changes
+    AttributeKey: semanticIdListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemOfChange.TechnicalData_Changes
+    AttributeKey: semanticIdListElement
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: http://admin-shell.io/VDMA/Fluidics/ProductChangeNotification/TechnicalData_Changes/Change/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemOfChange.TechnicalData_Changes
+    AttributeKey: typeValueListElement
+    AttributeValue: SubmodelElementCollection
+  - ChangeOperation: CreateQual
+    ElementPath: Records[1].ItemOfChange.TechnicalData_Changes
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ItemOfChange.TechnicalData_Changes
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemOfChange.TechnicalData_Changes
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ItemOfChange.TechnicalData_Changes
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemOfChange.TechnicalData_Changes
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemOfChange.TechnicalData_Changes
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ItemOfChange.TechnicalData_Changes
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Records[0].ItemOfChange.TechnicalData_Changes@SMT/Cardinality#value
+    TargetElementPaths:
+    - Records[1].ItemOfChange.TechnicalData_Changes@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Records[0].ItemOfChange.TechnicalData_Changes
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateSME
+    ElementPath: Records[1].ItemOfChange.TechnicalData_Changes[0]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ItemOfChange.TechnicalData_Changes[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemOfChange.TechnicalData_Changes[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: This SMC can be added to annotate changes in DataElements of existing Submodels (e.g. for technical data)
+        and to provide more specific information to reason and items of a VDMA 24903 change.'
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ItemOfChange.TechnicalData_Changes[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemOfChange.TechnicalData_Changes[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: http://admin-shell.io/VDMA/Fluidics/ProductChangeNotification/TechnicalData_Changes/Change/1/0
+  - ChangeOperation: CreateQual
+    ElementPath: Records[1].ItemOfChange.TechnicalData_Changes[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ItemOfChange.TechnicalData_Changes[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemOfChange.TechnicalData_Changes[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ItemOfChange.TechnicalData_Changes[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemOfChange.TechnicalData_Changes[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemOfChange.TechnicalData_Changes[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ItemOfChange.TechnicalData_Changes[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Records[0].ItemOfChange.TechnicalData_Changes[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - Records[1].ItemOfChange.TechnicalData_Changes[0]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Records[0].ItemOfChange.TechnicalData_Changes[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].ItemOfChange.TechnicalData_Changes[0].Arbitrary
+    NewParentPath: Records[1].ItemOfChange.TechnicalData_Changes[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].ItemOfChange.TechnicalData_Changes[0].OriginOfChange
+    NewParentPath: Records[1].ItemOfChange.TechnicalData_Changes[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].ItemOfChange.TechnicalData_Changes[0].ReasonId
+    NewParentPath: Records[1].ItemOfChange.TechnicalData_Changes[0]
+  - ChangeOperation: RemoveSME
+    ElementPath: Records[0].ItemOfChange.TechnicalData_Changes[0]
+  - ChangeOperation: RemoveSME
+    ElementPath: Records[0].ItemOfChange.TechnicalData_Changes
+  - ChangeOperation: CreateSME
+    ElementPath: Records[1].ItemOfChange.TechnicalData_CurrentState
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ItemOfChange.TechnicalData_CurrentState
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemOfChange.TechnicalData_CurrentState
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: For the recommended items, the technical data elements are individually grouped in fit, form, function,
+        other. As different alternatives might engange different groupings, the respective technical data elements of the
+        item of change are not grouped, at all.'
+    - language: en
+      text: 'Note: If possible, technical data elements in the recommended items should find its counterparts here (that is:
+        DataElement with identical semanticId).'
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ItemOfChange.TechnicalData_CurrentState
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemOfChange.TechnicalData_CurrentState
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ModelReference
+      keys:
+      - type: ConceptDescription
+        value: http://admin-shell.io/VDMA/Fluidics/ProductChangeNotification/TechnicalData_CurrentState/List/1/0
+  - ChangeOperation: CreateQual
+    ElementPath: Records[1].ItemOfChange.TechnicalData_CurrentState
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ItemOfChange.TechnicalData_CurrentState
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemOfChange.TechnicalData_CurrentState
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ItemOfChange.TechnicalData_CurrentState
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemOfChange.TechnicalData_CurrentState
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].ItemOfChange.TechnicalData_CurrentState
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].ItemOfChange.TechnicalData_CurrentState
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Records[0].ItemOfChange.TechnicalData_CurrentState@SMT/Cardinality#value
+    TargetElementPaths:
+    - Records[1].ItemOfChange.TechnicalData_CurrentState@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Records[0].ItemOfChange.TechnicalData_CurrentState
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].ItemOfChange.TechnicalData_CurrentState.Arbitrary
+    NewParentPath: Records[1].ItemOfChange.TechnicalData_CurrentState
+  - ChangeOperation: RemoveSME
+    ElementPath: Records[0].ItemOfChange.TechnicalData_CurrentState
+  - ChangeOperation: RemoveSME
+    ElementPath: Records[0].ItemOfChange
+  - ChangeOperation: CreateSME
+    ElementPath: Records[1].RecommendedItems
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: The supplier is encoraged to provide recommended items.'
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: http://admin-shell.io/VDMA/Fluidics/ProductChangeNotification/RecommendedItem/List/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems
+    AttributeKey: semanticIdListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems
+    AttributeKey: semanticIdListElement
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: http://admin-shell.io/VDMA/Fluidics/ProductChangeNotification/RecommendedItem/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems
+    AttributeKey: typeValueListElement
+    AttributeValue: SubmodelElementCollection
+  - ChangeOperation: CreateQual
+    ElementPath: Records[1].RecommendedItems
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Records[0].RecommendedItems@SMT/Cardinality#value
+    TargetElementPaths:
+    - Records[1].RecommendedItems@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Records[0].RecommendedItems
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateSME
+    ElementPath: Records[1].RecommendedItems[0]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: http://admin-shell.io/VDMA/Fluidics/ProductChangeNotification/RecommendedItem/1/0
+  - ChangeOperation: CreateQual
+    ElementPath: Records[1].RecommendedItems[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Records[0].RecommendedItems[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - Records[1].RecommendedItems[0]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Records[0].RecommendedItems[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].RecommendedItems[0].ManufacturerProductFamily
+    NewParentPath: Records[1].RecommendedItems[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].RecommendedItems[0].ManufacturerProductDesignation
+    NewParentPath: Records[1].RecommendedItems[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].RecommendedItems[0].OrderCodeOfManufacturer
+    NewParentPath: Records[1].RecommendedItems[0]
+  - ChangeOperation: CreateSME
+    ElementPath: Records[1].RecommendedItems[0].ProductClassifications
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems[0].ProductClassifications
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems[0].ProductClassifications
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI298#002
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems[0].ProductClassifications
+    AttributeKey: semanticIdListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems[0].ProductClassifications
+    AttributeKey: semanticIdListElement
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI298#002/0173-1#01-AHE587#002
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems[0].ProductClassifications
+    AttributeKey: typeValueListElement
+    AttributeValue: SubmodelElementCollection
+  - ChangeOperation: CreateQual
+    ElementPath: Records[1].RecommendedItems[0].ProductClassifications
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems[0].ProductClassifications
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems[0].ProductClassifications
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems[0].ProductClassifications
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems[0].ProductClassifications
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems[0].ProductClassifications
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems[0].ProductClassifications
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Records[0].RecommendedItems[0].ProductClassifications@SMT/Cardinality#value
+    TargetElementPaths:
+    - Records[1].RecommendedItems[0].ProductClassifications@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Records[0].RecommendedItems[0].ProductClassifications
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateSME
+    ElementPath: Records[1].RecommendedItems[0].ProductClassifications[0]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems[0].ProductClassifications[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems[0].ProductClassifications[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI298#002/0173-1#01-AHE587#002
+  - ChangeOperation: CreateQual
+    ElementPath: Records[1].RecommendedItems[0].ProductClassifications[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems[0].ProductClassifications[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems[0].ProductClassifications[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems[0].ProductClassifications[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems[0].ProductClassifications[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems[0].ProductClassifications[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems[0].ProductClassifications[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Records[0].RecommendedItems[0].ProductClassifications[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - Records[1].RecommendedItems[0].ProductClassifications[0]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Records[0].RecommendedItems[0].ProductClassifications[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].RecommendedItems[0].ProductClassifications[0].ClassificationSystem
+    NewParentPath: Records[1].RecommendedItems[0].ProductClassifications[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].RecommendedItems[0].ProductClassifications[0].VersionOfClassificationSystem
+    NewParentPath: Records[1].RecommendedItems[0].ProductClassifications[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].RecommendedItems[0].ProductClassifications[0].ProductClassId
+    NewParentPath: Records[1].RecommendedItems[0].ProductClassifications[0]
+  - ChangeOperation: RemoveSME
+    ElementPath: Records[0].RecommendedItems[0].ProductClassifications[0]
+  - ChangeOperation: RemoveSME
+    ElementPath: Records[0].RecommendedItems[0].ProductClassifications
+  - ChangeOperation: CreateSME
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Fit
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Fit
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Fit
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: it is recommended that the selected property types for the recommended items are matching to the provided
+        properties if the item of change to allow a one-by-one comparison of items.'
+    - language: en
+      text: 'Note: the manufacturers are recommended to select only those property types, which support a meaningful comparison
+        of the recommendation with the item of change. To many property types are considered to increase the signal/ noise
+        ratio of information.'
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Fit
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Fit
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI299#003/0173-1#01-AHE588#003
+  - ChangeOperation: CreateQual
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Fit
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Fit
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Fit
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Fit
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Fit
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Fit
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Fit
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Records[0].RecommendedItems[0].TechnicalData_Fit@SMT/Cardinality#value
+    TargetElementPaths:
+    - Records[1].RecommendedItems[0].TechnicalData_Fit@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Records[0].RecommendedItems[0].TechnicalData_Fit
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].RecommendedItems[0].TechnicalData_Fit.TargetEstimate
+    NewParentPath: Records[1].RecommendedItems[0].TechnicalData_Fit
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].RecommendedItems[0].TechnicalData_Fit.Arbitrary
+    NewParentPath: Records[1].RecommendedItems[0].TechnicalData_Fit
+  - ChangeOperation: RemoveSME
+    ElementPath: Records[0].RecommendedItems[0].TechnicalData_Fit
+  - ChangeOperation: CreateSME
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Form
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Form
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Form
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: it is recommended that the selected property types for the recommended items are matching to the provided
+        properties if the item of change to allow a one-by-one comparison of items.'
+    - language: en
+      text: 'Note: the manufacturers are recommended to select only those property types, which support a meaningful comparison
+        of the recommendation with the item of change. To many property types are considered to increase the signal/ noise
+        ratio of information.'
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Form
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Form
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI300#003/0173-1#01-AHE589#003
+  - ChangeOperation: CreateQual
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Form
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Form
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Form
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Form
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Form
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Form
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Form
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Records[0].RecommendedItems[0].TechnicalData_Form@SMT/Cardinality#value
+    TargetElementPaths:
+    - Records[1].RecommendedItems[0].TechnicalData_Form@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Records[0].RecommendedItems[0].TechnicalData_Form
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].RecommendedItems[0].TechnicalData_Form.TargetEstimate
+    NewParentPath: Records[1].RecommendedItems[0].TechnicalData_Form
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].RecommendedItems[0].TechnicalData_Form.Arbitrary
+    NewParentPath: Records[1].RecommendedItems[0].TechnicalData_Form
+  - ChangeOperation: RemoveSME
+    ElementPath: Records[0].RecommendedItems[0].TechnicalData_Form
+  - ChangeOperation: CreateSME
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Function
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Function
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Function
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: it is recommended that the selected property types for the recommended items are matching to the provided
+        properties if the item of change to allow a one-by-one comparison of items.'
+    - language: en
+      text: 'Note: the manufacturers are recommended to select only those property types, which support a meaningful comparison
+        of the recommendation with the item of change. To many property types are considered to increase the signal/ noise
+        ratio of information.'
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Function
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Function
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI301#003/0173-1#01-AHE590#003
+  - ChangeOperation: CreateQual
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Function
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Function
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Function
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Function
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Function
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Function
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Function
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Records[0].RecommendedItems[0].TechnicalData_Function@SMT/Cardinality#value
+    TargetElementPaths:
+    - Records[1].RecommendedItems[0].TechnicalData_Function@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Records[0].RecommendedItems[0].TechnicalData_Function
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].RecommendedItems[0].TechnicalData_Function.TargetEstimate
+    NewParentPath: Records[1].RecommendedItems[0].TechnicalData_Function
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].RecommendedItems[0].TechnicalData_Function.Arbitrary
+    NewParentPath: Records[1].RecommendedItems[0].TechnicalData_Function
+  - ChangeOperation: RemoveSME
+    ElementPath: Records[0].RecommendedItems[0].TechnicalData_Function
+  - ChangeOperation: CreateSME
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Other
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Other
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Other
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: the manufacturers are recommended to select only those property types, which support a meaningful comparison
+        of the recommendation with the item of change. To many property types are considered to increase the signal/ noise
+        ratio of information.'
+    - language: en
+      text: 'Note: the SMC TechnicalData_Other is supposed to comprise meaningful property instances, which do not fit into
+        the categorries fit, form, function.'
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Other
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Other
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI302#003/0173-1#01-AHE591#003
+  - ChangeOperation: CreateQual
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Other
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Other
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Other
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Other
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Other
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Other
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems[0].TechnicalData_Other
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Records[0].RecommendedItems[0].TechnicalData_Other@SMT/Cardinality#value
+    TargetElementPaths:
+    - Records[1].RecommendedItems[0].TechnicalData_Other@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Records[0].RecommendedItems[0].TechnicalData_Other
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].RecommendedItems[0].TechnicalData_Other.TargetEstimate
+    NewParentPath: Records[1].RecommendedItems[0].TechnicalData_Other
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].RecommendedItems[0].TechnicalData_Other.Arbitrary
+    NewParentPath: Records[1].RecommendedItems[0].TechnicalData_Other
+  - ChangeOperation: RemoveSME
+    ElementPath: Records[0].RecommendedItems[0].TechnicalData_Other
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].RecommendedItems[0].IncotermCode
+    NewParentPath: Records[1].RecommendedItems[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].RecommendedItems[0].DeliveryTimeClassOtherRegion
+    NewParentPath: Records[1].RecommendedItems[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].RecommendedItems[0].DeliveryTimeClassSameRegion
+    NewParentPath: Records[1].RecommendedItems[0]
+  - ChangeOperation: CreateSME
+    ElementPath: Records[1].RecommendedItems[0].ConformityDeclarations
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems[0].ConformityDeclarations
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems[0].ConformityDeclarations
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI303#003/0173-1#01-AHE592#003
+  - ChangeOperation: CreateQual
+    ElementPath: Records[1].RecommendedItems[0].ConformityDeclarations
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems[0].ConformityDeclarations
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems[0].ConformityDeclarations
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems[0].ConformityDeclarations
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems[0].ConformityDeclarations
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[1].RecommendedItems[0].ConformityDeclarations
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[1].RecommendedItems[0].ConformityDeclarations
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Records[0].RecommendedItems[0].ConformityDeclarations@SMT/Cardinality#value
+    TargetElementPaths:
+    - Records[1].RecommendedItems[0].ConformityDeclarations@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Records[0].RecommendedItems[0].ConformityDeclarations
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: Records[0].RecommendedItems[0].ConformityDeclarations.Arbitrary
+    NewParentPath: Records[1].RecommendedItems[0].ConformityDeclarations
+  - ChangeOperation: RemoveSME
+    ElementPath: Records[0].RecommendedItems[0].ConformityDeclarations
+  - ChangeOperation: RemoveSME
+    ElementPath: Records[0].RecommendedItems[0]
+  - ChangeOperation: RemoveSME
+    ElementPath: Records[0].RecommendedItems
+  - ChangeOperation: RemoveSME
+    ElementPath: Records[0]
+- title: 'Completion: removed elements and qualifiers'
+  origin: generated
+  items: []
+- title: 'Completion: created elements and qualifiers'
+  origin: generated
+  items: []
+- title: 'Completion: attributes'
+  origin: generated
+  items:
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[0].Manufacturer.PhysicalAddress__0__
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: This set of information is defined by SMT drop-in "Contact Information" in (current) version 1.0, given
+        by the SMT for Contact and Address Information V1.0. The ECLASS IRDI reserved for the SMC was added as supplementalSemanticId.  Note:
+        Use this set of information, until version 1.1 of the SMT drop-in "Contact Information" is published. Note: The idShort
+        shall go without the index "__0__".'
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[0].Manufacturer.PhysicalAddress__1__
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: this set of information is defined by SMT drop-in "Contact Information" in upcoming version 1.1, given
+        by the SMT for Contact and Address Information V1.1. The ECLASS IRDI reserved for the SMC was added as supplementalSemanticId.  Note:
+        Use this set of information, if version 1.1 of the SMT drop-in "Contact Information" is published. Note: The idShort
+        shall go without the index "__1__".'
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[0].PcnType
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: Following the VDMA 24903, this mandatory global flag distincts between a PCN and PDN. Use either value
+        PCN or PDN with valueId 0173-1#07-ABU000#003 (PCN) or 0173-1#07-ABU001#003 (PDN). Note: According this global flag,
+        the PCN milestone (173-1#07-ABU000#003) communicates the effective date of the PCN and the EOP milestone (EOP milestone
+        (0173-1#07-ABU003#003) communicates the end of production date for the PDN in the life-cycle data.'
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[0].LifeCycleData[0].MilestoneClassification
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: defined point in time with a specific meaning for life-cycle management (IEC 62890:2020). Note: Set value
+        and valueId with one of these: SOP (0173-1#07-ABT998#003),  NRND (0173-1#07-ABT999#003),  PCN (0173-1#07-ABU000#003),  EOS
+        (0173-1#07-ABU002#003),  EOP (0173-1#07-ABU003#003),  LTD (0173-1#07-ABU004#003),  EOSR (0173-1#07-ABU087#003) Note:
+        The PDN milestone is not to be used for this classification. Instead, the global flag PcnType is set with value=PCN
+        and valueId=0173-1#07-ABU000#003.'
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[0].ReasonsOfChange
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: Multiple classification systems might be used. Constraint: At least one reason according VDM24903 shall
+        be given.'
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[0].ReasonsOfChange[0].VersionOfClassificationSystem
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Common version identifier of the used classification system, in order to distinguish different version of the
+        property dictionary.  Note: Casing is to be ignored.'
+    - language: de
+      text: 'Note: 4 digit year of publication date of classifcation standard can serve as version.'
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[0].ItemCategories
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: Multiple classification systems might be used. Constraint: At least one item category according VDM24903
+        shall be given.'
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[0].ItemCategories[0].VersionOfClassificationSystem
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Common version identifier of the used classification system, in order to distinguish different version of the
+        property dictionary.  Note: Casing is to be ignored.'
+    - language: de
+      text: 'Note: 4 digit year of publication data of classifcation standard can serve as version.'
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[0].AffectedPartNumbers
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Constraint: Affected part numbers shall only be listed, if not the full range of part numbers produced for this
+        item (product family and designation) is affected. Note: Multiple single part numbers with wildcards or ranges of
+        part numbers are listed.'
+  - ChangeOperation: RemoveAttr
+    ElementPath: Records[0].AffectedPartNumbers[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[0].AffectedPartNumbers[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[0].AffectedPartNumbers[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: This Property codes only part number ("12345"), a set of part numbers ("12345;23456;34567"), a range of
+        part numbers("10000-19999"). For each of these, wildcards like asterix ("1*8", all numbers starting with ''1'' and
+        ending with ''8'') or question mark ("1?3?8", all 5 digit numbers starting with ''1'' and ending with ''8'' and middle
+        as ''5'') are allowed.'
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[0].AffectedPartNumbers[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[0].AffectedPartNumbers[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: http://admin-shell.io/VDMA/Fluidics/ProductChangeNotification/AffectedPartNumber/1/0
+  - ChangeOperation: RemoveAttr
+    ElementPath: Records[0].AdditionalInformation[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[0].AdditionalInformation[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[0].AdditionalInformation[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: This File element can be used to attach the conventional "product change information" already provided
+        by many suppliers or e.g. some detail geometry information.'
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[0].AdditionalInformation[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[0].AdditionalInformation[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: http://admin-shell.io/VDMA/Fluidics/ProductChangeNotification/AdditionalInformation/AdditionalInformation/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[0].AdditionalInformation[0]
+    AttributeKey: contentType
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[0].AdditionalInformation[0]
+    AttributeKey: contentType
+    AttributeValue: application/octet-stream
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[0].ItemOfChange.ProductClassifications[0].VersionOfClassificationSystem
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Common version identifier of the used classification system, in order to distinguish different version of the
+        property dictionary.  Note: Casing is to be ignored. Note: the SMT "Technical Data" refers to this as: [IRI] https://admin-shell.io/ZVEI/TechnicalData/ClassificationSystemVersion/1/1'
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[0].ItemOfChange.ProductClassifications[0].ProductClassId
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: Ideally, the Property/valueId is used to reference the IRI/ IRDI of the product class. Note: the SMT "Technical
+        Data" refers to this as: [IRI] https://admin-shell.io/ZVEI/TechnicalData/ProductClassId/1/1'
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[0].ItemOfChange.TechnicalData_CurrentState
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: For the recommended items, the technical data elements are individually grouped in fit, form, function,
+        other. As different alternatives might engange different groupings, the respective technical data elements of the
+        item of change are not grouped, at all. Note: If possible, technical data elements in the recommended items should
+        find its counterparts here (that is: DataElement with identical semanticId).'
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[0].RecommendedItems[0].ProductClassifications[0].VersionOfClassificationSystem
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Common version identifier of the used classification system, in order to distinguish different version of the
+        property dictionary.  Note: Casing is to be ignored. Note: the SMT "Technical Data" refers to this as: [IRI] https://admin-shell.io/ZVEI/TechnicalData/ClassificationSystemVersion/1/1'
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[0].RecommendedItems[0].ProductClassifications[0].ProductClassId
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: Ideally, the Property/valueId is used to reference the IRI/ IRDI of the product class. Note: the SMT "Technical
+        Data" refers to this as: [IRI] https://admin-shell.io/ZVEI/TechnicalData/ProductClassId/1/1'
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[0].RecommendedItems[0].TechnicalData_Fit
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: it is recommended that the selected property types for the recommended items are matching to the provided
+        properties if the item of change to allow a one-by-one comparison of items. Note: the manufacturers are recommended
+        to select only those property types, which support a meaningful comparison of the recommendation with the item of
+        change. To many property types are considered to increase the signal/ noise ratio of information.'
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[0].RecommendedItems[0].TechnicalData_Form
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: it is recommended that the selected property types for the recommended items are matching to the provided
+        properties if the item of change to allow a one-by-one comparison of items. Note: the manufacturers are recommended
+        to select only those property types, which support a meaningful comparison of the recommendation with the item of
+        change. To many property types are considered to increase the signal/ noise ratio of information.'
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[0].RecommendedItems[0].TechnicalData_Function
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: it is recommended that the selected property types for the recommended items are matching to the provided
+        properties if the item of change to allow a one-by-one comparison of items. Note: the manufacturers are recommended
+        to select only those property types, which support a meaningful comparison of the recommendation with the item of
+        change. To many property types are considered to increase the signal/ noise ratio of information.'
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[0].RecommendedItems[0].TechnicalData_Other
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Note: the manufacturers are recommended to select only those property types, which support a meaningful comparison
+        of the recommendation with the item of change. To many property types are considered to increase the signal/ noise
+        ratio of information. Note: the SMC TechnicalData_Other is supposed to comprise meaningful property instances, which
+        do not fit into the categorries fit, form, function.'
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[0].AffectedPartNumbers[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[0].AffectedPartNumbers[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[0].AffectedPartNumbers[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[0].AffectedPartNumbers[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[0].AdditionalInformation[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[0].AdditionalInformation[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Records[0].AdditionalInformation[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Records[0].AdditionalInformation[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier

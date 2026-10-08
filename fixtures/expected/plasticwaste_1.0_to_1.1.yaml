@@ -1,0 +1,23 @@
+# Expected outcome of applying plasticwaste_1.0_to_1.1 to fixtures/plasticwaste_1.0.yaml.
+# Derived by hand before running the chain: the bug-fix release removes the idShorts of the list
+# entries (F1, AASd-120); each entry is rebuilt in place and keeps its values, in their order.
+chain: chains/plasticwaste_1.0_to_1.1.yaml
+instance: fixtures/plasticwaste_1.0.yaml
+
+retained:
+  "ApplicationSpecificStandards[0]": EN 18065
+  InformationCharacteristics.MainMaterialType: PP
+  "InformationCharacteristics.TypesOfFillers[0].Filler": talc
+  "InformationCharacteristics.TypesOfFillers[1].FillerMassPercentage": "3.5"
+  "InformationCharacteristics.PresenceOfModifyingAdditives[0].ModifyingAdditiveCASNumber": 65997-17-3
+  "PropertyCharacteristics.TensileProperties.MeasuredValues[0].Value": "28.5"
+  PropertyCharacteristics.TensileProperties.StandardOrNorm: ISO 527-2
+  InternalLotNote: bale 17 of 40
+
+control:
+  InternalLotNote: InternalLotNote
+
+manual: []
+conforms: true
+violations: []
+removed: []

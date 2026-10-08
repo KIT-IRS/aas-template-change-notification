@@ -1,0 +1,25 @@
+# Expected outcome of applying opcuaserver_1.0_to_1.1 to fixtures/opcuaserver_1.0.yaml.
+# Derived by hand before running the chain: the bug-fix release removes the idShorts of the list
+# entries (F1, AASd-120); each entry is rebuilt in place and keeps its values, in their order.
+chain: chains/opcuaserver_1.0_to_1.1.yaml
+instance: fixtures/opcuaserver_1.0.yaml
+
+retained:
+  "Configuration.NodeSets[0]": /aasx/files/Opc.Ua.Di.NodeSet2.xml
+  "Configuration.NodeSets[1]": /aasx/files/Opc.Ua.Machinery.NodeSet2.xml
+  "Configuration.SupportSecurityPolicyUris[0]": http://opcfoundation.org/UA/SecurityPolicy#Basic256Sha256
+  "Configuration.SupportSecurityPolicyUris[1]": http://opcfoundation.org/UA/SecurityPolicy#Aes128_Sha256_RsaOaep
+  Identification.ManufacturerName: Example Manufacturer GmbH
+  "EndpointDescriptions[0].EndpointUri": opc.tcp://10.0.0.5:4840
+  "EndpointDescriptions[0].Server.DiscoveryUrls[0]": opc.tcp://10.0.0.5:4840
+  "EndpointDescriptions[0].UserIdentityTokens[0].TokenType": UserName
+  "DiscoveryUrls[0]": opc.tcp://10.0.0.5:4840
+  InternalInventoryNumber: INV-2024-0815
+
+control:
+  InternalInventoryNumber: InternalInventoryNumber
+
+manual: []
+conforms: true
+violations: []
+removed: []

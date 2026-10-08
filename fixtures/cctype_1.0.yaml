@@ -1,0 +1,26 @@
+# Submodel instance conforming to IDTA 02015 Control Component Type v1.0. Illustrative values of an example device.
+template: ressources/Templates/IDTA 02015-1-0_Template_ControlComponentType.json
+id: https://example.com/ids/sm/example-device/ControlComponentType
+
+repeat:
+  Interfaces.Interface: [OPCUA, REST]
+  Skills.Skill: [Start]
+  Skills.Start.Parameters.Parameter: [Speed]
+  Errors.ErrorCode: [E001, E002]
+
+values:
+  Interfaces.OPCUA: https://example.com/ids/aid/pump-control#OPCUA
+  Interfaces.REST: https://example.com/ids/aid/pump-control#HTTP
+  Skills.Start.Name: Start
+  Skills.Start.DisplayName: {en: Start pump}
+  Skills.Start.Disabled: "false"
+  Skills.Start.Modes.Mode: AUTO
+  Skills.Start.Parameters.Speed.Name: Speed
+  Skills.Start.Parameters.Speed.Direction: In
+  Skills.Start.Parameters.Speed.Type: xs:double
+  Errors.E001: {en: Pressure loss}
+  Errors.E002: {en: Overtemperature}
+
+add:
+  "":                   # local extension of the asset maintainer, described by no template
+    - {modelType: Property, idShort: InternalInventoryNumber, valueType: xs:string, value: INV-2024-0815}

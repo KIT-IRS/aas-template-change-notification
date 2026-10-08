@@ -1,0 +1,1136 @@
+header:
+  Family: AssetInterfacesMappingConfiguration
+  PreVersion: https://admin-shell.io/idta/SubmodelTemplate/AssetInterfacesMappingConfiguration/1/0/
+  PostVersion: https://admin-shell.io/idta/SubmodelTemplate/AssetInterfacesMappingConfiguration/2/0
+  PreTemplate: ressources/Templates/IDTA 02027-1-0-1_Template_AIMC.json
+  PostTemplate: ressources/Templates/IDTA 02027-2-0_Template_AIMC.json
+  TemplateOwner: Industrial Digital Twin Association (IDTA)
+  TemplateOwnerAddress:
+    Company: Industrial Digital Twin Association e.V.
+    Street: Lyoner Straße 18
+    Zipcode: '60528'
+    CityTown: Frankfurt am Main
+    NationalCode: DE
+  ChangeURI: https://github.com/admin-shell-io/submodel-templates/tree/main/published/Asset%20Interfaces%20Mapping%20Configuration/2/0
+sections:
+- title: 'A0: the entry of MappingConfigurations is named MappingConfiguration; it is rebuilt under its name'
+  origin: hand
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: MappingConfigurations.MappingConfiguration
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[1]
+    AttributeKey: semanticId
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - MappingConfigurations[0]#semanticId
+    TargetElementPaths:
+    - MappingConfigurations[1]#semanticId
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: CreateQual
+    ElementPath: MappingConfigurations[1]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[1]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - MappingConfigurations[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - MappingConfigurations[1]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: MappingConfigurations[0]
+    QualifierType: SMT/Cardinality
+- title: 'A2: SML Sources and SML Sinks replace SML MappingSourceSinkRelations; each relation yields one source and one sink'
+  origin: hand
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: MappingConfigurations[1].Sources
+    SMEType: SubmodelElementList
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[1].Sources
+    AttributeKey: typeValueListElement
+    AttributeValue: SubmodelElementCollection
+  - ChangeOperation: CreateSME
+    ElementPath: MappingConfigurations[1].Sinks
+    SMEType: SubmodelElementList
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[1].Sinks
+    AttributeKey: typeValueListElement
+    AttributeValue: SubmodelElementCollection
+  - ChangeOperation: UpdateIdShort
+    ElementPath: MappingConfigurations[0].MappingSourceSinkRelations[0]
+    NewIdShort: Relation
+  - ChangeOperation: CreateSME
+    ElementPath: MappingConfigurations[1].Sources.Source
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: UpdateParent
+    ElementPath: MappingConfigurations[0].MappingSourceSinkRelations[0]
+    NewParentPath: MappingConfigurations[1].Sources[0]
+  - ChangeOperation: CreateSME
+    ElementPath: MappingConfigurations[1].Sources[0].Source
+    SMEType: ReferenceElement
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[1].Sources[0].Source
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - MappingConfigurations[1].Sources[0].Relation#first
+    TargetElementPaths:
+    - MappingConfigurations[1].Sources[0].Source#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: CreateSME
+    ElementPath: MappingConfigurations[1].Sinks.Sink
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: UpdateParent
+    ElementPath: MappingConfigurations[1].Sources[0].Relation
+    NewParentPath: MappingConfigurations[1].Sinks[0]
+  - ChangeOperation: CreateSME
+    ElementPath: MappingConfigurations[1].Sinks[0].Sink
+    SMEType: ReferenceElement
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[1].Sinks[0].Sink
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - MappingConfigurations[1].Sinks[0].Relation#second
+    TargetElementPaths:
+    - MappingConfigurations[1].Sinks[0].Sink#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: CreateQual
+    ElementPath: MappingConfigurations[1].Sources[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[1].Sources[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[1].Sources[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - MappingConfigurations[1].Sinks[0].Relation@SMT/Cardinality#value
+    TargetElementPaths:
+    - MappingConfigurations[1].Sources[0]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: CreateQual
+    ElementPath: MappingConfigurations[1].Sinks[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[1].Sinks[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[1].Sinks[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - MappingConfigurations[1].Sinks[0].Relation@SMT/Cardinality#value
+    TargetElementPaths:
+    - MappingConfigurations[1].Sinks[0]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: MappingConfigurations[1].Sinks[0].Relation
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: RemoveSME
+    ElementPath: MappingConfigurations[1].Sinks[0].Relation
+  - ChangeOperation: RemoveQual
+    ElementPath: MappingConfigurations[0].MappingSourceSinkRelations
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: RemoveSME
+    ElementPath: MappingConfigurations[0].MappingSourceSinkRelations
+- title: 'A3: ReferenceElement InterfaceReference is removed, since the AID submodel can be inferred from each Source'
+  origin: hand
+  items:
+  - ChangeOperation: RemoveQual
+    ElementPath: MappingConfigurations[0].InterfaceReference
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: RemoveSME
+    ElementPath: MappingConfigurations[0].InterfaceReference
+  - ChangeOperation: RemoveSME
+    ElementPath: MappingConfigurations[0]
+- title: 'Completion: removed elements and qualifiers'
+  origin: generated
+  items: []
+- title: 'Completion: created elements and qualifiers'
+  origin: generated
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: MappingConfigurations[0].DefaultPollingInterval
+    SMEType: Property
+  - ChangeOperation: CreateSME
+    ElementPath: MappingConfigurations[0].Transformation
+    SMEType: Blob
+  - ChangeOperation: CreateSME
+    ElementPath: MappingConfigurations[0].Sources[0].PollingInterval
+    SMEType: Property
+  - ChangeOperation: CreateSME
+    ElementPath: MappingConfigurations[0].Sources[0].SourceId
+    SMEType: Property
+  - ChangeOperation: CreateSME
+    ElementPath: MappingConfigurations[0].Sinks[0].SinkId
+    SMEType: Property
+  - ChangeOperation: CreateQual
+    ElementPath: MappingConfigurations[0].DefaultPollingInterval
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: MappingConfigurations[0].Transformation
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: MappingConfigurations[0].Sources
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: MappingConfigurations[0].Sources[0].Source
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: MappingConfigurations[0].Sources[0].PollingInterval
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: MappingConfigurations[0].Sources[0].SourceId
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: MappingConfigurations[0].Sinks
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: MappingConfigurations[0].Sinks[0].Sink
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: MappingConfigurations[0].Sinks[0].SinkId
+    QualifierType: SMT/Cardinality
+- title: 'Completion: attributes'
+  origin: generated
+  items:
+  - ChangeOperation: CreateAttr
+    ElementPath: ''
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Asset interfaces mapping configuration
+  - ChangeOperation: CreateAttr
+    ElementPath: ''
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: The AIMC 2.0 is used to describe how data is mapped from asset to AAS or from AAS to AAS.
+  - ChangeOperation: CreateAttr
+    ElementPath: ''
+    AttributeKey: administration
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    AttributeKey: administration
+    AttributeValue:
+      version: '2'
+      revision: '0'
+      templateId: https://admin-shell.io/IDTA 02027-2-0
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    AttributeKey: id
+    AttributeValue: https://admin-shell.io/idta/SubmodelTemplate/AssetInterfacesMappingConfiguration/2/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/AssetInterfacesMappingConfiguration/2/0/Submodel
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Mapping configurations
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: List of MappingConfigurations that each map and transform data from their sources to their sinks.
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations
+    AttributeKey: orderRelevant
+    AttributeValue: false
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations
+    AttributeKey: semanticIdListElement
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/AssetInterfacesMappingConfiguration/2/0/MappingConfiguration
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Mapping configuration
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: A MappingConfiguration defines one logical unit of sources (inputs) and sinks (outputs) that are in relation to
+        one another. The relation can be expressed via a transformation.
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/AssetInterfacesMappingConfiguration/2/0/MappingConfiguration
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sources
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sources
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Sources
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sources
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sources
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: This list includes all data sources that are used in this MappingConfiguration.
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sources
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sources
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/AssetInterfacesMappingConfiguration/2/0/MappingConfiguration/Sources
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sources
+    AttributeKey: orderRelevant
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sources
+    AttributeKey: orderRelevant
+    AttributeValue: false
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sources
+    AttributeKey: semanticIdListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sources
+    AttributeKey: semanticIdListElement
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/AssetInterfacesMappingConfiguration/2/0/MappingConfiguration/Source
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sinks
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sinks
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Sinks
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sinks
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sinks
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: This list includes all data sinks that are used in this MappingConfiguration.
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sinks
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sinks
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/AssetInterfacesMappingConfiguration/2/0/MappingConfiguration/Sinks
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sinks
+    AttributeKey: semanticIdListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sinks
+    AttributeKey: semanticIdListElement
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/AssetInterfacesMappingConfiguration/2/0/MappingConfiguration/Sink
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sources[0]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sources[0]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Source
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sources[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sources[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: A data source is defined by a Source reference, PollingInterval and SourceId.
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sources[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sources[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/AssetInterfacesMappingConfiguration/2/0/MappingConfiguration/Source
+  - ChangeOperation: RemoveAttr
+    ElementPath: MappingConfigurations[0].Sources[0].Source
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].Source
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].Source
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Source
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].Source
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].Source
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: This holds a reference to the respective SubmodelElement used as data source. A data source can be any SubmodelElement
+        including those defined in the InteractionMetadata of AID Submodels for fetching live-data from assets.
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].Source
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].Source
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/AssetInterfacesMappingConfiguration/2/0/MappingConfiguration/Source/Source
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sinks[0]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sinks[0]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Sink
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sinks[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sinks[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: A data sink is defined by a Sink reference and SinkId.
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sinks[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sinks[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/AssetInterfacesMappingConfiguration/2/0/MappingConfiguration/Sink
+  - ChangeOperation: RemoveAttr
+    ElementPath: MappingConfigurations[0].Sinks[0].Sink
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sinks[0].Sink
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sinks[0].Sink
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Sink
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sinks[0].Sink
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sinks[0].Sink
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: This holds a reference to the respective SubmodelElement used as data sink for live-data.
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sinks[0].Sink
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sinks[0].Sink
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/AssetInterfacesMappingConfiguration/2/0/MappingConfiguration/Sink/Sink
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].DefaultPollingInterval
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].DefaultPollingInterval
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Default polling interval
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].DefaultPollingInterval
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].DefaultPollingInterval
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: The DefaultPollingInterval defines the default time interval in seconds for fetching new data from the synchronous
+        data sources defined in this MappingConfiguration. It must be greater than zero for synchronous protocols (e.g. HTTP)
+        that need polling and is ignored for asynchronous protocols (e.g. MQTT).
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].DefaultPollingInterval
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].DefaultPollingInterval
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/AssetInterfacesMappingConfiguration/2/0/MappingConfiguration/DefaultPollingInterval
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].DefaultPollingInterval
+    AttributeKey: valueType
+    AttributeValue: xs:double
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].DefaultPollingInterval
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].DefaultPollingInterval
+    AttributeKey: value
+    AttributeValue: '1.0'
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Transformation
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Transformation
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Transformation
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Transformation
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Transformation
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: The transformation allows for transforming incoming data before writing it to the sinks. The transformation must
+        contain an "aimc_main(sources)" entrypoint function in Lua.
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Transformation
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Transformation
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/AssetInterfacesMappingConfiguration/2/0/MappingConfiguration/Transformation
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Transformation
+    AttributeKey: contentType
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Transformation
+    AttributeKey: contentType
+    AttributeValue: text/plain
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].PollingInterval
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].PollingInterval
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Polling interval
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].PollingInterval
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].PollingInterval
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: The PollingInterval defines the time interval in seconds for fetching new data from the given synchronous data
+        source. It must be greater than zero for synchronous protocols (e.g. HTTP) that need polling and is ignored for asynchronous
+        protocols (e.g. MQTT). It overwrites the DefaultPollingInterval of the respective MappingConfiguration of this source.
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].PollingInterval
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].PollingInterval
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/AssetInterfacesMappingConfiguration/2/0/MappingConfiguration/Source/PollingInterval
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].PollingInterval
+    AttributeKey: valueType
+    AttributeValue: xs:double
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].PollingInterval
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].PollingInterval
+    AttributeKey: value
+    AttributeValue: '1.0'
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].SourceId
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].SourceId
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Source ID
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].SourceId
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].SourceId
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: This is a unique and non-empty identifier that facilitates data access in the Lua transformation or establishes
+        a relationship to a corresponding sink when no transformation is given. It must only be unique with respect to the
+        Sources-list of the parent MappingConfiguration and not globally.
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].SourceId
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].SourceId
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/AssetInterfacesMappingConfiguration/2/0/MappingConfiguration/Source/SourceId
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].SourceId
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sinks[0].SinkId
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sinks[0].SinkId
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Sink ID
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sinks[0].SinkId
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sinks[0].SinkId
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: This is a unique and non-empty identifier that facilitates data writing in the Lua transformation or establishes
+        a relationship to a corresponding source when no transformation is given. It must only be unique with respect to the
+        Sinks-list of the containing MappingConfiguration and not globally.
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sinks[0].SinkId
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sinks[0].SinkId
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/AssetInterfacesMappingConfiguration/2/0/MappingConfiguration/Sink/SinkId
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sinks[0].SinkId
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sources[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sources[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sources[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sources[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sources[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: OneToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sinks[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sinks[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sinks[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sinks[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sinks[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: OneToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].DefaultPollingInterval
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].DefaultPollingInterval
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].DefaultPollingInterval
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].DefaultPollingInterval
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].DefaultPollingInterval
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].DefaultPollingInterval
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].DefaultPollingInterval
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Transformation
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Transformation
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Transformation
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Transformation
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Transformation
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Transformation
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Transformation
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sources
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sources
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sources
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sources
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sources
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sources
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sources
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].Source
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].Source
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].Source
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].Source
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].Source
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].Source
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].Source
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].PollingInterval
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].PollingInterval
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].PollingInterval
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].PollingInterval
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].PollingInterval
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].PollingInterval
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].PollingInterval
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].SourceId
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].SourceId
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].SourceId
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].SourceId
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].SourceId
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].SourceId
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sources[0].SourceId
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sinks
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sinks
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sinks
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sinks
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sinks
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sinks
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sinks
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sinks[0].Sink
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sinks[0].Sink
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sinks[0].Sink
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sinks[0].Sink
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sinks[0].Sink
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sinks[0].Sink
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sinks[0].Sink
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sinks[0].SinkId
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sinks[0].SinkId
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sinks[0].SinkId
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sinks[0].SinkId
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sinks[0].SinkId
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: MappingConfigurations[0].Sinks[0].SinkId
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: MappingConfigurations[0].Sinks[0].SinkId
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: One

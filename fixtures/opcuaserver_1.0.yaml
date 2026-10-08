@@ -1,0 +1,31 @@
+# Submodel instance conforming to IDTA 02009 OPC UA Server Datasheet v1.0. Illustrative values of an
+# example device. The entries of the lists carry the idShorts the template gives them.
+template: ressources/Templates/IDTA 02009-1-0_Template_OPCUA-Server Datasheet.json
+id: https://example.com/ids/sm/example-device/OPCUAServerDatasheet
+drop_empty: true
+
+repeat:
+  "Configuration.NodeSets[0]": 2
+  "Configuration.SupportSecurityPolicyUris[0]": 2
+  "DiscoveryUrls[0]": 1
+
+values:
+  "Configuration.NodeSets[0]": /aasx/files/Opc.Ua.Di.NodeSet2.xml
+  "Configuration.NodeSets[1]": /aasx/files/Opc.Ua.Machinery.NodeSet2.xml
+  Configuration.AllowAnonymousUser: "false"
+  "Configuration.SupportSecurityPolicyUris[0]": http://opcfoundation.org/UA/SecurityPolicy#Basic256Sha256
+  "Configuration.SupportSecurityPolicyUris[1]": http://opcfoundation.org/UA/SecurityPolicy#Aes128_Sha256_RsaOaep
+  Identification.ProductUri: https://example.com/products/EX-100-200
+  Identification.ManufacturerName: Example Manufacturer GmbH
+  Identification.SoftwareVersion: "4.0.3"
+  "EndpointDescriptions[0].EndpointUri": opc.tcp://10.0.0.5:4840
+  "EndpointDescriptions[0].Server.ApplicationUri": urn:example:ex-100-200:server
+  "EndpointDescriptions[0].Server.DiscoveryUrls[0]": opc.tcp://10.0.0.5:4840
+  "EndpointDescriptions[0].SecurityMode": SignAndEncrypt
+  "EndpointDescriptions[0].UserIdentityTokens[0].PolicyId": username
+  "EndpointDescriptions[0].UserIdentityTokens[0].TokenType": UserName
+  "DiscoveryUrls[0]": opc.tcp://10.0.0.5:4840
+
+add:
+  "":                   # local extension of the asset maintainer, described by no template
+    - {modelType: Property, idShort: InternalInventoryNumber, valueType: xs:string, value: INV-2024-0815}

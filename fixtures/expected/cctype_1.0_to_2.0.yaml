@@ -1,0 +1,40 @@
+# Expected outcome of applying cctype_1.0_to_2.0 to fixtures/cctype_1.0.yaml.
+# Derived by hand before running the chain, from the change log of IDTA 02015-2-0 (Annex B) and the
+# published templates. Each interface reference becomes the InterfaceReference of one new SMC
+# Interface (C2); the second keeps the temporary name Interface__2 (N1). The references keep the names
+# the instance chose: the rename to InterfaceReference applies to an element that occurs at most once,
+# which SMT/SMT/Cardinality does not state. Each MLP ErrorCode becomes one
+# SMC Error, whose code (the former idShort) and description the asset maintainer carries over (C3).
+# v2.0 declares its cardinalities with the qualifier type SMT/SMT/Cardinality, which is not a
+# cardinality qualifier: every element of v2.0 is taken as mandatory, so every data element the chain
+# creates without content is a to-do, and the conformance check has no cardinality to check.
+chain: chains/cctype_1.0_to_2.0.yaml
+instance: fixtures/cctype_1.0.yaml
+
+retained:
+  Interfaces.Interface.OPCUA: {type: ExternalReference, keys: [{type: GlobalReference, value: "https://example.com/ids/aid/pump-control#OPCUA"}]}
+  Interfaces.Interface__2.REST: {type: ExternalReference, keys: [{type: GlobalReference, value: "https://example.com/ids/aid/pump-control#HTTP"}]}
+  Skills.Start.Disabled: "false"
+  Skills.Start.Modes.Mode__00__: AUTO
+  InternalInventoryNumber: INV-2024-0815
+
+control:
+  InternalInventoryNumber: InternalInventoryNumber
+
+manual:
+  - Interfaces.Interface.InterfaceProfile            # new; mandatory by the change log
+  - Interfaces.Interface.InterfaceProfileSupplement  # new; optional, but SMT/SMT/Cardinality is no cardinality
+  - Errors.Error.ErrorCode                           # C3: instruction
+  - Skills.Skill.Errors.ErrorReference__00__         # new; optional, but SMT/SMT/Cardinality is no cardinality
+  - Skills.Skill.Uses.SkillReference__00__
+  - null      # N1: the temporary names of the second SMC are reported, to be renamed by the asset maintainer
+
+conforms: true
+violations: []
+
+removed:
+  - Skills.Start.Name
+  - Skills.Start.DisplayName
+  - Skills.Start.Parameters.Speed.Name
+  - Errors.E001          # C3: carried over by the asset maintainer, as instructed
+  - Errors.E002

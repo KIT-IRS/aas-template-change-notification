@@ -1,0 +1,23 @@
+# Expected outcome of applying aimc_2.0_to_2.1 to fixtures/aimc_2.0.yaml.
+# Derived by hand before running the chain: the bug-fix release removes the idShorts of the list
+# entries (F1, AASd-120); the entries are rebuilt in place and keep their values.
+chain: chains/aimc_2.0_to_2.1.yaml
+instance: fixtures/aimc_2.0.yaml
+
+retained:
+  "MappingConfigurations[0].Sources[1].Source": {type: ExternalReference, keys: [{type: GlobalReference, value: "https://example.com/ids/sm/example-device/AID#MQTT/Pressure"}]}
+  "MappingConfigurations[0].Sinks[0].Sink": {type: ExternalReference, keys: [{type: GlobalReference, value: "https://example.com/ids/sm/example-device/OperationalData#MeanLoad"}]}
+  "MappingConfigurations[0].DefaultPollingInterval": "1.0"
+  "MappingConfigurations[0].Sources[0].SourceId": temperature
+  "MappingConfigurations[0].Sources[0].PollingInterval": "0.5"
+  "MappingConfigurations[0].Sources[1].SourceId": pressure
+  "MappingConfigurations[0].Sinks[0].SinkId": mean-load
+  InternalInventoryNumber: INV-2024-0815
+
+control:
+  InternalInventoryNumber: InternalInventoryNumber
+
+manual: []
+conforms: true
+violations: []
+removed: []

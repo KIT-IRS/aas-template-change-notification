@@ -1,0 +1,3319 @@
+header:
+  Family: HandoverDocumentation
+  PreVersion: https://admin-shell.io/IDTA02004-1-2
+  PostVersion: https://admin-shell.io/idta/SubmodelTemplate/HandoverDocumentation/2/0
+  PreTemplate: ressources/Templates/IDTA 02004-1-2_Template_Handover Documentation.json
+  PostTemplate: ressources/Templates/IDTA 02004-2-0_Template_HandoverDocumentation.json
+  TemplateOwner: Industrial Digital Twin Association (IDTA)
+  TemplateOwnerAddress:
+    Company: Industrial Digital Twin Association e.V.
+    Street: Lyoner Straße 18
+    Zipcode: '60528'
+    CityTown: Frankfurt am Main
+    NationalCode: DE
+  ChangeURI: https://github.com/admin-shell-io/submodel-templates/tree/main/published/Handover%20Documentation/2/0
+sections:
+- title: 'H3: Document__00__ becomes an entry of the list Documents (5)'
+  origin: hand
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: Documents
+    SMEType: SubmodelElementList
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents
+    AttributeKey: typeValueListElement
+    AttributeValue: SubmodelElementCollection
+  - ChangeOperation: CreateSME
+    ElementPath: Documents[0]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0]
+    AttributeKey: semanticId
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Document__00__#semanticId
+    TargetElementPaths:
+    - Documents[0]#semanticId
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Document__00__@Cardinality#value
+    TargetElementPaths:
+    - Documents[0]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: ValueMap
+      Pairs:
+        ZeroToMany: OneToMany
+        OneToMany: OneToMany
+- title: 'H4: DocumentId__00__ becomes an entry of the list DocumentIds; ValueId becomes DocumentIdentifier (9), IsPrimary
+    becomes DocumentIsPrimary'
+  origin: hand
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: Documents[0].DocumentIds
+    SMEType: SubmodelElementList
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentIds
+    AttributeKey: typeValueListElement
+    AttributeValue: SubmodelElementCollection
+  - ChangeOperation: CreateSME
+    ElementPath: Documents[0].DocumentIds[0]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: UpdateIdShort
+    ElementPath: Document__00__.DocumentId__00__.ValueId
+    NewIdShort: DocumentIdentifier
+  - ChangeOperation: UpdateIdShort
+    ElementPath: Document__00__.DocumentId__00__.IsPrimary
+    NewIdShort: DocumentIsPrimary
+  - ChangeOperation: UpdateParent
+    ElementPath: Document__00__.DocumentId__00__.DocumentDomainId
+    NewParentPath: Documents[0].DocumentIds[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: Document__00__.DocumentId__00__.DocumentIdentifier
+    NewParentPath: Documents[0].DocumentIds[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: Document__00__.DocumentId__00__.DocumentIsPrimary
+    NewParentPath: Documents[0].DocumentIds[0]
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentIds[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentIds[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentIds[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Document__00__.DocumentId__00__@Cardinality#value
+    TargetElementPaths:
+    - Documents[0].DocumentIds[0]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Document__00__.DocumentId__00__
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveSME
+    ElementPath: Document__00__.DocumentId__00__
+- title: 'H5: DocumentClassification__00__ becomes an entry of the list DocumentClassifications'
+  origin: hand
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: Documents[0].DocumentClassifications
+    SMEType: SubmodelElementList
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentClassifications
+    AttributeKey: typeValueListElement
+    AttributeValue: SubmodelElementCollection
+  - ChangeOperation: CreateSME
+    ElementPath: Documents[0].DocumentClassifications[0]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: UpdateParent
+    ElementPath: Document__00__.DocumentClassification__00__.ClassId
+    NewParentPath: Documents[0].DocumentClassifications[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: Document__00__.DocumentClassification__00__.ClassName
+    NewParentPath: Documents[0].DocumentClassifications[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: Document__00__.DocumentClassification__00__.ClassificationSystem
+    NewParentPath: Documents[0].DocumentClassifications[0]
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentClassifications[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentClassifications[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentClassifications[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Document__00__.DocumentClassification__00__@Cardinality#value
+    TargetElementPaths:
+    - Documents[0].DocumentClassifications[0]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Document__00__.DocumentClassification__00__
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveSME
+    ElementPath: Document__00__.DocumentClassification__00__
+- title: 'H6: DocumentVersion__00__ becomes an entry of the list DocumentVersions; DocumentVersionId becomes Version (6),
+    Summary becomes Description (7), SubTitle becomes Subtitle, OrganizationName becomes OrganizationShortName'
+  origin: hand
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: Documents[0].DocumentVersions
+    SMEType: SubmodelElementList
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions
+    AttributeKey: typeValueListElement
+    AttributeValue: SubmodelElementCollection
+  - ChangeOperation: CreateSME
+    ElementPath: Documents[0].DocumentVersions[0]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: UpdateIdShort
+    ElementPath: Document__00__.DocumentVersion__00__.DocumentVersionId
+    NewIdShort: Version
+  - ChangeOperation: UpdateIdShort
+    ElementPath: Document__00__.DocumentVersion__00__.SubTitle
+    NewIdShort: Subtitle
+  - ChangeOperation: UpdateIdShort
+    ElementPath: Document__00__.DocumentVersion__00__.Summary
+    NewIdShort: Description
+  - ChangeOperation: UpdateIdShort
+    ElementPath: Document__00__.DocumentVersion__00__.OrganizationName
+    NewIdShort: OrganizationShortName
+  - ChangeOperation: UpdateParent
+    ElementPath: Document__00__.DocumentVersion__00__.Version
+    NewParentPath: Documents[0].DocumentVersions[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: Document__00__.DocumentVersion__00__.Title
+    NewParentPath: Documents[0].DocumentVersions[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: Document__00__.DocumentVersion__00__.Subtitle
+    NewParentPath: Documents[0].DocumentVersions[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: Document__00__.DocumentVersion__00__.Description
+    NewParentPath: Documents[0].DocumentVersions[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: Document__00__.DocumentVersion__00__.KeyWords
+    NewParentPath: Documents[0].DocumentVersions[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: Document__00__.DocumentVersion__00__.StatusSetDate
+    NewParentPath: Documents[0].DocumentVersions[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: Document__00__.DocumentVersion__00__.StatusValue
+    NewParentPath: Documents[0].DocumentVersions[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: Document__00__.DocumentVersion__00__.OrganizationShortName
+    NewParentPath: Documents[0].DocumentVersions[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: Document__00__.DocumentVersion__00__.OrganizationOfficialName
+    NewParentPath: Documents[0].DocumentVersions[0]
+- title: 'H7: the repeatable property Language__00__ becomes the list Language; each language is one entry'
+  origin: hand
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: Documents[0].DocumentVersions[0].Language
+    SMEType: SubmodelElementList
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Language
+    AttributeKey: typeValueListElement
+    AttributeValue: Property
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Language
+    AttributeKey: valueTypeListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Language
+    AttributeKey: valueTypeListElement
+    AttributeValue: xs:string
+  - ChangeOperation: CreateSME
+    ElementPath: Documents[0].DocumentVersions[0].Language[0]
+    SMEType: Property
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Language[0]
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Language[0]
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Document__00__.DocumentVersion__00__.Language__00__#value
+    TargetElementPaths:
+    - Documents[0].DocumentVersions[0].Language[0]#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentVersions[0].Language[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Language[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Language[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Document__00__.DocumentVersion__00__.Language__00__@Cardinality#value
+    TargetElementPaths:
+    - Documents[0].DocumentVersions[0].Language[0]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentVersions[0].Language[0]
+    QualifierType: ExampleValue
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Language[0]
+    QualifierType: ExampleValue
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Language[0]
+    QualifierType: ExampleValue
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Document__00__.DocumentVersion__00__.Language__00__@ExampleValue#value
+    TargetElementPaths:
+    - Documents[0].DocumentVersions[0].Language[0]@ExampleValue#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Document__00__.DocumentVersion__00__.Language__00__
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: Document__00__.DocumentVersion__00__.Language__00__
+    QualifierType: ExampleValue
+  - ChangeOperation: RemoveQual
+    ElementPath: Document__00__.DocumentVersion__00__.Language__00__
+    QualifierType: AllowedIdShort
+  - ChangeOperation: RemoveSME
+    ElementPath: Document__00__.DocumentVersion__00__.Language__00__
+- title: 'H8: DigitalFile__00__ (MimeType, DocumentPath) becomes an entry of the list DigitalFiles of type File'
+  origin: hand
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: Documents[0].DocumentVersions[0].DigitalFiles
+    SMEType: SubmodelElementList
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].DigitalFiles
+    AttributeKey: typeValueListElement
+    AttributeValue: File
+  - ChangeOperation: CreateSME
+    ElementPath: Documents[0].DocumentVersions[0].DigitalFiles[0]
+    SMEType: File
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].DigitalFiles[0]
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Document__00__.DocumentVersion__00__.DigitalFile__00__.DocumentPath#value
+    TargetElementPaths:
+    - Documents[0].DocumentVersions[0].DigitalFiles[0]#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].DigitalFiles[0]
+    AttributeKey: contentType
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Document__00__.DocumentVersion__00__.DigitalFile__00__.MimeType#value
+    TargetElementPaths:
+    - Documents[0].DocumentVersions[0].DigitalFiles[0]#contentType
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentVersions[0].DigitalFiles[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].DigitalFiles[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].DigitalFiles[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Document__00__.DocumentVersion__00__.DigitalFile__00__@Cardinality#value
+    TargetElementPaths:
+    - Documents[0].DocumentVersions[0].DigitalFiles[0]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentVersions[0].DigitalFiles[0]
+    QualifierType: ExampleValue
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].DigitalFiles[0]
+    QualifierType: ExampleValue
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].DigitalFiles[0]
+    QualifierType: ExampleValue
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Document__00__.DocumentVersion__00__.DigitalFile__00__@ExampleValue#value
+    TargetElementPaths:
+    - Documents[0].DocumentVersions[0].DigitalFiles[0]@ExampleValue#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentVersions[0].DigitalFiles[0]
+    QualifierType: AllowedIdShort
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].DigitalFiles[0]
+    QualifierType: AllowedIdShort
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].DigitalFiles[0]
+    QualifierType: AllowedIdShort
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Document__00__.DocumentVersion__00__.DigitalFile__00__@AllowedIdShort#value
+    TargetElementPaths:
+    - Documents[0].DocumentVersions[0].DigitalFiles[0]@AllowedIdShort#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Document__00__.DocumentVersion__00__.DigitalFile__00__.MimeType
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveSME
+    ElementPath: Document__00__.DocumentVersion__00__.DigitalFile__00__.MimeType
+  - ChangeOperation: RemoveQual
+    ElementPath: Document__00__.DocumentVersion__00__.DigitalFile__00__.DocumentPath
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveSME
+    ElementPath: Document__00__.DocumentVersion__00__.DigitalFile__00__.DocumentPath
+  - ChangeOperation: RemoveQual
+    ElementPath: Document__00__.DocumentVersion__00__.DigitalFile__00__
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: Document__00__.DocumentVersion__00__.DigitalFile__00__
+    QualifierType: ExampleValue
+  - ChangeOperation: RemoveQual
+    ElementPath: Document__00__.DocumentVersion__00__.DigitalFile__00__
+    QualifierType: AllowedIdShort
+  - ChangeOperation: RemoveSME
+    ElementPath: Document__00__.DocumentVersion__00__.DigitalFile__00__
+- title: 'H9: PreviewFile__00__ (MimeType, DocumentPath) becomes the File PreviewFile'
+  origin: hand
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: Documents[0].DocumentVersions[0].PreviewFile
+    SMEType: File
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].PreviewFile
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Document__00__.DocumentVersion__00__.PreviewFile__00__.DocumentPath#value
+    TargetElementPaths:
+    - Documents[0].DocumentVersions[0].PreviewFile#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].PreviewFile
+    AttributeKey: contentType
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Document__00__.DocumentVersion__00__.PreviewFile__00__.MimeType#value
+    TargetElementPaths:
+    - Documents[0].DocumentVersions[0].PreviewFile#contentType
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentVersions[0].PreviewFile
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].PreviewFile
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].PreviewFile
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Document__00__.DocumentVersion__00__.PreviewFile__00__@Cardinality#value
+    TargetElementPaths:
+    - Documents[0].DocumentVersions[0].PreviewFile@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentVersions[0].PreviewFile
+    QualifierType: ExampleValue
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].PreviewFile
+    QualifierType: ExampleValue
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].PreviewFile
+    QualifierType: ExampleValue
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Document__00__.DocumentVersion__00__.PreviewFile__00__@ExampleValue#value
+    TargetElementPaths:
+    - Documents[0].DocumentVersions[0].PreviewFile@ExampleValue#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentVersions[0].PreviewFile
+    QualifierType: AllowedIdShort
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].PreviewFile
+    QualifierType: AllowedIdShort
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].PreviewFile
+    QualifierType: AllowedIdShort
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Document__00__.DocumentVersion__00__.PreviewFile__00__@AllowedIdShort#value
+    TargetElementPaths:
+    - Documents[0].DocumentVersions[0].PreviewFile@AllowedIdShort#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Document__00__.DocumentVersion__00__.PreviewFile__00__.MimeType
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveSME
+    ElementPath: Document__00__.DocumentVersion__00__.PreviewFile__00__.MimeType
+  - ChangeOperation: RemoveQual
+    ElementPath: Document__00__.DocumentVersion__00__.PreviewFile__00__.DocumentPath
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveSME
+    ElementPath: Document__00__.DocumentVersion__00__.PreviewFile__00__.DocumentPath
+  - ChangeOperation: RemoveQual
+    ElementPath: Document__00__.DocumentVersion__00__.PreviewFile__00__
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: Document__00__.DocumentVersion__00__.PreviewFile__00__
+    QualifierType: ExampleValue
+  - ChangeOperation: RemoveQual
+    ElementPath: Document__00__.DocumentVersion__00__.PreviewFile__00__
+    QualifierType: AllowedIdShort
+  - ChangeOperation: RemoveSME
+    ElementPath: Document__00__.DocumentVersion__00__.PreviewFile__00__
+- title: 'H10: the repeatable reference RefersTo__00__ becomes the list RefersToEntities; each reference is one entry'
+  origin: hand
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: Documents[0].DocumentVersions[0].RefersToEntities
+    SMEType: SubmodelElementList
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].RefersToEntities
+    AttributeKey: typeValueListElement
+    AttributeValue: ReferenceElement
+  - ChangeOperation: CreateSME
+    ElementPath: Documents[0].DocumentVersions[0].RefersToEntities[0]
+    SMEType: ReferenceElement
+  - ChangeOperation: CreateAttr
+    ElementPath: Document__00__.DocumentVersion__00__.RefersTo__00__
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].RefersToEntities[0]
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Document__00__.DocumentVersion__00__.RefersTo__00__#value
+    TargetElementPaths:
+    - Documents[0].DocumentVersions[0].RefersToEntities[0]#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentVersions[0].RefersToEntities[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].RefersToEntities[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].RefersToEntities[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Document__00__.DocumentVersion__00__.RefersTo__00__@Cardinality#value
+    TargetElementPaths:
+    - Documents[0].DocumentVersions[0].RefersToEntities[0]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: ValueMap
+      Pairs:
+        ZeroToMany: OneToMany
+        OneToMany: OneToMany
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentVersions[0].RefersToEntities[0]
+    QualifierType: AllowedIdShort
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].RefersToEntities[0]
+    QualifierType: AllowedIdShort
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].RefersToEntities[0]
+    QualifierType: AllowedIdShort
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Document__00__.DocumentVersion__00__.RefersTo__00__@AllowedIdShort#value
+    TargetElementPaths:
+    - Documents[0].DocumentVersions[0].RefersToEntities[0]@AllowedIdShort#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Document__00__.DocumentVersion__00__.RefersTo__00__
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: Document__00__.DocumentVersion__00__.RefersTo__00__
+    QualifierType: AllowedIdShort
+  - ChangeOperation: RemoveSME
+    ElementPath: Document__00__.DocumentVersion__00__.RefersTo__00__
+- title: 'H11: the repeatable reference BasedOn__00__ becomes the list BasedOnReferences; each reference is one entry'
+  origin: hand
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: Documents[0].DocumentVersions[0].BasedOnReferences
+    SMEType: SubmodelElementList
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].BasedOnReferences
+    AttributeKey: typeValueListElement
+    AttributeValue: ReferenceElement
+  - ChangeOperation: CreateSME
+    ElementPath: Documents[0].DocumentVersions[0].BasedOnReferences[0]
+    SMEType: ReferenceElement
+  - ChangeOperation: CreateAttr
+    ElementPath: Document__00__.DocumentVersion__00__.BasedOn__00__
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].BasedOnReferences[0]
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Document__00__.DocumentVersion__00__.BasedOn__00__#value
+    TargetElementPaths:
+    - Documents[0].DocumentVersions[0].BasedOnReferences[0]#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentVersions[0].BasedOnReferences[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].BasedOnReferences[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].BasedOnReferences[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Document__00__.DocumentVersion__00__.BasedOn__00__@Cardinality#value
+    TargetElementPaths:
+    - Documents[0].DocumentVersions[0].BasedOnReferences[0]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: ValueMap
+      Pairs:
+        ZeroToMany: OneToMany
+        OneToMany: OneToMany
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentVersions[0].BasedOnReferences[0]
+    QualifierType: AllowedIdShort
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].BasedOnReferences[0]
+    QualifierType: AllowedIdShort
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].BasedOnReferences[0]
+    QualifierType: AllowedIdShort
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Document__00__.DocumentVersion__00__.BasedOn__00__@AllowedIdShort#value
+    TargetElementPaths:
+    - Documents[0].DocumentVersions[0].BasedOnReferences[0]@AllowedIdShort#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Document__00__.DocumentVersion__00__.BasedOn__00__
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: Document__00__.DocumentVersion__00__.BasedOn__00__
+    QualifierType: AllowedIdShort
+  - ChangeOperation: RemoveSME
+    ElementPath: Document__00__.DocumentVersion__00__.BasedOn__00__
+- title: 'H12: the repeatable reference TranslationOf__00__ becomes the list TranslationOfEntities; each reference is one
+    entry'
+  origin: hand
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: Documents[0].DocumentVersions[0].TranslationOfEntities
+    SMEType: SubmodelElementList
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].TranslationOfEntities
+    AttributeKey: typeValueListElement
+    AttributeValue: ReferenceElement
+  - ChangeOperation: CreateSME
+    ElementPath: Documents[0].DocumentVersions[0].TranslationOfEntities[0]
+    SMEType: ReferenceElement
+  - ChangeOperation: CreateAttr
+    ElementPath: Document__00__.DocumentVersion__00__.TranslationOf__00__
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].TranslationOfEntities[0]
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Document__00__.DocumentVersion__00__.TranslationOf__00__#value
+    TargetElementPaths:
+    - Documents[0].DocumentVersions[0].TranslationOfEntities[0]#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentVersions[0].TranslationOfEntities[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].TranslationOfEntities[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].TranslationOfEntities[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Document__00__.DocumentVersion__00__.TranslationOf__00__@Cardinality#value
+    TargetElementPaths:
+    - Documents[0].DocumentVersions[0].TranslationOfEntities[0]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: ValueMap
+      Pairs:
+        ZeroToMany: OneToMany
+        OneToMany: OneToMany
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentVersions[0].TranslationOfEntities[0]
+    QualifierType: AllowedIdShort
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].TranslationOfEntities[0]
+    QualifierType: AllowedIdShort
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].TranslationOfEntities[0]
+    QualifierType: AllowedIdShort
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Document__00__.DocumentVersion__00__.TranslationOf__00__@AllowedIdShort#value
+    TargetElementPaths:
+    - Documents[0].DocumentVersions[0].TranslationOfEntities[0]@AllowedIdShort#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Document__00__.DocumentVersion__00__.TranslationOf__00__
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveQual
+    ElementPath: Document__00__.DocumentVersion__00__.TranslationOf__00__
+    QualifierType: AllowedIdShort
+  - ChangeOperation: RemoveSME
+    ElementPath: Document__00__.DocumentVersion__00__.TranslationOf__00__
+- title: 'H6: the emptied DocumentVersion__00__ is removed; at least one version is required'
+  origin: hand
+  items:
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0]
+    AttributeKey: semanticId
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Document__00__.DocumentVersion__00__#semanticId
+    TargetElementPaths:
+    - Documents[0].DocumentVersions[0]#semanticId
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentVersions[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Document__00__.DocumentVersion__00__@Cardinality#value
+    TargetElementPaths:
+    - Documents[0].DocumentVersions[0]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: ValueMap
+      Pairs:
+        ZeroToMany: OneToMany
+        OneToMany: OneToMany
+  - ChangeOperation: RemoveQual
+    ElementPath: Document__00__.DocumentVersion__00__
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveSME
+    ElementPath: Document__00__.DocumentVersion__00__
+- title: 'H13: the repeatable reference DocumentedEntity becomes the list DocumentedEntities; the emptied Document__00__ is
+    removed'
+  origin: hand
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: Documents[0].DocumentedEntities
+    SMEType: SubmodelElementList
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentedEntities
+    AttributeKey: typeValueListElement
+    AttributeValue: ReferenceElement
+  - ChangeOperation: CreateSME
+    ElementPath: Documents[0].DocumentedEntities[0]
+    SMEType: ReferenceElement
+  - ChangeOperation: CreateAttr
+    ElementPath: Document__00__.DocumentedEntity
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentedEntities[0]
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Document__00__.DocumentedEntity#value
+    TargetElementPaths:
+    - Documents[0].DocumentedEntities[0]#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentedEntities[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentedEntities[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentedEntities[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Document__00__.DocumentedEntity@Cardinality#value
+    TargetElementPaths:
+    - Documents[0].DocumentedEntities[0]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: ValueMap
+      Pairs:
+        ZeroToMany: OneToMany
+        OneToMany: OneToMany
+  - ChangeOperation: RemoveQual
+    ElementPath: Document__00__.DocumentedEntity
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveSME
+    ElementPath: Document__00__.DocumentedEntity
+  - ChangeOperation: RemoveQual
+    ElementPath: Document__00__
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveSME
+    ElementPath: Document__00__
+- title: 'H14: the repeatable entity Entity__00__ becomes the list Entities; each entity is one entry'
+  origin: hand
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: Entities
+    SMEType: SubmodelElementList
+  - ChangeOperation: UpdateAttr
+    ElementPath: Entities
+    AttributeKey: typeValueListElement
+    AttributeValue: Entity
+  - ChangeOperation: CreateSME
+    ElementPath: Entities[0]
+    SMEType: Entity
+  - ChangeOperation: CreateAttr
+    ElementPath: Entities[0]
+    AttributeKey: entityType
+  - ChangeOperation: UpdateAttr
+    ElementPath: Entities[0]
+    AttributeKey: entityType
+    AttributeValue: CoManagedEntity
+  - ChangeOperation: CreateAttr
+    ElementPath: Entities[0]
+    AttributeKey: semanticId
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Entity__00__#semanticId
+    TargetElementPaths:
+    - Entities[0]#semanticId
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: CreateQual
+    ElementPath: Entities[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Entities[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Entities[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Entity__00__@Cardinality#value
+    TargetElementPaths:
+    - Entities[0]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: ValueMap
+      Pairs:
+        ZeroToMany: OneToMany
+        OneToMany: OneToMany
+  - ChangeOperation: RemoveQual
+    ElementPath: Entity__00__
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveSME
+    ElementPath: Entity__00__
+- title: 'H15: the cardinality vocabulary changes from Cardinality to SMT/Cardinality'
+  origin: rule
+  rule:
+    QualifierTypeRenames:
+      Cardinality: SMT/Cardinality
+  items:
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentIds[0].DocumentDomainId
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentIds[0].DocumentDomainId
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentIds[0].DocumentDomainId
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Documents[0].DocumentIds[0].DocumentDomainId@Cardinality#value
+    TargetElementPaths:
+    - Documents[0].DocumentIds[0].DocumentDomainId@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Documents[0].DocumentIds[0].DocumentDomainId
+    QualifierType: Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentIds[0].DocumentIdentifier
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentIds[0].DocumentIdentifier
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentIds[0].DocumentIdentifier
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Documents[0].DocumentIds[0].DocumentIdentifier@Cardinality#value
+    TargetElementPaths:
+    - Documents[0].DocumentIds[0].DocumentIdentifier@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Documents[0].DocumentIds[0].DocumentIdentifier
+    QualifierType: Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentIds[0].DocumentIsPrimary
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentIds[0].DocumentIsPrimary
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentIds[0].DocumentIsPrimary
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Documents[0].DocumentIds[0].DocumentIsPrimary@Cardinality#value
+    TargetElementPaths:
+    - Documents[0].DocumentIds[0].DocumentIsPrimary@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Documents[0].DocumentIds[0].DocumentIsPrimary
+    QualifierType: Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentClassifications[0].ClassId
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentClassifications[0].ClassId
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentClassifications[0].ClassId
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Documents[0].DocumentClassifications[0].ClassId@Cardinality#value
+    TargetElementPaths:
+    - Documents[0].DocumentClassifications[0].ClassId@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Documents[0].DocumentClassifications[0].ClassId
+    QualifierType: Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentClassifications[0].ClassName
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentClassifications[0].ClassName
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentClassifications[0].ClassName
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Documents[0].DocumentClassifications[0].ClassName@Cardinality#value
+    TargetElementPaths:
+    - Documents[0].DocumentClassifications[0].ClassName@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Documents[0].DocumentClassifications[0].ClassName
+    QualifierType: Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentClassifications[0].ClassificationSystem
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentClassifications[0].ClassificationSystem
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentClassifications[0].ClassificationSystem
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Documents[0].DocumentClassifications[0].ClassificationSystem@Cardinality#value
+    TargetElementPaths:
+    - Documents[0].DocumentClassifications[0].ClassificationSystem@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Documents[0].DocumentClassifications[0].ClassificationSystem
+    QualifierType: Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentVersions[0].Version
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Version
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Version
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Documents[0].DocumentVersions[0].Version@Cardinality#value
+    TargetElementPaths:
+    - Documents[0].DocumentVersions[0].Version@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Documents[0].DocumentVersions[0].Version
+    QualifierType: Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentVersions[0].Title
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Title
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Title
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Documents[0].DocumentVersions[0].Title@Cardinality#value
+    TargetElementPaths:
+    - Documents[0].DocumentVersions[0].Title@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Documents[0].DocumentVersions[0].Title
+    QualifierType: Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentVersions[0].Subtitle
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Subtitle
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Subtitle
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Documents[0].DocumentVersions[0].Subtitle@Cardinality#value
+    TargetElementPaths:
+    - Documents[0].DocumentVersions[0].Subtitle@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Documents[0].DocumentVersions[0].Subtitle
+    QualifierType: Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentVersions[0].Description
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Description
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Description
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Documents[0].DocumentVersions[0].Description@Cardinality#value
+    TargetElementPaths:
+    - Documents[0].DocumentVersions[0].Description@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Documents[0].DocumentVersions[0].Description
+    QualifierType: Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentVersions[0].KeyWords
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].KeyWords
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].KeyWords
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Documents[0].DocumentVersions[0].KeyWords@Cardinality#value
+    TargetElementPaths:
+    - Documents[0].DocumentVersions[0].KeyWords@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Documents[0].DocumentVersions[0].KeyWords
+    QualifierType: Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentVersions[0].StatusSetDate
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].StatusSetDate
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].StatusSetDate
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Documents[0].DocumentVersions[0].StatusSetDate@Cardinality#value
+    TargetElementPaths:
+    - Documents[0].DocumentVersions[0].StatusSetDate@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Documents[0].DocumentVersions[0].StatusSetDate
+    QualifierType: Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentVersions[0].StatusValue
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].StatusValue
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].StatusValue
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Documents[0].DocumentVersions[0].StatusValue@Cardinality#value
+    TargetElementPaths:
+    - Documents[0].DocumentVersions[0].StatusValue@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Documents[0].DocumentVersions[0].StatusValue
+    QualifierType: Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentVersions[0].OrganizationShortName
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].OrganizationShortName
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].OrganizationShortName
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Documents[0].DocumentVersions[0].OrganizationShortName@Cardinality#value
+    TargetElementPaths:
+    - Documents[0].DocumentVersions[0].OrganizationShortName@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Documents[0].DocumentVersions[0].OrganizationShortName
+    QualifierType: Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentVersions[0].OrganizationOfficialName
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].OrganizationOfficialName
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].OrganizationOfficialName
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Documents[0].DocumentVersions[0].OrganizationOfficialName@Cardinality#value
+    TargetElementPaths:
+    - Documents[0].DocumentVersions[0].OrganizationOfficialName@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Documents[0].DocumentVersions[0].OrganizationOfficialName
+    QualifierType: Cardinality
+- title: 'Completion: removed elements and qualifiers'
+  origin: generated
+  items:
+  - ChangeOperation: RemoveQual
+    ElementPath: numberOfDocuments
+    QualifierType: Relevance
+  - ChangeOperation: RemoveSME
+    ElementPath: numberOfDocuments
+- title: 'Completion: created elements and qualifiers'
+  origin: generated
+  items:
+  - ChangeOperation: UpdateIdShort
+    ElementPath: ''
+    NewIdShort: HandoverDocumentation
+  - ChangeOperation: CreateQual
+    ElementPath: Documents
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentIds
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentClassifications
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentVersions
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentVersions[0].Language
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentVersions[0].RefersToEntities
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentVersions[0].BasedOnReferences
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentVersions[0].TranslationOfEntities
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentVersions[0].DigitalFiles
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: Documents[0].DocumentedEntities
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: Entities
+    QualifierType: SMT/Cardinality
+- title: 'Completion: attributes'
+  origin: generated
+  items:
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: The Submodel defines a set meta data for the handover of documentation from the manufacturer to the operator for
+        industrial equipment
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    AttributeKey: administration
+    AttributeValue:
+      version: '2'
+      revision: '0'
+      templateId: https://admin-shell.io/idta-02004-2-0
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    AttributeKey: id
+    AttributeValue: https://admin-shell.io/idta/SubmodelTemplate/HandoverDocumentation/2/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ModelReference
+      keys:
+      - type: Submodel
+        value: 0173-1#01-AHF578#003
+  - ChangeOperation: CreateAttr
+    ElementPath: ''
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-01-AHF578-003
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Documents (handover documentation)
+    - language: de
+      text: Dokumente (Übergabedokumentation)
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI500#003
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-ABI500-003
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents
+    AttributeKey: semanticIdListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents
+    AttributeKey: semanticIdListElement
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI500#003/0173-1#01-AHF579#003
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: This SubmodelElementCollection holds the information for a VDI 2770 Document entity
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI500#003/0173-1#01-AHF579#003
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0]
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0]
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI500#003~0/0173-1#01-AHF579#003
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-ABI500-003/0173-1-01-AHF579-003
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentIds
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentIds
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Document identifyers
+    - language: de
+      text: Dokumentidentifikatoren
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentIds
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentIds
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI501#003
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentIds
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentIds
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-ABI501-003
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentIds
+    AttributeKey: semanticIdListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentIds
+    AttributeKey: semanticIdListElement
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI501#003/0173-1#01-AHF580#003
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentIds[0]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentIds[0]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Document identificator
+    - language: de
+      text: Dokumentidentifikator
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentIds[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentIds[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: This SubmodelElementCollection holds the information for a VDI 2770 Document entity
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentIds[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentIds[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI501#003/0173-1#01-AHF580#003
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentIds[0]
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentIds[0]
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI501#003~0/0173-1#01-AHF580#003
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-ABI501-003/0173-1-01-AHF580-003
+  - ChangeOperation: RemoveAttr
+    ElementPath: Documents[0].DocumentIds[0].DocumentDomainId
+    AttributeKey: description
+  - ChangeOperation: RemoveAttr
+    ElementPath: Documents[0].DocumentIds[0].DocumentDomainId
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentIds[0].DocumentDomainId
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentIds[0].DocumentDomainId
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: document domain identificator
+    - language: de
+      text: Document Domain Identifikator
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentIds[0].DocumentDomainId
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABH994#003
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentIds[0].DocumentDomainId
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentIds[0].DocumentDomainId
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-ABH994-003
+  - ChangeOperation: RemoveAttr
+    ElementPath: Documents[0].DocumentIds[0].DocumentIdentifier
+    AttributeKey: description
+  - ChangeOperation: RemoveAttr
+    ElementPath: Documents[0].DocumentIds[0].DocumentIdentifier
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentIds[0].DocumentIdentifier
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentIds[0].DocumentIdentifier
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Document Identifyer
+    - language: de
+      text: Dokumentennummer
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentIds[0].DocumentIdentifier
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO099#004
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentIds[0].DocumentIdentifier
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentIds[0].DocumentIdentifier
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-AAO099-004
+  - ChangeOperation: RemoveAttr
+    ElementPath: Documents[0].DocumentIds[0].DocumentIsPrimary
+    AttributeKey: description
+  - ChangeOperation: RemoveAttr
+    ElementPath: Documents[0].DocumentIds[0].DocumentIsPrimary
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentIds[0].DocumentIsPrimary
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentIds[0].DocumentIsPrimary
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Document is primary
+    - language: de
+      text: Dokument ist primär
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentIds[0].DocumentIsPrimary
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABH995#003
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentIds[0].DocumentIsPrimary
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentIds[0].DocumentIsPrimary
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-ABH995-003
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentClassifications
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentClassifications
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Document classifications
+    - language: de
+      text: Dokumentklassifikationen
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentClassifications
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentClassifications
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI502#003
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentClassifications
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentClassifications
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-ABI502-003
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentClassifications
+    AttributeKey: semanticIdListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentClassifications
+    AttributeKey: semanticIdListElement
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI502#003/0173-1#01-AHF581#003
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentClassifications[0]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentClassifications[0]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Document classification
+    - language: de
+      text: Dokumentklassifikation
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentClassifications[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentClassifications[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Set of information for describing the classification of the Document according to a ClassificationSystem
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentClassifications[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentClassifications[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI502#003/0173-1#01-AHF581#003
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentClassifications[0]
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentClassifications[0]
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI502#003~0/0173-1#01-AHF581#003
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-ABI502-003/0173-1-01-AHF581-003
+  - ChangeOperation: RemoveAttr
+    ElementPath: Documents[0].DocumentClassifications[0].ClassId
+    AttributeKey: description
+  - ChangeOperation: RemoveAttr
+    ElementPath: Documents[0].DocumentClassifications[0].ClassId
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentClassifications[0].ClassId
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentClassifications[0].ClassId
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Class identificator
+    - language: de
+      text: Klassenidentifikator
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentClassifications[0].ClassId
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABH996#003
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentClassifications[0].ClassId
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentClassifications[0].ClassId
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-ABH996-003
+  - ChangeOperation: RemoveAttr
+    ElementPath: Documents[0].DocumentClassifications[0].ClassName
+    AttributeKey: description
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentClassifications[0].ClassName
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentClassifications[0].ClassName
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Class Name
+    - language: en
+      text: Klassenname
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentClassifications[0].ClassName
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABJ219#002
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentClassifications[0].ClassName
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentClassifications[0].ClassName
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-ABJ219-002
+  - ChangeOperation: RemoveAttr
+    ElementPath: Documents[0].DocumentClassifications[0].ClassificationSystem
+    AttributeKey: description
+  - ChangeOperation: RemoveAttr
+    ElementPath: Documents[0].DocumentClassifications[0].ClassificationSystem
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentClassifications[0].ClassificationSystem
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentClassifications[0].ClassificationSystem
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Classification system
+    - language: de
+      text: Klassifizierungssystem
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentClassifications[0].ClassificationSystem
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABH997#003
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentClassifications[0].ClassificationSystem
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentClassifications[0].ClassificationSystem
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-ABH997-003
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Document versions
+    - language: de
+      text: Dokumentenversionen
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI503#003
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-ABI503-003
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions
+    AttributeKey: semanticIdListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions
+    AttributeKey: semanticIdListElement
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI503#003/0173-1#01-AHF582#003
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Document version
+    - language: de
+      text: Document version
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI503#003/0173-1#01-AHF582#003
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0]
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0]
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI503#003~0/0173-1#01-AHF582#003
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-ABI503-003
+  - ChangeOperation: RemoveAttr
+    ElementPath: Documents[0].DocumentVersions[0].Version
+    AttributeKey: description
+  - ChangeOperation: RemoveAttr
+    ElementPath: Documents[0].DocumentVersions[0].Version
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Version
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Version
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Document version
+    - language: de
+      text: Dokumentenversion
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Version
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAP003#005
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Version
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Version
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-AAP003-005
+  - ChangeOperation: RemoveAttr
+    ElementPath: Documents[0].DocumentVersions[0].Title
+    AttributeKey: description
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Title
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Title
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Document title
+    - language: de
+      text: Dokumententitel
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Title
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABG940#003
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Title
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Title
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-ABG940-003
+  - ChangeOperation: RemoveAttr
+    ElementPath: Documents[0].DocumentVersions[0].Subtitle
+    AttributeKey: description
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Subtitle
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Subtitle
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Subtitle
+    - language: de
+      text: Untertitel
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Subtitle
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABH998#003
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Subtitle
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Subtitle
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-ABH998-003
+  - ChangeOperation: RemoveAttr
+    ElementPath: Documents[0].DocumentVersions[0].Description
+    AttributeKey: description
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Description
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Description
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Document description
+    - language: de
+      text: Dokumentenbeschreibung
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Description
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAN466#004
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Description
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Description
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-AAN466-004
+  - ChangeOperation: RemoveAttr
+    ElementPath: Documents[0].DocumentVersions[0].KeyWords
+    AttributeKey: description
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].KeyWords
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].KeyWords
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Keywords
+    - language: de
+      text: Stichworte
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].KeyWords
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABH999#003
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].KeyWords
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].KeyWords
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-ABH999-003
+  - ChangeOperation: RemoveAttr
+    ElementPath: Documents[0].DocumentVersions[0].StatusSetDate
+    AttributeKey: description
+  - ChangeOperation: RemoveAttr
+    ElementPath: Documents[0].DocumentVersions[0].StatusSetDate
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].StatusSetDate
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].StatusSetDate
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Document status set date
+    - language: de
+      text: Datum der Einstellung des Dokumentenstatus
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].StatusSetDate
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI000#003
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].StatusSetDate
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].StatusSetDate
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-ABI000-003
+  - ChangeOperation: RemoveAttr
+    ElementPath: Documents[0].DocumentVersions[0].StatusValue
+    AttributeKey: description
+  - ChangeOperation: RemoveAttr
+    ElementPath: Documents[0].DocumentVersions[0].StatusValue
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].StatusValue
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].StatusValue
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Document status
+    - language: de
+      text: Dokumentstatus
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].StatusValue
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI001#003
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].StatusValue
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].StatusValue
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-ABI001-003
+  - ChangeOperation: RemoveAttr
+    ElementPath: Documents[0].DocumentVersions[0].OrganizationShortName
+    AttributeKey: description
+  - ChangeOperation: RemoveAttr
+    ElementPath: Documents[0].DocumentVersions[0].OrganizationShortName
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].OrganizationShortName
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].OrganizationShortName
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Organization short name
+    - language: de
+      text: Kurzname der Organisation
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].OrganizationShortName
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-ABI002-003
+  - ChangeOperation: RemoveAttr
+    ElementPath: Documents[0].DocumentVersions[0].OrganizationOfficialName
+    AttributeKey: description
+  - ChangeOperation: RemoveAttr
+    ElementPath: Documents[0].DocumentVersions[0].OrganizationOfficialName
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].OrganizationOfficialName
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].OrganizationOfficialName
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Organization official name
+    - language: de
+      text: Offizieller Name der Organisation
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].OrganizationOfficialName
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABI004#003
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].OrganizationOfficialName
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].OrganizationOfficialName
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-ABI004-003
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Language
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Language
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Language
+    - language: de
+      text: Sprache
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Language
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Language
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAN468#008
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Language
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Language
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-AAN468-008
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Language[0]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Language[0]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: en (English)
+    - language: de
+      text: en (Englisch)
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Language[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Language[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAN468#008
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Language[0]
+    AttributeKey: value
+    AttributeValue: en
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Language[0]
+    AttributeKey: valueId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Language[0]
+    AttributeKey: valueId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#07-AAS045#003
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].DigitalFiles
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].DigitalFiles
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Digital files
+    - language: de
+      text: Digitale Dateien
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].DigitalFiles
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].DigitalFiles
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABK126#002
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].DigitalFiles
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].DigitalFiles
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-ABK126-002
+  - ChangeOperation: RemoveAttr
+    ElementPath: Documents[0].DocumentVersions[0].DigitalFiles[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].DigitalFiles[0]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].DigitalFiles[0]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Name of the specific digital file@en
+    - language: de
+      text: Name der spezifischen digitalen Datei@de
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].DigitalFiles[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].DigitalFiles[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABK126#002
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].DigitalFiles[0]
+    AttributeKey: contentType
+    AttributeValue: application/pdf
+  - ChangeOperation: RemoveAttr
+    ElementPath: Documents[0].DocumentVersions[0].PreviewFile
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].PreviewFile
+    AttributeKey: category
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].PreviewFile
+    AttributeKey: category
+    AttributeValue: PARAMETER
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].PreviewFile
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].PreviewFile
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Preview file
+    - language: de
+      text: Vorschaudatei
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].PreviewFile
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].PreviewFile
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABK127#002
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].PreviewFile
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].PreviewFile
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-ABK127-002
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].PreviewFile
+    AttributeKey: contentType
+    AttributeValue: image/jpeg
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].RefersToEntities
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].RefersToEntities
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Reference to other documents
+    - language: de
+      text: Referenz zu anderen Dokumenten
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].RefersToEntities
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].RefersToEntities
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABK288#002
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].RefersToEntities
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].RefersToEntities
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-ABK288-002
+  - ChangeOperation: RemoveAttr
+    ElementPath: Documents[0].DocumentVersions[0].RefersToEntities[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].RefersToEntities[0]
+    AttributeKey: category
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].RefersToEntities[0]
+    AttributeKey: category
+    AttributeValue: PARAMETER
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].RefersToEntities[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].RefersToEntities[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABK288#002
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].BasedOnReferences
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].BasedOnReferences
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Based on other documents
+    - language: de
+      text: Basiert auf anderen Dokumenten
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].BasedOnReferences
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].BasedOnReferences
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABK289#002
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].BasedOnReferences
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].BasedOnReferences
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-ABK289-002
+  - ChangeOperation: RemoveAttr
+    ElementPath: Documents[0].DocumentVersions[0].BasedOnReferences[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].BasedOnReferences[0]
+    AttributeKey: category
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].BasedOnReferences[0]
+    AttributeKey: category
+    AttributeValue: PARAMETER
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].BasedOnReferences[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].BasedOnReferences[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABK289#002
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].TranslationOfEntities
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].TranslationOfEntities
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Translation of other documents
+    - language: de
+      text: Übersetzung von anderen Elementen
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].TranslationOfEntities
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].TranslationOfEntities
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABK290#002
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].TranslationOfEntities
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].TranslationOfEntities
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://api.eclass-cdp.com/0173-1-02-ABK290-002
+  - ChangeOperation: RemoveAttr
+    ElementPath: Documents[0].DocumentVersions[0].TranslationOfEntities[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].TranslationOfEntities[0]
+    AttributeKey: category
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].TranslationOfEntities[0]
+    AttributeKey: category
+    AttributeValue: PARAMETER
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].TranslationOfEntities[0]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].TranslationOfEntities[0]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Translation of documents
+    - language: de
+      text: Übersetzung von anderen Elementen
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].TranslationOfEntities[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].TranslationOfEntities[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-ABK290#002
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentedEntities
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentedEntities
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/vdi/2770/1/0/Document/DocumentedEntities
+  - ChangeOperation: RemoveAttr
+    ElementPath: Documents[0].DocumentedEntities[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentedEntities[0]
+    AttributeKey: category
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentedEntities[0]
+    AttributeKey: category
+    AttributeValue: PARAMETER
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentedEntities[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentedEntities[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/vdi/2770/1/0/Document/DocumentedEntity
+  - ChangeOperation: CreateAttr
+    ElementPath: Entities
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Entities
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/vdi/2770/1/0/EntitiesForDocumentation
+  - ChangeOperation: CreateAttr
+    ElementPath: Entities[0]
+    AttributeKey: category
+  - ChangeOperation: UpdateAttr
+    ElementPath: Entities[0]
+    AttributeKey: category
+    AttributeValue: PARAMETER
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentIds[0].DocumentDomainId
+    QualifierType: ExampleValue
+    AttributeKey: value
+    AttributeValue: https://domain.com/...
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentIds[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentIds[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentClassifications[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentClassifications[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Language[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Language[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Language[0]
+    QualifierType: ExampleValue
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Language[0]
+    QualifierType: ExampleValue
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].DigitalFiles[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].DigitalFiles[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].DigitalFiles[0]
+    QualifierType: ExampleValue
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].DigitalFiles[0]
+    QualifierType: ExampleValue
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].DigitalFiles[0]
+    QualifierType: AllowedIdShort
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].DigitalFiles[0]
+    QualifierType: AllowedIdShort
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/AllowedIdShort/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].PreviewFile
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].PreviewFile
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].PreviewFile
+    QualifierType: ExampleValue
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].PreviewFile
+    QualifierType: ExampleValue
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].PreviewFile
+    QualifierType: AllowedIdShort
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].PreviewFile
+    QualifierType: AllowedIdShort
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/AllowedIdShort/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].RefersToEntities[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].RefersToEntities[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].RefersToEntities[0]
+    QualifierType: AllowedIdShort
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].RefersToEntities[0]
+    QualifierType: AllowedIdShort
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/AllowedIdShort/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].BasedOnReferences[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].BasedOnReferences[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].BasedOnReferences[0]
+    QualifierType: AllowedIdShort
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].BasedOnReferences[0]
+    QualifierType: AllowedIdShort
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/AllowedIdShort/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].TranslationOfEntities[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].TranslationOfEntities[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].TranslationOfEntities[0]
+    QualifierType: AllowedIdShort
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].TranslationOfEntities[0]
+    QualifierType: AllowedIdShort
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/AllowedIdShort/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentedEntities[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentedEntities[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Entities[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Entities[0]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentIds[0].DocumentDomainId
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentIds[0].DocumentDomainId
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentIds[0].DocumentIdentifier
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentIds[0].DocumentIdentifier
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentIds[0].DocumentIsPrimary
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentIds[0].DocumentIsPrimary
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentClassifications[0].ClassId
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentClassifications[0].ClassId
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentClassifications[0].ClassName
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentClassifications[0].ClassName
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentClassifications[0].ClassificationSystem
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentClassifications[0].ClassificationSystem
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Version
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Version
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Title
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Title
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Subtitle
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Subtitle
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Description
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Description
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].KeyWords
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].KeyWords
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].KeyWords
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].StatusSetDate
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].StatusSetDate
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].StatusValue
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].StatusValue
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].OrganizationShortName
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].OrganizationShortName
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].OrganizationOfficialName
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].OrganizationOfficialName
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentIds
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentIds
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentIds
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentIds
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentIds
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentClassifications
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentClassifications
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentClassifications
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentClassifications
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentClassifications
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Language
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Language
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Language
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Language
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].Language
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].RefersToEntities
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].RefersToEntities
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].RefersToEntities
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].RefersToEntities
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].RefersToEntities
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].BasedOnReferences
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].BasedOnReferences
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].BasedOnReferences
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].BasedOnReferences
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].BasedOnReferences
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].TranslationOfEntities
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].TranslationOfEntities
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].TranslationOfEntities
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].TranslationOfEntities
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].TranslationOfEntities
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].DigitalFiles
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].DigitalFiles
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].DigitalFiles
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentVersions[0].DigitalFiles
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentVersions[0].DigitalFiles
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentedEntities
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentedEntities
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentedEntities
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Documents[0].DocumentedEntities
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: Documents[0].DocumentedEntities
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: Entities
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Entities
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: Entities
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Entities
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: Entities
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToOne

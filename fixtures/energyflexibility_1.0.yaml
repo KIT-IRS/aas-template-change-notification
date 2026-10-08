@@ -1,0 +1,44 @@
+# Submodel instance conforming to IDTA 02076 Energy Flexibility Data Model v1.0. Illustrative values of
+# an example device: a package of two flexible load measures with two load change profiles each.
+# The entries of the lists carry the idShorts the template gives them.
+template: ressources/Templates/IDTA 02076-1-0_Template_EnergyFlexibilityDataModel.json
+id: https://example.com/ids/sm/example-device/EnergyFlexibility
+drop_empty: true
+
+omit:
+  - flexibilitySpace_operationalPotential
+  - flexibilitySpace_applicationTailoredPotential
+  - flexibilitySpace_generalTechnicalPotential
+  - flexibleLoadMeasureExecutionLog
+
+repeat:
+  "flexibleLoadMeasuresPackage.flexibleLoadMeasures[0]": 2
+  "flexibleLoadMeasuresPackage.flexibleLoadMeasures[0].loadChangeProfiles[0]": 2
+  "flexibleLoadMeasuresPackage.flexibleLoadMeasures[1].loadChangeProfiles[0]": 2
+
+values:
+  flexibleLoadMeasuresPackage.metadata.instanceId: urn:example:efdm:package:0001
+  flexibleLoadMeasuresPackage.metadata.efdmVersion.versionNumber: "1.0"
+  flexibleLoadMeasuresPackage.metadata.efdmVersion.schemaLink: https://example.com/efdm/1.0/schema.json
+  flexibleLoadMeasuresPackage.metadata.origin.originId: urn:example:ems
+  flexibleLoadMeasuresPackage.metadata.origin.timestamp: "2026-03-01T08:00:00Z"
+  flexibleLoadMeasuresPackage.metadata.modification.modificationId: urn:example:ems:mod:0001
+  flexibleLoadMeasuresPackage.metadata.modification.timestamp: "2026-03-01T08:05:00Z"
+  "flexibleLoadMeasuresPackage.flexibleLoadMeasures[0].flexibleLoadMeasureId": M-01
+  "flexibleLoadMeasuresPackage.flexibleLoadMeasures[0].status": accepted
+  "flexibleLoadMeasuresPackage.flexibleLoadMeasures[0].flexibleLoadId": L-heater
+  "flexibleLoadMeasuresPackage.flexibleLoadMeasures[0].loadChangeProfiles[0].power": "-2.5"
+  "flexibleLoadMeasuresPackage.flexibleLoadMeasures[0].loadChangeProfiles[0].timestamp": "2026-03-01T12:00:00Z"
+  "flexibleLoadMeasuresPackage.flexibleLoadMeasures[0].loadChangeProfiles[1].power": "0.0"
+  "flexibleLoadMeasuresPackage.flexibleLoadMeasures[0].loadChangeProfiles[1].timestamp": "2026-03-01T12:15:00Z"
+  "flexibleLoadMeasuresPackage.flexibleLoadMeasures[1].flexibleLoadMeasureId": M-02
+  "flexibleLoadMeasuresPackage.flexibleLoadMeasures[1].status": proposed
+  "flexibleLoadMeasuresPackage.flexibleLoadMeasures[1].flexibleLoadId": L-compressor
+  "flexibleLoadMeasuresPackage.flexibleLoadMeasures[1].loadChangeProfiles[0].power": "1.8"
+  "flexibleLoadMeasuresPackage.flexibleLoadMeasures[1].loadChangeProfiles[0].timestamp": "2026-03-01T18:00:00Z"
+  "flexibleLoadMeasuresPackage.flexibleLoadMeasures[1].loadChangeProfiles[1].power": "0.0"
+  "flexibleLoadMeasuresPackage.flexibleLoadMeasures[1].loadChangeProfiles[1].timestamp": "2026-03-01T18:30:00Z"
+
+add:
+  "":                   # local extension of the asset maintainer, described by no template
+    - {modelType: Property, idShort: InternalInventoryNumber, valueType: xs:string, value: INV-2024-0815}

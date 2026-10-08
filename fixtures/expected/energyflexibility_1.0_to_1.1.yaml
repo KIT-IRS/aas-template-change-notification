@@ -1,0 +1,25 @@
+# Expected outcome of applying energyflexibility_1.0_to_1.1 to fixtures/energyflexibility_1.0.yaml.
+# Derived by hand before running the chain: the bug-fix release removes the idShorts of the list
+# entries (F1, AASd-120); each measure and each profile is rebuilt in place and keeps its values, in
+# their order.
+chain: chains/energyflexibility_1.0_to_1.1.yaml
+instance: fixtures/energyflexibility_1.0.yaml
+
+retained:
+  flexibleLoadMeasuresPackage.metadata.instanceId: urn:example:efdm:package:0001
+  "flexibleLoadMeasuresPackage.flexibleLoadMeasures[0].flexibleLoadMeasureId": M-01
+  "flexibleLoadMeasuresPackage.flexibleLoadMeasures[0].loadChangeProfiles[0].power": "-2.5"
+  "flexibleLoadMeasuresPackage.flexibleLoadMeasures[0].loadChangeProfiles[1].timestamp": "2026-03-01T12:15:00Z"
+  "flexibleLoadMeasuresPackage.flexibleLoadMeasures[1].flexibleLoadMeasureId": M-02
+  "flexibleLoadMeasuresPackage.flexibleLoadMeasures[1].status": proposed
+  "flexibleLoadMeasuresPackage.flexibleLoadMeasures[1].loadChangeProfiles[0].power": "1.8"
+  "flexibleLoadMeasuresPackage.flexibleLoadMeasures[1].loadChangeProfiles[1].timestamp": "2026-03-01T18:30:00Z"
+  InternalInventoryNumber: INV-2024-0815
+
+control:
+  InternalInventoryNumber: InternalInventoryNumber
+
+manual: []
+conforms: true
+violations: []
+removed: []

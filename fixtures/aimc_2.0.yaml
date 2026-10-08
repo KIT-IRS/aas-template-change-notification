@@ -1,0 +1,25 @@
+# Submodel instance conforming to IDTA 02027 Asset Interfaces Mapping Configuration v2.0. Illustrative
+# values of an example device: one mapping configuration with two sources and one sink. The entries
+# carry the idShorts the template gives them.
+template: ressources/Templates/IDTA 02027-2-0_Template_AIMC.json
+id: https://example.com/ids/sm/example-device/AIMC
+
+omit:
+  - "MappingConfigurations[0].Transformation"
+
+repeat:
+  "MappingConfigurations[0].Sources[0]": 2
+
+values:
+  "MappingConfigurations[0].Sources[0].Source": https://example.com/ids/sm/example-device/AID#MQTT/Temperature
+  "MappingConfigurations[0].Sources[1].Source": https://example.com/ids/sm/example-device/AID#MQTT/Pressure
+  "MappingConfigurations[0].Sinks[0].Sink": https://example.com/ids/sm/example-device/OperationalData#MeanLoad
+  "MappingConfigurations[0].DefaultPollingInterval": "1.0"
+  "MappingConfigurations[0].Sources[0].SourceId": temperature
+  "MappingConfigurations[0].Sources[0].PollingInterval": "0.5"
+  "MappingConfigurations[0].Sources[1].SourceId": pressure
+  "MappingConfigurations[0].Sinks[0].SinkId": mean-load
+
+add:
+  "":                   # local extension of the asset maintainer, described by no template
+    - {modelType: Property, idShort: InternalInventoryNumber, valueType: xs:string, value: INV-2024-0815}

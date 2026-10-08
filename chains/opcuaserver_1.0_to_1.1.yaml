@@ -1,0 +1,992 @@
+header:
+  Family: OPCUAServerDatasheet
+  PreVersion: https://admin-shell.io/idta/SubmodelTemplate/opcuaserverdatasheet/1/0
+  PostVersion: https://admin-shell.io/idta/SubmodelTemplate/opcuaserverdatasheet/1/0
+  PreTemplate: ressources/Templates/IDTA 02009-1-0_Template_OPCUA-Server Datasheet.json
+  PostTemplate: ressources/Templates/IDTA 02009-1-1_Template_OPCUA-Server Datasheet.json
+  TemplateOwner: Industrial Digital Twin Association (IDTA)
+  TemplateOwnerAddress:
+    Company: Industrial Digital Twin Association e.V.
+    Street: Lyoner Straße 18
+    Zipcode: '60528'
+    CityTown: Frankfurt am Main
+    NationalCode: DE
+  ChangeURI: https://github.com/admin-shell-io/submodel-templates/tree/main/published/OPC%20UA%20Server%20Datasheet/1/1
+sections:
+- title: 'F1: entries of a list carry no idShort (AASd-120); entries without children are rebuilt, their values carried over'
+  origin: hand
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: Configuration.NodeSets[1]
+    SMEType: File
+  - ChangeOperation: CreateAttr
+    ElementPath: Configuration.NodeSets[1]
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Configuration.NodeSets[0]#value
+    TargetElementPaths:
+    - Configuration.NodeSets[1]#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: CreateQual
+    ElementPath: Configuration.NodeSets[1]
+    QualifierType: Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Configuration.NodeSets[1]
+    QualifierType: Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Configuration.NodeSets[1]
+    QualifierType: Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Configuration.NodeSets[0]@Cardinality#value
+    TargetElementPaths:
+    - Configuration.NodeSets[1]@Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Configuration.NodeSets[0]
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveSME
+    ElementPath: Configuration.NodeSets[0]
+  - ChangeOperation: CreateSME
+    ElementPath: Configuration.SupportSecurityPolicyUris[1]
+    SMEType: Property
+  - ChangeOperation: UpdateAttr
+    ElementPath: Configuration.SupportSecurityPolicyUris[1]
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Configuration.SupportSecurityPolicyUris[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: Configuration.SupportSecurityPolicyUris[1]
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Configuration.SupportSecurityPolicyUris[0]#value
+    TargetElementPaths:
+    - Configuration.SupportSecurityPolicyUris[1]#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: CreateQual
+    ElementPath: Configuration.SupportSecurityPolicyUris[1]
+    QualifierType: Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Configuration.SupportSecurityPolicyUris[1]
+    QualifierType: Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Configuration.SupportSecurityPolicyUris[1]
+    QualifierType: Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Configuration.SupportSecurityPolicyUris[0]@Cardinality#value
+    TargetElementPaths:
+    - Configuration.SupportSecurityPolicyUris[1]@Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Configuration.SupportSecurityPolicyUris[0]
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveSME
+    ElementPath: Configuration.SupportSecurityPolicyUris[0]
+  - ChangeOperation: CreateSME
+    ElementPath: EndpointDescriptions[0].Server.DiscoveryUrls[1]
+    SMEType: Property
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[0].Server.DiscoveryUrls[1]
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[0].Server.DiscoveryUrls[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[0].Server.DiscoveryUrls[1]
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - EndpointDescriptions[0].Server.DiscoveryUrls[0]#value
+    TargetElementPaths:
+    - EndpointDescriptions[0].Server.DiscoveryUrls[1]#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: CreateQual
+    ElementPath: EndpointDescriptions[0].Server.DiscoveryUrls[1]
+    QualifierType: Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[0].Server.DiscoveryUrls[1]
+    QualifierType: Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[0].Server.DiscoveryUrls[1]
+    QualifierType: Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - EndpointDescriptions[0].Server.DiscoveryUrls[0]@Cardinality#value
+    TargetElementPaths:
+    - EndpointDescriptions[0].Server.DiscoveryUrls[1]@Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: EndpointDescriptions[0].Server.DiscoveryUrls[0]
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveSME
+    ElementPath: EndpointDescriptions[0].Server.DiscoveryUrls[0]
+  - ChangeOperation: CreateSME
+    ElementPath: DiscoveryUrls[1]
+    SMEType: Property
+  - ChangeOperation: UpdateAttr
+    ElementPath: DiscoveryUrls[1]
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: DiscoveryUrls[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: DiscoveryUrls[1]
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - DiscoveryUrls[0]#value
+    TargetElementPaths:
+    - DiscoveryUrls[1]#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: CreateQual
+    ElementPath: DiscoveryUrls[1]
+    QualifierType: Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: DiscoveryUrls[1]
+    QualifierType: Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: DiscoveryUrls[1]
+    QualifierType: Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - DiscoveryUrls[0]@Cardinality#value
+    TargetElementPaths:
+    - DiscoveryUrls[1]@Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: DiscoveryUrls[0]
+    QualifierType: Cardinality
+  - ChangeOperation: RemoveSME
+    ElementPath: DiscoveryUrls[0]
+- title: 'F1: entries of a list carry no idShort (AASd-120); entries with children are rebuilt by hollow-out'
+  origin: rule
+  rule:
+    RenameContainer:
+      EndpointDescriptions[0]: null
+      EndpointDescriptions[0].UserIdentityTokens[0]: null
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: EndpointDescriptions[1]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[1]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[1]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Provides information on how to access an OPC UA server. '
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[1]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[1]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/UAServerDatasheet/1/0/EndpointDescription
+  - ChangeOperation: CreateQual
+    ElementPath: EndpointDescriptions[1]
+    QualifierType: Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[1]
+    QualifierType: Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[1]
+    QualifierType: Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - EndpointDescriptions[0]@Cardinality#value
+    TargetElementPaths:
+    - EndpointDescriptions[1]@Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: EndpointDescriptions[0]
+    QualifierType: Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: EndpointDescriptions[0].EndpointUri
+    NewParentPath: EndpointDescriptions[1]
+  - ChangeOperation: CreateSME
+    ElementPath: EndpointDescriptions[1].Server
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[1].Server
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[1].Server
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Defines the description of the server that the endpoint belongs to. '
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[1].Server
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[1].Server
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/UAServerDatasheet/1/0/Server
+  - ChangeOperation: CreateQual
+    ElementPath: EndpointDescriptions[1].Server
+    QualifierType: Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[1].Server
+    QualifierType: Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[1].Server
+    QualifierType: Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - EndpointDescriptions[0].Server@Cardinality#value
+    TargetElementPaths:
+    - EndpointDescriptions[1].Server@Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: EndpointDescriptions[0].Server
+    QualifierType: Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: EndpointDescriptions[0].Server.ApplicationUri
+    NewParentPath: EndpointDescriptions[1].Server
+  - ChangeOperation: UpdateParent
+    ElementPath: EndpointDescriptions[0].Server.ProductUri
+    NewParentPath: EndpointDescriptions[1].Server
+  - ChangeOperation: UpdateParent
+    ElementPath: EndpointDescriptions[0].Server.ApplicationName
+    NewParentPath: EndpointDescriptions[1].Server
+  - ChangeOperation: UpdateParent
+    ElementPath: EndpointDescriptions[0].Server.ApplicationType
+    NewParentPath: EndpointDescriptions[1].Server
+  - ChangeOperation: UpdateParent
+    ElementPath: EndpointDescriptions[0].Server.GatewayServerUri
+    NewParentPath: EndpointDescriptions[1].Server
+  - ChangeOperation: UpdateParent
+    ElementPath: EndpointDescriptions[0].Server.DiscoveryProfileUri
+    NewParentPath: EndpointDescriptions[1].Server
+  - ChangeOperation: CreateSME
+    ElementPath: EndpointDescriptions[1].Server.DiscoveryUrls
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[1].Server.DiscoveryUrls
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[1].Server.DiscoveryUrls
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Provides a list of discovery endpoints used by the server application.
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[1].Server.DiscoveryUrls
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[1].Server.DiscoveryUrls
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/UAServerDatasheet/1/0/DiscoveryUrls
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[1].Server.DiscoveryUrls
+    AttributeKey: typeValueListElement
+    AttributeValue: Property
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[1].Server.DiscoveryUrls
+    AttributeKey: valueTypeListElement
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[1].Server.DiscoveryUrls
+    AttributeKey: valueTypeListElement
+    AttributeValue: xs:string
+  - ChangeOperation: CreateQual
+    ElementPath: EndpointDescriptions[1].Server.DiscoveryUrls
+    QualifierType: Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[1].Server.DiscoveryUrls
+    QualifierType: Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[1].Server.DiscoveryUrls
+    QualifierType: Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - EndpointDescriptions[0].Server.DiscoveryUrls@Cardinality#value
+    TargetElementPaths:
+    - EndpointDescriptions[1].Server.DiscoveryUrls@Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: EndpointDescriptions[0].Server.DiscoveryUrls
+    QualifierType: Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: EndpointDescriptions[0].Server.DiscoveryUrls[0]
+    NewParentPath: EndpointDescriptions[1].Server.DiscoveryUrls
+  - ChangeOperation: RemoveSME
+    ElementPath: EndpointDescriptions[0].Server.DiscoveryUrls
+  - ChangeOperation: RemoveSME
+    ElementPath: EndpointDescriptions[0].Server
+  - ChangeOperation: UpdateParent
+    ElementPath: EndpointDescriptions[0].ServerCertificate
+    NewParentPath: EndpointDescriptions[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: EndpointDescriptions[0].SecurityMode
+    NewParentPath: EndpointDescriptions[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: EndpointDescriptions[0].SecurityPolicyUri
+    NewParentPath: EndpointDescriptions[1]
+  - ChangeOperation: CreateSME
+    ElementPath: EndpointDescriptions[1].UserIdentityTokens
+    SMEType: SubmodelElementList
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[1].UserIdentityTokens
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[1].UserIdentityTokens
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Defines the list of user identity tokens that the server will accept.
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[1].UserIdentityTokens
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[1].UserIdentityTokens
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/UAServerDatasheet/1/0/UserIdentityTokens
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[1].UserIdentityTokens
+    AttributeKey: typeValueListElement
+    AttributeValue: SubmodelElementCollection
+  - ChangeOperation: CreateQual
+    ElementPath: EndpointDescriptions[1].UserIdentityTokens
+    QualifierType: Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[1].UserIdentityTokens
+    QualifierType: Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[1].UserIdentityTokens
+    QualifierType: Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - EndpointDescriptions[0].UserIdentityTokens@Cardinality#value
+    TargetElementPaths:
+    - EndpointDescriptions[1].UserIdentityTokens@Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: EndpointDescriptions[0].UserIdentityTokens
+    QualifierType: Cardinality
+  - ChangeOperation: CreateSME
+    ElementPath: EndpointDescriptions[1].UserIdentityTokens[0]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[1].UserIdentityTokens[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[1].UserIdentityTokens[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Defines an identity token that can be used to access the server application.
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[1].UserIdentityTokens[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[1].UserIdentityTokens[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/UAServerDatasheet/1/0/UserIdentityToken
+  - ChangeOperation: CreateQual
+    ElementPath: EndpointDescriptions[1].UserIdentityTokens[0]
+    QualifierType: Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[1].UserIdentityTokens[0]
+    QualifierType: Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[1].UserIdentityTokens[0]
+    QualifierType: Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - EndpointDescriptions[0].UserIdentityTokens[0]@Cardinality#value
+    TargetElementPaths:
+    - EndpointDescriptions[1].UserIdentityTokens[0]@Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: EndpointDescriptions[0].UserIdentityTokens[0]
+    QualifierType: Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: EndpointDescriptions[0].UserIdentityTokens[0].PolicyId
+    NewParentPath: EndpointDescriptions[1].UserIdentityTokens[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: EndpointDescriptions[0].UserIdentityTokens[0].TokenType
+    NewParentPath: EndpointDescriptions[1].UserIdentityTokens[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: EndpointDescriptions[0].UserIdentityTokens[0].IssuedTokenType
+    NewParentPath: EndpointDescriptions[1].UserIdentityTokens[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: EndpointDescriptions[0].UserIdentityTokens[0].IssuerEndpointUri
+    NewParentPath: EndpointDescriptions[1].UserIdentityTokens[0]
+  - ChangeOperation: UpdateParent
+    ElementPath: EndpointDescriptions[0].UserIdentityTokens[0].SecurityPolicyUri
+    NewParentPath: EndpointDescriptions[1].UserIdentityTokens[0]
+  - ChangeOperation: RemoveSME
+    ElementPath: EndpointDescriptions[0].UserIdentityTokens[0]
+  - ChangeOperation: RemoveSME
+    ElementPath: EndpointDescriptions[0].UserIdentityTokens
+  - ChangeOperation: UpdateParent
+    ElementPath: EndpointDescriptions[0].TransportProfileUri
+    NewParentPath: EndpointDescriptions[1]
+  - ChangeOperation: UpdateParent
+    ElementPath: EndpointDescriptions[0].SecurityLevel
+    NewParentPath: EndpointDescriptions[1]
+  - ChangeOperation: RemoveSME
+    ElementPath: EndpointDescriptions[0]
+- title: 'Completion: removed elements and qualifiers'
+  origin: generated
+  items: []
+- title: 'Completion: created elements and qualifiers'
+  origin: generated
+  items: []
+- title: 'Completion: attributes'
+  origin: generated
+  items:
+  - ChangeOperation: CreateAttr
+    ElementPath: Configuration.NodeSets[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: Configuration.NodeSets[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'Provides a placeholder for a nodeset file that an OPC UA server uses to create AddressSpace during configuration.
+        The nodeset can be part of the machine’s AASX file, in an OPC cloud library or in another downloadable endpoint. '
+  - ChangeOperation: CreateAttr
+    ElementPath: Configuration.NodeSets[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Configuration.NodeSets[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/UAServerDatasheet/1/0/NodeSetFile
+  - ChangeOperation: CreateAttr
+    ElementPath: Configuration.NodeSets[0]
+    AttributeKey: contentType
+  - ChangeOperation: UpdateAttr
+    ElementPath: Configuration.NodeSets[0]
+    AttributeKey: contentType
+    AttributeValue: text/xml
+  - ChangeOperation: RemoveAttr
+    ElementPath: Configuration.SupportSecurityPolicyUris[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: Configuration.SupportSecurityPolicyUris[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: Configuration.SupportSecurityPolicyUris[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Indicates the security policy uri supported by the server. For example, if the server supports basic128Rsa15,
+        the value will be  http://opcfoundation.org/UA/SecurityPolicy#Basic128Rsa15.
+  - ChangeOperation: CreateAttr
+    ElementPath: Configuration.SupportSecurityPolicyUris[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Configuration.SupportSecurityPolicyUris[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/UAServerDatasheet/1/0/SecurityPolicyUri
+  - ChangeOperation: RemoveAttr
+    ElementPath: DiscoveryUrls[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: DiscoveryUrls[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: DiscoveryUrls[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Defines the discovery Url of the server application.
+  - ChangeOperation: CreateAttr
+    ElementPath: DiscoveryUrls[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: DiscoveryUrls[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/UAServerDatasheet/1/0/DiscoveryUrl
+  - ChangeOperation: RemoveAttr
+    ElementPath: EndpointDescriptions[0].Server.DiscoveryUrls[0]
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[0].Server.DiscoveryUrls[0]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[0].Server.DiscoveryUrls[0]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Defines the discovery Url of the server application.
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[0].Server.DiscoveryUrls[0]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[0].Server.DiscoveryUrls[0]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/UAServerDatasheet/1/0/DiscoveryUrl
+  - ChangeOperation: CreateAttr
+    ElementPath: Configuration
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Configuration
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: Configuration.NodeSets
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Configuration.NodeSets
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: Configuration.AllowAnonymousUser
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Configuration.AllowAnonymousUser
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: Configuration.SupportSecurityModeNone
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Configuration.SupportSecurityModeNone
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: Configuration.SupportSecurityModeSign
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Configuration.SupportSecurityModeSign
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: Configuration.SupportSecurityModeSignEncrypt
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Configuration.SupportSecurityModeSignEncrypt
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: Configuration.SupportSecurityPolicyUris
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Configuration.SupportSecurityPolicyUris
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: Configuration.SupportRedundancy
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Configuration.SupportRedundancy
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: Identification
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Identification
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: Identification.ProductUri
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Identification.ProductUri
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: Identification.ManufacturerName
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Identification.ManufacturerName
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: Identification.ProductName
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Identification.ProductName
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: Identification.SoftwareVersion
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Identification.SoftwareVersion
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: Identification.BuildNumber
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Identification.BuildNumber
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: Identification.BuildDate
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Identification.BuildDate
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[0].EndpointUri
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[0].EndpointUri
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[0].Server.ApplicationUri
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[0].Server.ApplicationUri
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[0].Server.ProductUri
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[0].Server.ProductUri
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[0].Server.ApplicationName
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[0].Server.ApplicationName
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[0].Server.ApplicationType
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[0].Server.ApplicationType
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[0].Server.GatewayServerUri
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[0].Server.GatewayServerUri
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[0].Server.DiscoveryProfileUri
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[0].Server.DiscoveryProfileUri
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[0].ServerCertificate
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[0].ServerCertificate
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[0].SecurityMode
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[0].SecurityMode
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[0].SecurityPolicyUri
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[0].SecurityPolicyUri
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[0].UserIdentityTokens[0].PolicyId
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[0].UserIdentityTokens[0].PolicyId
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[0].UserIdentityTokens[0].TokenType
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[0].UserIdentityTokens[0].TokenType
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[0].UserIdentityTokens[0].IssuedTokenType
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[0].UserIdentityTokens[0].IssuedTokenType
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[0].UserIdentityTokens[0].IssuerEndpointUri
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[0].UserIdentityTokens[0].IssuerEndpointUri
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[0].UserIdentityTokens[0].SecurityPolicyUri
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[0].UserIdentityTokens[0].SecurityPolicyUri
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[0].TransportProfileUri
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[0].TransportProfileUri
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[0].SecurityLevel
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[0].SecurityLevel
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: DiscoveryUrls
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: DiscoveryUrls
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: Configuration.NodeSets[0]
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Configuration.NodeSets[0]
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: Configuration.SupportSecurityPolicyUris[0]
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Configuration.SupportSecurityPolicyUris[0]
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[0].Server.DiscoveryUrls[0]
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[0].Server.DiscoveryUrls[0]
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: DiscoveryUrls[0]
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: DiscoveryUrls[0]
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[0]
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[0]
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[0].Server
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[0].Server
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[0].Server.DiscoveryUrls
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[0].Server.DiscoveryUrls
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[0].UserIdentityTokens
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[0].UserIdentityTokens
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: EndpointDescriptions[0].UserIdentityTokens[0]
+    QualifierType: Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: EndpointDescriptions[0].UserIdentityTokens[0]
+    QualifierType: Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier

@@ -1,0 +1,2049 @@
+header:
+  Family: FactoryAutomationDataForPlantPlanning
+  PreVersion: https://admin-shell.io/idta/SubmodelTemplate/FactoryAutomationDataForPlantPlanning/1/0
+  PostVersion: https://admin-shell.io/idta/SubmodelTemplate/FactoryAutomationDataForPlantPlanning/1/0
+  PreTemplate: ressources/Templates/IDTA 02075-1-0_Template_FactoryAutomationDataForPlantPlanning.json
+  PostTemplate: ressources/Templates/IDTA 02075-1-1_Template_FactoryAutomationDataForPlantPlanning.json
+  TemplateOwner: Industrial Digital Twin Association (IDTA)
+  TemplateOwnerAddress:
+    Company: Industrial Digital Twin Association e.V.
+    Street: Lyoner Straße 18
+    Zipcode: '60528'
+    CityTown: Frankfurt am Main
+    NationalCode: DE
+  ChangeURI: https://github.com/admin-shell-io/submodel-templates/tree/main/published/Factory%20Automation%20Data%20for%20Plant%20Planning/1/1
+sections:
+- title: 'F1: entries of a list carry no idShort (AASd-120); entries with children are rebuilt by hollow-out'
+  origin: rule
+  rule:
+    RenameContainer:
+      AutomationMLAttributeAndInterfaceList[0]: null
+      AutomationMLAttributeAndInterfaceList[1]: null
+      AutomationMLAttributeAndInterfaceList[2]: null
+      AutomationMLAttributeAndInterfaceList[3]: null
+      AutomationMLAttributeAndInterfaceList[4]: null
+      AutomationMLAttributeAndInterfaceList[5]: null
+      AutomationMLAttributeAndInterfaceList[6]: null
+      AutomationMLAttributeAndInterfaceList[7]: null
+      AutomationMLAttributeAndInterfaceList[8]: null
+      AutomationMLAttributeAndInterfaceList[9]: null
+      AutomationMLAttributeAndInterfaceList[10]: null
+      AutomationMLAttributeAndInterfaceList[11]: null
+      AutomationMLAttributeAndInterfaceList[12]: null
+      AutomationMLAttributeAndInterfaceList[13]: null
+      AutomationMLAttributeAndInterfaceList[14]: null
+      AutomationMLAttributeAndInterfaceList[15]: null
+      AutomationMLAttributeAndInterfaceList[16]: null
+      AutomationMLAttributeAndInterfaceList[17]: null
+      AutomationMLAttributeAndInterfaceList[18]: null
+      AutomationMLAttributeAndInterfaceList[19]: null
+      AutomationMLAttributeAndInterfaceList[20]: null
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: On/Off
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Collection of AutomationML Attributes to be published as properties
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/attributeContainer/1
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/onOff/1
+  - ChangeOperation: CreateQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - AutomationMLAttributeAndInterfaceList[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - AutomationMLAttributeAndInterfaceList[21]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].onOff
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].RelationBetweenPropertyAndAttribute
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: RemoveSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+  - ChangeOperation: CreateSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Article Number
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Collection of AutomationML Attributes to be published as properties
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/attributeContainer/1
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/articleNumber/1
+  - ChangeOperation: CreateQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - AutomationMLAttributeAndInterfaceList[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - AutomationMLAttributeAndInterfaceList[21]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].ArticleNumber
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].RelationBetweenPropertyAndAttribute
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: RemoveSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+  - ChangeOperation: CreateSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Name of Supplier
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Collection of AutomationML Attributes to be published as properties
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/attributeContainer/1
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/nameOfSupplier/1
+  - ChangeOperation: CreateQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - AutomationMLAttributeAndInterfaceList[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - AutomationMLAttributeAndInterfaceList[21]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].NameOfSupplier
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].RelationBetweenPropertyAndAttribute
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: RemoveSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+  - ChangeOperation: CreateSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Name
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Collection of AutomationML Attributes to be published as properties
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/attributeContainer/1
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/name/1
+  - ChangeOperation: CreateQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - AutomationMLAttributeAndInterfaceList[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - AutomationMLAttributeAndInterfaceList[21]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].name
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].RelationBetweenPropertyAndAttribute
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: RemoveSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+  - ChangeOperation: CreateSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Description
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Collection of AutomationML Attributes to be published as properties
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/attributeContainer/1
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/attributeContainer/1
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/description/1
+  - ChangeOperation: CreateQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - AutomationMLAttributeAndInterfaceList[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - AutomationMLAttributeAndInterfaceList[21]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].description
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].RelationBetweenPropertyAndAttribute
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: RemoveSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+  - ChangeOperation: CreateSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Medium
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Collection of AutomationML Attributes to be published as properties
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/attributeContainer/1
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/medium/1
+  - ChangeOperation: CreateQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - AutomationMLAttributeAndInterfaceList[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - AutomationMLAttributeAndInterfaceList[21]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].medium
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].RelationBetweenPropertyAndAttribute
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: RemoveSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+  - ChangeOperation: CreateSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Comment
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Collection of AutomationML Attributes to be published as properties
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/attributeContainer/1
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/comment/1
+  - ChangeOperation: CreateQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - AutomationMLAttributeAndInterfaceList[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - AutomationMLAttributeAndInterfaceList[21]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].comment
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].RelationBetweenPropertyAndAttribute
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: RemoveSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+  - ChangeOperation: CreateSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Plant
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Collection of AutomationML Attributes to be published as properties
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/attributeContainer/1
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/plant/1
+  - ChangeOperation: CreateQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - AutomationMLAttributeAndInterfaceList[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - AutomationMLAttributeAndInterfaceList[21]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].plant
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].RelationBetweenPropertyAndAttribute
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: RemoveSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+  - ChangeOperation: CreateSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Diameter
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Collection of AutomationML Attributes to be published as properties
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/attributeContainer/1
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/diameter/1
+  - ChangeOperation: CreateQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - AutomationMLAttributeAndInterfaceList[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - AutomationMLAttributeAndInterfaceList[21]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].diameter
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].RelationBetweenPropertyAndAttribute
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: RemoveSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+  - ChangeOperation: CreateSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Overall Length
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Collection of AutomationML Attributes to be published as properties
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/attributeContainer/1
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/overallLength/1
+  - ChangeOperation: CreateQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - AutomationMLAttributeAndInterfaceList[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - AutomationMLAttributeAndInterfaceList[21]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].overallLength
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].RelationBetweenPropertyAndAttribute
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: RemoveSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+  - ChangeOperation: CreateSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Nominal Voltage
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Collection of AutomationML Attributes to be published as properties
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/attributeContainer/1
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/nominalVoltage/1
+  - ChangeOperation: CreateQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - AutomationMLAttributeAndInterfaceList[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - AutomationMLAttributeAndInterfaceList[21]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].NominalVoltage
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].RelationBetweenPropertyAndAttribute
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: RemoveSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+  - ChangeOperation: CreateSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Nominal Power Consumption
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Collection of AutomationML Attributes to be published as properties
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/attributeContainer/1
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/nominalPowerConsumption/1
+  - ChangeOperation: CreateQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - AutomationMLAttributeAndInterfaceList[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - AutomationMLAttributeAndInterfaceList[21]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].nominalPowerConsumption
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].RelationBetweenPropertyAndAttribute
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: RemoveSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+  - ChangeOperation: CreateSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Maximal Power Consumption
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Collection of AutomationML Attributes to be published as properties
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/attributeContainer/1
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/maximalPowerConsumption/1
+  - ChangeOperation: CreateQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - AutomationMLAttributeAndInterfaceList[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - AutomationMLAttributeAndInterfaceList[21]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].maximalPowerConsumption
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].RelationBetweenPropertyAndAttribute
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: RemoveSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+  - ChangeOperation: CreateSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Power Nominal
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Collection of AutomationML Attributes to be published as properties
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/attributeContainer/1
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/powerNominal/1
+  - ChangeOperation: CreateQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - AutomationMLAttributeAndInterfaceList[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - AutomationMLAttributeAndInterfaceList[21]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].powerNominal
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].RelationBetweenPropertyAndAttribute
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: RemoveSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+  - ChangeOperation: CreateSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Power Maximal
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Collection of AutomationML Attributes to be published as properties
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/attributeContainer/1
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/powerMaximal/1
+  - ChangeOperation: CreateQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - AutomationMLAttributeAndInterfaceList[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - AutomationMLAttributeAndInterfaceList[21]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].powerMaximal
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].RelationBetweenPropertyAndAttribute
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: RemoveSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+  - ChangeOperation: CreateSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: X Frame (Position X)
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Collection of AutomationML Attributes to be published as properties
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/attributeContainer/1
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/xframe/1
+  - ChangeOperation: CreateQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - AutomationMLAttributeAndInterfaceList[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - AutomationMLAttributeAndInterfaceList[21]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].xframe
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].RelationBetweenPropertyAndAttribute
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: RemoveSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+  - ChangeOperation: CreateSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Y Frame (Position Y)
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Collection of AutomationML Attributes to be published as properties
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/attributeContainer/1
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/yframe/1
+  - ChangeOperation: CreateQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - AutomationMLAttributeAndInterfaceList[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - AutomationMLAttributeAndInterfaceList[21]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].yframe
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].RelationBetweenPropertyAndAttribute
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: RemoveSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+  - ChangeOperation: CreateSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: Z Frame (Position Z)
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Collection of AutomationML Attributes to be published as properties
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/attributeContainer/1
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/zframe/1
+  - ChangeOperation: CreateQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - AutomationMLAttributeAndInterfaceList[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - AutomationMLAttributeAndInterfaceList[21]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].zframe
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].RelationBetweenPropertyAndAttribute
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: RemoveSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+  - ChangeOperation: CreateSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: RX Frame (Rotation X)
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Collection of AutomationML Attributes to be published as properties
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/attributeContainer/1
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/rxframe/1
+  - ChangeOperation: CreateQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - AutomationMLAttributeAndInterfaceList[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - AutomationMLAttributeAndInterfaceList[21]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].rxframe
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].RelationBetweenPropertyAndAttribute
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: RemoveSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+  - ChangeOperation: CreateSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: RY Frame (Rotation Y)
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Collection of AutomationML Attributes to be published as properties
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/attributeContainer/1
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/ryframe/1
+  - ChangeOperation: CreateQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - AutomationMLAttributeAndInterfaceList[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - AutomationMLAttributeAndInterfaceList[21]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].ryframe
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].RelationBetweenPropertyAndAttribute
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: RemoveSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+  - ChangeOperation: CreateSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: displayName
+    AttributeValue:
+    - language: en
+      text: RZ Frame (Rotation Z)
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Collection of AutomationML Attributes to be published as properties
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/attributeContainer/1
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    AttributeKey: supplementalSemanticIds
+    AttributeValue:
+    - type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/cds/rzframe/1
+  - ChangeOperation: CreateQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: SMT/Cardinality
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: AutomationMLAttributeAndInterfaceList[21]
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - AutomationMLAttributeAndInterfaceList[0]@SMT/Cardinality#value
+    TargetElementPaths:
+    - AutomationMLAttributeAndInterfaceList[21]@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].rzframe
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: UpdateParent
+    ElementPath: AutomationMLAttributeAndInterfaceList[0].RelationBetweenPropertyAndAttribute
+    NewParentPath: AutomationMLAttributeAndInterfaceList[21]
+  - ChangeOperation: RemoveSME
+    ElementPath: AutomationMLAttributeAndInterfaceList[0]
+- title: 'Completion: removed elements and qualifiers'
+  origin: generated
+  items: []
+- title: 'Completion: created elements and qualifiers'
+  origin: generated
+  items: []
+- title: 'Completion: attributes'
+  origin: generated
+  items: []

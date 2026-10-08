@@ -1,0 +1,32 @@
+# Expected outcome of applying pcn_1.0_to_1.1 to fixtures/pcn_1.0.yaml.
+# Derived by hand before running the chain: the bug-fix release removes the idShorts of the list
+# entries (F1, AASd-120); each entry is rebuilt in place and keeps its values, in their order. The
+# content of the unresolved drop-ins is kept.
+chain: chains/pcn_1.0_to_1.1.yaml
+instance: fixtures/pcn_1.0.yaml
+
+retained:
+  "Records[0].ManufacturerChangeID": PCN-2026-017
+  "Records[0].LifeCycleData[0].MilestoneClassification": EOP
+  "Records[0].ReasonsOfChange[0].ReasonId": PDN
+  "Records[0].ReasonsOfChange[1].ReasonId": MLC
+  "Records[0].ItemCategories[0].ItemCategory": Hardware
+  "Records[0].AffectedPartNumbers[0]": EX-100-200
+  "Records[0].AffectedPartNumbers[1]": EX-100-210
+  "Records[0].AdditionalInformation[0]": /aasx/files/pcn-2026-017.pdf
+  "Records[0].DateOfRecord": "2026-02-15T09:00:00Z"
+  "Records[0].ItemOfChange.ProductClassifications[0].ProductClassId": 27-24-22-01
+  "Records[0].ItemOfChange.TechnicalData_Changes[0].ReasonId": PDN
+  "Records[0].RecommendedItems[0].OrderCodeOfManufacturer": [{language: en, text: EX200200}]
+  "Records[0].RecommendedItems[0].ProductClassifications[0].ClassificationSystem": ECLASS
+  "Records[0].Manufacturer.PhysicalAddress__0__.Street": [{language: de, text: Musterweg 5}]
+  InternalNote: checked by purchasing
+
+control:
+  InternalNote: InternalNote
+  "Records[0].Manufacturer.PhysicalAddress__0__.Street": "Records[0].Manufacturer.PhysicalAddress__0__.Street"
+
+manual: []
+conforms: true
+violations: []
+removed: []

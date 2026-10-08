@@ -1,0 +1,37 @@
+# Expected outcome of applying technicaldata_1.1_to_1.2 to fixtures/technicaldata_1.1.yaml.
+# Derived by hand before running the chain, from the published templates (no change log is
+# published). The designation and the text statement become English texts of multi-language
+# properties (T1, T3, CEL); the part number is kept under its new name (T2). Each classification item
+# is rebuilt under the template name (T5): the first takes ProductClassificationItem, the second keeps
+# the temporary name ProductClassificationItem__2 (N1), which is reported.
+chain: chains/technicaldata_1.1_to_1.2.yaml
+instance: fixtures/technicaldata_1.1.yaml
+
+retained:
+  GeneralInformation.ManufacturerName: Example Manufacturer GmbH
+  GeneralInformation.ManufacturerProductDesignation: [{language: en, text: Compact I/O controller}]
+  GeneralInformation.ManufacturerArticleNumber: EX-100-200
+  GeneralInformation.ManufacturerOrderCode: EX100200
+  GeneralInformation.ManufacturerLogo: /aasx/files/logo.png
+  GeneralInformation.ProductImage01: /aasx/files/front.jpg
+  ProductClassifications.ProductClassificationItem.ProductClassificationSystem: ECLASS
+  ProductClassifications.ProductClassificationItem.ClassificationSystemVersion: "13.0"
+  ProductClassifications.ProductClassificationItem.ProductClassId: 27-24-22-01
+  ProductClassifications.ProductClassificationItem__2.ProductClassificationSystem: UNSPSC
+  ProductClassifications.ProductClassificationItem__2.ProductClassId: "32151705"
+  FurtherInformation.TextStatement: [{language: en, text: For indoor use only}]
+  FurtherInformation.ValidDate: "2025-06-30"
+  TechnicalProperties.Width: "62.4"
+  TechnicalProperties.MainSection01.SubSection01.RatedVoltage: "24"
+
+control:
+  GeneralInformation.InternalInventoryNumber: GeneralInformation.InternalInventoryNumber
+  TechnicalProperties.Width: TechnicalProperties.Width
+  TechnicalProperties.MainSection01.SubSection01.RatedVoltage: TechnicalProperties.MainSection01.SubSection01.RatedVoltage
+
+manual:
+  - null      # N1: the temporary name of the second classification item
+
+conforms: true
+violations: []
+removed: []
