@@ -28,6 +28,34 @@ UNDOCUMENTED = {
         ("generated", None),  # the lists enum and the nested observable are removed
     ],
 }
+
+# v1.1 corrects spelling errors in the values of Constraint and Comment qualifiers; v1.2 reintroduces
+# them (and misspells AcknowledgeAlarm), i.e. it is not derived from v1.1 (it also carries the id of v1.0).
+_INTEGER, _INTERGER = "Only applicable for number-/integer-based values", "Only applicable for number-/interger-based values"
+_RECURSIVE, _RECUSIVE = "Recursive definition of last propertyName SMC", "Recusive definition of last propertyName SMC"
+_PROPERTY = "InteractionMetadata.properties.property_name"
+_MIN_MAX = [f"{_PROPERTY}.{p}min_max" for p in ("", "items.", "properties.property_name.", "properties.property_name.items.")]
+_NESTED = f"{_PROPERTY}.properties.property_name.properties"
+
+
+def _spelling(interfaces, min_max, comment):
+    return {(f"InterfaceTemplateFor{i}.{p}@Constraint", "value", min_max) for i in interfaces for p in _MIN_MAX} | \
+        {(f"InterfaceTemplateFor{i}.{_NESTED}@Comment", "value", comment) for i in interfaces}
+
+
+_BACNET_URI = "InterfaceTemplateForBacnet.InteractionMetadata.properties.property_name.uriVariables.property_name"
+GENERATED_OVERWRITES = {
+    "aid_1.0_to_1.1": _spelling(("HTTP", "MODBUS", "MQTT"), _INTEGER, _RECURSIVE),
+    "aid_1.1_to_1.2": _spelling(("HTTP", "MODBUS", "MQTT", "OPCUA", "Bacnet", "IOLINK_OVER_PROFINET_REST"),
+                                _INTERGER, _RECUSIVE) | {
+        (f"{_BACNET_URI}.min_max@Constraint", "value", _INTERGER),
+        (f"{_BACNET_URI}.items.min_max@Constraint", "value", _INTERGER),
+        (f"{_BACNET_URI}.properties@Comment", "value", _RECUSIVE),
+        ("InterfaceTemplateForBacnet.InteractionMetadata.properties.property_name.forms.bacv_useService@Enumeration",
+         "value", "ReadProperty, WriteProperty, SubscribeCOV, GetEventInfo, AcknowlegeAlarm, AddListElement,"
+                  "RemoveListElement"),
+    },
+}
 TRANSITIONS = pytest.mark.parametrize("transition", CHAINS)
 
 
@@ -48,4 +76,5 @@ def test_relocations_and_links_are_stated_by_hand(transition):
 
 @TRANSITIONS
 def test_undocumented_differences_are_enumerated(transition):
-    analysis.check_undocumented_differences_are_enumerated(CHAINS[transition], UNDOCUMENTED[transition], set())
+    analysis.check_undocumented_differences_are_enumerated(
+        CHAINS[transition], UNDOCUMENTED[transition], GENERATED_OVERWRITES[transition])

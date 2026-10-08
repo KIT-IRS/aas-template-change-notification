@@ -26,7 +26,7 @@ from functools import cache
 
 from tcn import chainfile
 from tcn.aas import bridge
-from tcn.core.guarded import apply_chain, guarded
+from tcn.core.guarded import apply_chain, apply_in_place
 from tcn.core.model import LAMBDA
 from tcn.roles import template_owner
 
@@ -99,5 +99,5 @@ def check_undocumented_differences_are_enumerated(
             found.add((item.element_path, "idShort", op.s))
         if item.operation == "UpdateAttr" and T.A[op.a].owner in T.Q and T.A[op.a].value is not LAMBDA:
             found.add((f"{item.element_path}@{item.qualifier_type}", item.attribute_key, op.v))
-        T, _ = guarded(op, T)
+        apply_in_place(op, T)  # T is the working copy apply_chain returned
     assert found == generated_overwrites
