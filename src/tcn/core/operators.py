@@ -1,4 +1,4 @@
-"""The ten atomic operators over T = (T_E, T_Q, T_A)  (paper §3.1, Table 1).
+"""The ten atomic operators over T = (T_E, T_Q, T_A)  (paper §3.3, §3.4, Table 1).
 
 Every operator is specified by
     pre(T)          -> None if admissible, otherwise the rejection code,

@@ -1,4 +1,4 @@
-"""Identification of components by native AAS means  (paper §3.2, Table 2).
+"""Identification of components by native AAS means  (paper §3.5, Table 2).
 
     element    ElementPath                         e.g.  GeneralInformation.ManufacturerName
     qualifier  ElementPath + QualifierType               TechnicalPropertyAreas  +  SMT/Cardinality

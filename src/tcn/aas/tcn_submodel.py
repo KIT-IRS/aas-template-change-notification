@@ -1,4 +1,4 @@
-"""The Template Change Notification submodel  (paper §3.2, Fig. 3, Table 2).
+"""The Template Change Notification submodel  (paper §3.5, Fig. 2, Table 2).
 
 The structure is stated once, in SPEC, and used for both the Submodel Template (written to
 ressources/Templates/Template_TemplateChangeNotification.v0_4.json) and its instances:

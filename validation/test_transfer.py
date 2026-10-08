@@ -1,4 +1,4 @@
-"""Transfer functions of Sync (paper §3.2): execution of expressions without executing code."""
+"""Transfer functions of Sync (paper §3.5, §4.2): execution of expressions without executing code."""
 
 from tcn.core.model import LAMBDA
 from tcn.core.transfer import CEL, MAX_EXPRESSION_LENGTH, Expression, Identity, ValueMap

@@ -1,7 +1,7 @@
-"""Role of the template owner  (paper §4.1, Fig. 4 left).
+"""Role of the template owner  (paper §4.1, Fig. 3 left).
 
     complete  hand-written intent chain  ->  full chain from v_i to v_i+1
-    verify    the chain transforms v_i into v_i+1 at every position (validation case V1/V2)
+    verify    the chain transforms v_i into v_i+1 at every position (validation cases V1, V2, V8)
     publish   the verified chain as a TCN record on the topic of the template family
 
 Completion only adds what the owner did not state: rules the owner declared are expanded, and

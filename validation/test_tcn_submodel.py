@@ -1,4 +1,4 @@
-"""The TCN submodel (paper §3.2): template, and records that carry a chain without loss."""
+"""The TCN submodel (paper §3.5): template, and records that carry a chain without loss."""
 
 import re
 

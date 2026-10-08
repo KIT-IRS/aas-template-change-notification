@@ -1,6 +1,6 @@
 """Chain documents: the authoring format of a TCN record (YAML).
 
-A chain document carries the record header (Fig. 3) and the operation chain, grouped into
+A chain document carries the record header (Fig. 2) and the operation chain, grouped into
 sections. Each section states where its items come from:
 
     origin: hand       written by the template owner; carries the intent of the revision

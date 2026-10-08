@@ -1,4 +1,4 @@
-"""Correspondence between a Submodel Template and a submodel conforming to it  (paper §3.5).
+"""Correspondence between a Submodel Template and a submodel conforming to it  (paper §3.6).
 
     M1  The roots correspond. Below corresponding containers, a template element is realised by the
         instance children with the same type and semanticId (else the same idShort); every entry of

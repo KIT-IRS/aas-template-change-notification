@@ -1,4 +1,4 @@
-"""Generic checks of the guarantees of guarded application  (paper §3.1).
+"""Generic checks of the guarantees of guarded application  (paper §3.4).
 
 For every operator application, independent of the operator:
   ACC  ⇒  post(T, T+) holds,  changed positions ⊆ mod(T),  T+ is structurally valid
@@ -33,7 +33,7 @@ def check_guarded(op: Operator, T: Template) -> tuple[Template, Outcome]:
 
 
 def structural_violations(T: Template) -> list[str]:
-    """Structural validity (paper §3.1): must hold in every state along a chain."""
+    """Structural validity (paper §3.4): must hold in every state along a chain."""
     v = []
     roots = [e for e, x in T.E.items() if x.parent is None]
     if roots != [T.root]:
