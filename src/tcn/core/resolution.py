@@ -61,6 +61,10 @@ Names
   N1  If moving a realisation would collide with a sibling's idShort, it is first renamed to
       <idShort>__<n>; once its template name is free again, it is renamed back. These renames are
       inserted by the resolution and reported as such.
+  N2  An entry of a SubmodelElementList is addressed by its index. An entry the resolution creates
+      in a list, or moves into one, carries no idShort, even where the template names it. An entry
+      that leaves a list takes the name it is to carry before it moves (N1); without one, the chain
+      is refused.
 """
 
 from __future__ import annotations
@@ -286,7 +290,7 @@ class _Resolver:
             self.R[e].append(r)
             self.key[r] = anchor
             self.named.add(r)
-            if name != op.s:
+            if name != op.s and name is not None:  # an entry of a list is addressed by its index (N2)
                 self.desired[r] = op.s
         self.note("expanded", f"CreateSME {item.element_path}: {len(pairs)}")
         if pairs and not sourced and op.t in DATA_ELEMENTS:
@@ -367,6 +371,11 @@ class _Resolver:
         in_list = self.I.E[target].type == "SubmodelElementList"
         if self.I.children(r):
             return self._hollow_out(r, target)
+        if name is None and not in_list:  # an entry leaving a list takes its name first (N2)
+            self._restore_name(r)
+            name = self.I.E[r].id_short
+            if name is None:
+                raise Refused(f"IDSHORT_REQUIRED: {self.I.path(r)} leaves its list without a name")
         if name is not None and not in_list:
             free = self._free_name(target, name)
             if free != name:
@@ -402,7 +411,7 @@ class _Resolver:
                 s.add(new)
         if r in self.desired:
             self.desired[new] = self.desired.pop(r)
-        if el.id_short != self.I.E[new].id_short:
+        if el.id_short != self.I.E[new].id_short and self.I.E[target].type != "SubmodelElementList":  # N2
             self.desired.setdefault(new, el.id_short)
         self._restore_name(new)
         return new
