@@ -76,7 +76,7 @@ from typing import Any
 
 from tcn.core import operators as ops
 from tcn.core.addressing import Item, split_attribute_ref
-from tcn.core.guarded import ACC, REJ, Unbound, guarded
+from tcn.core.guarded import ACC, REJ, Unbound, apply_in_place
 from tcn.core.matching import CARDINALITY_TYPES, match
 from tcn.core.matching import card as _card
 from tcn.core.matching import placeholder as _placeholder
@@ -147,7 +147,7 @@ def _analyse(items: list[Item], pre: Template) -> _Analysis:
                 target = T.E[target].parent  # the nearest created element receives the content
             if target is not None:
                 moved.setdefault(target, set()).add(source)
-        T, outcome = guarded(op, T)
+        outcome = apply_in_place(op, T)  # T is a working copy of pre
         assert outcome.status == ACC, f"chain is rejected on its own template: {item}"
         for _, x in op.mod(T) if isinstance(op, (ops.UpdateAttr, ops.Sync)) else ():
             if x in T.A and T.A[x].name == "value" and T.A[x].owner in T.Q \
@@ -197,7 +197,7 @@ class _Resolver:
             op = item.bind(self.I)
         except Unbound as u:
             raise Refused(f"{u.code}: {item}")
-        self.I, outcome = guarded(op, self.I)
+        outcome = apply_in_place(op, self.I)  # self.I is a working copy of the instance
         if outcome.status == REJ:
             raise Refused(f"{outcome.reason}: {operation} {path}")
         self.out.append(item)
@@ -258,7 +258,7 @@ class _Resolver:
             self.note("elided", f"{item.operation}: qualifier (template construct)")
         else:
             getattr(self, "_" + type(op).__name__)(op, item)
-        self.T, _ = guarded(op, self.T)
+        apply_in_place(op, self.T)  # self.T is a working copy of pre
 
     def _CreateSME(self, op: ops.CreateSME, item: Item) -> None:
         e = self.T.next_ids(1)[0]
