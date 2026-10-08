@@ -1,6 +1,6 @@
 # Expected outcome of applying aimc_2.0_to_2.1 to fixtures/aimc_2.0.yaml.
 # Derived by hand before running the chain: the bug-fix release removes the idShorts of the list
-# entries (F1, AASd-120); the entries are rebuilt in place and keep their values.
+# entries (F1); the entries are rebuilt in place and keep their values.
 chain: chains/aimc_2.0_to_2.1.yaml
 instance: fixtures/aimc_2.0.yaml
 

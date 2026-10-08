@@ -1,6 +1,6 @@
 # Expected outcome of applying qualitycontrol_1.0_to_1.1 to fixtures/qualitycontrol_1.0.yaml.
 # Derived by hand before running the chain: the bug-fix release removes the idShorts of the list
-# entries (F1, AASd-120); each entry is rebuilt in place and keeps its values, in their order.
+# entries (F1); each entry is rebuilt in place and keeps its values, in their order.
 chain: chains/qualitycontrol_1.0_to_1.1.yaml
 instance: fixtures/qualitycontrol_1.0.yaml
 

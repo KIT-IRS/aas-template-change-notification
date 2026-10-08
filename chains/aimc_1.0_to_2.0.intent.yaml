@@ -8,7 +8,7 @@
 # Sources and Sinks separately; by the specification, the first element of a relation is the source of
 # the mapping and the second its sink (A2). That the entries of MappingConfigurations, Sources and
 # Sinks carry the idShorts MappingConfiguration, Source and Sink in v2.0 (A0, A2; removed again in
-# v2.1, AASd-120) is not in the change log.
+# v2.1) is not in the change log.
 
 header:
   Family: AssetInterfacesMappingConfiguration

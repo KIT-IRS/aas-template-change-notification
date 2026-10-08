@@ -6,7 +6,7 @@
 # The change log of v1.1 (Annex F) lists the new OPC UA and BACnet bindings, new terms and changed
 # semanticIds; all are additions or attribute values, stated by the mechanical completion. Not in the
 # change log, taken from the published templates: v1.1 names the entries of the lists security
-# (definesSecurityScheme) and htv_headers (htv_header), against AASd-120 (D1, D2); MODBUS keeps only
+# (definesSecurityScheme) and htv_headers (htv_header) (D1, D2); MODBUS keeps only
 # nosec_sc of its security definitions; scopes of oauth2_sc becomes a list without a template for its
 # entries, so that no chain can carry a scope over: its value is reported as removed; the semanticIds
 # of base and support change to baseURI and supportContact.

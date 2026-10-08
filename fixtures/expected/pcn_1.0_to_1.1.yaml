@@ -1,6 +1,6 @@
 # Expected outcome of applying pcn_1.0_to_1.1 to fixtures/pcn_1.0.yaml.
 # Derived by hand before running the chain: the bug-fix release removes the idShorts of the list
-# entries (F1, AASd-120); each entry is rebuilt in place and keeps its values, in their order. The
+# entries (F1); each entry is rebuilt in place and keeps its values, in their order. The
 # content of the unresolved drop-ins is kept.
 chain: chains/pcn_1.0_to_1.1.yaml
 instance: fixtures/pcn_1.0.yaml

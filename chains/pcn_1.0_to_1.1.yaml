@@ -13,7 +13,8 @@ header:
     NationalCode: DE
   ChangeURI: https://github.com/admin-shell-io/submodel-templates/tree/main/published/Product%20Change%20Notifications/1/1
 sections:
-- title: 'F1: entries of a list carry no idShort (AASd-120); entries without children are rebuilt, their values carried over'
+- title: 'F1: the entries of the lists no longer carry an idShort; entries without children are rebuilt, their values carried
+    over'
   origin: hand
   items:
   - ChangeOperation: CreateSME
@@ -100,7 +101,7 @@ sections:
     QualifierType: SMT/Cardinality
   - ChangeOperation: RemoveSME
     ElementPath: Records[0].AdditionalInformation[0]
-- title: 'F1: entries of a list carry no idShort (AASd-120); entries with children are rebuilt by hollow-out'
+- title: 'F1: the entries of the lists no longer carry an idShort; entries with children are rebuilt by hollow-out'
   origin: rule
   rule:
     RenameContainer:
