@@ -1,0 +1,71 @@
+# Submodel instance conforming to IDTA 02004 Handover Documentation v1.2. Illustrative values of an
+# example device: two documents in two languages each, with a preview, and one documented entity,
+# which is added with the asset it stands for (the fixture format cannot set globalAssetId).
+template: ressources/Templates/IDTA 02004-1-2_Template_Handover Documentation.json
+id: https://example.com/ids/sm/example-device/HandoverDocumentation
+
+omit:
+  - Document__00__.DocumentVersion__00__.RefersTo__00__
+  - Document__00__.DocumentVersion__00__.BasedOn__00__
+  - Document__00__.DocumentVersion__00__.TranslationOf__00__
+  - Document__00__.DocumentedEntity
+  - Entity__00__
+
+repeat:
+  Document__00__.DocumentVersion__00__.Language__00__: [Language01, Language02]
+  Document__00__.DocumentVersion__00__.DigitalFile__00__: [DigitalFile01]
+  Document__00__.DocumentVersion__00__.PreviewFile__00__: [PreviewFile01]
+  Document__00__.DocumentId__00__: [DocumentId01]
+  Document__00__.DocumentClassification__00__: [DocumentClassification01]
+  Document__00__.DocumentVersion__00__: [DocumentVersion01]
+  Document__00__: [Document01, Document02]
+
+values:
+  numberOfDocuments: "2"
+  Document01.DocumentId01.DocumentDomainId: https://example.com/documents
+  Document01.DocumentId01.ValueId: OM-100-200
+  Document01.DocumentId01.IsPrimary: "true"
+  Document01.DocumentClassification01.ClassId: 03-02
+  Document01.DocumentClassification01.ClassName: {en: Operation}
+  Document01.DocumentClassification01.ClassificationSystem: VDI2770:2020
+  Document01.DocumentVersion01.Language01: en
+  Document01.DocumentVersion01.Language02: de
+  Document01.DocumentVersion01.DocumentVersionId: "1.2"
+  Document01.DocumentVersion01.Title: {en: Operating manual, de: Betriebsanleitung}
+  Document01.DocumentVersion01.SubTitle: {en: EX-100 series}
+  Document01.DocumentVersion01.Summary: {en: Installation and operation of the EX-100 series}
+  Document01.DocumentVersion01.KeyWords: {en: installation; operation}
+  Document01.DocumentVersion01.StatusSetDate: "2024-03-01"
+  Document01.DocumentVersion01.StatusValue: Released
+  Document01.DocumentVersion01.OrganizationName: Example Manufacturer
+  Document01.DocumentVersion01.OrganizationOfficialName: Example Manufacturer GmbH
+  Document01.DocumentVersion01.DigitalFile01.MimeType: application/pdf
+  Document01.DocumentVersion01.DigitalFile01.DocumentPath: /aasx/files/om-100-200.pdf
+  Document01.DocumentVersion01.PreviewFile01.MimeType: image/png
+  Document01.DocumentVersion01.PreviewFile01.DocumentPath: /aasx/files/om-100-200.png
+  Document02.DocumentId01.DocumentDomainId: https://example.com/documents
+  Document02.DocumentId01.ValueId: CE-100-200
+  Document02.DocumentClassification01.ClassId: 02-01
+  Document02.DocumentClassification01.ClassName: {en: Certificates}
+  Document02.DocumentClassification01.ClassificationSystem: VDI2770:2020
+  Document02.DocumentVersion01.Language01: en
+  Document02.DocumentVersion01.Language02: fr
+  Document02.DocumentVersion01.DocumentVersionId: "1.0"
+  Document02.DocumentVersion01.Title: {en: Declaration of conformity}
+  Document02.DocumentVersion01.Summary: {en: EU declaration of conformity}
+  Document02.DocumentVersion01.KeyWords: {en: CE}
+  Document02.DocumentVersion01.StatusSetDate: "2024-01-15"
+  Document02.DocumentVersion01.StatusValue: Released
+  Document02.DocumentVersion01.OrganizationName: Example Manufacturer
+  Document02.DocumentVersion01.OrganizationOfficialName: Example Manufacturer GmbH
+  Document02.DocumentVersion01.DigitalFile01.MimeType: text/html
+  Document02.DocumentVersion01.DigitalFile01.DocumentPath: /aasx/files/doc-100-200.html
+  Document02.DocumentVersion01.PreviewFile01.MimeType: image/png
+  Document02.DocumentVersion01.PreviewFile01.DocumentPath: /aasx/files/doc-100-200.png
+
+add:
+  "":
+    - {modelType: Entity, idShort: Entity01, entityType: CoManagedEntity, globalAssetId: "urn:example:asset:ex-100-200-sn0042",
+       semanticId: {type: ExternalReference, keys: [{type: GlobalReference, value: "https://admin-shell.io/vdi/2770/1/0/EntityForDocumentation"}]}}
+    # local extension of the asset maintainer, described by no template
+    - {modelType: Property, idShort: InternalInventoryNumber, valueType: xs:string, value: INV-2024-0815}

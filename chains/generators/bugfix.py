@@ -3,8 +3,8 @@ no longer carry an idShort (F1).
 
 The intent is the same for all of them and is read off the two templates: every entry of a list that
 carries an idShort in v_i and none in v_i+1 is rebuilt. An entry without children is rebuilt by hand
-items (a new entry with the mandatory attributes of the old one, value and qualifiers carried over by
-Sync, the old entry removed); an entry with children by the rule RenameContainer (hollow-out).
+items (a new entry with the mandatory attributes of the old one, its instance data and qualifiers
+carried over by Sync, the old entry removed); an entry with children by the rule RenameContainer (hollow-out).
 
     uv run python chains/generators/bugfix.py
 """
@@ -13,7 +13,7 @@ from __future__ import annotations
 
 from _common import ID, header, item, load, write
 
-from tcn.core.metamodel import mand
+from tcn.core.metamodel import instance_data, mand
 from tcn.core.model import Id, Template
 
 GITHUB = "https://github.com/admin-shell-io/submodel-templates/tree/main/published"
@@ -79,8 +79,9 @@ def rebuild(A: Template, e: Id) -> list[dict]:
     items = [item("CreateSME", new, SMEType=A.E[e].type)]
     for key in sorted(mand(A.E[e].type)):  # mandatory attributes, as in the entry they replace
         items.append(item("UpdateAttr", new, AttributeKey=key, AttributeValue=A.A[A.attr(e, key)].value))
-    for key in ("value", "valueId"):
-        if key == "valueId" and A.attr(e, key) is None:
+    # instance data (tcn.core.metamodel.instance_data), e.g. value and valueId or the contentType of a File
+    for key in ["value", *sorted(instance_data(A.E[e].type) - {"value"})]:
+        if key != "value" and A.attr(e, key) is None:
             continue
         if A.attr(e, key) is None:  # the source of Sync has to exist in the template too
             items.append(item("CreateAttr", path, AttributeKey=key))

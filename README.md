@@ -148,9 +148,18 @@ pass criterion of Table 4.
 | V6 chain that cannot be resolved | `test_v6_unresolvable_chain.py` |
 | V7 publication without consent | `test_v7_no_change_before_consent.py` |
 | V8 TCN Submodel Template v0.3 → v0.4 | `test_v8_self_application.py` |
+| V9 further IDTA templates, completeness (not in the paper) | `test_v9_idta_templates_completeness.py` |
+| V10 further IDTA templates, retention, offline (not in the paper) | `test_v10_idta_templates_retention.py` |
+| V9/V10 Asset Interfaces Description (not in the paper, `--run-slow`) | `test_v9_aid_completeness.py`, `test_v10_aid_retention.py` |
 
-The checks the cases share are in `analysis.py` (V1, V2, V8: chain against the published
-templates), `application.py` (V3–V5, V8: resolution and application, offline) and `endtoend.py`
+V9 and V10 extend the validation beyond the paper to every published major or minor revision of the
+IDTA Submodel Templates (18 transitions, 15 families) and use the same checks as V1/V2 and V3/V4.
+The templates are in `ressources/Templates/`, the chains in `chains/`, the fixtures and expectations
+in `fixtures/`. The two transitions of Asset Interfaces Description run for several minutes; their
+tests are marked `slow` and run only with `--run-slow`.
+
+The checks the cases share are in `analysis.py` (V1, V2, V8, V9: chain against the published
+templates), `application.py` (V3–V5, V8, V10: resolution and application, offline) and `endtoend.py`
 (V3–V7: over BaSyx and MQTT). The end-to-end tests are marked `infra` and require the Docker
 environment (`-m infra`); all other tests run offline.
 

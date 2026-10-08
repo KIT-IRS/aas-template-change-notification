@@ -22,6 +22,7 @@ UNDOCUMENTED entries: (section of the chain that states the difference, identifi
 """
 
 from collections import Counter
+from functools import cache
 
 from tcn import chainfile
 from tcn.aas import bridge
@@ -37,15 +38,23 @@ def causes(submodel) -> Counter:
     return Counter(v.split(": ", 1)[1] for v in bridge.verify(submodel))
 
 
+@cache
+def _verify(chain_path: str):
+    """The chain and its verification against the templates, computed once per chain and shared by
+    the checks, which only read them."""
+    chain = chainfile.load(chain_path)
+    return chain, template_owner.verify(chain)
+
+
 def check_chain_reproduces_target_template(chain_path: str) -> None:
-    v = template_owner.verify(chainfile.load(chain_path))
+    _, v = _verify(chain_path)
     assert v.result.status == "ACC", v.result.reason
     assert not v.missing and not v.surplus
 
 
 def check_result_is_metamodel_conformant_as_published(chain_path: str) -> None:
-    chain = chainfile.load(chain_path)
-    result = template_owner.verify(chain).result.template
+    chain, v = _verify(chain_path)
+    result = v.result.template
     published = bridge.load_submodel(chain.header["PostTemplate"])
     assert causes(bridge.to_jsonable(result)) == causes(published)
 

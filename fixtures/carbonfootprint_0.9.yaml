@@ -1,0 +1,44 @@
+# Submodel instance conforming to IDTA 02023 Carbon Footprint v0.9. Illustrative values of an example
+# device: one product carbon footprint by two calculation methods for two life cycle phases, and one
+# transport carbon footprint.
+template: ressources/Templates/IDTA 02023-0-9_Template_CarbonFootprint.json
+id: https://example.com/ids/sm/example-device/CarbonFootprint
+
+omit:
+  - ProductCarbonFootprint.ExpirationDate
+  - TransportCarbonFootprint.ExplanatoryStatement
+  - TransportCarbonFootprint.ExpirationDate
+
+repeat:
+  ProductCarbonFootprint.PCFCalculationMethod: [PCFCalculationMethod01, PCFCalculationMethod02]
+  ProductCarbonFootprint.PCFLifeCyclePhase: [PCFLifeCyclePhase01, PCFLifeCyclePhase02]
+  ProductCarbonFootprint: [ProductCarbonFootprint01]
+  TransportCarbonFootprint: [TransportCarbonFootprint01]
+
+values:
+  ProductCarbonFootprint01.PCFCalculationMethod01: GHG Protocol
+  ProductCarbonFootprint01.PCFCalculationMethod02: ISO 14067
+  ProductCarbonFootprint01.PCFCO2eq: "12.5"
+  ProductCarbonFootprint01.PCFReferenceValueForCalculation: piece
+  ProductCarbonFootprint01.PCFQuantityOfMeasureForCalculation: "1"
+  ProductCarbonFootprint01.PCFLifeCyclePhase01: A1-A3
+  ProductCarbonFootprint01.PCFLifeCyclePhase02: A4
+  ProductCarbonFootprint01.ExplanatoryStatement: /aasx/files/pcf-statement.pdf
+  ProductCarbonFootprint01.PCFGoodsAddressHandover.Street: Examplestreet
+  ProductCarbonFootprint01.PCFGoodsAddressHandover.HouseNumber: "1"
+  ProductCarbonFootprint01.PCFGoodsAddressHandover.ZipCode: "12345"
+  ProductCarbonFootprint01.PCFGoodsAddressHandover.CityTown: Exampletown
+  ProductCarbonFootprint01.PCFGoodsAddressHandover.Country: DE
+  ProductCarbonFootprint01.PublicationDate: "2024-05-01"
+  TransportCarbonFootprint01.TCFCalculationMethod: EN 16258
+  TransportCarbonFootprint01.TCFCO2eq: "0.8"
+  TransportCarbonFootprint01.TCFReferenceValueForCalculation: piece
+  TransportCarbonFootprint01.TCFQuantityOfMeasureForCalculation: "1"
+  TransportCarbonFootprint01.TCFProcessesForGreenhouseGasEmissionInATransportService: WTW
+  TransportCarbonFootprint01.TCFGoodsTransportAddressTakeover.CityTown: Exampletown
+  TransportCarbonFootprint01.TCFGoodsTransportAddressHandover.CityTown: Othertown
+  TransportCarbonFootprint01.PublicationDate: "2024-05-01"
+
+add:
+  "":                   # local extension of the asset maintainer, described by no template
+    - {modelType: Property, idShort: InternalInventoryNumber, valueType: xs:string, value: INV-2024-0815}

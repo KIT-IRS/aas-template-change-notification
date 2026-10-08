@@ -1,0 +1,47 @@
+# Expected outcome of applying carbonfootprint_0.9_to_1.0 to fixtures/carbonfootprint_0.9.yaml.
+# Derived by hand before running the chain, from the published templates (no change log is
+# published). The product carbon footprint becomes the entry of ProductCarbonFootprints (K1); its
+# properties keep their values under their new names (K2); each calculation method and each life
+# cycle phase becomes one entry of its list (K3, K4); the address becomes the drop-in Address
+# Information with English texts, street and house number as one text (K5); the publication date
+# becomes a date and time (K6). The transport carbon footprint has no counterpart in v1.0 (K7): its
+# values are removed and reported. v1.0 admits one entry of PcfCalculationMethods and of
+# LifeCyclePhases (cardinality One), so two methods and two phases do not conform.
+chain: chains/carbonfootprint_0.9_to_1.0.yaml
+instance: fixtures/carbonfootprint_0.9.yaml
+
+retained:
+  "ProductCarbonFootprints[0].PcfCalculationMethods[0]": GHG Protocol
+  "ProductCarbonFootprints[0].PcfCalculationMethods[1]": ISO 14067
+  "ProductCarbonFootprints[0].PcfCO2eq": "12.5"
+  "ProductCarbonFootprints[0].ReferenceImpactUnitForCalculation": piece
+  "ProductCarbonFootprints[0].QuantityOfMeasureForCalculation": "1"
+  "ProductCarbonFootprints[0].LifeCyclePhases[0]": A1-A3
+  "ProductCarbonFootprints[0].LifeCyclePhases[1]": A4
+  "ProductCarbonFootprints[0].ExplanatoryStatement": /aasx/files/pcf-statement.pdf
+  "ProductCarbonFootprints[0].GoodsHandoverAddress.Street": [{language: en, text: Examplestreet 1}]
+  "ProductCarbonFootprints[0].GoodsHandoverAddress.Zipcode": [{language: en, text: "12345"}]
+  "ProductCarbonFootprints[0].GoodsHandoverAddress.CityTown": [{language: en, text: Exampletown}]
+  "ProductCarbonFootprints[0].GoodsHandoverAddress.NationalCode": [{language: en, text: DE}]
+  "ProductCarbonFootprints[0].PublicationDate": "2024-05-01T00:00:00Z"
+  InternalInventoryNumber: INV-2024-0815
+
+control:
+  InternalInventoryNumber: InternalInventoryNumber
+
+manual: []
+
+conforms: false
+violations:
+  - [TOO_MANY, "ProductCarbonFootprints[0].PcfCalculationMethods[*]"]
+  - [TOO_MANY, "ProductCarbonFootprints[0].LifeCyclePhases[*]"]
+
+removed:
+  - TransportCarbonFootprint01.TCFCalculationMethod
+  - TransportCarbonFootprint01.TCFCO2eq
+  - TransportCarbonFootprint01.TCFReferenceValueForCalculation
+  - TransportCarbonFootprint01.TCFQuantityOfMeasureForCalculation
+  - TransportCarbonFootprint01.TCFProcessesForGreenhouseGasEmissionInATransportService
+  - TransportCarbonFootprint01.TCFGoodsTransportAddressTakeover.CityTown
+  - TransportCarbonFootprint01.TCFGoodsTransportAddressHandover.CityTown
+  - TransportCarbonFootprint01.PublicationDate

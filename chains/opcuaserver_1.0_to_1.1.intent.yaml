@@ -32,6 +32,8 @@ sections:
       - {ChangeOperation: CreateSME, ElementPath: 'Configuration.NodeSets[1]', SMEType: File}
       - {ChangeOperation: CreateAttr, ElementPath: 'Configuration.NodeSets[1]', AttributeKey: value}
       - {ChangeOperation: Sync, SourceElementPaths: ['Configuration.NodeSets[0]#value'], TargetElementPaths: ['Configuration.NodeSets[1]#value'], TransferFunction: {Kind: Identity}}
+      - {ChangeOperation: CreateAttr, ElementPath: 'Configuration.NodeSets[1]', AttributeKey: contentType}
+      - {ChangeOperation: Sync, SourceElementPaths: ['Configuration.NodeSets[0]#contentType'], TargetElementPaths: ['Configuration.NodeSets[1]#contentType'], TransferFunction: {Kind: Identity}}
       - {ChangeOperation: CreateQual, ElementPath: 'Configuration.NodeSets[1]', QualifierType: Cardinality}
       - {ChangeOperation: UpdateAttr, ElementPath: 'Configuration.NodeSets[1]', QualifierType: Cardinality, AttributeKey: valueType, AttributeValue: 'xs:string'}
       - {ChangeOperation: CreateAttr, ElementPath: 'Configuration.NodeSets[1]', QualifierType: Cardinality, AttributeKey: value}

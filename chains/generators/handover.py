@@ -181,9 +181,17 @@ def main() -> None:
     items = new_list("Entities", "Entity") + [item("CreateSME", new, SMEType="Entity"),
                                               item("CreateAttr", new, AttributeKey="entityType"),
                                               item("UpdateAttr", new, AttributeKey="entityType", AttributeValue="CoManagedEntity")]
-    items += link_semantics(old, new) + qual(new, ("Cardinality", "SMT/Cardinality"), old, to_entries)
+    items += link_semantics(old, new)
+    # the asset the entity stands for is instance data; neither template carries it, so the
+    # attributes are created for the link only
+    for key in ("globalAssetId", "specificAssetIds"):
+        items += [item("CreateAttr", old, AttributeKey=key), item("CreateAttr", new, AttributeKey=key),
+                  item("Sync", None, SourceElementPaths=[f"{old}#{key}"], TargetElementPaths=[f"{new}#{key}"],
+                       TransferFunction=ID)]
+    items += qual(new, ("Cardinality", "SMT/Cardinality"), old, to_entries)
     items += drop_quals(old, "Cardinality") + [item("RemoveSME", old)]
-    sections.append(("H14: the repeatable entity Entity__00__ becomes the list Entities; each entity is one entry", "hand", items))
+    sections.append(("H14: the repeatable entity Entity__00__ becomes the list Entities; each entity is one entry, "
+                     "the asset it stands for carried over", "hand", items))
     sections.append(("H15: the cardinality vocabulary changes from Cardinality to SMT/Cardinality", "rule",
                      {"QualifierTypeRenames": {"Cardinality": "SMT/Cardinality"}}))
     write("chains/handover_1.2_to_2.0.intent.yaml", COMMENT, header("HandoverDocumentation", PRE, POST, URI), sections)

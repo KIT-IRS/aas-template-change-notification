@@ -262,7 +262,7 @@ sections:
       - {ChangeOperation: RemoveSME, ElementPath: Document__00__.DocumentedEntity}
       - {ChangeOperation: RemoveQual, ElementPath: Document__00__, QualifierType: Cardinality}
       - {ChangeOperation: RemoveSME, ElementPath: Document__00__}
-  - title: "H14: the repeatable entity Entity__00__ becomes the list Entities; each entity is one entry"
+  - title: "H14: the repeatable entity Entity__00__ becomes the list Entities; each entity is one entry, the asset it stands for carried over"
     origin: hand
     items:
       - {ChangeOperation: CreateSME, ElementPath: Entities, SMEType: SubmodelElementList}
@@ -272,6 +272,12 @@ sections:
       - {ChangeOperation: UpdateAttr, ElementPath: 'Entities[0]', AttributeKey: entityType, AttributeValue: CoManagedEntity}
       - {ChangeOperation: CreateAttr, ElementPath: 'Entities[0]', AttributeKey: semanticId}
       - {ChangeOperation: Sync, SourceElementPaths: [Entity__00__#semanticId], TargetElementPaths: ['Entities[0]#semanticId'], TransferFunction: {Kind: Identity}}
+      - {ChangeOperation: CreateAttr, ElementPath: Entity__00__, AttributeKey: globalAssetId}
+      - {ChangeOperation: CreateAttr, ElementPath: 'Entities[0]', AttributeKey: globalAssetId}
+      - {ChangeOperation: Sync, SourceElementPaths: [Entity__00__#globalAssetId], TargetElementPaths: ['Entities[0]#globalAssetId'], TransferFunction: {Kind: Identity}}
+      - {ChangeOperation: CreateAttr, ElementPath: Entity__00__, AttributeKey: specificAssetIds}
+      - {ChangeOperation: CreateAttr, ElementPath: 'Entities[0]', AttributeKey: specificAssetIds}
+      - {ChangeOperation: Sync, SourceElementPaths: [Entity__00__#specificAssetIds], TargetElementPaths: ['Entities[0]#specificAssetIds'], TransferFunction: {Kind: Identity}}
       - {ChangeOperation: CreateQual, ElementPath: 'Entities[0]', QualifierType: SMT/Cardinality}
       - {ChangeOperation: UpdateAttr, ElementPath: 'Entities[0]', QualifierType: SMT/Cardinality, AttributeKey: valueType, AttributeValue: 'xs:string'}
       - {ChangeOperation: CreateAttr, ElementPath: 'Entities[0]', QualifierType: SMT/Cardinality, AttributeKey: value}

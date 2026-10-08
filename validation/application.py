@@ -6,6 +6,7 @@ BaSyx and MQTT (validation.endtoend) checks the same expectations.
 """
 
 from collections import Counter
+from functools import cache
 from pathlib import Path
 
 import yaml
@@ -20,9 +21,13 @@ from tcn.core.model import LAMBDA, positions
 from tcn.core.resolution import resolve
 from tcn.roles.template_owner import load_templates
 
+
+@cache
 def run(expected_path: str):
     """Resolve and apply the chains in order. Returns the expectation, the last chain, the instance
-    before, the result, and the notes of all resolutions."""
+    before, the result, and the notes of all resolutions. Computed once per expectation and shared by
+    the checks, which only read it (check_baseline_is_not_changed checks that the instance before is
+    left unchanged); a run that fails is not cached and fails again in every check."""
     exp = yaml.safe_load(Path(expected_path).read_text(encoding="utf-8"))
     instance = current = bridge.from_jsonable(instantiate.load(exp["instance"]))
     notes = []

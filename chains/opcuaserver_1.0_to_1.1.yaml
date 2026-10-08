@@ -30,6 +30,16 @@ sections:
     - Configuration.NodeSets[1]#value
     TransferFunction:
       Kind: Identity
+  - ChangeOperation: CreateAttr
+    ElementPath: Configuration.NodeSets[1]
+    AttributeKey: contentType
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Configuration.NodeSets[0]#contentType
+    TargetElementPaths:
+    - Configuration.NodeSets[1]#contentType
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: CreateQual
     ElementPath: Configuration.NodeSets[1]
     QualifierType: Cardinality
@@ -525,13 +535,6 @@ sections:
       keys:
       - type: GlobalReference
         value: https://admin-shell.io/idta/UAServerDatasheet/1/0/NodeSetFile
-  - ChangeOperation: CreateAttr
-    ElementPath: Configuration.NodeSets[0]
-    AttributeKey: contentType
-  - ChangeOperation: UpdateAttr
-    ElementPath: Configuration.NodeSets[0]
-    AttributeKey: contentType
-    AttributeValue: text/xml
   - ChangeOperation: RemoveAttr
     ElementPath: Configuration.SupportSecurityPolicyUris[0]
     AttributeKey: value

@@ -1,0 +1,43 @@
+# Expected outcome of applying handover_1.2_to_2.0 to fixtures/handover_1.2.yaml.
+# Derived by hand before running the chain, from the change log of IDTA 02004-2-0 (Annex C) and the
+# published templates. Each document becomes one entry of Documents (H3), its ids, classifications and
+# versions entries of their lists (H4-H6) with the renamed properties keeping their values; each
+# language becomes an entry of Language (H7); a digital file and a preview become Files whose value is
+# the former DocumentPath and whose content type is the former MimeType (H8, H9); the entity becomes
+# an entry of Entities and keeps its asset (H14, checked by the value balance, as an Entity has no
+# value). numberOfDocuments has no counterpart in v2.0 and is reported as removed.
+chain: chains/handover_1.2_to_2.0.yaml
+instance: fixtures/handover_1.2.yaml
+
+retained:
+  "Documents[0].DocumentIds[0].DocumentDomainId": https://example.com/documents
+  "Documents[0].DocumentIds[0].DocumentIdentifier": OM-100-200
+  "Documents[0].DocumentIds[0].DocumentIsPrimary": "true"
+  "Documents[0].DocumentClassifications[0].ClassId": 03-02
+  "Documents[0].DocumentClassifications[0].ClassName": [{language: en, text: Operation}]
+  "Documents[0].DocumentVersions[0].Language[0]": en
+  "Documents[0].DocumentVersions[0].Language[1]": de
+  "Documents[0].DocumentVersions[0].Version": "1.2"
+  "Documents[0].DocumentVersions[0].Title": [{language: en, text: Operating manual}, {language: de, text: Betriebsanleitung}]
+  "Documents[0].DocumentVersions[0].Subtitle": [{language: en, text: EX-100 series}]
+  "Documents[0].DocumentVersions[0].Description": [{language: en, text: Installation and operation of the EX-100 series}]
+  "Documents[0].DocumentVersions[0].OrganizationShortName": Example Manufacturer
+  "Documents[0].DocumentVersions[0].OrganizationOfficialName": Example Manufacturer GmbH
+  "Documents[0].DocumentVersions[0].DigitalFiles[0]": /aasx/files/om-100-200.pdf
+  "Documents[0].DocumentVersions[0].PreviewFile": /aasx/files/om-100-200.png
+  "Documents[1].DocumentIds[0].DocumentIdentifier": CE-100-200
+  "Documents[1].DocumentClassifications[0].ClassId": 02-01
+  "Documents[1].DocumentVersions[0].Language[1]": fr
+  "Documents[1].DocumentVersions[0].Version": "1.0"
+  "Documents[1].DocumentVersions[0].DigitalFiles[0]": /aasx/files/doc-100-200.html
+  InternalInventoryNumber: INV-2024-0815
+
+control:
+  InternalInventoryNumber: InternalInventoryNumber
+
+manual: []
+conforms: true
+violations: []
+
+removed:
+  - numberOfDocuments
