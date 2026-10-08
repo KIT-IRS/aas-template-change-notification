@@ -1,4 +1,4 @@
-"""Resolution of a template chain against a conforming submodel instance  (paper §3.5).
+"""Resolution of a template chain against a conforming submodel instance  (paper §3.6).
 
 A chain is written against the template, in which every repeatable element has exactly one
 representative. Resolution rewrites it, before anything is applied, into a concrete chain for one

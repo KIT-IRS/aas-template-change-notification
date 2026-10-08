@@ -1,11 +1,11 @@
-"""Guarded application of operators and operation chains  (paper §3.1, "Guarded application").
+"""Guarded application of operators and operation chains  (paper §3.4, Fig. 1c).
 
     guarded(op, T) = (op(T), ACC)   if pre(op) holds in T
                    = (T,     REJ)   otherwise
 
 The operator is applied to a copy, so a rejected operator writes no position of T. A chain is
 applied item by item, each item evaluated against the state produced by its predecessors
-(paper §3.2). If any item is rejected, the chain is rejected and the input T is returned
+(paper §3.5). If any item is rejected, the chain is rejected and the input T is returned
 unchanged: there is no partially applied chain.
 
 At the chain boundary the completion obligation is checked: every component touched by the

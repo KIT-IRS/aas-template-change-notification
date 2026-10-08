@@ -1,4 +1,4 @@
-"""Metamodel parameters adm(t), mand(t) and M_cont for IDTA-01001 v3.1.2  (paper §3.1).
+"""Metamodel parameters adm(t), mand(t) and M_cont for IDTA-01001 v3.1.2  (paper §3.2).
 
 They depend on the component type only, are identical for all templates and change only with the
 metamodel. Attribute names are the keys of the AAS JSON serialisation.

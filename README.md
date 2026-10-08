@@ -1,8 +1,8 @@
 # Template Change Notifications for AAS Submodel Templates
 
-Prototype and validation harness of the paper *"The Old Template is Dead, Long Live the New
-Template! Template Change Notifications for Asset Administration Shell Submodel Templates"*
-(Auer et al., at – Automatisierungstechnik, 2026).
+Prototype and validation harness of the paper *"Template Change Notification for the Asset
+Administration Shell: Propagating Submodel Template Evolution to Asset Administration Shell
+Instances"* (Auer et al., at – Automatisierungstechnik, 2026).
 
 The paper specifies the Template Change Notification (TCN), describes the architecture of this
 prototype (§4) and reports the validation (§5). This README explains how to set up and use the
@@ -57,7 +57,7 @@ uv run tcn reset                                                 # remove everyt
 ```
 
 `tcn preview` resolves the record against the current submodel and applies it to a copy; it prints
-what the paper lists in §3.4: elided and inserted items, removed and converted values, conformance
+what the paper lists in §3.6: elided and inserted items, removed and converted values, conformance
 to the new template and the to-do list. `--verbose` lists every elided item. `tcn apply` without
 `--consent` is rejected.
 
@@ -94,20 +94,20 @@ support a further drop-in, add its content there.
 
 | Module | Content | Paper |
 |---|---|---|
-| `src/tcn/core/model.py` | Decomposition 𝒯 = (𝒯_E, 𝒯_Q, 𝒯_A), assignment functions, derived views, `positions(𝒯)` | §3.2, Fig. 2a |
+| `src/tcn/core/model.py` | Decomposition 𝒯 = (𝒯_E, 𝒯_Q, 𝒯_A), assignment functions, derived views, `positions(𝒯)` | §3.2, Fig. 1a |
 | `src/tcn/core/metamodel.py` | `adm(t)`, `mand(t)`, container types ℳ_cont for metamodel v3.1.2 | §3.2 |
-| `src/tcn/core/operators.py` | The ten atomic operators, each with `pre`, `apply`, `post` and `mod` | §3.2, Table 1 |
-| `src/tcn/core/guarded.py` | Guarded application of an operator and of a chain; completion obligation | §3.2 |
-| `src/tcn/core/transfer.py` | Transfer functions of `Sync`: Identity, ValueMap, Expression (CEL, allowlisted), Instruction | §3.3, §4.2 |
-| `src/tcn/core/addressing.py` | Identification of components by idShort path, qualifier type and attribute key | §3.3, Table 2 |
-| `src/tcn/core/matching.py` | Correspondence between a template and a submodel | §3.4 |
-| `src/tcn/core/resolution.py` | Resolution of a template chain for one submodel; the complete rules are in its module documentation | §3.4 |
-| `src/tcn/core/conformance.py` | Structural conformance of a submodel to a template | §3.4, §6 |
+| `src/tcn/core/operators.py` | The ten atomic operators, each with `pre`, `apply`, `post` and `mod` | §3.3, §3.4, Table 1 |
+| `src/tcn/core/guarded.py` | Guarded application of an operator and of a chain; completion obligation | §3.4, Fig. 1c |
+| `src/tcn/core/transfer.py` | Transfer functions of `Sync`: Identity, ValueMap, Expression (CEL, allowlisted), Instruction | §3.3, §3.5, §4.2 |
+| `src/tcn/core/addressing.py` | Identification of components by idShort path, qualifier type and attribute key | §3.5, Table 2 |
+| `src/tcn/core/matching.py` | Correspondence between a template and a submodel | §3.6 |
+| `src/tcn/core/resolution.py` | Resolution of a template chain for one submodel; the complete rules are in its module documentation | §3.6 |
+| `src/tcn/core/conformance.py` | Structural conformance of a submodel to a template | §3.6, §6.3 |
 | `src/tcn/dropins.py`, `ressources/DropIns/` | Effective templates | §4.2 |
-| `src/tcn/aas/bridge.py` | AAS JSON (via aas-core3.1) ⇄ formal model | §4.1 |
-| `src/tcn/aas/tcn_submodel.py` | The TCN Submodel Template and its records | §3.3, Fig. 3 |
-| `src/tcn/infra/` | Gateway to the AAS environment, MQTT broker | §4.1, Fig. 4 |
-| `src/tcn/roles/` | Template owner, reception, co-evolution | §4.1, Fig. 4 |
+| `src/tcn/aas/bridge.py` | AAS JSON (via aas-core3.1) ⇄ formal model | §3.2, §4.1 |
+| `src/tcn/aas/tcn_submodel.py` | The TCN Submodel Template and its records | §3.5, Fig. 2 |
+| `src/tcn/infra/` | Gateway to the AAS environment, MQTT broker | §4.1, Fig. 3 |
+| `src/tcn/roles/` | Template owner, reception, co-evolution | §4.1, Fig. 3 |
 | `src/tcn/chainfile.py` | Chain documents (YAML) | §4.1 |
 | `src/tcn/cli.py` | Command-line interface of both roles | §4.1 |
 | `src/tcn/instantiate.py`, `src/tcn/environment.py` | Instances from templates; the AAS of the example device | §5.1 |
@@ -118,18 +118,27 @@ support a further drop-in, add its content there.
 
 ## Validation
 
-Pass criteria are given in Table 4 of the paper, the results in §5.3 (Tables 5 and 6).
+Pass criteria are given in Table 4 of the paper, the results in §5.2–§5.5 (Tables 5 and 6).
+
+Each validation case has one file; its docstring states the subject, requirements, method and
+pass criterion of Table 4.
 
 | Case | Test (`validation/`) |
 |---|---|
 | Operators (Table 1) | `test_operators.py`, with the generic checks of `properties.py` |
-| V1, V2 expressiveness | `test_v1_v2_expressiveness.py` |
-| V3–V5 transfer of instance values, version gaps | `test_resolution.py` (offline), `test_e2e.py` |
-| V6 chain not resolvable | `test_resolution.py`, `test_e2e.py` |
-| V7 no change before consent | `test_e2e.py` |
-| V8 self-application | `test_v1_v2_expressiveness.py`, `test_resolution.py`, `test_v8_self_application.py` |
+| V1 Technical Data v1.2 → v2.0 | `test_v1_technicaldata_completeness.py` |
+| V2 Digital Nameplate ZVEI 1.0 → IDTA 2.0 → IDTA 3.0 | `test_v2_nameplate_completeness.py` |
+| V3 Technical Data v1.2 → v2.0, end to end | `test_v3_technicaldata_retention.py` |
+| V4 Digital Nameplate IDTA 2.0 → IDTA 3.0, end to end | `test_v4_nameplate_retention.py` |
+| V5 Digital Nameplate ZVEI 1.0 → IDTA 3.0 via two records | `test_v5_version_gap.py` |
+| V6 chain that cannot be resolved | `test_v6_unresolvable_chain.py` |
+| V7 publication without consent | `test_v7_no_change_before_consent.py` |
+| V8 TCN Submodel Template v0.3 → v0.4 | `test_v8_self_application.py` |
 
-`test_e2e.py` requires the Docker environment (`-m infra`); all other tests run offline.
+The checks the cases share are in `analysis.py` (V1, V2, V8: chain against the published
+templates), `application.py` (V3–V5, V8: resolution and application, offline) and `endtoend.py`
+(V3–V7: over BaSyx and MQTT). The end-to-end tests are marked `infra` and require the Docker
+environment (`-m infra`); all other tests run offline.
 
 ## Open-source software and content used
 

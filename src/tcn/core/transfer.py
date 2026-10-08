@@ -1,4 +1,4 @@
-"""Transfer functions f of Sync(X_src, X_tgt, f)  (paper §3.2, "Transfer functions").
+"""Transfer functions f of Sync(X_src, X_tgt, f)  (paper §3.3, §3.5, §4.2).
 
 Pairing is positional: the i-th source value is mapped to the i-th target attribute.
 Identity and ValueMap are executed. An Expression is executed if its language is on the allowlist

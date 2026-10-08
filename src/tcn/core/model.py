@@ -1,4 +1,4 @@
-"""Decomposition of a Submodel Template into T = (T_E, T_Q, T_A)  (paper §3.1, Fig. 2a).
+"""Decomposition of a Submodel Template into T = (T_E, T_Q, T_A)  (paper §3.2, Fig. 1a).
 
 Every component has an abstract identity (an integer id) that is never serialised. All relations
 between components are explicit assignment functions stored on the component:
@@ -140,7 +140,7 @@ def changed_positions(before: Template, after: Template) -> set[tuple[str, Id]]:
 def canonical(t: Template) -> set[str]:
     """Identity-free view of T, used to decide whether two templates coincide at every position.
 
-    Components are named by their path, qualifier type and attribute name (paper §3.2),
+    Components are named by their path, qualifier type and attribute name (paper §3.5),
     so two templates with different abstract identities can be compared.
     """
 
