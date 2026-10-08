@@ -30,9 +30,11 @@ Created elements
 Template-level constructs and instance data
   T1  Qualifiers are template constructs: every item on a qualifier, or a Sync over qualifier
       attributes, is elided.
-  T2  Values (value, valueId, min, max) are instance data: UpdateAttr and RemoveAttr of them are
-      elided, so template example values never overwrite instance values. Instance values are
-      carried over by moving their element (UpdateParent) or by Sync.
+  T2  Values are instance data: the attributes that hold the value of an element of its type
+      (tcn.core.metamodel.instance_data, e.g. value and valueId, min and max, the contentType of a
+      File, first and second of a relationship). UpdateAttr and RemoveAttr of them are elided, so
+      template example values never overwrite instance values. Instance values are carried over
+      by moving their element (UpdateParent) or by Sync.
   T3  The identity of the instance (root attributes id, kind and administration, which declares the
       template the instance conforms to) is not taken over from the template.
   T4  Attribute items are elided for placeholder realisations (instance-defined metadata).
@@ -52,8 +54,8 @@ Containers with instance content
       counterpart created for it, as in H1. Without a counterpart, the removal is refused.
 
 Values
-  V1  Every instance value the chain removes without carrying it over automatically (by moving its
-      element, or by an executable Sync) is reported as removed, at its path before the change.
+  V1  Every instance value (T2) the chain removes without carrying it over automatically (by moving
+      its element, or by an executable Sync) is reported as removed, at its path before the change.
   V2  Every instance value an executable Sync carries over is reported as transferred, with the
       value before and after.
 
@@ -78,10 +80,10 @@ from tcn.core.guarded import ACC, REJ, Unbound, guarded
 from tcn.core.matching import CARDINALITY_TYPES, match
 from tcn.core.matching import card as _card
 from tcn.core.matching import placeholder as _placeholder
+from tcn.core.metamodel import instance_data
 from tcn.core.model import LAMBDA, Id, Template
 
 OPTIONAL = {"ZeroToOne", "ZeroToMany"}
-VALUE_KEYS = {"value", "valueId", "min", "max"}
 DATA_ELEMENTS = {"Property", "MultiLanguageProperty", "Range", "File", "Blob", "ReferenceElement"}
 ROOT_IDENTITY = {"id", "kind", "administration"}
 
@@ -300,7 +302,7 @@ class _Resolver:
         return self.T.A[a].owner, self.T.A[a].name
 
     def _attribute_item(self, owner: Id, name: str, item: Item, make) -> None:
-        if name in VALUE_KEYS and item.operation != "CreateAttr":
+        if name in instance_data(self.T.tau(owner)) and item.operation != "CreateAttr":
             self.note("elided", f"{item.operation} {item.element_path}#{name}: instance data")
             return
         if owner == self.T.root and name in ROOT_IDENTITY:
@@ -430,10 +432,12 @@ class _Resolver:
                     self.note("inserted", f"UpdateParent {self.I.path(c)}: content the template does not "
                                           f"describe moves with its container")
                     self._move(c, new)
-            a = self.I.attr(r, "value")
-            if a is not None and self.I.A[a].value not in (LAMBDA, "", []) and a not in self.transferred:  # V1
-                where = self.I0.path(r) if r in self.I0.E else self.I.path(r)
-                self.note("removed", f"{self.I.A[a].value}", where)
+            where = self.I0.path(r) if r in self.I0.E else self.I.path(r)
+            for key in sorted(instance_data(self.I.E[r].type)):  # V1
+                a = self.I.attr(r, key)
+                if a is not None and self.I.A[a].value not in (LAMBDA, "", []) and a not in self.transferred:
+                    value = self.I.A[a].value
+                    self.note("removed", f"{value}" if key == "value" else f"{key}: {value}", where)
             self.emit("RemoveSME", self.I.path(r))
 
     def _Sync(self, op: ops.Sync, item: Item) -> None:

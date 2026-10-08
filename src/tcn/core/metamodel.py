@@ -54,6 +54,32 @@ M_CONT = set(CONTAINMENT_KEY)
 ELEMENT_TYPES = set(_TABLE) - {"Submodel"}
 
 
+# The attributes that hold the value of an element of type t: instance data, which a template's example
+# values never overwrite (resolution, rule T2). They follow the ValueOnly serialisation of the AAS API
+# (IDTA-01002, Part 2). valueId is the semantic reference of a value and belongs to it.
+# Entity: Part 2 counts entityType to the value of an Entity. It is taken as template information
+# here, not as instance data: whether an entity is co-managed or self-managed is fixed by the template,
+# and a revision that changes it has to reach the instances. None of the templates of the validation
+# leaves it to the instance.
+_INSTANCE_DATA: dict[str, set[str]] = {
+    "Property": {"value", "valueId"},
+    "MultiLanguageProperty": {"value", "valueId"},
+    "Range": {"min", "max"},
+    "File": {"value", "contentType"},
+    "Blob": {"value", "contentType"},
+    "ReferenceElement": {"value"},
+    "RelationshipElement": {"first", "second"},
+    "AnnotatedRelationshipElement": {"first", "second"},
+    "Entity": {"globalAssetId", "specificAssetIds"},
+    "BasicEventElement": {"observed"},
+}
+
+
+def instance_data(t: str) -> set[str]:
+    """The attributes that hold the value of an element of type t (empty for a qualifier)."""
+    return _INSTANCE_DATA.get(t, set())
+
+
 def adm(t: str) -> set[str]:
     if t == "Qualifier":
         return _QUALIFIER[0]
