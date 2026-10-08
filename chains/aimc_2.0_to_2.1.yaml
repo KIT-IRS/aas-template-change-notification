@@ -128,14 +128,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: MappingConfigurations[1].Sources
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: MappingConfigurations[1].Sources
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: https://admin-shell.io/idta/AssetInterfacesMappingConfiguration/2/0/MappingConfiguration/Sources
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - MappingConfigurations[0].Sources#semanticId
+    TargetElementPaths:
+    - MappingConfigurations[1].Sources#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: CreateAttr
     ElementPath: MappingConfigurations[1].Sources
     AttributeKey: orderRelevant
@@ -315,14 +314,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: MappingConfigurations[1].Sinks
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: MappingConfigurations[1].Sinks
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: https://admin-shell.io/idta/AssetInterfacesMappingConfiguration/2/0/MappingConfiguration/Sinks
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - MappingConfigurations[0].Sinks#semanticId
+    TargetElementPaths:
+    - MappingConfigurations[1].Sinks#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: CreateAttr
     ElementPath: MappingConfigurations[1].Sinks
     AttributeKey: semanticIdListElement

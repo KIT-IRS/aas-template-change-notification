@@ -153,14 +153,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: flexibleLoadMeasuresPackage.flexibleLoadMeasures[1].loadChangeProfiles
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: flexibleLoadMeasuresPackage.flexibleLoadMeasures[1].loadChangeProfiles
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: https://admin-shell.io/idta/EnergyFlexibilityDataModel/1/0/loadChangeProfiles
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - flexibleLoadMeasuresPackage.flexibleLoadMeasures[0].loadChangeProfiles#semanticId
+    TargetElementPaths:
+    - flexibleLoadMeasuresPackage.flexibleLoadMeasures[1].loadChangeProfiles#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: UpdateAttr
     ElementPath: flexibleLoadMeasuresPackage.flexibleLoadMeasures[1].loadChangeProfiles
     AttributeKey: typeValueListElement
@@ -496,14 +495,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: flexibilitySpace_operationalPotential.flexibleLoads[1].powerStates
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: flexibilitySpace_operationalPotential.flexibleLoads[1].powerStates
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ModelReference
-      keys:
-      - type: ConceptDescription
-        value: https://admin-shell.io/idta/EnergyFlexibilityDataModel/1/0/powerStates
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - flexibilitySpace_operationalPotential.flexibleLoads[0].powerStates#semanticId
+    TargetElementPaths:
+    - flexibilitySpace_operationalPotential.flexibleLoads[1].powerStates#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: UpdateAttr
     ElementPath: flexibilitySpace_operationalPotential.flexibleLoads[1].powerStates
     AttributeKey: typeValueListElement
@@ -1330,14 +1328,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: flexibilitySpace_operationalPotential.storages[1].suppliers
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: flexibilitySpace_operationalPotential.storages[1].suppliers
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: https://admin-shell.io/idta/EnergyFlexibilityDataModel/1/0/suppliers
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - flexibilitySpace_operationalPotential.storages[0].suppliers#semanticId
+    TargetElementPaths:
+    - flexibilitySpace_operationalPotential.storages[1].suppliers#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: UpdateAttr
     ElementPath: flexibilitySpace_operationalPotential.storages[1].suppliers
     AttributeKey: typeValueListElement
@@ -1497,14 +1494,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: flexibilitySpace_operationalPotential.storages[1].drains
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: flexibilitySpace_operationalPotential.storages[1].drains
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: https://admin-shell.io/idta/EnergyFlexibilityDataModel/1/0/drains
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - flexibilitySpace_operationalPotential.storages[0].drains#semanticId
+    TargetElementPaths:
+    - flexibilitySpace_operationalPotential.storages[1].drains#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: UpdateAttr
     ElementPath: flexibilitySpace_operationalPotential.storages[1].drains
     AttributeKey: typeValueListElement
@@ -1753,14 +1749,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: flexibilitySpace_operationalPotential.dependencies[1].applicabilityConditions
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: flexibilitySpace_operationalPotential.dependencies[1].applicabilityConditions
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: https://admin-shell.io/idta/EnergyFlexibilityDataModel/1/0/applicabilityConditions
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - flexibilitySpace_operationalPotential.dependencies[0].applicabilityConditions#semanticId
+    TargetElementPaths:
+    - flexibilitySpace_operationalPotential.dependencies[1].applicabilityConditions#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: UpdateAttr
     ElementPath: flexibilitySpace_operationalPotential.dependencies[1].applicabilityConditions
     AttributeKey: typeValueListElement
@@ -2261,14 +2256,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: flexibilitySpace_applicationTailoredPotential.flexibleLoads[1].powerStates
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: flexibilitySpace_applicationTailoredPotential.flexibleLoads[1].powerStates
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ModelReference
-      keys:
-      - type: ConceptDescription
-        value: https://admin-shell.io/idta/EnergyFlexibilityDataModel/1/0/powerStates
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - flexibilitySpace_applicationTailoredPotential.flexibleLoads[0].powerStates#semanticId
+    TargetElementPaths:
+    - flexibilitySpace_applicationTailoredPotential.flexibleLoads[1].powerStates#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: UpdateAttr
     ElementPath: flexibilitySpace_applicationTailoredPotential.flexibleLoads[1].powerStates
     AttributeKey: typeValueListElement
@@ -3095,14 +3089,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: flexibilitySpace_applicationTailoredPotential.storages[1].suppliers
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: flexibilitySpace_applicationTailoredPotential.storages[1].suppliers
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: https://admin-shell.io/idta/EnergyFlexibilityDataModel/1/0/suppliers
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - flexibilitySpace_applicationTailoredPotential.storages[0].suppliers#semanticId
+    TargetElementPaths:
+    - flexibilitySpace_applicationTailoredPotential.storages[1].suppliers#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: UpdateAttr
     ElementPath: flexibilitySpace_applicationTailoredPotential.storages[1].suppliers
     AttributeKey: typeValueListElement
@@ -3262,14 +3255,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: flexibilitySpace_applicationTailoredPotential.storages[1].drains
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: flexibilitySpace_applicationTailoredPotential.storages[1].drains
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: https://admin-shell.io/idta/EnergyFlexibilityDataModel/1/0/drains
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - flexibilitySpace_applicationTailoredPotential.storages[0].drains#semanticId
+    TargetElementPaths:
+    - flexibilitySpace_applicationTailoredPotential.storages[1].drains#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: UpdateAttr
     ElementPath: flexibilitySpace_applicationTailoredPotential.storages[1].drains
     AttributeKey: typeValueListElement
@@ -3518,14 +3510,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: flexibilitySpace_applicationTailoredPotential.dependencies[1].applicabilityConditions
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: flexibilitySpace_applicationTailoredPotential.dependencies[1].applicabilityConditions
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: https://admin-shell.io/idta/EnergyFlexibilityDataModel/1/0/applicabilityConditions
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - flexibilitySpace_applicationTailoredPotential.dependencies[0].applicabilityConditions#semanticId
+    TargetElementPaths:
+    - flexibilitySpace_applicationTailoredPotential.dependencies[1].applicabilityConditions#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: UpdateAttr
     ElementPath: flexibilitySpace_applicationTailoredPotential.dependencies[1].applicabilityConditions
     AttributeKey: typeValueListElement
@@ -4030,14 +4021,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: flexibilitySpace_generalTechnicalPotential.flexibleLoads[1].powerStates
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: flexibilitySpace_generalTechnicalPotential.flexibleLoads[1].powerStates
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ModelReference
-      keys:
-      - type: ConceptDescription
-        value: https://admin-shell.io/idta/EnergyFlexibilityDataModel/1/0/powerStates
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - flexibilitySpace_generalTechnicalPotential.flexibleLoads[0].powerStates#semanticId
+    TargetElementPaths:
+    - flexibilitySpace_generalTechnicalPotential.flexibleLoads[1].powerStates#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: UpdateAttr
     ElementPath: flexibilitySpace_generalTechnicalPotential.flexibleLoads[1].powerStates
     AttributeKey: typeValueListElement
@@ -4110,14 +4100,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: flexibilitySpace_generalTechnicalPotential.flexibleLoads[1].powerStates[0]
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: flexibilitySpace_generalTechnicalPotential.flexibleLoads[1].powerStates[0]
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ModelReference
-      keys:
-      - type: ConceptDescription
-        value: https://admin-shell.io/idta/EnergyFlexibilityDataModel/1/0/powerState
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - flexibilitySpace_generalTechnicalPotential.flexibleLoads[0].powerStates[0]#semanticId
+    TargetElementPaths:
+    - flexibilitySpace_generalTechnicalPotential.flexibleLoads[1].powerStates[0]#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: CreateQual
     ElementPath: flexibilitySpace_generalTechnicalPotential.flexibleLoads[1].powerStates[0]
     QualifierType: SMT/Cardinality
@@ -4284,14 +4273,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: flexibilitySpace_generalTechnicalPotential.storages[1].suppliers
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: flexibilitySpace_generalTechnicalPotential.storages[1].suppliers
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: https://admin-shell.io/idta/EnergyFlexibilityDataModel/1/0/suppliers
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - flexibilitySpace_generalTechnicalPotential.storages[0].suppliers#semanticId
+    TargetElementPaths:
+    - flexibilitySpace_generalTechnicalPotential.storages[1].suppliers#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: UpdateAttr
     ElementPath: flexibilitySpace_generalTechnicalPotential.storages[1].suppliers
     AttributeKey: typeValueListElement
@@ -4494,14 +4482,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: flexibleLoadMeasureExecutionLog.executionLogEntries[1].loadChangeProfiles
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: flexibleLoadMeasureExecutionLog.executionLogEntries[1].loadChangeProfiles
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: https://admin-shell.io/idta/EnergyFlexibilityDataModel/1/0/loadChangeProfiles
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - flexibleLoadMeasureExecutionLog.executionLogEntries[0].loadChangeProfiles#semanticId
+    TargetElementPaths:
+    - flexibleLoadMeasureExecutionLog.executionLogEntries[1].loadChangeProfiles#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: UpdateAttr
     ElementPath: flexibleLoadMeasureExecutionLog.executionLogEntries[1].loadChangeProfiles
     AttributeKey: typeValueListElement

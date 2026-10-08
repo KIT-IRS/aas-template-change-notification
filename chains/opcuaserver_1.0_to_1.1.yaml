@@ -319,14 +319,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: EndpointDescriptions[1].Server.DiscoveryUrls
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: EndpointDescriptions[1].Server.DiscoveryUrls
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: https://admin-shell.io/idta/UAServerDatasheet/1/0/DiscoveryUrls
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - EndpointDescriptions[0].Server.DiscoveryUrls#semanticId
+    TargetElementPaths:
+    - EndpointDescriptions[1].Server.DiscoveryUrls#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: UpdateAttr
     ElementPath: EndpointDescriptions[1].Server.DiscoveryUrls
     AttributeKey: typeValueListElement
@@ -391,14 +390,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: EndpointDescriptions[1].UserIdentityTokens
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: EndpointDescriptions[1].UserIdentityTokens
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: https://admin-shell.io/idta/UAServerDatasheet/1/0/UserIdentityTokens
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - EndpointDescriptions[0].UserIdentityTokens#semanticId
+    TargetElementPaths:
+    - EndpointDescriptions[1].UserIdentityTokens#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: UpdateAttr
     ElementPath: EndpointDescriptions[1].UserIdentityTokens
     AttributeKey: typeValueListElement

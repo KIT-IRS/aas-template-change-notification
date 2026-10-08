@@ -147,7 +147,12 @@ def _rename_containers(emit: _Emitter, post: Template, renames: dict[str, str]) 
     is rebuilt under its new name (Hollow-Out): created beside the original with its attributes,
     its qualifiers relocated (value linked by Sync), its children moved into it, recursively for
     nested containers, which take their own new name if they are renamed too; then the emptied
-    original is removed. Elements keep their identity; only containers are recreated."""
+    original is removed. Elements keep their identity; only containers are recreated.
+
+    Resolution realises the rebuilt container once per realisation of the common ancestor of the
+    content moved into it (C1). Where fewer than two children are moved into it directly, that
+    ancestor is not the original, so the rebuilt container takes over its semanticId by Sync,
+    which states that it corresponds to the original."""
     names = {element(emit.state, p): n for p, n in renames.items()}
 
     def ancestors(e: Id) -> set[Id]:
@@ -174,8 +179,16 @@ def _rebuild(emit: _Emitter, e: Id, parent: Id, names: dict[Id, str]) -> Id:
         path = f"{T.path(parent)}.{name}".lstrip(".")
     emit("CreateSME", path, sme_type=el.type)
     new = emit.state.children(parent)[-1]
+    link = sum(1 for c in emit.state.children(e) if not emit.state.children(c)) < 2
     for a in list(emit.state.attributes(e)):
-        _copy_attribute(emit, emit.state.A[a].name, emit.state.A[a].value, new, None)
+        attr = emit.state.A[a]
+        if link and attr.name == "semanticId":
+            if emit.state.attr(new, "semanticId") is None:
+                emit("CreateAttr", emit.state.path(new), attribute_key="semanticId")
+            emit("Sync", source_paths=[f"{emit.state.path(e)}#semanticId"],
+                 target_paths=[f"{emit.state.path(new)}#semanticId"], transfer=Identity())
+        else:
+            _copy_attribute(emit, attr.name, attr.value, new, None)
     for q in list(emit.state.qualifiers(e)):
         qtype, old = emit.state.Q[q].qtype, emit.state.path(e)
         emit("CreateQual", emit.state.path(new), qualifier_type=qtype)

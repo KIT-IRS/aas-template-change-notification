@@ -785,14 +785,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0]
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0]
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: https://www.irs.kit.edu/idta/mcn/1/0/ItemOfChange
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - MCNGroups[0].MCNRecords[0].ItemsOfChange[0]#semanticId
+    TargetElementPaths:
+    - TCNGroups[0].TCNRecords[0].ItemsOfChange[0]#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: CreateQual
     ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0]
     QualifierType: SMT/Cardinality
@@ -946,14 +945,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.SourceElementPaths
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.SourceElementPaths
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: https://www.irs.kit.edu/idta/mcn/1/0/sourceElementPaths
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.sourceElementPaths#semanticId
+    TargetElementPaths:
+    - TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.SourceElementPaths#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: CreateAttr
     ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.SourceElementPaths
     AttributeKey: orderRelevant
@@ -1037,14 +1035,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TargetElementPaths
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TargetElementPaths
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: https://www.irs.kit.edu/idta/mcn/1/0/targetElementPaths
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.targetElementPaths#semanticId
+    TargetElementPaths:
+    - TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TargetElementPaths#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: CreateAttr
     ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.TargetElementPaths
     AttributeKey: orderRelevant
@@ -1128,14 +1125,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: https://www.irs.kit.edu/idta/mcn/1/0/AdditionalArguments
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - MCNGroups[0].MCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments#semanticId
+    TargetElementPaths:
+    - TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: CreateAttr
     ElementPath: TCNGroups[0].TCNRecords[0].ItemsOfChange[0].OperationArguments.AdditionalArguments
     AttributeKey: orderRelevant

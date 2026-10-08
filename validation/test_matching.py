@@ -8,9 +8,9 @@ idShort. An instance child that none of them claims is a local extension; nothin
 from tcn import chainfile, instantiate
 from tcn.aas import bridge
 from tcn.core.conformance import check
-from tcn.core.guarded import REJ
+from tcn.core.addressing import element
+from tcn.core.guarded import ACC, apply_chain
 from tcn.core.matching import match
-from tcn.core.model import positions
 from tcn.core.resolution import resolve
 from tcn.roles.template_owner import load_templates
 
@@ -62,16 +62,22 @@ def test_a_renamed_sibling_is_a_local_extension():
 
 def test_a_renamed_sibling_is_not_lost_by_a_chain():
     """Energy Flexibility v1.0 -> v1.1 with flexibleLoadId (semanticId .../UUID, as flexibleLoadMeasureId)
-    renamed in the instance: it is a local extension, and the chain is refused before anything is applied."""
+    renamed in the instance: it is a local extension. The chain rebuilds the measure (RenameContainer);
+    the local extension moves into the rebuilt measure with its value (H2), which is reported, and the
+    missing flexibleLoadId is reported by the conformance check."""
     sm = instantiate.load("fixtures/energyflexibility_1.0.yaml")
     entry = sm["submodelElements"][0]["value"][1]["value"][0]  # flexibleLoadMeasuresPackage.flexibleLoadMeasures[0]
     next(c for c in entry["value"] if c["idShort"] == "flexibleLoadId")["idShort"] = "loadId"
     I = bridge.from_jsonable(sm)
     chain = chainfile.load("chains/energyflexibility_1.0_to_1.1.yaml")
-    pre, _ = load_templates(chain)
+    pre, post = load_templates(chain)
     findings = {(f.kind, f.path) for f in check(pre, I)}
     assert ("NOT_IN_TEMPLATE", "flexibleLoadMeasuresPackage.flexibleLoadMeasures[0].loadId") in findings
     assert ("TOO_MANY", "flexibleLoadMeasuresPackage.flexibleLoadMeasures[0].flexibleLoadMeasureId") not in findings
-    before = positions(I)
-    assert resolve(chain.items, pre, I).status == REJ
-    assert positions(I) == before
+    res = resolve(chain.items, pre, I)
+    assert res.status == ACC, res.reason
+    assert any(n.kind == "inserted" and "loadId" in n.detail for n in res.notes)
+    result = apply_chain(res.items, I).template
+    measure = "flexibleLoadMeasuresPackage.flexibleLoadMeasures[0]"
+    assert result.A[result.attr(element(result, f"{measure}.loadId"), "value")].value == "L-heater"
+    assert ("MISSING", f"{measure}.flexibleLoadId") in {(f.kind, f.path) for f in check(post, result)}

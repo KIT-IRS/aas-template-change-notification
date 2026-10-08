@@ -620,14 +620,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: QualityFeatures.LinearFeaturesList[1].GeometryReferenceList
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: QualityFeatures.LinearFeaturesList[1].GeometryReferenceList
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: https://admin-shell.io/idta/QualityControlForMachining/GeometryReferenceList/1/0
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.LinearFeaturesList[0].GeometryReferenceList#semanticId
+    TargetElementPaths:
+    - QualityFeatures.LinearFeaturesList[1].GeometryReferenceList#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: UpdateAttr
     ElementPath: QualityFeatures.LinearFeaturesList[1].GeometryReferenceList
     AttributeKey: typeValueListElement
@@ -698,14 +697,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: QualityFeatures.LinearFeaturesList[1].IDList3DModel
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: QualityFeatures.LinearFeaturesList[1].IDList3DModel
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: https://admin-shell.io/idta/QualityControlForMachining/IDList3DModel/1/0
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.LinearFeaturesList[0].IDList3DModel#semanticId
+    TargetElementPaths:
+    - QualityFeatures.LinearFeaturesList[1].IDList3DModel#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: UpdateAttr
     ElementPath: QualityFeatures.LinearFeaturesList[1].IDList3DModel
     AttributeKey: typeValueListElement
@@ -785,14 +783,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: QualityFeatures.LinearFeaturesList[1].Reference2DList
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: QualityFeatures.LinearFeaturesList[1].Reference2DList
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: https://admin-shell.io/idta/QualityControlForMachining/Reference2DList/1/0
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.LinearFeaturesList[0].Reference2DList#semanticId
+    TargetElementPaths:
+    - QualityFeatures.LinearFeaturesList[1].Reference2DList#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: UpdateAttr
     ElementPath: QualityFeatures.LinearFeaturesList[1].Reference2DList
     AttributeKey: typeValueListElement
@@ -1025,14 +1022,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: QualityFeatures.AttributiveFeaturesList[1].GeometryReferenceList
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: QualityFeatures.AttributiveFeaturesList[1].GeometryReferenceList
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: https://admin-shell.io/idta/QualityControlForMachining/GeometryReferenceList/1/0
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.AttributiveFeaturesList[0].GeometryReferenceList#semanticId
+    TargetElementPaths:
+    - QualityFeatures.AttributiveFeaturesList[1].GeometryReferenceList#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: UpdateAttr
     ElementPath: QualityFeatures.AttributiveFeaturesList[1].GeometryReferenceList
     AttributeKey: typeValueListElement
@@ -1103,14 +1099,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: QualityFeatures.AttributiveFeaturesList[1].IDList3DModel
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: QualityFeatures.AttributiveFeaturesList[1].IDList3DModel
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: https://admin-shell.io/idta/QualityControlForMachining/IDList3DModel/1/0
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.AttributiveFeaturesList[0].IDList3DModel#semanticId
+    TargetElementPaths:
+    - QualityFeatures.AttributiveFeaturesList[1].IDList3DModel#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: UpdateAttr
     ElementPath: QualityFeatures.AttributiveFeaturesList[1].IDList3DModel
     AttributeKey: typeValueListElement
@@ -1190,14 +1185,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: QualityFeatures.AttributiveFeaturesList[1].Reference2DList
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: QualityFeatures.AttributiveFeaturesList[1].Reference2DList
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: https://admin-shell.io/idta/QualityControlForMachining/Reference2DList/1/0
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.AttributiveFeaturesList[0].Reference2DList#semanticId
+    TargetElementPaths:
+    - QualityFeatures.AttributiveFeaturesList[1].Reference2DList#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: UpdateAttr
     ElementPath: QualityFeatures.AttributiveFeaturesList[1].Reference2DList
     AttributeKey: typeValueListElement
@@ -1344,14 +1338,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: QualityFeatures.AttributiveFeaturesList[1].OKAttributesList
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: QualityFeatures.AttributiveFeaturesList[1].OKAttributesList
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: https://admin-shell.io/idta/QualityControlForMachining/OKAttributesList/1/0
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.AttributiveFeaturesList[0].OKAttributesList#semanticId
+    TargetElementPaths:
+    - QualityFeatures.AttributiveFeaturesList[1].OKAttributesList#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: UpdateAttr
     ElementPath: QualityFeatures.AttributiveFeaturesList[1].OKAttributesList
     AttributeKey: typeValueListElement
@@ -1429,14 +1422,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: QualityFeatures.AttributiveFeaturesList[1].NOKAttributesList
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: QualityFeatures.AttributiveFeaturesList[1].NOKAttributesList
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: https://admin-shell.io/idta/QualityControlForMachining/NOKAttributesList/1/0
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.AttributiveFeaturesList[0].NOKAttributesList#semanticId
+    TargetElementPaths:
+    - QualityFeatures.AttributiveFeaturesList[1].NOKAttributesList#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: UpdateAttr
     ElementPath: QualityFeatures.AttributiveFeaturesList[1].NOKAttributesList
     AttributeKey: typeValueListElement
@@ -1706,14 +1698,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: QualityFeatures.GeometricFeaturesList[1].GeometryReferenceList
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: QualityFeatures.GeometricFeaturesList[1].GeometryReferenceList
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: https://admin-shell.io/idta/QualityControlForMachining/GeometryReferenceList/1/0
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.GeometricFeaturesList[0].GeometryReferenceList#semanticId
+    TargetElementPaths:
+    - QualityFeatures.GeometricFeaturesList[1].GeometryReferenceList#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: UpdateAttr
     ElementPath: QualityFeatures.GeometricFeaturesList[1].GeometryReferenceList
     AttributeKey: typeValueListElement
@@ -1784,14 +1775,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: QualityFeatures.GeometricFeaturesList[1].IDList3DModel
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: QualityFeatures.GeometricFeaturesList[1].IDList3DModel
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: https://admin-shell.io/idta/QualityControlForMachining/IDList3DModel/1/0
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.GeometricFeaturesList[0].IDList3DModel#semanticId
+    TargetElementPaths:
+    - QualityFeatures.GeometricFeaturesList[1].IDList3DModel#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: UpdateAttr
     ElementPath: QualityFeatures.GeometricFeaturesList[1].IDList3DModel
     AttributeKey: typeValueListElement
@@ -1871,14 +1861,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: QualityFeatures.GeometricFeaturesList[1].Reference2DList
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: QualityFeatures.GeometricFeaturesList[1].Reference2DList
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: https://admin-shell.io/idta/QualityControlForMachining/Reference2DList/1/0
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.GeometricFeaturesList[0].Reference2DList#semanticId
+    TargetElementPaths:
+    - QualityFeatures.GeometricFeaturesList[1].Reference2DList#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: UpdateAttr
     ElementPath: QualityFeatures.GeometricFeaturesList[1].Reference2DList
     AttributeKey: typeValueListElement
@@ -2034,14 +2023,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: QualityFeatures.GeometricFeaturesList[1].AdditionalInformationList
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: QualityFeatures.GeometricFeaturesList[1].AdditionalInformationList
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: https://admin-shell.io/idta/QualityControlForMachining/AdditionalInformationList/1/0
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.GeometricFeaturesList[0].AdditionalInformationList#semanticId
+    TargetElementPaths:
+    - QualityFeatures.GeometricFeaturesList[1].AdditionalInformationList#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: UpdateAttr
     ElementPath: QualityFeatures.GeometricFeaturesList[1].AdditionalInformationList
     AttributeKey: typeValueListElement
@@ -2275,14 +2263,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].GeometryReferenceList
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].GeometryReferenceList
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: https://admin-shell.io/idta/QualityControlForMachining/GeometryReferenceList/1/0
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.ArealSurfaceFeaturesList[0].GeometryReferenceList#semanticId
+    TargetElementPaths:
+    - QualityFeatures.ArealSurfaceFeaturesList[1].GeometryReferenceList#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: UpdateAttr
     ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].GeometryReferenceList
     AttributeKey: typeValueListElement
@@ -2353,14 +2340,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].IDList3DModel
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].IDList3DModel
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: https://admin-shell.io/idta/QualityControlForMachining/IDList3DModel/1/0
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.ArealSurfaceFeaturesList[0].IDList3DModel#semanticId
+    TargetElementPaths:
+    - QualityFeatures.ArealSurfaceFeaturesList[1].IDList3DModel#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: UpdateAttr
     ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].IDList3DModel
     AttributeKey: typeValueListElement
@@ -2440,14 +2426,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].Reference2DList
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].Reference2DList
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: https://admin-shell.io/idta/QualityControlForMachining/Reference2DList/1/0
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - QualityFeatures.ArealSurfaceFeaturesList[0].Reference2DList#semanticId
+    TargetElementPaths:
+    - QualityFeatures.ArealSurfaceFeaturesList[1].Reference2DList#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: UpdateAttr
     ElementPath: QualityFeatures.ArealSurfaceFeaturesList[1].Reference2DList
     AttributeKey: typeValueListElement
@@ -3175,14 +3160,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: MetrologyJobResults.MetrologyResultsList[1].MeasuredValuesList
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: MetrologyJobResults.MetrologyResultsList[1].MeasuredValuesList
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: https://admin-shell.io/idta/QualityControlForMachining/MeasuredValuesList/1/0
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - MetrologyJobResults.MetrologyResultsList[0].MeasuredValuesList#semanticId
+    TargetElementPaths:
+    - MetrologyJobResults.MetrologyResultsList[1].MeasuredValuesList#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: UpdateAttr
     ElementPath: MetrologyJobResults.MetrologyResultsList[1].MeasuredValuesList
     AttributeKey: typeValueListElement

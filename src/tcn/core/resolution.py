@@ -46,6 +46,10 @@ Containers with instance content
       not describe) follows the Hollow-Out pattern: a container of the same type, name and
       attributes is created at the target, the children are moved into it (recursively), and the
       emptied original is removed. Children, and thereby their values, keep their identity.
+  H2  A chain may itself rebuild a container: create its counterpart (origin: the container), move
+      the children the template describes, remove the container. Children the template does not
+      describe are left in the realisation; before it is removed, they are moved into the
+      counterpart created for it, as in H1. Without a counterpart, the removal is refused.
 
 Values
   V1  Every instance value the chain removes without carrying it over automatically (by moving its
@@ -403,8 +407,20 @@ class _Resolver:
         self._restore_name(new)
         return new
 
+    def _counterpart(self, t: Id, r: Id) -> Id | None:
+        """The realisation the chain created in place of realisation r of template element t: one of
+        an element whose origin is t, created for r (H2)."""
+        anchor = self.key.get(r, r)
+        return next((n for e, rs in self.R.items() if self.origin.get(e) == t
+                     for n in rs if n in self.I.E and self.key.get(n) == anchor), None)
+
     def _RemoveSME(self, op: ops.RemoveSME, item: Item) -> None:
         for r in reversed(self.realisations(op.e, "RemoveSME")):
+            if self.I.children(r) and (new := self._counterpart(op.e, r)) is not None:  # H2
+                for c in list(self.I.children(r)):
+                    self.note("inserted", f"UpdateParent {self.I.path(c)}: content the template does not "
+                                          f"describe moves with its container")
+                    self._move(c, new)
             a = self.I.attr(r, "value")
             if a is not None and self.I.A[a].value not in (LAMBDA, "", []) and a not in self.transferred:  # V1
                 where = self.I0.path(r) if r in self.I0.E else self.I.path(r)

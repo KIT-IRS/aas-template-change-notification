@@ -253,14 +253,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: Records[1].LifeCycleData
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: Records[1].LifeCycleData
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: http://admin-shell.io/VDMA/Fluidics/ProductChangeNotification/LifeCycleData/List/1/0
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Records[0].LifeCycleData#semanticId
+    TargetElementPaths:
+    - Records[1].LifeCycleData#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: CreateAttr
     ElementPath: Records[1].LifeCycleData
     AttributeKey: semanticIdListElement
@@ -405,14 +404,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: Records[1].ReasonsOfChange
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: Records[1].ReasonsOfChange
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: 0173-1#02-ABI296#002
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Records[0].ReasonsOfChange#semanticId
+    TargetElementPaths:
+    - Records[1].ReasonsOfChange#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: CreateAttr
     ElementPath: Records[1].ReasonsOfChange
     AttributeKey: semanticIdListElement
@@ -560,14 +558,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: Records[1].ItemCategories
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: Records[1].ItemCategories
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: http://admin-shell.io/VDMA/Fluidics/ProductChangeNotification/ItemCategory/List/1/0
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Records[0].ItemCategories#semanticId
+    TargetElementPaths:
+    - Records[1].ItemCategories#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: CreateAttr
     ElementPath: Records[1].ItemCategories
     AttributeKey: semanticIdListElement
@@ -716,14 +713,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: Records[1].AffectedPartNumbers
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: Records[1].AffectedPartNumbers
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: http://admin-shell.io/VDMA/Fluidics/ProductChangeNotification/AffectedPartNumber/List/1/0
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Records[0].AffectedPartNumbers#semanticId
+    TargetElementPaths:
+    - Records[1].AffectedPartNumbers#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: CreateAttr
     ElementPath: Records[1].AffectedPartNumbers
     AttributeKey: semanticIdListElement
@@ -880,14 +876,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: Records[1].AdditionalInformation
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: Records[1].AdditionalInformation
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: http://admin-shell.io/VDMA/Fluidics/ProductChangeNotification/AdditionalInformation/List/1/0
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Records[0].AdditionalInformation#semanticId
+    TargetElementPaths:
+    - Records[1].AdditionalInformation#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: CreateAttr
     ElementPath: Records[1].AdditionalInformation
     AttributeKey: semanticIdListElement
@@ -1041,14 +1036,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: Records[1].ItemOfChange.ProductClassifications
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: Records[1].ItemOfChange.ProductClassifications
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: 0173-1#02-ABI298#002
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Records[0].ItemOfChange.ProductClassifications#semanticId
+    TargetElementPaths:
+    - Records[1].ItemOfChange.ProductClassifications#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: CreateAttr
     ElementPath: Records[1].ItemOfChange.ProductClassifications
     AttributeKey: semanticIdListElement
@@ -1191,14 +1185,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: Records[1].ItemOfChange.TechnicalData_Changes
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: Records[1].ItemOfChange.TechnicalData_Changes
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: http://admin-shell.io/VDMA/Fluidics/ProductChangeNotification/TechnicalData_Changes/List/1/0
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Records[0].ItemOfChange.TechnicalData_Changes#semanticId
+    TargetElementPaths:
+    - Records[1].ItemOfChange.TechnicalData_Changes#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: CreateAttr
     ElementPath: Records[1].ItemOfChange.TechnicalData_Changes
     AttributeKey: semanticIdListElement
@@ -1359,14 +1352,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: Records[1].ItemOfChange.TechnicalData_CurrentState
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: Records[1].ItemOfChange.TechnicalData_CurrentState
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ModelReference
-      keys:
-      - type: ConceptDescription
-        value: http://admin-shell.io/VDMA/Fluidics/ProductChangeNotification/TechnicalData_CurrentState/List/1/0
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Records[0].ItemOfChange.TechnicalData_CurrentState#semanticId
+    TargetElementPaths:
+    - Records[1].ItemOfChange.TechnicalData_CurrentState#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: CreateQual
     ElementPath: Records[1].ItemOfChange.TechnicalData_CurrentState
     QualifierType: SMT/Cardinality
@@ -1433,14 +1425,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: Records[1].RecommendedItems
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: Records[1].RecommendedItems
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: http://admin-shell.io/VDMA/Fluidics/ProductChangeNotification/RecommendedItem/List/1/0
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Records[0].RecommendedItems#semanticId
+    TargetElementPaths:
+    - Records[1].RecommendedItems#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: CreateAttr
     ElementPath: Records[1].RecommendedItems
     AttributeKey: semanticIdListElement
@@ -1573,14 +1564,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: Records[1].RecommendedItems[0].ProductClassifications
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: Records[1].RecommendedItems[0].ProductClassifications
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: 0173-1#02-ABI298#002
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Records[0].RecommendedItems[0].ProductClassifications#semanticId
+    TargetElementPaths:
+    - Records[1].RecommendedItems[0].ProductClassifications#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: CreateAttr
     ElementPath: Records[1].RecommendedItems[0].ProductClassifications
     AttributeKey: semanticIdListElement
@@ -2046,14 +2036,13 @@ sections:
   - ChangeOperation: CreateAttr
     ElementPath: Records[1].RecommendedItems[0].ConformityDeclarations
     AttributeKey: semanticId
-  - ChangeOperation: UpdateAttr
-    ElementPath: Records[1].RecommendedItems[0].ConformityDeclarations
-    AttributeKey: semanticId
-    AttributeValue:
-      type: ExternalReference
-      keys:
-      - type: GlobalReference
-        value: 0173-1#02-ABI303#003/0173-1#01-AHE592#003
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Records[0].RecommendedItems[0].ConformityDeclarations#semanticId
+    TargetElementPaths:
+    - Records[1].RecommendedItems[0].ConformityDeclarations#semanticId
+    TransferFunction:
+      Kind: Identity
   - ChangeOperation: CreateQual
     ElementPath: Records[1].RecommendedItems[0].ConformityDeclarations
     QualifierType: SMT/Cardinality
