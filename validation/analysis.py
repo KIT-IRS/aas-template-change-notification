@@ -28,6 +28,7 @@ from tcn.aas import bridge
 from tcn.core.guarded import apply_chain, guarded
 from tcn.core.model import LAMBDA
 from tcn.roles import template_owner
+from validation.messages import difference, listing
 
 Change = tuple[str, str, str]
 
@@ -40,20 +41,28 @@ def causes(submodel) -> Counter:
 def check_chain_reproduces_target_template(chain_path: str) -> None:
     v = template_owner.verify(chainfile.load(chain_path))
     assert v.result.status == "ACC", v.result.reason
-    assert not v.missing and not v.surplus
+    assert not v.missing and not v.surplus, (
+        "the chain does not reproduce the target template"
+        + listing("facts of the target template the chain does not produce", v.missing)
+        + listing("facts the chain produces that the target template does not have", v.surplus))
 
 
 def check_result_is_metamodel_conformant_as_published(chain_path: str) -> None:
     chain = chainfile.load(chain_path)
     result = template_owner.verify(chain).result.template
     published = bridge.load_submodel(chain.header["PostTemplate"])
-    assert causes(bridge.to_jsonable(result)) == causes(published)
+    observed = causes(bridge.to_jsonable(result))
+    assert observed == causes(published), difference(
+        "metamodel violations of the result, compared with the published target template",
+        observed.elements(), causes(published).elements())
 
 
 def check_relocations_and_links_are_stated_by_hand(chain_path: str) -> None:
     chain = chainfile.load(chain_path)
     generated = [i for s in chain.sections if s.origin == "generated" for i in s.items]
-    assert not any(i.operation in ("UpdateParent", "Sync") for i in generated)
+    assert not any(i.operation in ("UpdateParent", "Sync") for i in generated), listing(
+        "relocations and links that were generated",
+        [f"{i.operation} {i.element_path}" for i in generated if i.operation in ("UpdateParent", "Sync")])
 
 
 def _change(item):
@@ -75,9 +84,10 @@ def check_undocumented_differences_are_enumerated(
             stating = [s for s in chain.sections if s.origin == "generated"]
         else:
             stating = [s for s in chain.sections if s.title.startswith(f"{group}:")]
-        assert stating, group
+        assert stating, f"no section of the chain states the undocumented difference {group}"
         if change is not None:
-            assert change in {_change(i) for s in stating for i in s.items}, change
+            assert change in {_change(i) for s in stating for i in s.items}, (
+                f"the sections {group} do not state the undocumented difference {change}")
 
     # mechanical cross-check: generated items that overwrite a populated value
     pre, _ = template_owner.load_templates(chain)
@@ -91,4 +101,5 @@ def check_undocumented_differences_are_enumerated(
         if item.operation == "UpdateAttr" and T.A[op.a].owner in T.Q and T.A[op.a].value is not LAMBDA:
             found.add((f"{item.element_path}@{item.qualifier_type}", item.attribute_key, op.v))
         T, _ = guarded(op, T)
-    assert found == generated_overwrites
+    assert found == generated_overwrites, difference(
+        "generated items that overwrite a populated value", found, generated_overwrites)
