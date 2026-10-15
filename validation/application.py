@@ -19,6 +19,7 @@ from tcn.core.metamodel import CONTAINMENT_KEY
 from tcn.core.model import LAMBDA, positions
 from tcn.core.resolution import resolve
 from tcn.roles.template_owner import load_templates
+from validation.messages import difference
 
 CONTAINERS = set(CONTAINMENT_KEY)
 
@@ -59,14 +60,18 @@ def check_chain_applies_and_retains_instance_data(expected_path: str) -> None:
 
 def check_manual_steps_are_reported(expected_path: str) -> None:
     exp, *_, notes = run(expected_path)
-    assert {n.path for n in notes if n.kind == "manual"} == set(exp["manual"])
+    manual = {n.path for n in notes if n.kind == "manual"}
+    assert manual == set(exp["manual"]), difference("manual steps reported before consent", manual, exp["manual"])
 
 
 def check_result_is_serialisable_without_new_violations(expected_path: str) -> None:
     exp, chain, instance, T, _ = run(expected_path)
     published = bridge.load_submodel(chain.header["PostTemplate"])
     allowed = set(_causes(bridge.to_jsonable(instance))) | set(_causes(published))
-    assert set(_causes(bridge.to_jsonable(T))) <= allowed
+    observed = set(_causes(bridge.to_jsonable(T)))
+    assert observed <= allowed, difference(
+        "metamodel violations of the result that neither the instance nor the published template has",
+        observed - allowed, [])
 
 
 def check_conformance_to_the_new_template(expected_path: str) -> None:
@@ -74,8 +79,13 @@ def check_conformance_to_the_new_template(expected_path: str) -> None:
     first = chainfile.load((exp.get("chains") or [exp["chain"]])[0])
     assert conforms(check(load_templates(first)[0], instance)), "the fixture does not conform to v_i"
     findings = check(load_templates(chain)[1], T)
-    assert conforms(findings) == exp["conforms"]
-    assert sorted([f.kind, f.path] for f in findings if f.kind in VIOLATIONS) == sorted(exp["violations"])
+    violations = sorted([f.kind, f.path] for f in findings if f.kind in VIOLATIONS)
+    assert conforms(findings) == exp["conforms"], (
+        f"the result {'conforms' if conforms(findings) else 'does not conform'} to the new template, "
+        f"expected: {'conforms' if exp['conforms'] else 'does not conform'}; violations"
+        + difference("", map(tuple, violations), map(tuple, exp["violations"])))
+    assert violations == sorted(exp["violations"]), difference(
+        "violations of the new template", map(tuple, violations), map(tuple, exp["violations"]))
 
 
 def check_no_value_is_lost_silently(expected_path: str) -> None:
@@ -84,7 +94,7 @@ def check_no_value_is_lost_silently(expected_path: str) -> None:
     or as removed. The removed ones are as expected."""
     exp, _, instance, T, notes = run(expected_path)
     removed = {n.path for n in notes if n.kind == "removed"}
-    assert removed == set(exp["removed"])
+    assert removed == set(exp["removed"]), difference("values reported as removed", removed, exp["removed"])
     for e in instance.E:
         a = instance.attr(e, "value")
         if a is None or instance.A[a].value in (LAMBDA, "", []) or instance.E[e].type in CONTAINERS:

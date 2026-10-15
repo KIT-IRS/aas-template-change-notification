@@ -140,6 +140,45 @@ templates), `application.py` (V3–V5, V8: resolution and application, offline) 
 (V3–V7: over BaSyx and MQTT). The end-to-end tests are marked `infra` and require the Docker
 environment (`-m infra`); all other tests run offline.
 
+### Reading the results
+
+Every run ends with a summary by validation case (requirements, method, checks passed, and what
+did not run); a failing check shows what differs from the expectation.
+
+The repository contains the report of a complete validation run, end-to-end cases included, in two
+forms. The header of each names the revision and the selection of tests it was produced from.
+
+- [`validation-report.md`](validation-report.md) is rendered by GitHub directly: the cases with their
+  pass criteria, the outcome of each check, and the application of each chain to its instance
+  beside the expectations derived by hand (Table 6).
+- [`validation-report.html`](validation-report.html) is the full report. It adds the differences the
+  change log does not state (Table 5), the resolution notes per section of the chain, and a view of
+  every chain by section and origin, with all its items. GitHub shows this file as source only:
+  download it (*Download raw file* on its page, or clone the repository) and open it in a browser.
+  It is a single self-contained file and needs no server or network access.
+
+To produce a complete report, start the AAS environment and run all tests, without `-m`
+(`validation/report.py`):
+
+```bash
+docker compose up -d                  # wait until the AAS API answers
+uv run pytest --validation-report=validation-report.html --validation-report=validation-report.md
+```
+
+If the AAS environment cannot be reached, the end-to-end checks are skipped, not failed; the report
+then shows them as skipped, and it is not complete. `-m "not infra"` produces a report of the
+offline checks only.
+
+A single chain or expectation can be viewed without running the tests (`validation/render.py`):
+
+```bash
+uv run python -m validation.render chains/technicaldata_1.2_to_2.0.yaml                # sections and operations
+uv run python -m validation.render fixtures/expected/technicaldata_1.2_to_2.0.yaml     # expected vs. observed
+uv run python -m validation.render fixtures/expected/technicaldata_1.2_to_2.0.yaml -o view.html
+```
+
+Both only present results: whether a case passes is decided by its tests.
+
 ## Open-source software and content used
 
 The prototype builds on the following projects. Their licenses are those stated by the projects

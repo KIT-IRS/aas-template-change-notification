@@ -15,6 +15,7 @@ from tcn.aas import bridge
 from tcn.core.addressing import element
 from tcn.core.conformance import VIOLATIONS
 from tcn.roles import coevolution, reception, template_owner
+from validation.messages import difference
 
 
 def deliver(gw, chain_path: str) -> str:
@@ -59,6 +60,7 @@ def check_end_to_end(gw, expected_path: str) -> None:
     for old, new_path in exp["control"].items():
         assert attrs(new, new_path) == attrs(baseline, old), f"control element {old} changed"
     manual = {n.path for n in report.resolution.notes if n.kind == "manual"}
-    assert manual == set(exp["manual"])
+    assert manual == set(exp["manual"]), difference("manual steps reported before consent", manual, exp["manual"])
     violations = sorted([f.kind, f.path] for f in report.conformance if f.kind in VIOLATIONS)
-    assert violations == sorted(exp["violations"])  # reported to the asset maintainer before consent
+    assert violations == sorted(exp["violations"]), difference(  # reported to the asset maintainer before consent
+        "violations of the new template", map(tuple, violations), map(tuple, exp["violations"]))

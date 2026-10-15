@@ -1,8 +1,14 @@
 import pytest
-import requests
 
-from tcn import environment
-from tcn.infra.gateway import Gateway
+# Failures inside the shared checks show the compared values, as in the test modules themselves.
+pytest.register_assert_rewrite("validation.analysis", "validation.application", "validation.endtoend",
+                               "validation.properties")
+
+import requests  # noqa: E402
+
+from tcn import environment  # noqa: E402
+from tcn.infra.gateway import Gateway  # noqa: E402
+from validation.report import pytest_addoption, pytest_configure  # noqa: E402,F401
 
 
 @pytest.fixture
