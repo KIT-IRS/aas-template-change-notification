@@ -221,7 +221,9 @@ class Recorder:
             rev = ""
         return [("run", datetime.datetime.now().isoformat(timespec="seconds")), ("revision", rev or "—"),
                 ("python", platform.python_version()),
-                ("selection", self.config.getoption("markexpr") or "all tests")]
+                ("selection", f"paths={self.config.args!r}; "
+                 f"-m={self.config.getoption('markexpr')!r}; "
+                 f"-k={self.config.getoption('keyword')!r}")]
 
     def html(self) -> str:
         cases = self.ordered()
