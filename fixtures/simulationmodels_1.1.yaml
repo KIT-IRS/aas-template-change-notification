@@ -1,0 +1,37 @@
+# Submodel instance conforming to IDTA 02005 Provision of Simulation Models v1.1. Illustrative values of an example device.
+template: ressources/Templates/IDTA 02005-1-1_Template_ProvisionOfSimulationModel.json
+id: https://example.com/ids/sm/example-device/SimulationModels
+
+omit:
+  - SimulationModel.SimPurpose.NegSimPurpose
+  - SimulationModel.EngineeringDomain
+  - SimulationModel.Environment
+  - SimulationModel.RefSimDocumentation
+  - SimulationModel.ModelFile.ModelFileVersion.ModelPreviewImage
+  - SimulationModel.ModelFile.ModelFileVersion.ModelFileReleaseNotesTxt
+  - SimulationModel.ModelFile.ModelFileVersion.ModelFileReleaseNotesFile
+  - SimulationModel.ParamFile
+  - SimulationModel.InitStateFile
+  - SimulationModel.SimModManufacturerInformation
+  - SimulationModel.Ports.PortsConnector.Variable
+  - SimulationModel.Ports.BinaryConnector
+  - SimulationModel.Quality                  # optional; no quality evaluation
+
+values:
+  SimulationModel.Summary: {en: Thermal model of the controller housing}
+  SimulationModel.SimPurpose.PosSimPurpose: ThermalAnalysis
+  SimulationModel.TypeOfModel: DAE
+  SimulationModel.ScopeOfModel: Component
+  SimulationModel.LicenseModel: free
+  SimulationModel.ModelFile.ModelFileType: FMU
+  SimulationModel.ModelFile.ModelFileVersion.ModelVersionId: "1.0.3"
+  SimulationModel.ModelFile.ModelFileVersion.DigitalFile: /aasx/files/controller-thermal.fmu
+  SimulationModel.ParamMethod: none
+  SimulationModel.InitStateMethod: none
+  SimulationModel.DefaultSimTime: "3600"
+  SimulationModel.Ports.PortsConnector.PortConnectorName: HeatPort
+  SimulationModel.Ports.PortsConnector.PortConDescription: {en: Thermal port of the housing}
+
+add:
+  "":                   # local extension of the asset maintainer, described by no template
+    - {modelType: Property, idShort: InternalInventoryNumber, valueType: xs:string, value: INV-2024-0815}

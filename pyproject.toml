@@ -32,4 +32,7 @@ dev = [
 [tool.pytest.ini_options]
 testpaths = ["validation"]
 pythonpath = ["."]
-markers = ["infra: requires the Docker environment (BaSyx + RabbitMQ)"]
+markers = [
+    "infra: requires the Docker environment (BaSyx + RabbitMQ)",
+    "slow: runs for several minutes, only with --run-slow (V9/V10 for Asset Interfaces Description)",
+]

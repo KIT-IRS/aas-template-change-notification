@@ -1,0 +1,37 @@
+# Expected outcome of applying aimc_1.0_to_2.0 to fixtures/aimc_1.0.yaml.
+# Derived by hand before running the chain, from the change log of IDTA 02027 v2.0 (Annex C) and the
+# specification: each mapping configuration yields one new entry (A0); each relation yields one entry
+# of Sources and one of Sinks in it, its first element becoming the source, its second the sink (A2).
+# The interface reference is removed, since the AID submodel is inferred from each source (A3).
+chain: chains/aimc_1.0_to_2.0.yaml
+instance: fixtures/aimc_1.0.yaml
+
+retained:
+  "MappingConfigurations[0].Sources[0].Source": {type: ModelReference, keys: [{type: Submodel, value: "https://example.com/ids/sm/example-device/AID"}, {type: SubmodelElementCollection, value: MQTT}, {type: SubmodelElementCollection, value: Temperature}]}
+  "MappingConfigurations[0].Sources[1].Source": {type: ModelReference, keys: [{type: Submodel, value: "https://example.com/ids/sm/example-device/AID"}, {type: SubmodelElementCollection, value: MQTT}, {type: SubmodelElementCollection, value: Pressure}]}
+  "MappingConfigurations[0].Sinks[0].Sink": {type: ModelReference, keys: [{type: Submodel, value: "https://example.com/ids/sm/example-device/OperationalData"}, {type: Property, value: Temperature}]}
+  "MappingConfigurations[0].Sinks[1].Sink": {type: ModelReference, keys: [{type: Submodel, value: "https://example.com/ids/sm/example-device/OperationalData"}, {type: Property, value: Pressure}]}
+  "MappingConfigurations[1].Sources[0].Source": {type: ModelReference, keys: [{type: Submodel, value: "https://example.com/ids/sm/example-device/AID"}, {type: SubmodelElementCollection, value: HTTP}, {type: SubmodelElementCollection, value: Status}]}
+  "MappingConfigurations[1].Sinks[0].Sink": {type: ModelReference, keys: [{type: Submodel, value: "https://example.com/ids/sm/example-device/OperationalData"}, {type: Property, value: Status}]}
+  InternalInventoryNumber: INV-2024-0815
+
+control:
+  InternalInventoryNumber: InternalInventoryNumber
+
+# SourceId and SinkId are mandatory and new in v2.0
+manual:
+  - "MappingConfigurations[0].Sources[0].SourceId"
+  - "MappingConfigurations[0].Sinks[0].SinkId"
+
+conforms: false
+violations:
+  - [VALUE_MISSING, "MappingConfigurations[0].Sources[0].SourceId"]
+  - [VALUE_MISSING, "MappingConfigurations[0].Sources[1].SourceId"]
+  - [VALUE_MISSING, "MappingConfigurations[0].Sinks[0].SinkId"]
+  - [VALUE_MISSING, "MappingConfigurations[0].Sinks[1].SinkId"]
+  - [VALUE_MISSING, "MappingConfigurations[1].Sources[0].SourceId"]
+  - [VALUE_MISSING, "MappingConfigurations[1].Sinks[0].SinkId"]
+
+removed:
+  - "MappingConfigurations[0].InterfaceReference"
+  - "MappingConfigurations[1].InterfaceReference"

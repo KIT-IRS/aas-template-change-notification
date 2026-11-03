@@ -1,0 +1,28 @@
+# Submodel instance conforming to IDTA 02080 Material Data for Plastic Waste v1.0. Illustrative values of
+# a material lot. The entries of the lists carry the idShorts the template gives them. The template
+# admits one entry of ApplicationSpecificStandards (ZeroToOne).
+template: ressources/Templates/IDTA 02080-1-0_Template_Material Data for Plastic Waste.json
+id: https://example.com/ids/sm/example-lot/MaterialData
+drop_empty: true
+
+repeat:
+  "InformationCharacteristics.TypesOfFillers[0]": 2
+
+values:
+  "ApplicationSpecificStandards[0]": EN 18065
+  InformationCharacteristics.MainMaterialType: PP
+  InformationCharacteristics.RecycledContent: "85.0"
+  "InformationCharacteristics.TypesOfFillers[0].Filler": talc
+  "InformationCharacteristics.TypesOfFillers[0].FillerMassPercentage": "12.0"
+  "InformationCharacteristics.TypesOfFillers[1].Filler": chalk
+  "InformationCharacteristics.TypesOfFillers[1].FillerMassPercentage": "3.5"
+  "InformationCharacteristics.PresenceOfModifyingAdditives[0].ModifyingAdditiveName": glass fibre
+  "InformationCharacteristics.PresenceOfModifyingAdditives[0].ModifyingAdditiveCASNumber": 65997-17-3
+  "PropertyCharacteristics.TensileProperties.MeasuredValues[0].Value": "28.5"
+  "PropertyCharacteristics.TensileProperties.MeasuredValues[0].Unit": MPa
+  "PropertyCharacteristics.TensileProperties.MeasuredValues[0].Kind": tensile strength
+  PropertyCharacteristics.TensileProperties.StandardOrNorm: ISO 527-2
+
+add:
+  "":                   # local extension of the asset maintainer, described by no template
+    - {modelType: Property, idShort: InternalLotNote, valueType: xs:string, value: bale 17 of 40}

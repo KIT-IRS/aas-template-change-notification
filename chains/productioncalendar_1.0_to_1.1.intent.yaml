@@ -1,0 +1,27 @@
+# Template Change Notification: IDTA 02067 Production Calendar v1.0 -> v1.1 (intent, hand-written)
+#
+# This file states the intent of the revision. `uv run tcn owner complete` appends the mechanical
+# completion; the result is productioncalendar_1.0_to_1.1.yaml.
+# Bug-fix release: its change log is the list of issues it fixes (#187, #207, #208, #210 of
+# admin-shell-io/submodel-templates): the machine-readable artifacts are corrected, the specification
+# is carried over unchanged. Its submodel id and administration are those of the previous version.
+# None of the corrections is structural (a trailing blank in the semanticId of `calendar`, qualifier
+# kind and language strings); the owner states no intent, the mechanical completion states them all.
+# v1.0 is the primary template of the release; its variant `_forAASMetamodelV3.1` coincides with v1.1.
+
+header:
+  Family: ProductionCalendar
+  PreVersion: https://admin-shell.io/idta/SubmodelTemplate/ProductionCalendar/1/0
+  PostVersion: https://admin-shell.io/idta/SubmodelTemplate/ProductionCalendar/1/0
+  PreTemplate: ressources/Templates/IDTA 02067-1-0_Template_ProductionCalendar.json
+  PostTemplate: ressources/Templates/IDTA 02067-1-1_Template_ProductionCalendar.json
+  TemplateOwner: Industrial Digital Twin Association (IDTA)
+  TemplateOwnerAddress:
+    Company: Industrial Digital Twin Association e.V.
+    Street: Lyoner Straße 18
+    Zipcode: "60528"
+    CityTown: Frankfurt am Main
+    NationalCode: DE
+  ChangeURI: https://github.com/admin-shell-io/submodel-templates/tree/main/published/Production%20Calendar/1/1
+
+sections: []

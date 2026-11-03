@@ -13,7 +13,7 @@ from tcn.core.addressing import element as E
 from tcn.core.addressing import qualifier as Q
 from tcn.core.guarded import ACC
 from tcn.core.model import LAMBDA
-from tcn.core.transfer import Identity, Instruction, ValueMap
+from tcn.core.transfer import CEL, Expression, Identity, Instruction, ValueMap
 
 from validation.properties import check_guarded
 
@@ -88,6 +88,10 @@ CASES = [
                                            Instruction({"en": "convert by hand"})), ACC),
     ("Sync", lambda T: op.Sync([A(T, "X", None, "value")], [A(T, "C.P", None, "value")],
                                ValueMap({"One": "ZeroToOne"})), "TRANSFER_UNDEFINED"),
+    ("Sync nested error", lambda T: op.Sync([A(T, "X", None, "value")], [A(T, "C.P", None, "value")],
+                                            Expression(CEL, "[[src[0] + 1]]")), "TRANSFER_UNDEFINED"),
+    ("Sync", lambda T: op.Sync([A(T, "X", None, "value")], [A(T, "C.P", None, "value")],
+                               Expression(CEL, "[[src[0]]]")), "TRANSFER_INADMISSIBLE"),
     ("Sync", lambda T: op.Sync([A(T, "X", None, "value")], [], Identity()), "TARGET_EMPTY"),
     ("Sync", lambda T: op.Sync([A(T, "X", None, "value")] * 2, [A(T, "C.P", None, "value")],
                                Identity()), "ARITY_MISMATCH"),

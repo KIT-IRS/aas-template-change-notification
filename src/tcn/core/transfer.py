@@ -9,7 +9,10 @@ Expressions are data, never code: they are evaluated by an interpreter for a sid
 expression language. CEL (Common Expression Language) terminates on every input and has no access
 to anything but the values it is given; cel-python is used with its interpreting runner, which
 does not generate Python code. The expression sees the source values as the list `src` and yields
-the target value (one target) or the list of target values.
+the target value (one target) or the list of target values; a target value that is a list itself
+(e.g. of a MultiLanguageProperty) is therefore always given within the list of target values. An
+unpopulated source value is null in `src`, and null as a target value leaves the target unpopulated.
+An evaluation error anywhere in the result makes f undefined on the source values.
 """
 
 from __future__ import annotations
@@ -67,8 +70,10 @@ class Expression:
         env = celpy.Environment(runner_class=celpy.InterpretedRunner)
         result = env.program(env.compile(self.expression)).evaluate(
             {"src": celpy.json_to_cel([None if v is LAMBDA else v for v in values])})
-        if isinstance(result, celpy.CELEvalError):
-            raise result
+        # cel-python returns an error inside a list or map literal as an element instead of
+        # propagating it, so the whole result is searched
+        if (error := _first_error(result)) is not None:
+            raise error
         return _to_json(result)
 
     def defined(self, values: list[Any]) -> bool:
@@ -80,7 +85,15 @@ class Expression:
 
     def __call__(self, values: list[Any]) -> list[Any]:
         result = self._evaluate(values)
-        return result if isinstance(result, list) else [result]
+        # null, the image of an unpopulated source value, is an unpopulated target value
+        return [LAMBDA if v is None else v for v in (result if isinstance(result, list) else [result])]
+
+
+def _first_error(value: Any) -> celpy.CELEvalError | None:
+    if isinstance(value, celpy.CELEvalError):
+        return value
+    items = [*value.keys(), *value.values()] if isinstance(value, dict) else value if isinstance(value, list) else []
+    return next((e for v in items if (e := _first_error(v)) is not None), None)
 
 
 def _to_json(value: Any) -> Any:

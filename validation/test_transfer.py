@@ -25,6 +25,18 @@ def test_expression_undefined_on_values_is_not_defined():
     assert not Expression(CEL, "src[0].filter(s, s.language == 'fr')[0].text").defined([MLP])
 
 
+def test_error_inside_the_result_makes_the_expression_undefined():
+    # cel-python returns an error inside a list or map literal as an element
+    f = Expression(CEL, '[[{"language": "en", "text": src[0] + " " + src[1]}]]')
+    assert f.defined(["Main St", "12"]) and f(["Main St", "12"]) == [[{"language": "en", "text": "Main St 12"}]]
+    assert not f.defined(["Main St", LAMBDA])
+
+
+def test_null_is_an_unpopulated_value():
+    f = Expression(CEL, "type(src[0]) == string ? src[0] + ' V' : null")
+    assert f(["24"]) == ["24 V"] and f([LAMBDA]) == [LAMBDA]
+
+
 def test_expression_cannot_execute_code(tmp_path):
     marker = tmp_path / "pwned"
     for attempt in [f"__import__('os').system('touch {marker}')",

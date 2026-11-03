@@ -1,0 +1,26 @@
+# Template Change Notification: IDTA 02005 Provision of Simulation Models v1.1 -> v1.2 (intent, hand-written)
+#
+# This file states the intent of the revision. `uv run tcn owner complete` appends the mechanical
+# completion; the result is simulationmodels_1.1_to_1.2.yaml.
+# Bug-fix release: its change log is the issue it fixes (#159 of admin-shell-io/submodel-templates,
+# qualifiers lack the kind TemplateQualifier); the artifacts of v1.1 and the specification are carried
+# over unchanged. Its submodel id and administration are those of the previous version.
+# None of the corrections is structural; the owner states no intent, the mechanical completion states
+# them all.
+
+header:
+  Family: SimulationModels
+  PreVersion: https://admin-shell.io/idta/SubmodelTemplate/SimulationModels/1/1
+  PostVersion: https://admin-shell.io/idta/SubmodelTemplate/SimulationModels/1/1
+  PreTemplate: ressources/Templates/IDTA 02005-1-1_Template_ProvisionOfSimulationModel.json
+  PostTemplate: ressources/Templates/IDTA 02005-1-2_Template_ProvisionOfSimulationModel.json
+  TemplateOwner: Industrial Digital Twin Association (IDTA)
+  TemplateOwnerAddress:
+    Company: Industrial Digital Twin Association e.V.
+    Street: Lyoner Straße 18
+    Zipcode: "60528"
+    CityTown: Frankfurt am Main
+    NationalCode: DE
+  ChangeURI: https://github.com/admin-shell-io/submodel-templates/tree/main/published/Provision%20of%20Simulation%20Models/1/2
+
+sections: []

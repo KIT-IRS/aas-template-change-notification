@@ -1,0 +1,675 @@
+header:
+  Family: SimulationModels
+  PreVersion: https://admin-shell.io/idta/SubmodelTemplate/SimulationModels/1/1
+  PostVersion: https://admin-shell.io/idta/SubmodelTemplate/SimulationModels/1/1
+  PreTemplate: ressources/Templates/IDTA 02005-1-1_Template_ProvisionOfSimulationModel.json
+  PostTemplate: ressources/Templates/IDTA 02005-1-2_Template_ProvisionOfSimulationModel.json
+  TemplateOwner: Industrial Digital Twin Association (IDTA)
+  TemplateOwnerAddress:
+    Company: Industrial Digital Twin Association e.V.
+    Street: Lyoner Straße 18
+    Zipcode: '60528'
+    CityTown: Frankfurt am Main
+    NationalCode: DE
+  ChangeURI: https://github.com/admin-shell-io/submodel-templates/tree/main/published/Provision%20of%20Simulation%20Models/1/2
+sections:
+- title: 'Completion: removed elements and qualifiers'
+  origin: generated
+  items: []
+- title: 'Completion: created elements and qualifiers'
+  origin: generated
+  items: []
+- title: 'Completion: attributes'
+  origin: generated
+  items:
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.Summary
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.Summary
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.SimPurpose
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.SimPurpose
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.SimPurpose.PosSimPurpose
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.SimPurpose.PosSimPurpose
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.SimPurpose.NegSimPurpose
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.SimPurpose.NegSimPurpose
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.TypeOfModel
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.TypeOfModel
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.ScopeOfModel
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.ScopeOfModel
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.LicenseModel
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.LicenseModel
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.EngineeringDomain
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.EngineeringDomain
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.Environment
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.Environment
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.Environment.OperatingSystem
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.Environment.OperatingSystem
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.Environment.ToolEnvironment
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.Environment.ToolEnvironment
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.Environment.DependencyEnvironment
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.Environment.DependencyEnvironment
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.Environment.VisualizationInformation
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.Environment.VisualizationInformation
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.Environment.SimulationTool
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.Environment.SimulationTool
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.Environment.SimulationTool.SimToolName
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.Environment.SimulationTool.SimToolName
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.Environment.SimulationTool.DependencySimTool
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.Environment.SimulationTool.DependencySimTool
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.Environment.SimulationTool.Compiler
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.Environment.SimulationTool.Compiler
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.Environment.SimulationTool.SolverAndTolerances
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.Environment.SimulationTool.SolverAndTolerances
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.Environment.SimulationTool.SolverAndTolerances.StepSizeControlNeeded
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.Environment.SimulationTool.SolverAndTolerances.StepSizeControlNeeded
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.Environment.SimulationTool.SolverAndTolerances.FixedStepSize
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.Environment.SimulationTool.SolverAndTolerances.FixedStepSize
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.Environment.SimulationTool.SolverAndTolerances.StiffSolverNeeded
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.Environment.SimulationTool.SolverAndTolerances.StiffSolverNeeded
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.Environment.SimulationTool.SolverAndTolerances.SolverIncluded
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.Environment.SimulationTool.SolverAndTolerances.SolverIncluded
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.Environment.SimulationTool.SolverAndTolerances.TestedToolSolverAlgorithm
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.Environment.SimulationTool.SolverAndTolerances.TestedToolSolverAlgorithm
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.Environment.SimulationTool.SolverAndTolerances.TestedToolSolverAlgorithm.SolverAlgorithm
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.Environment.SimulationTool.SolverAndTolerances.TestedToolSolverAlgorithm.SolverAlgorithm
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.Environment.SimulationTool.SolverAndTolerances.TestedToolSolverAlgorithm.ToolSolverFurtherDescription
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.Environment.SimulationTool.SolverAndTolerances.TestedToolSolverAlgorithm.ToolSolverFurtherDescription
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.Environment.SimulationTool.SolverAndTolerances.TestedToolSolverAlgorithm.Tolerance
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.Environment.SimulationTool.SolverAndTolerances.TestedToolSolverAlgorithm.Tolerance
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.RefSimDocumentation
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.RefSimDocumentation
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.ModelFile
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.ModelFile
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.ModelFile.ModelFileType
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.ModelFile.ModelFileType
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.ModelFile.ModelFileVersion
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.ModelFile.ModelFileVersion
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.ModelFile.ModelFileVersion.ModelVersionId
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.ModelFile.ModelFileVersion.ModelVersionId
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.ModelFile.ModelFileVersion.ModelPreviewImage
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.ModelFile.ModelFileVersion.ModelPreviewImage
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.ModelFile.ModelFileVersion.DigitalFile
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.ModelFile.ModelFileVersion.DigitalFile
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.ModelFile.ModelFileVersion.ModelFileReleaseNotesTxt
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.ModelFile.ModelFileVersion.ModelFileReleaseNotesTxt
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.ModelFile.ModelFileVersion.ModelFileReleaseNotesFile
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.ModelFile.ModelFileVersion.ModelFileReleaseNotesFile
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.ParamMethod
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.ParamMethod
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.ParamFile
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.ParamFile
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.InitStateMethod
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.InitStateMethod
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.InitStateFile
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.InitStateFile
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.DefaultSimTime
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.DefaultSimTime
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.SimModManufacturerInformation
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.SimModManufacturerInformation
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.SimModManufacturerInformation.Company
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.SimModManufacturerInformation.Company
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.SimModManufacturerInformation.Language
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.SimModManufacturerInformation.Language
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.SimModManufacturerInformation.Email
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.SimModManufacturerInformation.Email
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.SimModManufacturerInformation.Email.TypeOfEmailAddress
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.SimModManufacturerInformation.Email.TypeOfEmailAddress
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.SimModManufacturerInformation.Email.EmailAddress
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.SimModManufacturerInformation.Email.EmailAddress
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.SimModManufacturerInformation.Email.TypeOfPublicKey
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.SimModManufacturerInformation.Email.TypeOfPublicKey
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.SimModManufacturerInformation.Email.PublicKey
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.SimModManufacturerInformation.Email.PublicKey
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.SimModManufacturerInformation.Phone
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.SimModManufacturerInformation.Phone
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.SimModManufacturerInformation.Phone.TypeOfTelephone
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.SimModManufacturerInformation.Phone.TypeOfTelephone
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.SimModManufacturerInformation.Phone.TelephoneNumber
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.SimModManufacturerInformation.Phone.TelephoneNumber
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.SimModManufacturerInformation.Phone.AvailableTime
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.SimModManufacturerInformation.Phone.AvailableTime
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.Ports
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.Ports
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.Ports.PortsConnector
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.Ports.PortsConnector
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.Ports.PortsConnector.PortConnectorName
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.Ports.PortsConnector.PortConnectorName
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.Ports.PortsConnector.PortConDescription
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.Ports.PortsConnector.PortConDescription
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.Ports.PortsConnector.Variable
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.Ports.PortsConnector.Variable
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.Ports.PortsConnector.Variable.VariableName
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.Ports.PortsConnector.Variable.VariableName
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.Ports.PortsConnector.Variable.Range
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.Ports.PortsConnector.Variable.Range
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.Ports.PortsConnector.Variable.VariableType
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.Ports.PortsConnector.Variable.VariableType
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.Ports.PortsConnector.Variable.VariableDescription
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.Ports.PortsConnector.Variable.VariableDescription
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.Ports.PortsConnector.Variable.UnitList
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.Ports.PortsConnector.Variable.UnitList
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.Ports.PortsConnector.Variable.UnitDescription
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.Ports.PortsConnector.Variable.UnitDescription
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.Ports.PortsConnector.Variable.VariableCausality
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.Ports.PortsConnector.Variable.VariableCausality
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.Ports.PortsConnector.Variable.VariablePrefix
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.Ports.PortsConnector.Variable.VariablePrefix
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.Ports.BinaryConnector
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.Ports.BinaryConnector
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.Ports.BinaryConnector.BinaryConName
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.Ports.BinaryConnector.BinaryConName
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: SimulationModel.Ports.BinaryConnector.BinaryConDescription
+    QualifierType: Multiplicity
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.Ports.BinaryConnector.BinaryConDescription
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.Quality
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.Quality.Usability
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.Quality.Architecture
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.Quality.Validation
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.Quality.QualityMetricFile
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: SimulationModel.Quality.EvaluationPerspective
+    QualifierType: Multiplicity
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier

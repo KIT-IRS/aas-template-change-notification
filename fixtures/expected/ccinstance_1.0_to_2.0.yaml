@@ -1,0 +1,43 @@
+# Expected outcome of applying ccinstance_1.0_to_2.0 to fixtures/ccinstance_1.0.yaml.
+# Derived by hand before running the chain, from the change log of IDTA 02016-2-0 (Annex B) and the
+# published templates. Each endpoint reference becomes the EndpointReference of one new SMC Endpoint
+# (C2). The second SMC Endpoint cannot take the template name, which the first one holds, and keeps
+# the temporary name Endpoint__2 (N1). The names Skill and Parameter carry are removed (C4, C5).
+# Mode__00__ is the template name of a repeatable mode: modes the instance named itself keep their
+# names, a mode named as in the template is renamed.
+chain: chains/ccinstance_1.0_to_2.0.yaml
+instance: fixtures/ccinstance_1.0.yaml
+
+retained:
+  Type: {type: ExternalReference, keys: [{type: GlobalReference, value: "https://example.com/ids/aas/pump-control-type"}]}
+  Endpoints.Endpoint.EndpointReference: {type: ExternalReference, keys: [{type: GlobalReference, value: "opc.tcp://10.0.0.5:4840"}]}
+  Endpoints.Endpoint__2.EndpointReference: {type: ExternalReference, keys: [{type: GlobalReference, value: "https://10.0.0.5/api"}]}
+  Skills.Start.Disabled: "false"
+  Skills.Start.Modes.Mode01: AUTO
+  Skills.Start.Modes.Mode02: SEMIAUTO
+  Skills.Start.Parameters.Speed.Direction: In
+  Skills.Start.Parameters.Speed.Type: xs:double
+  Skills.Stop.Modes.Mode__00__: AUTO
+  Skills.Stop.Parameters.Timeout.Type: xs:int
+  InternalInventoryNumber: INV-2024-0815
+
+control:
+  InternalInventoryNumber: InternalInventoryNumber
+
+# InterfaceReference is mandatory and new in v2.0
+manual:
+  - Endpoints.Endpoint.InterfaceReference
+  - null      # N1: the temporary names of the second SMC are reported, to be renamed by the asset maintainer
+
+conforms: false
+violations:
+  - [VALUE_MISSING, Endpoints.Endpoint.InterfaceReference]
+  - [VALUE_MISSING, Endpoints.Endpoint__2.InterfaceReference]
+
+removed:
+  - Skills.Start.Name
+  - Skills.Start.DisplayName
+  - Skills.Start.Parameters.Speed.Name
+  - Skills.Stop.Name
+  - Skills.Stop.DisplayName
+  - Skills.Stop.Parameters.Timeout.Name

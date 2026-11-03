@@ -16,7 +16,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any
 
-from tcn.core.metamodel import ELEMENT_TYPES, M_CONT, adm, mand
+from tcn.core.metamodel import ELEMENT_TYPES, M_CONT, adm, admissible, mand
 from tcn.core.model import LAMBDA, Attribute, Element, Id, Qualifier, Template
 from tcn.core.transfer import TransferFunction
 
@@ -34,6 +34,16 @@ def _all(funcs: tuple[str, ...], x: Id) -> set[Position]:
 
 def _sibling_names(t: Template, p: Id) -> set[str | None]:
     return {t.E[c].id_short for c in t.children(p)}
+
+
+def _admissible(t: Template, a: Id, value: Any) -> bool:
+    if value is LAMBDA:
+        return True
+    x = t.A[a].owner
+    others = {t.A[b].name: t.A[b].value for b in t.attributes(x) if t.A[b].value is not LAMBDA}
+    if x in t.Q:
+        others["type"] = t.Q[x].qtype
+    return admissible(t.tau(x), others, t.A[a].name, value)
 
 
 def _slots_created(t: Template, t2: Template, owner: Id, names: set[str]) -> bool:
@@ -294,8 +304,11 @@ class Sync:
             return None  # recorded only; the asset maintainer carries the values over
         if not self.f.defined(self._source_values(T)):
             return "TRANSFER_UNDEFINED"
-        if len(self.f(self._source_values(T))) != len(self.tgt):
+        values = self.f(self._source_values(T))
+        if len(values) != len(self.tgt):
             return "ARITY_MISMATCH"
+        if not all(_admissible(T, a, v) for a, v in zip(self.tgt, values)):
+            return "TRANSFER_INADMISSIBLE"  # f yields a value of a form the target cannot hold
         return None
 
     def _source_values(self, T: Template) -> list[Any]:

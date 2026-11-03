@@ -1,8 +1,13 @@
 """Metamodel parameters adm(t), mand(t) and M_cont for IDTA-01001 v3.1.2  (paper §3.2).
 
 They depend on the component type only, are identical for all templates and change only with the
-metamodel. Attribute names are the keys of the AAS JSON serialisation.
+metamodel. Attribute names are the keys of the AAS JSON serialisation. Whether an attribute value
+has an admissible form is decided by aas-core (admissible).
 """
+
+from typing import Any
+
+from aas_core3_1 import jsonization
 
 METAMODEL_VERSION = "3.1.2"
 
@@ -49,6 +54,32 @@ M_CONT = set(CONTAINMENT_KEY)
 ELEMENT_TYPES = set(_TABLE) - {"Submodel"}
 
 
+# The attributes that hold the value of an element of type t: instance data, which a template's example
+# values never overwrite (resolution, rule T2). They follow the ValueOnly serialisation of the AAS API
+# (IDTA-01002, Part 2). valueId is the semantic reference of a value and belongs to it.
+# Entity: Part 2 counts entityType to the value of an Entity. It is taken as template information
+# here, not as instance data: whether an entity is co-managed or self-managed is fixed by the template,
+# and a revision that changes it has to reach the instances. None of the templates of the validation
+# leaves it to the instance.
+_INSTANCE_DATA: dict[str, set[str]] = {
+    "Property": {"value", "valueId"},
+    "MultiLanguageProperty": {"value", "valueId"},
+    "Range": {"min", "max"},
+    "File": {"value", "contentType"},
+    "Blob": {"value", "contentType"},
+    "ReferenceElement": {"value"},
+    "RelationshipElement": {"first", "second"},
+    "AnnotatedRelationshipElement": {"first", "second"},
+    "Entity": {"globalAssetId", "specificAssetIds"},
+    "BasicEventElement": {"observed"},
+}
+
+
+def instance_data(t: str) -> set[str]:
+    """The attributes that hold the value of an element of type t (empty for a qualifier)."""
+    return _INSTANCE_DATA.get(t, set())
+
+
 def adm(t: str) -> set[str]:
     if t == "Qualifier":
         return _QUALIFIER[0]
@@ -57,3 +88,26 @@ def adm(t: str) -> set[str]:
 
 def mand(t: str) -> set[str]:
     return _QUALIFIER[1] if t == "Qualifier" else _TABLE[t][1]
+
+
+def admissible(t: str, attributes: dict[str, Any], name: str, value: Any) -> bool:
+    """Whether `value` is admissible for the attribute `name` of a component of type t whose other
+    populated attributes are `attributes` (for a qualifier including its "type"): aas-core can
+    deserialise the component with it. Only the form is decided, not the constraints of the
+    metamodel. If the component cannot be deserialised even without the attribute (e.g. a
+    mandatory attribute is still unpopulated), the value is not judged and taken as admissible."""
+
+    def parses(d: dict[str, Any]) -> bool:
+        try:
+            if t == "Qualifier":
+                jsonization.qualifier_from_jsonable(d)
+            elif t == "Submodel":
+                jsonization.submodel_from_jsonable({"modelType": t} | d)
+            else:
+                jsonization.submodel_element_from_jsonable({"modelType": t} | d)
+            return True
+        except jsonization.DeserializationException:
+            return False
+
+    others = {k: v for k, v in attributes.items() if k != name}
+    return not parses(others) or parses(others | {name: value})

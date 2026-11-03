@@ -1,0 +1,34 @@
+# Template Change Notification: IDTA 02017 Asset Interfaces Description v1.1 -> v1.2 (intent, hand-written)
+#
+# This file states the intent of the revision. `uv run tcn owner complete` appends the mechanical
+# completion; the result is aid_1.1_to_1.2.yaml.
+# The change log of v1.2 (Annex G) lists the new SNMP and CAN bindings, the IO-Link binding becoming
+# normative, protocolVersion, base becoming optional and the changed semanticId of the submodel; all
+# are additions or attribute values, stated by the mechanical completion. It lists iolv_accessRights
+# as new, whereas v1.1 carries it as iolv_accessRigths (D3). Not in the change log, taken from the
+# published templates: the lists enum and the nested observable are removed from all property
+# definitions, the nested members of bacv_hasDataType are removed, and the semanticId of the entries
+# of security changes from hasSecurityConfiguration to definesSecurityScheme.
+# v1.1 is its bug-fix release 1.1.1, the latest of v1.1. v1.2 carries the submodel id of v1.0.
+
+header:
+  Family: AssetInterfacesDescription
+  PreVersion: https://admin-shell.io/idta/SubmodelTemplate/AssetInterfacesDescription/1/1
+  PostVersion: https://admin-shell.io/idta/SubmodelTemplate/AssetInterfacesDescription
+  PreTemplate: ressources/Templates/IDTA 02017-1-1-1_Template_Asset Interfaces Description.json
+  PostTemplate: ressources/Templates/IDTA 02017-1-2_Template_Asset Interfaces Description.json
+  TemplateOwner: Industrial Digital Twin Association (IDTA)
+  TemplateOwnerAddress:
+    Company: Industrial Digital Twin Association e.V.
+    Street: Lyoner Straße 18
+    Zipcode: "60528"
+    CityTown: Frankfurt am Main
+    NationalCode: DE
+  ChangeURI: https://github.com/admin-shell-io/submodel-templates/tree/main/published/Asset%20Interfaces%20Description/1/2
+
+sections:
+  - title: "D3: iolv_accessRigths is renamed to iolv_accessRights"
+    origin: hand
+    items:
+      - {ChangeOperation: UpdateIdShort, ElementPath: InterfaceTemplateForIOLINK_OVER_PROFINET_REST.InteractionMetadata.properties.property_name.forms.iolv_accessRigths,
+         NewIdShort: iolv_accessRights}

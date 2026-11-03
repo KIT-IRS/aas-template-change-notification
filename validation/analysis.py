@@ -22,10 +22,11 @@ UNDOCUMENTED entries: (section of the chain that states the difference, identifi
 """
 
 from collections import Counter
+from functools import cache
 
 from tcn import chainfile
 from tcn.aas import bridge
-from tcn.core.guarded import apply_chain, guarded
+from tcn.core.guarded import apply_chain, apply_in_place
 from tcn.core.model import LAMBDA
 from tcn.roles import template_owner
 from validation.messages import difference, listing
@@ -38,8 +39,16 @@ def causes(submodel) -> Counter:
     return Counter(v.split(": ", 1)[1] for v in bridge.verify(submodel))
 
 
+@cache
+def _verify(chain_path: str):
+    """The chain and its verification against the templates, computed once per chain and shared by
+    the checks, which only read them."""
+    chain = chainfile.load(chain_path)
+    return chain, template_owner.verify(chain)
+
+
 def check_chain_reproduces_target_template(chain_path: str) -> None:
-    v = template_owner.verify(chainfile.load(chain_path))
+    _, v = _verify(chain_path)
     assert v.result.status == "ACC", v.result.reason
     assert not v.missing and not v.surplus, (
         "the chain does not reproduce the target template"
@@ -48,8 +57,8 @@ def check_chain_reproduces_target_template(chain_path: str) -> None:
 
 
 def check_result_is_metamodel_conformant_as_published(chain_path: str) -> None:
-    chain = chainfile.load(chain_path)
-    result = template_owner.verify(chain).result.template
+    chain, v = _verify(chain_path)
+    result = v.result.template
     published = bridge.load_submodel(chain.header["PostTemplate"])
     observed = causes(bridge.to_jsonable(result))
     assert observed == causes(published), difference(
@@ -100,6 +109,5 @@ def check_undocumented_differences_are_enumerated(
             found.add((item.element_path, "idShort", op.s))
         if item.operation == "UpdateAttr" and T.A[op.a].owner in T.Q and T.A[op.a].value is not LAMBDA:
             found.add((f"{item.element_path}@{item.qualifier_type}", item.attribute_key, op.v))
-        T, _ = guarded(op, T)
-    assert found == generated_overwrites, difference(
-        "generated items that overwrite a populated value", found, generated_overwrites)
+        apply_in_place(op, T)  # T is the working copy apply_chain returned
+    assert found == generated_overwrites

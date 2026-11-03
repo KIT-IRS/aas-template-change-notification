@@ -1,0 +1,49 @@
+# Submodel instance conforming to IDTA 02036 Product Change Notifications v1.0. Illustrative values of a
+# received notification. The entries of the lists carry the idShorts the template gives them. The
+# addresses are SMT drop-ins the template leaves empty; the instance fills them. The classification of
+# the recommended item states all its properties, for which the template states no cardinality.
+template: ressources/Templates/IDTA 02036-1-0_Template_ProductChangeNotifications.json
+id: https://example.com/ids/sm/example-device/ProductChangeNotifications
+drop_empty: true
+
+repeat:
+  "Records[0].ReasonsOfChange[0]": 2
+  "Records[0].AffectedPartNumbers[0]": 2
+
+values:
+  "Records[0].Manufacturer.ManufacturerName": {en: Example Supplier AG}
+  "Records[0].ManufacturerChangeID": PCN-2026-017
+  "Records[0].PcnType": PCN
+  "Records[0].LifeCycleData[0].MilestoneClassification": EOP
+  "Records[0].LifeCycleData[0].DateOfValidity": "2027-06-30T00:00:00Z"
+  "Records[0].ReasonsOfChange[0].ReasonClassificationSystem": ZVEI-UPCN
+  "Records[0].ReasonsOfChange[0].ReasonId": PDN
+  "Records[0].ReasonsOfChange[1].ReasonClassificationSystem": ZVEI-UPCN
+  "Records[0].ReasonsOfChange[1].ReasonId": MLC
+  "Records[0].ItemCategories[0].ItemClassificationSystem": ZVEI-UPCN
+  "Records[0].ItemCategories[0].ItemCategory": Hardware
+  "Records[0].AffectedPartNumbers[0]": EX-100-200
+  "Records[0].AffectedPartNumbers[1]": EX-100-210
+  "Records[0].PcnChangeInformation.ChangeTitle": {en: Discontinuation of EX-100}
+  "Records[0].PcnChangeInformation.ChangeDetail": {en: "The EX-100 series is discontinued; use EX-200."}
+  "Records[0].AdditionalInformation[0]": /aasx/files/pcn-2026-017.pdf
+  "Records[0].DateOfRecord": "2026-02-15T09:00:00Z"
+  "Records[0].ItemOfChange.ManufacturerProductFamily": {en: EX-100}
+  "Records[0].ItemOfChange.ManufacturerProductDesignation": {en: Compact I/O controller}
+  "Records[0].ItemOfChange.ProductClassifications[0].ClassificationSystem": ECLASS
+  "Records[0].ItemOfChange.ProductClassifications[0].ProductClassId": 27-24-22-01
+  "Records[0].ItemOfChange.TechnicalData_Changes[0].ReasonId": PDN
+  "Records[0].RecommendedItems[0].ManufacturerProductFamily": {en: EX-200}
+  "Records[0].RecommendedItems[0].ManufacturerProductDesignation": {en: "Compact I/O controller, second generation"}
+  "Records[0].RecommendedItems[0].OrderCodeOfManufacturer": {en: EX200200}
+  "Records[0].RecommendedItems[0].ProductClassifications[0].ClassificationSystem": ECLASS
+  "Records[0].RecommendedItems[0].ProductClassifications[0].VersionOfClassificationSystem": "13.0"
+  "Records[0].RecommendedItems[0].ProductClassifications[0].ProductClassId": 27-24-22-01
+
+add:
+  "Records[0].Manufacturer.PhysicalAddress__0__":
+    - {modelType: MultiLanguageProperty, idShort: Street, value: [{language: de, text: Musterweg 5}]}
+  "Records[0].Manufacturer.PhysicalAddress__1__":
+    - {modelType: MultiLanguageProperty, idShort: Street, value: [{language: de, text: Postfach 12}]}
+  "":                   # local extension of the asset maintainer, described by no template
+    - {modelType: Property, idShort: InternalNote, valueType: xs:string, value: checked by purchasing}

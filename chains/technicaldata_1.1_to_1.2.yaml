@@ -1,0 +1,1906 @@
+header:
+  Family: TechnicalData
+  PreVersion: https://admin-shell.io/idta/SubmodelTemplate/TechnicalData/1/1
+  PostVersion: https://admin-shell.io/ZVEI/TechnicalData/Submodel/1/2
+  PreTemplate: ressources/Templates/SMT_qualified_Technical_Data_V11.json
+  PostTemplate: ressources/Templates/IDTA_02003-1-2_Template_TechnicalData.json
+  TemplateOwner: Industrial Digital Twin Association (IDTA)
+  TemplateOwnerAddress:
+    Company: Industrial Digital Twin Association e.V.
+    Street: Lyoner Straße 18
+    Zipcode: '60528'
+    CityTown: Frankfurt am Main
+    NationalCode: DE
+  ChangeURI: https://github.com/admin-shell-io/submodel-templates/tree/main/deprecated/Technical_Data/1/2
+sections:
+- title: 'T1: ManufacturerProductDesignation becomes a multi-language property'
+  origin: hand
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: GeneralInformation.ManufacturerProductDesignationRetyped
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerProductDesignationRetyped
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerProductDesignation
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - GeneralInformation.ManufacturerProductDesignation#value
+    TargetElementPaths:
+    - GeneralInformation.ManufacturerProductDesignationRetyped#value
+    TransferFunction:
+      Kind: Expression
+      ExpressionLanguage: https://github.com/google/cel-spec
+      Expression: 'type(src[0]) == string ? [[{"language": "en", "text": src[0]}]] : null'
+      Text:
+        en: Take the value of the property as the English text of the multi-language property.
+  - ChangeOperation: CreateQual
+    ElementPath: GeneralInformation.ManufacturerProductDesignationRetyped
+    QualifierType: Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerProductDesignationRetyped
+    QualifierType: Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerProductDesignationRetyped
+    QualifierType: Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - GeneralInformation.ManufacturerProductDesignation@Multiplicity#value
+    TargetElementPaths:
+    - GeneralInformation.ManufacturerProductDesignationRetyped@Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: GeneralInformation.ManufacturerProductDesignation
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveSME
+    ElementPath: GeneralInformation.ManufacturerProductDesignation
+  - ChangeOperation: UpdateIdShort
+    ElementPath: GeneralInformation.ManufacturerProductDesignationRetyped
+    NewIdShort: ManufacturerProductDesignation
+- title: 'T2: ManufacturerPartNumber is renamed to ManufacturerArticleNumber'
+  origin: hand
+  items:
+  - ChangeOperation: UpdateIdShort
+    ElementPath: GeneralInformation.ManufacturerPartNumber
+    NewIdShort: ManufacturerArticleNumber
+- title: 'T3: TextStatement becomes a multi-language property'
+  origin: hand
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: FurtherInformation.TextStatementRetyped
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateAttr
+    ElementPath: FurtherInformation.TextStatementRetyped
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: FurtherInformation.TextStatement
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - FurtherInformation.TextStatement#value
+    TargetElementPaths:
+    - FurtherInformation.TextStatementRetyped#value
+    TransferFunction:
+      Kind: Expression
+      ExpressionLanguage: https://github.com/google/cel-spec
+      Expression: 'type(src[0]) == string ? [[{"language": "en", "text": src[0]}]] : null'
+      Text:
+        en: Take the value of the property as the English text of the multi-language property.
+  - ChangeOperation: CreateQual
+    ElementPath: FurtherInformation.TextStatementRetyped
+    QualifierType: Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: FurtherInformation.TextStatementRetyped
+    QualifierType: Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: FurtherInformation.TextStatementRetyped
+    QualifierType: Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - FurtherInformation.TextStatement@Multiplicity#value
+    TargetElementPaths:
+    - FurtherInformation.TextStatementRetyped@Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: FurtherInformation.TextStatement
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveSME
+    ElementPath: FurtherInformation.TextStatement
+  - ChangeOperation: UpdateIdShort
+    ElementPath: FurtherInformation.TextStatementRetyped
+    NewIdShort: TextStatement
+- title: 'T4: the placeholder for arbitrary technical properties is named ID___arbitrary2__'
+  origin: hand
+  items:
+  - ChangeOperation: UpdateIdShort
+    ElementPath: TechnicalProperties.SemanticIdNotAvailable
+    NewIdShort: ID___arbitrary2__
+- title: 'T5: ProductClassificationItem__00__ is renamed to ProductClassificationItem'
+  origin: rule
+  rule:
+    RenameContainer:
+      ProductClassifications.ProductClassificationItem__00__: ProductClassificationItem
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: ProductClassifications.ProductClassificationItem
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/sandbox/SG2/TechnicalData/ProductClassificationItem/1/1
+  - ChangeOperation: CreateQual
+    ElementPath: ProductClassifications.ProductClassificationItem
+    QualifierType: Multiplicity
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem
+    QualifierType: Multiplicity
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem
+    QualifierType: Multiplicity
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - ProductClassifications.ProductClassificationItem__00__@Multiplicity#value
+    TargetElementPaths:
+    - ProductClassifications.ProductClassificationItem@Multiplicity#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: ProductClassifications.ProductClassificationItem__00__
+    QualifierType: Multiplicity
+  - ChangeOperation: UpdateParent
+    ElementPath: ProductClassifications.ProductClassificationItem__00__.ProductClassificationSystem
+    NewParentPath: ProductClassifications.ProductClassificationItem
+  - ChangeOperation: UpdateParent
+    ElementPath: ProductClassifications.ProductClassificationItem__00__.ClassificationSystemVersion
+    NewParentPath: ProductClassifications.ProductClassificationItem
+  - ChangeOperation: UpdateParent
+    ElementPath: ProductClassifications.ProductClassificationItem__00__.ProductClassId
+    NewParentPath: ProductClassifications.ProductClassificationItem
+  - ChangeOperation: RemoveSME
+    ElementPath: ProductClassifications.ProductClassificationItem__00__
+- title: 'T6: the cardinality vocabulary changes from Multiplicity to Cardinality'
+  origin: rule
+  rule:
+    QualifierTypeRenames:
+      Multiplicity: Cardinality
+  items:
+  - ChangeOperation: CreateQual
+    ElementPath: GeneralInformation
+    QualifierType: Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation
+    QualifierType: Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation
+    QualifierType: Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - GeneralInformation@Multiplicity#value
+    TargetElementPaths:
+    - GeneralInformation@Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: GeneralInformation
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: GeneralInformation.ManufacturerName
+    QualifierType: Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerName
+    QualifierType: Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerName
+    QualifierType: Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - GeneralInformation.ManufacturerName@Multiplicity#value
+    TargetElementPaths:
+    - GeneralInformation.ManufacturerName@Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: GeneralInformation.ManufacturerName
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: GeneralInformation.ManufacturerLogo
+    QualifierType: Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerLogo
+    QualifierType: Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerLogo
+    QualifierType: Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - GeneralInformation.ManufacturerLogo@Multiplicity#value
+    TargetElementPaths:
+    - GeneralInformation.ManufacturerLogo@Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: GeneralInformation.ManufacturerLogo
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: GeneralInformation.ManufacturerArticleNumber
+    QualifierType: Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerArticleNumber
+    QualifierType: Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerArticleNumber
+    QualifierType: Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - GeneralInformation.ManufacturerArticleNumber@Multiplicity#value
+    TargetElementPaths:
+    - GeneralInformation.ManufacturerArticleNumber@Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: GeneralInformation.ManufacturerArticleNumber
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: GeneralInformation.ManufacturerOrderCode
+    QualifierType: Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerOrderCode
+    QualifierType: Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerOrderCode
+    QualifierType: Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - GeneralInformation.ManufacturerOrderCode@Multiplicity#value
+    TargetElementPaths:
+    - GeneralInformation.ManufacturerOrderCode@Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: GeneralInformation.ManufacturerOrderCode
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: GeneralInformation.ProductImage
+    QualifierType: Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ProductImage
+    QualifierType: Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ProductImage
+    QualifierType: Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - GeneralInformation.ProductImage@Multiplicity#value
+    TargetElementPaths:
+    - GeneralInformation.ProductImage@Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: GeneralInformation.ProductImage
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ProductClassifications
+    QualifierType: Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications
+    QualifierType: Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications
+    QualifierType: Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - ProductClassifications@Multiplicity#value
+    TargetElementPaths:
+    - ProductClassifications@Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: ProductClassifications
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ProductClassifications.ProductClassificationItem.ProductClassificationSystem
+    QualifierType: Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ProductClassificationSystem
+    QualifierType: Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ProductClassificationSystem
+    QualifierType: Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - ProductClassifications.ProductClassificationItem.ProductClassificationSystem@Multiplicity#value
+    TargetElementPaths:
+    - ProductClassifications.ProductClassificationItem.ProductClassificationSystem@Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: ProductClassifications.ProductClassificationItem.ProductClassificationSystem
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ProductClassifications.ProductClassificationItem.ClassificationSystemVersion
+    QualifierType: Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ClassificationSystemVersion
+    QualifierType: Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ClassificationSystemVersion
+    QualifierType: Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - ProductClassifications.ProductClassificationItem.ClassificationSystemVersion@Multiplicity#value
+    TargetElementPaths:
+    - ProductClassifications.ProductClassificationItem.ClassificationSystemVersion@Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: ProductClassifications.ProductClassificationItem.ClassificationSystemVersion
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ProductClassifications.ProductClassificationItem.ProductClassId
+    QualifierType: Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ProductClassId
+    QualifierType: Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ProductClassId
+    QualifierType: Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - ProductClassifications.ProductClassificationItem.ProductClassId@Multiplicity#value
+    TargetElementPaths:
+    - ProductClassifications.ProductClassificationItem.ProductClassId@Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: ProductClassifications.ProductClassificationItem.ProductClassId
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: TechnicalProperties
+    QualifierType: Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties
+    QualifierType: Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalProperties
+    QualifierType: Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - TechnicalProperties@Multiplicity#value
+    TargetElementPaths:
+    - TechnicalProperties@Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: TechnicalProperties
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: TechnicalProperties.ID___arbitrary2__
+    QualifierType: Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties.ID___arbitrary2__
+    QualifierType: Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalProperties.ID___arbitrary2__
+    QualifierType: Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - TechnicalProperties.ID___arbitrary2__@Multiplicity#value
+    TargetElementPaths:
+    - TechnicalProperties.ID___arbitrary2__@Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: TechnicalProperties.ID___arbitrary2__
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: TechnicalProperties.MainSection
+    QualifierType: Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties.MainSection
+    QualifierType: Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalProperties.MainSection
+    QualifierType: Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - TechnicalProperties.MainSection@Multiplicity#value
+    TargetElementPaths:
+    - TechnicalProperties.MainSection@Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: TechnicalProperties.MainSection
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: TechnicalProperties.MainSection.SubSection
+    QualifierType: Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties.MainSection.SubSection
+    QualifierType: Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalProperties.MainSection.SubSection
+    QualifierType: Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - TechnicalProperties.MainSection.SubSection@Multiplicity#value
+    TargetElementPaths:
+    - TechnicalProperties.MainSection.SubSection@Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: TechnicalProperties.MainSection.SubSection
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: FurtherInformation
+    QualifierType: Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: FurtherInformation
+    QualifierType: Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: FurtherInformation
+    QualifierType: Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - FurtherInformation@Multiplicity#value
+    TargetElementPaths:
+    - FurtherInformation@Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: FurtherInformation
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: FurtherInformation.ValidDate
+    QualifierType: Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: FurtherInformation.ValidDate
+    QualifierType: Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: FurtherInformation.ValidDate
+    QualifierType: Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - FurtherInformation.ValidDate@Multiplicity#value
+    TargetElementPaths:
+    - FurtherInformation.ValidDate@Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: FurtherInformation.ValidDate
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: ProductClassifications.ProductClassificationItem
+    QualifierType: Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem
+    QualifierType: Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem
+    QualifierType: Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - ProductClassifications.ProductClassificationItem@Multiplicity#value
+    TargetElementPaths:
+    - ProductClassifications.ProductClassificationItem@Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: ProductClassifications.ProductClassificationItem
+    QualifierType: Multiplicity
+- title: 'Completion: removed elements and qualifiers'
+  origin: generated
+  items:
+  - ChangeOperation: RemoveQual
+    ElementPath: ''
+    QualifierType: FormTag
+  - ChangeOperation: RemoveQual
+    ElementPath: ''
+    QualifierType: FormTitle
+  - ChangeOperation: RemoveQual
+    ElementPath: TechnicalProperties.ID___arbitrary2__
+    QualifierType: EditIdShort
+  - ChangeOperation: RemoveQual
+    ElementPath: TechnicalProperties.ID___arbitrary2__
+    QualifierType: EditDescription
+  - ChangeOperation: RemoveQual
+    ElementPath: TechnicalProperties.MainSection.SemanticIdNotAvailable
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: TechnicalProperties.MainSection.SemanticIdNotAvailable
+    QualifierType: EditIdShort
+  - ChangeOperation: RemoveQual
+    ElementPath: TechnicalProperties.MainSection.SemanticIdNotAvailable
+    QualifierType: EditDescription
+  - ChangeOperation: RemoveQual
+    ElementPath: TechnicalProperties.MainSection.SubSection.SemanticIdNotAvailable
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveQual
+    ElementPath: TechnicalProperties.MainSection.SubSection.SemanticIdNotAvailable
+    QualifierType: EditIdShort
+  - ChangeOperation: RemoveQual
+    ElementPath: TechnicalProperties.MainSection.SubSection.SemanticIdNotAvailable
+    QualifierType: EditDescription
+  - ChangeOperation: RemoveSME
+    ElementPath: TechnicalProperties.MainSection.SubSection.SemanticIdNotAvailable
+  - ChangeOperation: RemoveSME
+    ElementPath: TechnicalProperties.MainSection.SemanticIdNotAvailable
+- title: 'Completion: created elements and qualifiers'
+  origin: generated
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: TechnicalProperties.ID___arbitrary1__
+    SMEType: MultiLanguageProperty
+  - ChangeOperation: CreateSME
+    ElementPath: TechnicalProperties.SubSection
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: CreateQual
+    ElementPath: GeneralInformation.ManufacturerName
+    QualifierType: ExampleValue
+  - ChangeOperation: CreateQual
+    ElementPath: GeneralInformation.ManufacturerProductDesignation
+    QualifierType: ExampleValue
+  - ChangeOperation: CreateQual
+    ElementPath: GeneralInformation.ManufacturerArticleNumber
+    QualifierType: ExampleValue
+  - ChangeOperation: CreateQual
+    ElementPath: GeneralInformation.ManufacturerOrderCode
+    QualifierType: ExampleValue
+  - ChangeOperation: CreateQual
+    ElementPath: ProductClassifications.ProductClassificationItem
+    QualifierType: AllowedIdShort
+  - ChangeOperation: CreateQual
+    ElementPath: ProductClassifications.ProductClassificationItem.ProductClassificationSystem
+    QualifierType: ExampleValue
+  - ChangeOperation: CreateQual
+    ElementPath: ProductClassifications.ProductClassificationItem.ClassificationSystemVersion
+    QualifierType: ExampleValue
+  - ChangeOperation: CreateQual
+    ElementPath: ProductClassifications.ProductClassificationItem.ProductClassId
+    QualifierType: ExampleValue
+  - ChangeOperation: CreateQual
+    ElementPath: TechnicalProperties.ID___arbitrary1__
+    QualifierType: Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: TechnicalProperties.ID___arbitrary1__
+    QualifierType: ExampleValue
+  - ChangeOperation: CreateQual
+    ElementPath: TechnicalProperties.ID___arbitrary2__
+    QualifierType: ExampleValue
+  - ChangeOperation: CreateQual
+    ElementPath: TechnicalProperties.MainSection
+    QualifierType: AllowedIdShort
+  - ChangeOperation: CreateQual
+    ElementPath: TechnicalProperties.MainSection.SubSection
+    QualifierType: AllowedIdShort
+  - ChangeOperation: CreateQual
+    ElementPath: TechnicalProperties.SubSection
+    QualifierType: Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: TechnicalProperties.SubSection
+    QualifierType: AllowedIdShort
+  - ChangeOperation: CreateQual
+    ElementPath: FurtherInformation.TextStatement
+    QualifierType: ExampleValue
+  - ChangeOperation: CreateQual
+    ElementPath: FurtherInformation.TextStatement
+    QualifierType: AllowedIdShort
+  - ChangeOperation: CreateQual
+    ElementPath: FurtherInformation.ValidDate
+    QualifierType: ExampleValue
+- title: 'Completion: attributes'
+  origin: generated
+  items:
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Submodel containing techical data of the asset and associated product classificatons.
+    - language: de
+      text: Teilmodell, das die technischen Daten der Anlage und die zugehörigen Produktklassifizierungen enthält.
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    AttributeKey: administration
+    AttributeValue:
+      version: '1'
+      revision: '2'
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    AttributeKey: id
+    AttributeValue: https://admin-shell.io/ZVEI/TechnicalData/Submodel/1/2
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    AttributeKey: kind
+    AttributeValue: Template
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ModelReference
+      keys:
+      - type: Submodel
+        value: https://admin-shell.io/ZVEI/TechnicalData/Submodel/1/2
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: General information, for example ordering and manufacturer information.
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/ZVEI/TechnicalData/GeneralInformation/1/1
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerName
+    AttributeKey: category
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerName
+    AttributeKey: category
+    AttributeValue: PARAMETER
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerName
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerName
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Legally valid designation of the natural or judicial body which is directly responsible for the design, production,
+        packaging and labeling of a product in respect to its being brought into the market.
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerName
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO677#002
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerLogo
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerLogo
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Imagefile for logo of manufacturer provided in common format (.png, .jpg).
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerLogo
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/ZVEI/TechnicalData/ManufacturerLogo/1/1
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerArticleNumber
+    AttributeKey: category
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerArticleNumber
+    AttributeKey: category
+    AttributeValue: PARAMETER
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerArticleNumber
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerArticleNumber
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: 'unique product identifier of the manufacturer '
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerArticleNumber
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO676#003
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerOrderCode
+    AttributeKey: category
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerOrderCode
+    AttributeKey: category
+    AttributeValue: PARAMETER
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerOrderCode
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerOrderCode
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: By manufactures issued unique combination of numbers and letters used to identify the device for ordering
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerOrderCode
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAO227#002
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ProductImage
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ProductImage
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Image file for associated product provided in common format (.png, .jpg).
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ProductImage
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/ZVEI/TechnicalData/ProductImage/1/1
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Product classifications by association of product classes with common classification systems.
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/ZVEI/TechnicalData/ProductClassifications/1/1
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalProperties
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Individual characteristics that describe the product and its technical properties.
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/ZVEI/TechnicalData/TechnicalProperties/1/1
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalProperties.ID___arbitrary2__
+    AttributeKey: category
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties.ID___arbitrary2__
+    AttributeKey: category
+    AttributeValue: PARAMETER
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalProperties.ID___arbitrary2__
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties.ID___arbitrary2__
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Represents a SubmodelElement that is not described using a common classification system, a consortium specification,
+        an open community standard, a published manufacturer specification or such.
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties.ID___arbitrary2__
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SemanticIdNotAvailable/1/1
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalProperties.MainSection
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties.MainSection
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Main subdivision possibility for properties.
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties.MainSection
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/ZVEI/TechnicalData/MainSection/1/1
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalProperties.MainSection.SubSection
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties.MainSection.SubSection
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Subordinate subdivision possibility for properties.
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties.MainSection.SubSection
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/ZVEI/TechnicalData/SubSection/1/1
+  - ChangeOperation: CreateAttr
+    ElementPath: FurtherInformation
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: FurtherInformation
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Further information on the product, the validity of the information provided and this data record.
+  - ChangeOperation: UpdateAttr
+    ElementPath: FurtherInformation
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/ZVEI/TechnicalData/FurtherInformation/1/1
+  - ChangeOperation: CreateAttr
+    ElementPath: FurtherInformation.ValidDate
+    AttributeKey: category
+  - ChangeOperation: UpdateAttr
+    ElementPath: FurtherInformation.ValidDate
+    AttributeKey: category
+    AttributeValue: PARAMETER
+  - ChangeOperation: CreateAttr
+    ElementPath: FurtherInformation.ValidDate
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: FurtherInformation.ValidDate
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Denotes a date on which the data specified in the Submodel was valid from for the associated asset.
+  - ChangeOperation: UpdateAttr
+    ElementPath: FurtherInformation.ValidDate
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/ZVEI/TechnicalData/ManufacturerOrderCode/1/1
+  - ChangeOperation: RemoveAttr
+    ElementPath: GeneralInformation.ManufacturerProductDesignation
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerProductDesignation
+    AttributeKey: category
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerProductDesignation
+    AttributeKey: category
+    AttributeValue: PARAMETER
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerProductDesignation
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerProductDesignation
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Product designation as given by the mnaufacturer. Short description of the product, product group or function
+        (short text) in common language.
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerProductDesignation
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerProductDesignation
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: 0173-1#02-AAW338#001
+  - ChangeOperation: RemoveAttr
+    ElementPath: FurtherInformation.TextStatement
+    AttributeKey: value
+  - ChangeOperation: CreateAttr
+    ElementPath: FurtherInformation.TextStatement
+    AttributeKey: category
+  - ChangeOperation: UpdateAttr
+    ElementPath: FurtherInformation.TextStatement
+    AttributeKey: category
+    AttributeValue: PARAMETER
+  - ChangeOperation: CreateAttr
+    ElementPath: FurtherInformation.TextStatement
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: FurtherInformation.TextStatement
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Statement by the manufacturer in text form, e.g. scope of validity of the statements, scopes of application, conditions
+        of operation.
+  - ChangeOperation: CreateAttr
+    ElementPath: FurtherInformation.TextStatement
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: FurtherInformation.TextStatement
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/ZVEI/TechnicalData/TextStatement/1/1
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Single product classification item by association with product class in a particular classification system or
+        property dictionary.
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/ZVEI/TechnicalData/ProductClassificationItem/1/1
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ProductClassificationSystem
+    AttributeKey: category
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ProductClassificationSystem
+    AttributeKey: category
+    AttributeValue: PARAMETER
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ProductClassificationSystem
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ProductClassificationSystem
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Common name of the classification system.
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ProductClassificationSystem
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/ZVEI/TechnicalData/ProductClassificationSystem/1/1
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ClassificationSystemVersion
+    AttributeKey: category
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ClassificationSystemVersion
+    AttributeKey: category
+    AttributeValue: PARAMETER
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ClassificationSystemVersion
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ClassificationSystemVersion
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Common version identifier of the used classification system, in order to distinguish different version of the
+        property dictionary.
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ClassificationSystemVersion
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/ZVEI/TechnicalData/ClassificationSystemVersion/1/1
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ProductClassId
+    AttributeKey: category
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ProductClassId
+    AttributeKey: category
+    AttributeValue: PARAMETER
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ProductClassId
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ProductClassId
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Class of the associated product or industrial equipment in the classification system. According to the notation
+        of the system.
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ProductClassId
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/ZVEI/TechnicalData/ProductClassId/1/1
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalProperties.ID___arbitrary1__
+    AttributeKey: category
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties.ID___arbitrary1__
+    AttributeKey: category
+    AttributeValue: PARAMETER
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalProperties.ID___arbitrary1__
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties.ID___arbitrary1__
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Arbitrary SubmodelElement with semanticId possibly referring to a ConceptDescription can be used within the Technical
+        Properties.
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalProperties.ID___arbitrary1__
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties.ID___arbitrary1__
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: NON_EMPTY_VALUE
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalProperties.SubSection
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties.SubSection
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Subordinate subdivision possibility for properties.
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalProperties.SubSection
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties.SubSection
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/ZVEI/TechnicalData/SubSection/1/1
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerProductDesignation
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerProductDesignation
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: FurtherInformation.TextStatement
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: FurtherInformation.TextStatement
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerName
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerName
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerLogo
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerLogo
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerArticleNumber
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerArticleNumber
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerArticleNumber
+    QualifierType: Cardinality
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerOrderCode
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerOrderCode
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerOrderCode
+    QualifierType: Cardinality
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ProductImage
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ProductImage
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications
+    QualifierType: Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ProductClassificationSystem
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ProductClassificationSystem
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ClassificationSystemVersion
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ClassificationSystemVersion
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ProductClassId
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ProductClassId
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalProperties
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalProperties.ID___arbitrary2__
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties.ID___arbitrary2__
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalProperties.MainSection
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties.MainSection
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalProperties.MainSection.SubSection
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties.MainSection.SubSection
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: FurtherInformation
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: FurtherInformation
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: FurtherInformation
+    QualifierType: Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToOne
+  - ChangeOperation: CreateAttr
+    ElementPath: FurtherInformation.ValidDate
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: FurtherInformation.ValidDate
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerName
+    QualifierType: ExampleValue
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerName
+    QualifierType: ExampleValue
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerName
+    QualifierType: ExampleValue
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerName
+    QualifierType: ExampleValue
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerName
+    QualifierType: ExampleValue
+    AttributeKey: value
+    AttributeValue: Example Company
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerProductDesignation
+    QualifierType: ExampleValue
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerProductDesignation
+    QualifierType: ExampleValue
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerProductDesignation
+    QualifierType: ExampleValue
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerProductDesignation
+    QualifierType: ExampleValue
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerProductDesignation
+    QualifierType: ExampleValue
+    AttributeKey: value
+    AttributeValue: Electrical energy accelerator@en
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerArticleNumber
+    QualifierType: ExampleValue
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerArticleNumber
+    QualifierType: ExampleValue
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerArticleNumber
+    QualifierType: ExampleValue
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerArticleNumber
+    QualifierType: ExampleValue
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerArticleNumber
+    QualifierType: ExampleValue
+    AttributeKey: value
+    AttributeValue: A123-456
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerOrderCode
+    QualifierType: ExampleValue
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerOrderCode
+    QualifierType: ExampleValue
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerOrderCode
+    QualifierType: ExampleValue
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: GeneralInformation.ManufacturerOrderCode
+    QualifierType: ExampleValue
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: GeneralInformation.ManufacturerOrderCode
+    QualifierType: ExampleValue
+    AttributeKey: value
+    AttributeValue: EEA-EX-200-S/47-Q3
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem
+    QualifierType: AllowedIdShort
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem
+    QualifierType: AllowedIdShort
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/AllowedIdShort/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem
+    QualifierType: AllowedIdShort
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem
+    QualifierType: AllowedIdShort
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem
+    QualifierType: AllowedIdShort
+    AttributeKey: value
+    AttributeValue: ProductClassificationItem[\d{2,3}]
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ProductClassificationSystem
+    QualifierType: ExampleValue
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ProductClassificationSystem
+    QualifierType: ExampleValue
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ProductClassificationSystem
+    QualifierType: ExampleValue
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ProductClassificationSystem
+    QualifierType: ExampleValue
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ProductClassificationSystem
+    QualifierType: ExampleValue
+    AttributeKey: value
+    AttributeValue: ECLASS
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ClassificationSystemVersion
+    QualifierType: ExampleValue
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ClassificationSystemVersion
+    QualifierType: ExampleValue
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ClassificationSystemVersion
+    QualifierType: ExampleValue
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ClassificationSystemVersion
+    QualifierType: ExampleValue
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ClassificationSystemVersion
+    QualifierType: ExampleValue
+    AttributeKey: value
+    AttributeValue: 9.0 (BASIC)
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ProductClassId
+    QualifierType: ExampleValue
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ProductClassId
+    QualifierType: ExampleValue
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ProductClassId
+    QualifierType: ExampleValue
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ProductClassId
+    QualifierType: ExampleValue
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ProductClassifications.ProductClassificationItem.ProductClassId
+    QualifierType: ExampleValue
+    AttributeKey: value
+    AttributeValue: 27-01-88-77 | 0112/2///61987#ABA827#003
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalProperties.ID___arbitrary1__
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties.ID___arbitrary1__
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties.ID___arbitrary1__
+    QualifierType: Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalProperties.ID___arbitrary1__
+    QualifierType: Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties.ID___arbitrary1__
+    QualifierType: Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalProperties.ID___arbitrary1__
+    QualifierType: ExampleValue
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties.ID___arbitrary1__
+    QualifierType: ExampleValue
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties.ID___arbitrary1__
+    QualifierType: ExampleValue
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalProperties.ID___arbitrary1__
+    QualifierType: ExampleValue
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties.ID___arbitrary1__
+    QualifierType: ExampleValue
+    AttributeKey: value
+    AttributeValue: Width@en= 32 [mm]
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalProperties.ID___arbitrary2__
+    QualifierType: ExampleValue
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties.ID___arbitrary2__
+    QualifierType: ExampleValue
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties.ID___arbitrary2__
+    QualifierType: ExampleValue
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalProperties.ID___arbitrary2__
+    QualifierType: ExampleValue
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties.ID___arbitrary2__
+    QualifierType: ExampleValue
+    AttributeKey: value
+    AttributeValue: Length
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalProperties.MainSection
+    QualifierType: AllowedIdShort
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties.MainSection
+    QualifierType: AllowedIdShort
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/AllowedIdShort/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties.MainSection
+    QualifierType: AllowedIdShort
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalProperties.MainSection
+    QualifierType: AllowedIdShort
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties.MainSection
+    QualifierType: AllowedIdShort
+    AttributeKey: value
+    AttributeValue: MainSection[\d{2,3}]
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalProperties.MainSection.SubSection
+    QualifierType: AllowedIdShort
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties.MainSection.SubSection
+    QualifierType: AllowedIdShort
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/AllowedIdShort/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties.MainSection.SubSection
+    QualifierType: AllowedIdShort
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalProperties.MainSection.SubSection
+    QualifierType: AllowedIdShort
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties.MainSection.SubSection
+    QualifierType: AllowedIdShort
+    AttributeKey: value
+    AttributeValue: SubSection[\d{2,3}]
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalProperties.SubSection
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties.SubSection
+    QualifierType: Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties.SubSection
+    QualifierType: Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalProperties.SubSection
+    QualifierType: Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties.SubSection
+    QualifierType: Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalProperties.SubSection
+    QualifierType: AllowedIdShort
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties.SubSection
+    QualifierType: AllowedIdShort
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/AllowedIdShort/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties.SubSection
+    QualifierType: AllowedIdShort
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: TechnicalProperties.SubSection
+    QualifierType: AllowedIdShort
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: TechnicalProperties.SubSection
+    QualifierType: AllowedIdShort
+    AttributeKey: value
+    AttributeValue: SubSection[\d{2,3}]
+  - ChangeOperation: CreateAttr
+    ElementPath: FurtherInformation.TextStatement
+    QualifierType: ExampleValue
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: FurtherInformation.TextStatement
+    QualifierType: ExampleValue
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: FurtherInformation.TextStatement
+    QualifierType: ExampleValue
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: FurtherInformation.TextStatement
+    QualifierType: ExampleValue
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: FurtherInformation.TextStatement
+    QualifierType: ExampleValue
+    AttributeKey: value
+    AttributeValue: Restricted use@en
+  - ChangeOperation: CreateAttr
+    ElementPath: FurtherInformation.TextStatement
+    QualifierType: AllowedIdShort
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: FurtherInformation.TextStatement
+    QualifierType: AllowedIdShort
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/AllowedIdShort/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: FurtherInformation.TextStatement
+    QualifierType: AllowedIdShort
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: FurtherInformation.TextStatement
+    QualifierType: AllowedIdShort
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: FurtherInformation.TextStatement
+    QualifierType: AllowedIdShort
+    AttributeKey: value
+    AttributeValue: TextStatement[\d{2,3}]
+  - ChangeOperation: CreateAttr
+    ElementPath: FurtherInformation.ValidDate
+    QualifierType: ExampleValue
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: FurtherInformation.ValidDate
+    QualifierType: ExampleValue
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/ExampleValue/1/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: FurtherInformation.ValidDate
+    QualifierType: ExampleValue
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: FurtherInformation.ValidDate
+    QualifierType: ExampleValue
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: FurtherInformation.ValidDate
+    QualifierType: ExampleValue
+    AttributeKey: value
+    AttributeValue: 5/28/2021

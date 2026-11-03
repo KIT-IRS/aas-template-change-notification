@@ -2,7 +2,11 @@
 
     M1  The roots correspond. Below corresponding containers, a template element is realised by the
         instance children with the same type and semanticId (else the same idShort); every entry of
-        a SubmodelElementList realises the list's template entry.
+        a SubmodelElementList realises the list's template entry. Where template siblings share type
+        and semanticId, the semanticId does not tell them apart: an instance child then realises the
+        one whose supplementalSemanticIds it carries, if these differ among the siblings (e.g. the
+        protocol of an interface), and otherwise the one with its idShort (e.g. flexibleLoadId and
+        flexibleLoadMeasureId, both .../UUID). An instance child that none of them claims is local.
     M2  A placeholder (idShort contains 'arbitrary') is realised by all children of the same type
         that no other template element claims. Its realisations carry instance-defined metadata.
 
@@ -11,6 +15,7 @@ Used by resolution (which realisations an item concerns) and by the conformance 
 
 from __future__ import annotations
 
+import json
 from dataclasses import dataclass, field
 
 from tcn.core.model import Id, Template
@@ -48,6 +53,11 @@ def _semantic_id(T: Template, x: Id):
     return T.A[a].value if a is not None else None
 
 
+def _supplemental(T: Template, x: Id) -> frozenset[str]:
+    a = T.attr(x, "supplementalSemanticIds")
+    return frozenset(json.dumps(r, sort_keys=True) for r in T.A[a].value) if a is not None else frozenset()
+
+
 def _match(T: Template, I: Template, t: Id, i: Id, m: Matching) -> None:
     m.R.setdefault(t, []).append(i)
     if T.E[t].id_short == I.E[i].id_short:
@@ -57,9 +67,16 @@ def _match(T: Template, I: Template, t: Id, i: Id, m: Matching) -> None:
         for x in free if kids else []:
             _match(T, I, kids[0], x, m)
         return
-    for c in [c for c in kids if not placeholder(T, c)]:
+    concrete = [c for c in kids if not placeholder(T, c)]
+    for c in concrete:
         sem = _semantic_id(T, c)
         hits = [x for x in free if I.E[x].type == T.E[c].type and sem is not None and _semantic_id(I, x) == sem]
+        rivals = [d for d in concrete if d != c and sem is not None and T.E[d].type == T.E[c].type
+                  and _semantic_id(T, d) == sem]
+        if rivals and all(_supplemental(T, d) != _supplemental(T, c) for d in rivals):
+            hits = [x for x in hits if _supplemental(T, c) <= _supplemental(I, x)]
+        elif rivals:
+            hits = [x for x in hits if I.E[x].id_short == T.E[c].id_short]
         hits = hits or [x for x in free if I.E[x].id_short == T.E[c].id_short]
         for x in hits:
             free.remove(x)

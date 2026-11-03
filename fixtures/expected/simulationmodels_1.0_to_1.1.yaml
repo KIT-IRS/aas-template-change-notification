@@ -1,0 +1,26 @@
+# Expected outcome of applying simulationmodels_1.0_to_1.1 to fixtures/simulationmodels_1.0.yaml.
+# Derived by hand before running the chain: v1.1 adds the optional collection Quality and changes
+# semanticIds (change log, Annex B), so the instance keeps every value and gains no mandatory element.
+chain: chains/simulationmodels_1.0_to_1.1.yaml
+instance: fixtures/simulationmodels_1.0.yaml
+
+retained:
+  SimulationModel.Summary: [{language: en, text: Thermal model of the controller housing}]
+  SimulationModel.SimPurpose.PosSimPurpose: ThermalAnalysis
+  SimulationModel.ScopeOfModel: Component
+  SimulationModel.ModelFile.ModelFileVersion.ModelVersionId: "1.0.3"
+  SimulationModel.ModelFile.ModelFileVersion.DigitalFile: /aasx/files/controller-thermal.fmu
+  SimulationModel.DefaultSimTime: "3600"
+  SimulationModel.Ports.PortsConnector.PortConnectorName: HeatPort
+  SimulationModel.Ports.PortsConnector.PortConDescription: [{language: en, text: Thermal port of the housing}]
+  InternalInventoryNumber: INV-2024-0815
+
+# v1.1 adds displayName and description to the elements of the template; only the local extension
+# is outside the revision
+control:
+  InternalInventoryNumber: InternalInventoryNumber
+
+manual: []
+conforms: true
+violations: []
+removed: []

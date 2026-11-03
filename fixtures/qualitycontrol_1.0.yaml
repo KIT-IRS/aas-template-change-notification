@@ -1,0 +1,98 @@
+# Submodel instance conforming to IDTA 02049 Quality Control for Machining v1.0. Illustrative values of
+# the inspection of a machined housing. The entries of the lists carry the idShorts the template gives
+# them. MeasuringRange (a Range) is added with its limits, which the fixture format cannot set.
+template: ressources/Templates/IDTA 02049-1-0_Template_QualityControlForMachining.json
+id: https://example.com/ids/sm/example-part/QualityControl
+
+omit:
+  - QualityFeatures.AttributiveFeaturesList
+  - QualityFeatures.GeometricFeaturesList
+  - QualityFeatures.ArealSurfaceFeaturesList
+  - "QualityFeatures.LinearFeaturesList[0].DimensionDescription"
+  - "QualityFeatures.LinearFeaturesList[0].ToleranceNorm"
+  - "QualityFeatures.LinearFeaturesList[0].OneSided"
+  - "QualityFeatures.LinearFeaturesList[0].Reference2DList[0].Coordinate"
+  - ProductionCriteria
+  - PartInformation.DigitalNameplate
+  - PartInformation.PartNumber
+  - PartInformation.OrderNumber
+  - PartInformation.LotNumber
+  - PartInformation.SubmodelReference3D
+  - PartInformation.DrawingReference2D
+  - PartInformation.CADFileReference3D
+  - "QualityResponsibilityList[0].ContactInformation"
+  - "TestingDevicesList[0].Responsibility"
+  - "TestingDevicesList[0].DigitalNameplateTestingDevice"
+  - "TestingDevicesList[0].MeasuringRange"
+  - "TestingDevicesList[0].Resolution"
+  - "TestingDevicesList[0].Accuracy"
+  - "TestingDevicesList[0].Norm"
+  - "TestingDevicesList[0].CalibrationCertificate"
+  - MetrologyJobResults.JobEnd
+  - MetrologyJobResults.JobName
+  - MetrologyJobResults.PlannedPartsPerRun
+  - MetrologyJobResults.ActualPartsInRun
+  - MetrologyJobResults.JobFinished
+  - "MetrologyJobResults.MetrologyResultsList[0].ID"
+  - "MetrologyJobResults.MetrologyResultsList[0].Description"
+  - "MetrologyJobResults.MetrologyResultsList[0].EngineeringUnit"
+  - "MetrologyJobResults.MetrologyResultsList[0].QualityActualValue"
+  - "MetrologyJobResults.MetrologyResultsList[0].QualityActualAttribute"
+  - "MetrologyJobResults.MetrologyResultsList[0].Deviation"
+  - "MetrologyJobResults.MetrologyResultsList[0].AverageValue"
+  - "MetrologyJobResults.MetrologyResultsList[0].MinValue"
+  - "MetrologyJobResults.MetrologyResultsList[0].MaxValue"
+  - "MetrologyJobResults.MetrologyResultsList[0].Standarddeviation"
+  - "MetrologyJobResults.MetrologyResultsList[0].MetrologyDataFile"
+
+repeat:
+  "QualityFeatures.LinearFeaturesList[0].IDList3DModel[0]": 2
+  "QualityFeatures.LinearFeaturesList[0]": 2
+  "MetrologyJobResults.MetrologyResultsList[0].MeasuredValuesList[0]": 3
+
+values:
+  "QualityFeatures.LinearFeaturesList[0].LinearFeatureName": Bore diameter
+  "QualityFeatures.LinearFeaturesList[0].MeasurementProcedure": CMM
+  "QualityFeatures.LinearFeaturesList[0].InspectionRelevant": "true"
+  "QualityFeatures.LinearFeaturesList[0].NominalValue": "12.0"
+  "QualityFeatures.LinearFeaturesList[0].UpperTolerance": "0.018"
+  "QualityFeatures.LinearFeaturesList[0].LowerTolerance": "0.0"
+  "QualityFeatures.LinearFeaturesList[0].EngineeringUnit": mm
+  "QualityFeatures.LinearFeaturesList[0].GeometryReferenceList[0]": https://example.com/ids/cad/housing#bore-1
+  "QualityFeatures.LinearFeaturesList[0].IDList3DModel[0]": F-0001
+  "QualityFeatures.LinearFeaturesList[0].IDList3DModel[1]": F-0002
+  "QualityFeatures.LinearFeaturesList[0].Reference2DList[0].Page": "2"
+  "QualityFeatures.LinearFeaturesList[1].LinearFeatureName": Overall length
+  "QualityFeatures.LinearFeaturesList[1].MeasurementProcedure": caliper
+  "QualityFeatures.LinearFeaturesList[1].InspectionRelevant": "false"
+  "QualityFeatures.LinearFeaturesList[1].NominalValue": "80.0"
+  "QualityFeatures.LinearFeaturesList[1].UpperTolerance": "0.1"
+  "QualityFeatures.LinearFeaturesList[1].LowerTolerance": "-0.1"
+  "QualityFeatures.LinearFeaturesList[1].EngineeringUnit": mm
+  "QualityFeatures.LinearFeaturesList[1].GeometryReferenceList[0]": https://example.com/ids/cad/housing#body
+  "QualityFeatures.LinearFeaturesList[1].IDList3DModel[0]": F-0010
+  "QualityFeatures.LinearFeaturesList[1].IDList3DModel[1]": F-0011
+  "QualityFeatures.LinearFeaturesList[1].Reference2DList[0].Page": "1"
+  PartInformation.PartIdentifier: https://example.com/ids/parts/housing/SN0042
+  "QualityResponsibilityList[0].DepartmentName": Quality Assurance
+  "QualityResponsibilityList[0].Role": inspector
+  "TestingDevicesList[0].DeviceName": CMM Contura
+  "TestingDevicesList[0].MeasuringType": tactile
+  "TestingDevicesList[0].MeasuringUnit": mm
+  MetrologyJobResults.JobStart: "2026-04-02T07:30:00Z"
+  MetrologyJobResults.JobOrderNumber: JO-4711
+  "MetrologyJobResults.MetrologyResultsList[0].QualityFeatureReference": https://example.com/ids/sm/example-part/QualityControl#bore
+  "MetrologyJobResults.MetrologyResultsList[0].TestingDeviceReference": https://example.com/ids/sm/example-part/QualityControl#cmm
+  "MetrologyJobResults.MetrologyResultsList[0].PartReference": https://example.com/ids/parts/housing/SN0042
+  "MetrologyJobResults.MetrologyResultsList[0].QualityInSpec": "true"
+  "MetrologyJobResults.MetrologyResultsList[0].DataAggregatedFromSeries": "true"
+  "MetrologyJobResults.MetrologyResultsList[0].MeasuredValuesList[0]": "12.004"
+  "MetrologyJobResults.MetrologyResultsList[0].MeasuredValuesList[1]": "12.006"
+  "MetrologyJobResults.MetrologyResultsList[0].MeasuredValuesList[2]": "12.005"
+
+add:
+  "TestingDevicesList[0]":
+    - {modelType: Range, idShort: MeasuringRange, valueType: xs:double, min: "0", max: "700",
+       semanticId: {type: ExternalReference, keys: [{type: GlobalReference, value: "https://admin-shell.io/idta/QualityControlForMachining/MeasuringRange/1/0"}]}}
+  "":                   # local extension of the asset maintainer, described by no template
+    - {modelType: Property, idShort: InternalInventoryNumber, valueType: xs:string, value: INV-2026-0042}

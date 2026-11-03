@@ -1,0 +1,49 @@
+# Submodel instance conforming to IDTA 02017 Asset Interfaces Description v1.0 (v1.0 is its bug-fix release 1.0.1.)
+# Illustrative values of an example device with a REST and an MQTT interface, named by the instance;
+# the template tells them apart by their supplementalSemanticIds (protocol).
+template: ressources/Templates/IDTA 02017-1-0-1_Template_Asset Interfaces Description.json
+id: https://example.com/ids/sm/example-device/AssetInterfacesDescription
+drop_empty: true
+
+omit:
+  - InterfaceTemplateForMODBUS
+
+repeat:
+  InterfaceTemplateForHTTP.InteractionMetadata.properties.property_name: [status]
+  InterfaceTemplateForMQTT.InteractionMetadata.properties.property_name: [temperature]
+  InterfaceTemplateForHTTP: [InterfaceHTTP]
+  InterfaceTemplateForMQTT: [InterfaceMQTT]
+
+values:
+  InterfaceHTTP.title: Device REST API
+  InterfaceHTTP.EndpointMetadata.base: https://10.0.0.5/api
+  InterfaceHTTP.EndpointMetadata.contentType: application/json
+  "InterfaceHTTP.EndpointMetadata.security[0]": https://example.com/ids/sm/example-device/AID#nosec_sc
+  InterfaceHTTP.EndpointMetadata.securityDefinitions.nosec_sc.scheme: nosec
+  InterfaceHTTP.EndpointMetadata.securityDefinitions.oauth2_sc.scheme: oauth2
+  InterfaceHTTP.EndpointMetadata.securityDefinitions.oauth2_sc.flow: client
+  InterfaceHTTP.EndpointMetadata.securityDefinitions.oauth2_sc.scopes: read
+  InterfaceHTTP.InteractionMetadata.properties.status.key: status
+  InterfaceHTTP.InteractionMetadata.properties.status.type: string
+  InterfaceHTTP.InteractionMetadata.properties.status.title: Device status
+  InterfaceHTTP.InteractionMetadata.properties.status.forms.href: /status
+  InterfaceHTTP.InteractionMetadata.properties.status.forms.contentType: application/json
+  "InterfaceHTTP.InteractionMetadata.properties.status.forms.security[0]": https://example.com/ids/sm/example-device/AID#nosec_sc
+  InterfaceHTTP.InteractionMetadata.properties.status.forms.htv_methodName: GET
+  "InterfaceHTTP.InteractionMetadata.properties.status.forms.htv_headers[0].htv_fieldName": Accept
+  "InterfaceHTTP.InteractionMetadata.properties.status.forms.htv_headers[0].htv_fieldValue": application/json
+  InterfaceMQTT.title: Device telemetry
+  InterfaceMQTT.EndpointMetadata.base: mqtt://10.0.0.5:1883
+  InterfaceMQTT.EndpointMetadata.contentType: application/json
+  "InterfaceMQTT.EndpointMetadata.security[0]": https://example.com/ids/sm/example-device/AID#nosec_sc
+  InterfaceMQTT.EndpointMetadata.securityDefinitions.nosec_sc.scheme: nosec
+  InterfaceMQTT.InteractionMetadata.properties.temperature.key: temperature
+  InterfaceMQTT.InteractionMetadata.properties.temperature.type: number
+  InterfaceMQTT.InteractionMetadata.properties.temperature.unit: Cel
+  InterfaceMQTT.InteractionMetadata.properties.temperature.forms.href: /devices/ex100/temperature
+  "InterfaceMQTT.InteractionMetadata.properties.temperature.forms.security[0]": https://example.com/ids/sm/example-device/AID#nosec_sc
+  InterfaceMQTT.InteractionMetadata.properties.temperature.forms.mqv_qos: "1"
+
+add:
+  "":                   # local extension of the asset maintainer, described by no template
+    - {modelType: Property, idShort: InternalInventoryNumber, valueType: xs:string, value: INV-2024-0815}

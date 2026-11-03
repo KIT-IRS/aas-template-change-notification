@@ -1,0 +1,1610 @@
+header:
+  Family: ControlComponentInstance
+  PreVersion: http://admin-shell.io/idta/SubmodelTemplate/ControlComponentInstance/1/0
+  PostVersion: https://admin-shell.io/idta/SubmodelTemplate/ControlComponent/Instance/2/0
+  PreTemplate: ressources/Templates/IDTA 02016-1-0_Template_ControlComponentInstance.json
+  PostTemplate: ressources/Templates/IDTA 02016-2-0_Template_ControlComponentInstance.json
+  TemplateOwner: Industrial Digital Twin Association (IDTA)
+  TemplateOwnerAddress:
+    Company: Industrial Digital Twin Association e.V.
+    Street: Lyoner Straße 18
+    Zipcode: '60528'
+    CityTown: Frankfurt am Main
+    NationalCode: DE
+  ChangeURI: https://github.com/admin-shell-io/submodel-templates/tree/main/published/Control%20Component%20Instance/2/0
+sections:
+- title: 'C2: SMC Endpoint replaces the references in SMC Endpoints; the reference becomes its EndpointReference'
+  origin: hand
+  items:
+  - ChangeOperation: UpdateIdShort
+    ElementPath: Endpoints.Endpoint
+    NewIdShort: EndpointReference
+  - ChangeOperation: CreateSME
+    ElementPath: Endpoints.Endpoint
+    SMEType: SubmodelElementCollection
+  - ChangeOperation: UpdateParent
+    ElementPath: Endpoints.EndpointReference
+    NewParentPath: Endpoints.Endpoint
+  - ChangeOperation: CreateQual
+    ElementPath: Endpoints.Endpoint
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Endpoints.Endpoint
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Endpoints.Endpoint
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Endpoints.Endpoint.EndpointReference@Multiplicity#value
+    TargetElementPaths:
+    - Endpoints.Endpoint@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: CreateQual
+    ElementPath: Endpoints.Endpoint.EndpointReference
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Endpoints.Endpoint.EndpointReference
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Endpoints.Endpoint.EndpointReference
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: Endpoints.Endpoint.EndpointReference
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: RemoveQual
+    ElementPath: Endpoints.Endpoint.EndpointReference
+    QualifierType: Multiplicity
+- title: 'C4: the Name property is removed from the Skill and Parameter SMCs in favor of freely choosable idShort values'
+  origin: rule
+  rule:
+    RemoveSubtree:
+    - Skills.Skill.Name
+    - Skills.Skill.Parameters.Parameter.Name
+  items:
+  - ChangeOperation: RemoveQual
+    ElementPath: Skills.Skill.Name
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveSME
+    ElementPath: Skills.Skill.Name
+  - ChangeOperation: RemoveQual
+    ElementPath: Skills.Skill.Parameters.Parameter.Name
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveSME
+    ElementPath: Skills.Skill.Parameters.Parameter.Name
+- title: 'C5: the DisplayName MLP is removed from the Skill SMC, as it is now represented in the AAS metamodel'
+  origin: rule
+  rule:
+    RemoveSubtree:
+    - Skills.Skill.DisplayName
+  items:
+  - ChangeOperation: RemoveQual
+    ElementPath: Skills.Skill.DisplayName
+    QualifierType: Multiplicity
+  - ChangeOperation: RemoveSME
+    ElementPath: Skills.Skill.DisplayName
+- title: 'C6: Mode is renamed to Mode__00__'
+  origin: hand
+  items:
+  - ChangeOperation: UpdateIdShort
+    ElementPath: Skills.Skill.Modes.Mode
+    NewIdShort: Mode__00__
+- title: 'C7: the cardinality vocabulary changes from Multiplicity to SMT/Cardinality'
+  origin: rule
+  rule:
+    QualifierTypeRenames:
+      Multiplicity: SMT/Cardinality
+  items:
+  - ChangeOperation: CreateQual
+    ElementPath: Type
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Type
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Type
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Type@Multiplicity#value
+    TargetElementPaths:
+    - Type@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Type
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: Endpoints
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Endpoints
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Endpoints
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Endpoints@Multiplicity#value
+    TargetElementPaths:
+    - Endpoints@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Endpoints
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: Skills
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Skills@Multiplicity#value
+    TargetElementPaths:
+    - Skills@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Skills
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: Skills.Skill.Disabled
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Disabled
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Disabled
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Skills.Skill.Disabled@Multiplicity#value
+    TargetElementPaths:
+    - Skills.Skill.Disabled@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Skills.Skill.Disabled
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: Skills.Skill.Modes
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Modes
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Modes
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Skills.Skill.Modes@Multiplicity#value
+    TargetElementPaths:
+    - Skills.Skill.Modes@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Skills.Skill.Modes
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: Skills.Skill.Modes.Mode__00__
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Modes.Mode__00__
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Modes.Mode__00__
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Skills.Skill.Modes.Mode__00__@Multiplicity#value
+    TargetElementPaths:
+    - Skills.Skill.Modes.Mode__00__@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Skills.Skill.Modes.Mode__00__
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: Skills.Skill.Parameters
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Parameters
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Parameters
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Skills.Skill.Parameters@Multiplicity#value
+    TargetElementPaths:
+    - Skills.Skill.Parameters@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Skills.Skill.Parameters
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: Skills.Skill.Parameters.Parameter
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Skills.Skill.Parameters.Parameter@Multiplicity#value
+    TargetElementPaths:
+    - Skills.Skill.Parameters.Parameter@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Skills.Skill.Parameters.Parameter
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: Skills.Skill.Parameters.Parameter.Direction
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter.Direction
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter.Direction
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Skills.Skill.Parameters.Parameter.Direction@Multiplicity#value
+    TargetElementPaths:
+    - Skills.Skill.Parameters.Parameter.Direction@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Skills.Skill.Parameters.Parameter.Direction
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: Skills.Skill.Parameters.Parameter.Type
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter.Type
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter.Type
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Skills.Skill.Parameters.Parameter.Type@Multiplicity#value
+    TargetElementPaths:
+    - Skills.Skill.Parameters.Parameter.Type@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Skills.Skill.Parameters.Parameter.Type
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: Skills.Skill.Parameters.Parameter.Values
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter.Values
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter.Values
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Skills.Skill.Parameters.Parameter.Values@Multiplicity#value
+    TargetElementPaths:
+    - Skills.Skill.Parameters.Parameter.Values@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Skills.Skill.Parameters.Parameter.Values
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: Skills.Skill.Errors
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Errors
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Errors
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Skills.Skill.Errors@Multiplicity#value
+    TargetElementPaths:
+    - Skills.Skill.Errors@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Skills.Skill.Errors
+    QualifierType: Multiplicity
+  - ChangeOperation: CreateQual
+    ElementPath: Skills.Skill.Uses
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Uses
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Uses
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: Sync
+    SourceElementPaths:
+    - Skills.Skill.Uses@Multiplicity#value
+    TargetElementPaths:
+    - Skills.Skill.Uses@SMT/Cardinality#value
+    TransferFunction:
+      Kind: Identity
+  - ChangeOperation: RemoveQual
+    ElementPath: Skills.Skill.Uses
+    QualifierType: Multiplicity
+- title: 'Completion: removed elements and qualifiers'
+  origin: generated
+  items:
+  - ChangeOperation: RemoveQual
+    ElementPath: Endpoints.Endpoint.EndpointReference
+    QualifierType: PresetIdShort
+- title: 'Completion: created elements and qualifiers'
+  origin: generated
+  items:
+  - ChangeOperation: CreateSME
+    ElementPath: Endpoints.Endpoint.InterfaceReference
+    SMEType: ReferenceElement
+  - ChangeOperation: CreateSME
+    ElementPath: Skills.Skill.Errors.ErrorReference__00__
+    SMEType: ReferenceElement
+  - ChangeOperation: CreateSME
+    ElementPath: Skills.Skill.Uses.SkillReference__00__
+    SMEType: ReferenceElement
+  - ChangeOperation: CreateQual
+    ElementPath: ''
+    QualifierType: FormTitle
+  - ChangeOperation: CreateQual
+    ElementPath: ''
+    QualifierType: FormTag
+  - ChangeOperation: CreateQual
+    ElementPath: ''
+    QualifierType: FormInfo
+  - ChangeOperation: CreateQual
+    ElementPath: ''
+    QualifierType: FormUrl
+  - ChangeOperation: CreateQual
+    ElementPath: Endpoints.Endpoint
+    QualifierType: EditIdShort
+  - ChangeOperation: CreateQual
+    ElementPath: Endpoints.Endpoint
+    QualifierType: EditDescription
+  - ChangeOperation: CreateQual
+    ElementPath: Endpoints.Endpoint.InterfaceReference
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: Skills.Skill
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: Skills.Skill
+    QualifierType: EditIdShort
+  - ChangeOperation: CreateQual
+    ElementPath: Skills.Skill
+    QualifierType: EditDescription
+  - ChangeOperation: CreateQual
+    ElementPath: Skills.Skill.Disabled
+    QualifierType: FormChoices
+  - ChangeOperation: CreateQual
+    ElementPath: Skills.Skill.Parameters.Parameter
+    QualifierType: EditIdShort
+  - ChangeOperation: CreateQual
+    ElementPath: Skills.Skill.Parameters.Parameter
+    QualifierType: EditDescription
+  - ChangeOperation: CreateQual
+    ElementPath: Skills.Skill.Parameters.Parameter.Direction
+    QualifierType: FormChoices
+  - ChangeOperation: CreateQual
+    ElementPath: Skills.Skill.Errors.ErrorReference__00__
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: Skills.Skill.Errors.ErrorReference__00__
+    QualifierType: EditIdShort
+  - ChangeOperation: CreateQual
+    ElementPath: Skills.Skill.Errors.ErrorReference__00__
+    QualifierType: EditDescription
+  - ChangeOperation: CreateQual
+    ElementPath: Skills.Skill.Errors.ErrorReference__00__
+    QualifierType: PresetIdShort
+  - ChangeOperation: CreateQual
+    ElementPath: Skills.Skill.Uses.SkillReference__00__
+    QualifierType: SMT/Cardinality
+  - ChangeOperation: CreateQual
+    ElementPath: Skills.Skill.Uses.SkillReference__00__
+    QualifierType: EditIdShort
+  - ChangeOperation: CreateQual
+    ElementPath: Skills.Skill.Uses.SkillReference__00__
+    QualifierType: EditDescription
+  - ChangeOperation: CreateQual
+    ElementPath: Skills.Skill.Uses.SkillReference__00__
+    QualifierType: PresetIdShort
+- title: 'Completion: attributes'
+  origin: generated
+  items:
+  - ChangeOperation: CreateAttr
+    ElementPath: ''
+    AttributeKey: administration
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    AttributeKey: administration
+    AttributeValue:
+      version: '2'
+      revision: '0'
+      templateId: https://admin-shell.io/02016-2-0
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    AttributeKey: id
+    AttributeValue: https://admin-shell.io/idta/SubmodelTemplate/ControlComponent/Instance/2/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ModelReference
+      keys:
+      - type: Submodel
+        value: https://admin-shell.io/idta/ControlComponent/Instance/2/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: Type
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/ControlComponent/Instance/Type/2/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: Endpoints
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Collection of references to control endpoints supported by the instance of the component
+  - ChangeOperation: UpdateAttr
+    ElementPath: Endpoints
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/ControlComponent/Instance/Endpoints/2/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Collection of skills offered by the component instance
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/ControlComponent/Skills/2/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/ControlComponent/Skill/2/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Disabled
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/ControlComponent/Skill/Disabled/2/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Modes
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/ControlComponent/Skill/Modes/2/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Modes.Mode__00__
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/ControlComponent/Skill/Mode/2/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Parameters
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/ControlComponent/Skill/Parameters/2/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/ControlComponent/Skill/Parameter/2/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter.Direction
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/ControlComponent/Skill/Parameter/Direction/2/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter.Type
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/ControlComponent/Skill/Parameter/Type/2/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter.Values
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/ControlComponent/Skill/Parameter/Values/2/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Errors
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: Collection of references to the error codes of the component that may be raised by this skill.
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Errors
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/ControlComponent/Skill/Errors/2/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Uses
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/ControlComponent/Skill/Uses/2/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Endpoints.Endpoint
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: Endpoints.Endpoint
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: A control endpoint supported by the instance of the component.
+  - ChangeOperation: CreateAttr
+    ElementPath: Endpoints.Endpoint
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Endpoints.Endpoint
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/ControlComponent/Instance/Endpoint/2/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: Endpoints.Endpoint.EndpointReference
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: A reference to a technical control endpoint that adheres to the semantics of the referenced interface.
+  - ChangeOperation: UpdateAttr
+    ElementPath: Endpoints.Endpoint.EndpointReference
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/ControlComponent/Instance/Endpoint/Reference/2/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Endpoints.Endpoint.InterfaceReference
+    AttributeKey: description
+  - ChangeOperation: UpdateAttr
+    ElementPath: Endpoints.Endpoint.InterfaceReference
+    AttributeKey: description
+    AttributeValue:
+    - language: en
+      text: A reference to an interface description (SMC Interface) in a Control Component Type submodel that specifies the
+        semantics of the interface.
+  - ChangeOperation: CreateAttr
+    ElementPath: Endpoints.Endpoint.InterfaceReference
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Endpoints.Endpoint.InterfaceReference
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/ControlComponent/Instance/Endpoint/InterfaceReference/2/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Errors.ErrorReference__00__
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Errors.ErrorReference__00__
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/ControlComponent/Skill/ErrorReference/2/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Uses.SkillReference__00__
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Uses.SkillReference__00__
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/idta/ControlComponent/Skill/SkillReference/2/0
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill
+    QualifierType: PresetIdShort
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: RemoveAttr
+    ElementPath: Skills.Skill.Modes.Mode__00__
+    QualifierType: PresetIdShort
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter
+    QualifierType: PresetIdShort
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: Endpoints.Endpoint
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Endpoints.Endpoint
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Endpoints.Endpoint
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Endpoints.Endpoint
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: Endpoints.Endpoint.EndpointReference
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Endpoints.Endpoint.EndpointReference
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Endpoints.Endpoint.EndpointReference
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Endpoints.Endpoint.EndpointReference
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: Type
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Type
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Type
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Type
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: Endpoints
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Endpoints
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Endpoints
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Endpoints
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Disabled
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Disabled
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Disabled
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Disabled
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Modes
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Modes
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Modes
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Modes
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Modes.Mode__00__
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Modes.Mode__00__
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Modes.Mode__00__
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Modes.Mode__00__
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Parameters
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Parameters
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Parameters
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Parameters
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter.Direction
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter.Direction
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter.Direction
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter.Direction
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter.Type
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter.Type
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter.Type
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter.Type
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter.Values
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter.Values
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter.Values
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter.Values
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Errors
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Errors
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Errors
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Errors
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Uses
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Uses
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Uses
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Uses
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: CreateAttr
+    ElementPath: ''
+    QualifierType: FormTitle
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    QualifierType: FormTitle
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    QualifierType: FormTitle
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ''
+    QualifierType: FormTitle
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    QualifierType: FormTitle
+    AttributeKey: value
+    AttributeValue: ControlComponentInstance V2 (IDTA 02016-2-0)
+  - ChangeOperation: CreateAttr
+    ElementPath: ''
+    QualifierType: FormTag
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    QualifierType: FormTag
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    QualifierType: FormTag
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ''
+    QualifierType: FormTag
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    QualifierType: FormTag
+    AttributeKey: value
+    AttributeValue: CCI
+  - ChangeOperation: CreateAttr
+    ElementPath: ''
+    QualifierType: FormInfo
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    QualifierType: FormInfo
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    QualifierType: FormInfo
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ''
+    QualifierType: FormInfo
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    QualifierType: FormInfo
+    AttributeKey: value
+    AttributeValue: ControlComponentInstance
+  - ChangeOperation: CreateAttr
+    ElementPath: ''
+    QualifierType: FormUrl
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    QualifierType: FormUrl
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    QualifierType: FormUrl
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: ''
+    QualifierType: FormUrl
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: ''
+    QualifierType: FormUrl
+    AttributeKey: value
+    AttributeValue: https://github.com/admin-shell-io/submodel-templates/tree/main/published/Control%20Component%20Instance/2/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Endpoints.Endpoint
+    QualifierType: EditIdShort
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Endpoints.Endpoint
+    QualifierType: EditIdShort
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Endpoints.Endpoint
+    QualifierType: EditIdShort
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Endpoints.Endpoint
+    QualifierType: EditIdShort
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: Endpoints.Endpoint
+    QualifierType: EditIdShort
+    AttributeKey: value
+    AttributeValue: 'True'
+  - ChangeOperation: CreateAttr
+    ElementPath: Endpoints.Endpoint
+    QualifierType: EditDescription
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Endpoints.Endpoint
+    QualifierType: EditDescription
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Endpoints.Endpoint
+    QualifierType: EditDescription
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Endpoints.Endpoint
+    QualifierType: EditDescription
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: Endpoints.Endpoint
+    QualifierType: EditDescription
+    AttributeKey: value
+    AttributeValue: 'True'
+  - ChangeOperation: CreateAttr
+    ElementPath: Endpoints.Endpoint.InterfaceReference
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Endpoints.Endpoint.InterfaceReference
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Endpoints.Endpoint.InterfaceReference
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Endpoints.Endpoint.InterfaceReference
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Endpoints.Endpoint.InterfaceReference
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Endpoints.Endpoint.InterfaceReference
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: Endpoints.Endpoint.InterfaceReference
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: One
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill
+    QualifierType: EditIdShort
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill
+    QualifierType: EditIdShort
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill
+    QualifierType: EditIdShort
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill
+    QualifierType: EditIdShort
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill
+    QualifierType: EditIdShort
+    AttributeKey: value
+    AttributeValue: 'True'
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill
+    QualifierType: EditDescription
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill
+    QualifierType: EditDescription
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill
+    QualifierType: EditDescription
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill
+    QualifierType: EditDescription
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill
+    QualifierType: EditDescription
+    AttributeKey: value
+    AttributeValue: 'True'
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Disabled
+    QualifierType: FormChoices
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Disabled
+    QualifierType: FormChoices
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Disabled
+    QualifierType: FormChoices
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Disabled
+    QualifierType: FormChoices
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Disabled
+    QualifierType: FormChoices
+    AttributeKey: value
+    AttributeValue: true;false
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter
+    QualifierType: EditIdShort
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter
+    QualifierType: EditIdShort
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter
+    QualifierType: EditIdShort
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter
+    QualifierType: EditIdShort
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter
+    QualifierType: EditIdShort
+    AttributeKey: value
+    AttributeValue: 'True'
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter
+    QualifierType: EditDescription
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter
+    QualifierType: EditDescription
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter
+    QualifierType: EditDescription
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter
+    QualifierType: EditDescription
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter
+    QualifierType: EditDescription
+    AttributeKey: value
+    AttributeValue: 'True'
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter.Direction
+    QualifierType: FormChoices
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter.Direction
+    QualifierType: FormChoices
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter.Direction
+    QualifierType: FormChoices
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter.Direction
+    QualifierType: FormChoices
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Parameters.Parameter.Direction
+    QualifierType: FormChoices
+    AttributeKey: value
+    AttributeValue: In;Out;InOut
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Errors.ErrorReference__00__
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Errors.ErrorReference__00__
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Errors.ErrorReference__00__
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Errors.ErrorReference__00__
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Errors.ErrorReference__00__
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Errors.ErrorReference__00__
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Errors.ErrorReference__00__
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Errors.ErrorReference__00__
+    QualifierType: EditIdShort
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Errors.ErrorReference__00__
+    QualifierType: EditIdShort
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Errors.ErrorReference__00__
+    QualifierType: EditIdShort
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Errors.ErrorReference__00__
+    QualifierType: EditIdShort
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Errors.ErrorReference__00__
+    QualifierType: EditIdShort
+    AttributeKey: value
+    AttributeValue: 'True'
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Errors.ErrorReference__00__
+    QualifierType: EditDescription
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Errors.ErrorReference__00__
+    QualifierType: EditDescription
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Errors.ErrorReference__00__
+    QualifierType: EditDescription
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Errors.ErrorReference__00__
+    QualifierType: EditDescription
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Errors.ErrorReference__00__
+    QualifierType: EditDescription
+    AttributeKey: value
+    AttributeValue: 'True'
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Errors.ErrorReference__00__
+    QualifierType: PresetIdShort
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Errors.ErrorReference__00__
+    QualifierType: PresetIdShort
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Errors.ErrorReference__00__
+    QualifierType: PresetIdShort
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Errors.ErrorReference__00__
+    QualifierType: PresetIdShort
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Errors.ErrorReference__00__
+    QualifierType: PresetIdShort
+    AttributeKey: value
+    AttributeValue: To be filled; normally same as idShort, might be with {00}
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Uses.SkillReference__00__
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Uses.SkillReference__00__
+    QualifierType: SMT/Cardinality
+    AttributeKey: semanticId
+    AttributeValue:
+      type: ExternalReference
+      keys:
+      - type: GlobalReference
+        value: https://admin-shell.io/SubmodelTemplates/Cardinality/1/0
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Uses.SkillReference__00__
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Uses.SkillReference__00__
+    QualifierType: SMT/Cardinality
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Uses.SkillReference__00__
+    QualifierType: SMT/Cardinality
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Uses.SkillReference__00__
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Uses.SkillReference__00__
+    QualifierType: SMT/Cardinality
+    AttributeKey: value
+    AttributeValue: ZeroToMany
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Uses.SkillReference__00__
+    QualifierType: EditIdShort
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Uses.SkillReference__00__
+    QualifierType: EditIdShort
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Uses.SkillReference__00__
+    QualifierType: EditIdShort
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Uses.SkillReference__00__
+    QualifierType: EditIdShort
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Uses.SkillReference__00__
+    QualifierType: EditIdShort
+    AttributeKey: value
+    AttributeValue: 'True'
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Uses.SkillReference__00__
+    QualifierType: EditDescription
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Uses.SkillReference__00__
+    QualifierType: EditDescription
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Uses.SkillReference__00__
+    QualifierType: EditDescription
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Uses.SkillReference__00__
+    QualifierType: EditDescription
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Uses.SkillReference__00__
+    QualifierType: EditDescription
+    AttributeKey: value
+    AttributeValue: 'True'
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Uses.SkillReference__00__
+    QualifierType: PresetIdShort
+    AttributeKey: kind
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Uses.SkillReference__00__
+    QualifierType: PresetIdShort
+    AttributeKey: kind
+    AttributeValue: TemplateQualifier
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Uses.SkillReference__00__
+    QualifierType: PresetIdShort
+    AttributeKey: valueType
+    AttributeValue: xs:string
+  - ChangeOperation: CreateAttr
+    ElementPath: Skills.Skill.Uses.SkillReference__00__
+    QualifierType: PresetIdShort
+    AttributeKey: value
+  - ChangeOperation: UpdateAttr
+    ElementPath: Skills.Skill.Uses.SkillReference__00__
+    QualifierType: PresetIdShort
+    AttributeKey: value
+    AttributeValue: To be filled; normally same as idShort, might be with {00}

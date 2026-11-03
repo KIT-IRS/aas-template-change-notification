@@ -1,0 +1,99 @@
+# Template Change Notification: IDTA 02015 Control Component Type v1.0 -> v2.0 (intent, hand-written)
+#
+# This file states the intent of the revision. `uv run tcn owner complete` expands the rule sections
+# in place and appends the mechanical completion; the result is cctype_1.0_to_2.0.yaml.
+# Groups C1-C5 follow the change log of IDTA 02015-2-0 (Annex B, Table 1); C1 (semanticIds upgraded
+# to /2/0) is stated by the mechanical completion. The rename of Mode to Mode__00__ (C6) and the
+# change of the cardinality vocabulary (C7) are not in the change log; they are taken from the
+# published templates. The published v2.0 declares its cardinalities with the qualifier type
+# SMT/SMT/Cardinality, which no consumer recognises as a cardinality; the chain states it as published.
+
+header:
+  Family: ControlComponentType
+  PreVersion: http://admin-shell.io/idta/SubmodelTemplate/ControlComponentType/1/0
+  PostVersion: https://admin-shell.io/idta/SubmodelTemplate/ControlComponentType/2/0
+  PreTemplate: ressources/Templates/IDTA 02015-1-0_Template_ControlComponentType.json
+  PostTemplate: ressources/Templates/IDTA 02015-2-0_Template_ControlComponentType.json
+  TemplateOwner: Industrial Digital Twin Association (IDTA)
+  TemplateOwnerAddress:
+    Company: Industrial Digital Twin Association e.V.
+    Street: Lyoner Straße 18
+    Zipcode: "60528"
+    CityTown: Frankfurt am Main
+    NationalCode: DE
+  ChangeURI: https://github.com/admin-shell-io/submodel-templates/tree/main/published/Control%20Component%20Type/2/0
+
+sections:
+  - title: "C2: SMC Interface replaces the references in SMC Interfaces; the former reference is its InterfaceReference"
+    origin: hand
+    items:
+      # "The former reference is now inside the SMC (InterfaceReference)": the reference is renamed and
+      # moved into the new collection, so that it keeps its value
+      - {ChangeOperation: UpdateIdShort, ElementPath: Interfaces.Interface, NewIdShort: InterfaceReference}
+      - {ChangeOperation: CreateSME, ElementPath: Interfaces.Interface, SMEType: SubmodelElementCollection}
+      - {ChangeOperation: UpdateParent, ElementPath: Interfaces.InterfaceReference, NewParentPath: Interfaces.Interface}
+      # the repeatability of the reference now constrains the collection; the reference is optional in it
+      - {ChangeOperation: CreateQual, ElementPath: Interfaces.Interface, QualifierType: SMT/SMT/Cardinality}
+      - {ChangeOperation: UpdateAttr, ElementPath: Interfaces.Interface, QualifierType: SMT/SMT/Cardinality, AttributeKey: valueType,
+         AttributeValue: xs:string}
+      - {ChangeOperation: CreateAttr, ElementPath: Interfaces.Interface, QualifierType: SMT/SMT/Cardinality, AttributeKey: value}
+      - {ChangeOperation: Sync, SourceElementPaths: ["Interfaces.Interface.InterfaceReference@Multiplicity#value"],
+         TargetElementPaths: ["Interfaces.Interface@SMT/SMT/Cardinality#value"], TransferFunction: {Kind: Identity}}
+      - {ChangeOperation: CreateQual, ElementPath: Interfaces.Interface.InterfaceReference, QualifierType: SMT/SMT/Cardinality}
+      - {ChangeOperation: UpdateAttr, ElementPath: Interfaces.Interface.InterfaceReference, QualifierType: SMT/SMT/Cardinality,
+         AttributeKey: valueType, AttributeValue: xs:string}
+      - {ChangeOperation: CreateAttr, ElementPath: Interfaces.Interface.InterfaceReference, QualifierType: SMT/SMT/Cardinality,
+         AttributeKey: value}
+      - {ChangeOperation: UpdateAttr, ElementPath: Interfaces.Interface.InterfaceReference, QualifierType: SMT/SMT/Cardinality,
+         AttributeKey: value, AttributeValue: ZeroToOne}
+      - {ChangeOperation: RemoveQual, ElementPath: Interfaces.Interface.InterfaceReference, QualifierType: Multiplicity}
+
+  - title: "C3: SMC Error replaces MLP ErrorCode in SMC Errors; its code is the idShort of the former ErrorCode"
+    origin: hand
+    items:
+      # one Error per former ErrorCode: the MLP is moved into the new collection and removed once its
+      # content is handed over. Its code is its former idShort, which no transfer function can read;
+      # code and description are carried over by the asset maintainer.
+      - {ChangeOperation: UpdateIdShort, ElementPath: Errors.ErrorCode, NewIdShort: FormerErrorCode}
+      - {ChangeOperation: CreateSME, ElementPath: Errors.Error, SMEType: SubmodelElementCollection}
+      - {ChangeOperation: UpdateParent, ElementPath: Errors.FormerErrorCode, NewParentPath: Errors.Error}
+      - {ChangeOperation: CreateSME, ElementPath: Errors.Error.ErrorCode, SMEType: Property}
+      - {ChangeOperation: UpdateAttr, ElementPath: Errors.Error.ErrorCode, AttributeKey: valueType, AttributeValue: xs:string}
+      - {ChangeOperation: CreateAttr, ElementPath: Errors.Error.ErrorCode, AttributeKey: value}
+      - {ChangeOperation: Sync, SourceElementPaths: ["Errors.Error.FormerErrorCode#value"], TargetElementPaths: ["Errors.Error.ErrorCode#value"],
+         TransferFunction: {Kind: Instruction, Text: {en: "Set ErrorCode to the idShort of the former MLP ErrorCode, and take its text as the description of the collection Error."}}}
+      - {ChangeOperation: CreateQual, ElementPath: Errors.Error, QualifierType: SMT/SMT/Cardinality}
+      - {ChangeOperation: UpdateAttr, ElementPath: Errors.Error, QualifierType: SMT/SMT/Cardinality, AttributeKey: valueType,
+         AttributeValue: xs:string}
+      - {ChangeOperation: CreateAttr, ElementPath: Errors.Error, QualifierType: SMT/SMT/Cardinality, AttributeKey: value}
+      - {ChangeOperation: Sync, SourceElementPaths: ["Errors.Error.FormerErrorCode@Multiplicity#value"],
+         TargetElementPaths: ["Errors.Error@SMT/SMT/Cardinality#value"], TransferFunction: {Kind: Identity}}
+      - {ChangeOperation: RemoveQual, ElementPath: Errors.Error.FormerErrorCode, QualifierType: Multiplicity}
+      - {ChangeOperation: CreateQual, ElementPath: Errors.Error, QualifierType: PresetIdShort}
+      - {ChangeOperation: UpdateAttr, ElementPath: Errors.Error, QualifierType: PresetIdShort, AttributeKey: valueType,
+         AttributeValue: xs:string}
+      - {ChangeOperation: CreateAttr, ElementPath: Errors.Error, QualifierType: PresetIdShort, AttributeKey: value}
+      - {ChangeOperation: Sync, SourceElementPaths: ["Errors.Error.FormerErrorCode@PresetIdShort#value"],
+         TargetElementPaths: ["Errors.Error@PresetIdShort#value"], TransferFunction: {Kind: Identity}}
+      - {ChangeOperation: RemoveQual, ElementPath: Errors.Error.FormerErrorCode, QualifierType: PresetIdShort}
+      - {ChangeOperation: RemoveSME, ElementPath: Errors.Error.FormerErrorCode}
+
+  - title: "C4: the Name property is removed from the Skill and Parameter SMCs in favor of freely choosable idShort values"
+    origin: rule
+    rule:
+      RemoveSubtree: [Skills.Skill.Name, Skills.Skill.Parameters.Parameter.Name]
+
+  - title: "C5: the DisplayName MLP is removed from the Skill SMC, as it is now represented in the AAS metamodel"
+    origin: rule
+    rule:
+      RemoveSubtree: [Skills.Skill.DisplayName]
+
+  - title: "C6: Mode is renamed to Mode__00__"
+    origin: hand
+    items:
+      - {ChangeOperation: UpdateIdShort, ElementPath: Skills.Skill.Modes.Mode, NewIdShort: Mode__00__}
+
+  - title: "C7: the cardinality vocabulary changes from Multiplicity to SMT/SMT/Cardinality, as published"
+    origin: rule
+    rule:
+      QualifierTypeRenames: {Multiplicity: SMT/SMT/Cardinality}

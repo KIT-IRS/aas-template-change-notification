@@ -1,0 +1,69 @@
+# Template Change Notification: IDTA 02016 Control Component Instance v1.0 -> v2.0 (intent, hand-written)
+#
+# This file states the intent of the revision. `uv run tcn owner complete` expands the rule sections
+# in place and appends the mechanical completion; the result is ccinstance_1.0_to_2.0.yaml.
+# Groups C1-C5 follow the change log of IDTA 02016-2-0 (Annex B, Table 1); C1 (semanticIds upgraded
+# to /2/0) is stated by the mechanical completion. The rename of Mode to Mode__00__ (C6) and the
+# change of the cardinality vocabulary (C7) are not in the change log; they are taken from the
+# published templates. The change log calls the table "Version 1.1 changes w.r.t Version 1.0".
+
+header:
+  Family: ControlComponentInstance
+  PreVersion: http://admin-shell.io/idta/SubmodelTemplate/ControlComponentInstance/1/0
+  PostVersion: https://admin-shell.io/idta/SubmodelTemplate/ControlComponent/Instance/2/0
+  PreTemplate: ressources/Templates/IDTA 02016-1-0_Template_ControlComponentInstance.json
+  PostTemplate: ressources/Templates/IDTA 02016-2-0_Template_ControlComponentInstance.json
+  TemplateOwner: Industrial Digital Twin Association (IDTA)
+  TemplateOwnerAddress:
+    Company: Industrial Digital Twin Association e.V.
+    Street: Lyoner Straße 18
+    Zipcode: "60528"
+    CityTown: Frankfurt am Main
+    NationalCode: DE
+  ChangeURI: https://github.com/admin-shell-io/submodel-templates/tree/main/published/Control%20Component%20Instance/2/0
+
+sections:
+  - title: "C2: SMC Endpoint replaces the references in SMC Endpoints; the reference becomes its EndpointReference"
+    origin: hand
+    items:
+      # "The endpoint reference in the SMC Endpoint in V2 is typically the same as the reference in
+      # the SMC Endpoints in V1": the reference is renamed and moved into the new collection, so that
+      # it keeps its value
+      - {ChangeOperation: UpdateIdShort, ElementPath: Endpoints.Endpoint, NewIdShort: EndpointReference}
+      - {ChangeOperation: CreateSME, ElementPath: Endpoints.Endpoint, SMEType: SubmodelElementCollection}
+      - {ChangeOperation: UpdateParent, ElementPath: Endpoints.EndpointReference, NewParentPath: Endpoints.Endpoint}
+      # the repeatability of the reference now constrains the collection; the reference occurs once in it
+      - {ChangeOperation: CreateQual, ElementPath: Endpoints.Endpoint, QualifierType: SMT/Cardinality}
+      - {ChangeOperation: UpdateAttr, ElementPath: Endpoints.Endpoint, QualifierType: SMT/Cardinality, AttributeKey: valueType,
+         AttributeValue: xs:string}
+      - {ChangeOperation: CreateAttr, ElementPath: Endpoints.Endpoint, QualifierType: SMT/Cardinality, AttributeKey: value}
+      - {ChangeOperation: Sync, SourceElementPaths: ["Endpoints.Endpoint.EndpointReference@Multiplicity#value"],
+         TargetElementPaths: ["Endpoints.Endpoint@SMT/Cardinality#value"], TransferFunction: {Kind: Identity}}
+      - {ChangeOperation: CreateQual, ElementPath: Endpoints.Endpoint.EndpointReference, QualifierType: SMT/Cardinality}
+      - {ChangeOperation: UpdateAttr, ElementPath: Endpoints.Endpoint.EndpointReference, QualifierType: SMT/Cardinality,
+         AttributeKey: valueType, AttributeValue: xs:string}
+      - {ChangeOperation: CreateAttr, ElementPath: Endpoints.Endpoint.EndpointReference, QualifierType: SMT/Cardinality,
+         AttributeKey: value}
+      - {ChangeOperation: UpdateAttr, ElementPath: Endpoints.Endpoint.EndpointReference, QualifierType: SMT/Cardinality,
+         AttributeKey: value, AttributeValue: One}
+      - {ChangeOperation: RemoveQual, ElementPath: Endpoints.Endpoint.EndpointReference, QualifierType: Multiplicity}
+
+  - title: "C4: the Name property is removed from the Skill and Parameter SMCs in favor of freely choosable idShort values"
+    origin: rule
+    rule:
+      RemoveSubtree: [Skills.Skill.Name, Skills.Skill.Parameters.Parameter.Name]
+
+  - title: "C5: the DisplayName MLP is removed from the Skill SMC, as it is now represented in the AAS metamodel"
+    origin: rule
+    rule:
+      RemoveSubtree: [Skills.Skill.DisplayName]
+
+  - title: "C6: Mode is renamed to Mode__00__"
+    origin: hand
+    items:
+      - {ChangeOperation: UpdateIdShort, ElementPath: Skills.Skill.Modes.Mode, NewIdShort: Mode__00__}
+
+  - title: "C7: the cardinality vocabulary changes from Multiplicity to SMT/Cardinality"
+    origin: rule
+    rule:
+      QualifierTypeRenames: {Multiplicity: SMT/Cardinality}

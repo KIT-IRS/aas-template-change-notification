@@ -1,0 +1,34 @@
+# Submodel instance conforming to IDTA 02016 Control Component Instance v1.0. Illustrative values of an example device.
+template: ressources/Templates/IDTA 02016-1-0_Template_ControlComponentInstance.json
+id: https://example.com/ids/sm/example-device/ControlComponentInstance
+
+repeat:
+  Endpoints.Endpoint: [Endpoint01, Endpoint02]
+  Skills.Skill: [Start, Stop]
+  Skills.Start.Modes.Mode: [Mode01, Mode02]
+  Skills.Start.Parameters.Parameter: [Speed]
+  Skills.Stop.Parameters.Parameter: [Timeout]
+
+values:
+  Type: https://example.com/ids/aas/pump-control-type
+  Endpoints.Endpoint01: opc.tcp://10.0.0.5:4840
+  Endpoints.Endpoint02: https://10.0.0.5/api
+  Skills.Start.Name: Start
+  Skills.Start.DisplayName: {en: Start pump}
+  Skills.Start.Disabled: "false"
+  Skills.Start.Modes.Mode01: AUTO
+  Skills.Start.Modes.Mode02: SEMIAUTO
+  Skills.Start.Parameters.Speed.Name: Speed
+  Skills.Start.Parameters.Speed.Direction: In
+  Skills.Start.Parameters.Speed.Type: xs:double
+  Skills.Stop.Name: Stop
+  Skills.Stop.DisplayName: {en: Stop pump}
+  Skills.Stop.Parameters.Timeout.Name: Timeout
+  Skills.Stop.Parameters.Timeout.Direction: In
+  Skills.Stop.Parameters.Timeout.Type: xs:int
+  Skills.Stop.Disabled: "false"
+  Skills.Stop.Modes.Mode: AUTO
+
+add:
+  "":                   # local extension of the asset maintainer, described by no template
+    - {modelType: Property, idShort: InternalInventoryNumber, valueType: xs:string, value: INV-2024-0815}

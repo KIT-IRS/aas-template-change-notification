@@ -30,9 +30,11 @@ Created elements
 Template-level constructs and instance data
   T1  Qualifiers are template constructs: every item on a qualifier, or a Sync over qualifier
       attributes, is elided.
-  T2  Values (value, valueId, min, max) are instance data: UpdateAttr and RemoveAttr of them are
-      elided, so template example values never overwrite instance values. Instance values are
-      carried over by moving their element (UpdateParent) or by Sync.
+  T2  Values are instance data: the attributes that hold the value of an element of its type
+      (tcn.core.metamodel.instance_data, e.g. value and valueId, min and max, the contentType of a
+      File, first and second of a relationship). UpdateAttr and RemoveAttr of them are elided, so
+      template example values never overwrite instance values. Instance values are carried over
+      by moving their element (UpdateParent) or by Sync.
   T3  The identity of the instance (root attributes id, kind and administration, which declares the
       template the instance conforms to) is not taken over from the template.
   T4  Attribute items are elided for placeholder realisations (instance-defined metadata).
@@ -46,10 +48,14 @@ Containers with instance content
       not describe) follows the Hollow-Out pattern: a container of the same type, name and
       attributes is created at the target, the children are moved into it (recursively), and the
       emptied original is removed. Children, and thereby their values, keep their identity.
+  H2  A chain may itself rebuild a container: create its counterpart (origin: the container), move
+      the children the template describes, remove the container. Children the template does not
+      describe are left in the realisation; before it is removed, they are moved into the
+      counterpart created for it, as in H1. Without a counterpart, the removal is refused.
 
 Values
-  V1  Every instance value the chain removes without carrying it over automatically (by moving its
-      element, or by an executable Sync) is reported as removed, at its path before the change.
+  V1  Every instance value (T2) the chain removes without carrying it over automatically (by moving
+      its element, or by an executable Sync) is reported as removed, at its path before the change.
   V2  Every instance value an executable Sync carries over is reported as transferred, with the
       value before and after.
 
@@ -57,6 +63,10 @@ Names
   N1  If moving a realisation would collide with a sibling's idShort, it is first renamed to
       <idShort>__<n>; once its template name is free again, it is renamed back. These renames are
       inserted by the resolution and reported as such.
+  N2  An entry of a SubmodelElementList is addressed by its index. An entry the resolution creates
+      in a list, or moves into one, carries no idShort, even where the template names it. An entry
+      that leaves a list takes the name it is to carry before it moves (N1); without one, the chain
+      is refused.
 """
 
 from __future__ import annotations
@@ -66,14 +76,14 @@ from typing import Any
 
 from tcn.core import operators as ops
 from tcn.core.addressing import Item, split_attribute_ref
-from tcn.core.guarded import ACC, REJ, Unbound, guarded
+from tcn.core.guarded import ACC, REJ, Unbound, apply_in_place
 from tcn.core.matching import CARDINALITY_TYPES, match
 from tcn.core.matching import card as _card
 from tcn.core.matching import placeholder as _placeholder
+from tcn.core.metamodel import instance_data
 from tcn.core.model import LAMBDA, Id, Template
 
 OPTIONAL = {"ZeroToOne", "ZeroToMany"}
-VALUE_KEYS = {"value", "valueId", "min", "max"}
 DATA_ELEMENTS = {"Property", "MultiLanguageProperty", "Range", "File", "Blob", "ReferenceElement"}
 ROOT_IDENTITY = {"id", "kind", "administration"}
 
@@ -137,7 +147,7 @@ def _analyse(items: list[Item], pre: Template) -> _Analysis:
                 target = T.E[target].parent  # the nearest created element receives the content
             if target is not None:
                 moved.setdefault(target, set()).add(source)
-        T, outcome = guarded(op, T)
+        outcome = apply_in_place(op, T)  # T is a working copy of pre
         assert outcome.status == ACC, f"chain is rejected on its own template: {item}"
         for _, x in op.mod(T) if isinstance(op, (ops.UpdateAttr, ops.Sync)) else ():
             if x in T.A and T.A[x].name == "value" and T.A[x].owner in T.Q \
@@ -187,7 +197,7 @@ class _Resolver:
             op = item.bind(self.I)
         except Unbound as u:
             raise Refused(f"{u.code}: {item}")
-        self.I, outcome = guarded(op, self.I)
+        outcome = apply_in_place(op, self.I)  # self.I is a working copy of the instance
         if outcome.status == REJ:
             raise Refused(f"{outcome.reason}: {operation} {path}")
         self.out.append(item)
@@ -248,7 +258,7 @@ class _Resolver:
             self.note("elided", f"{item.operation}: qualifier (template construct)")
         else:
             getattr(self, "_" + type(op).__name__)(op, item)
-        self.T, _ = guarded(op, self.T)
+        apply_in_place(op, self.T)  # self.T is a working copy of pre
 
     def _CreateSME(self, op: ops.CreateSME, item: Item) -> None:
         e = self.T.next_ids(1)[0]
@@ -282,7 +292,7 @@ class _Resolver:
             self.R[e].append(r)
             self.key[r] = anchor
             self.named.add(r)
-            if name != op.s:
+            if name != op.s and name is not None:  # an entry of a list is addressed by its index (N2)
                 self.desired[r] = op.s
         self.note("expanded", f"CreateSME {item.element_path}: {len(pairs)}")
         if pairs and not sourced and op.t in DATA_ELEMENTS:
@@ -292,7 +302,7 @@ class _Resolver:
         return self.T.A[a].owner, self.T.A[a].name
 
     def _attribute_item(self, owner: Id, name: str, item: Item, make) -> None:
-        if name in VALUE_KEYS and item.operation != "CreateAttr":
+        if name in instance_data(self.T.tau(owner)) and item.operation != "CreateAttr":
             self.note("elided", f"{item.operation} {item.element_path}#{name}: instance data")
             return
         if owner == self.T.root and name in ROOT_IDENTITY:
@@ -363,6 +373,11 @@ class _Resolver:
         in_list = self.I.E[target].type == "SubmodelElementList"
         if self.I.children(r):
             return self._hollow_out(r, target)
+        if name is None and not in_list:  # an entry leaving a list takes its name first (N2)
+            self._restore_name(r)
+            name = self.I.E[r].id_short
+            if name is None:
+                raise Refused(f"IDSHORT_REQUIRED: {self.I.path(r)} leaves its list without a name")
         if name is not None and not in_list:
             free = self._free_name(target, name)
             if free != name:
@@ -398,17 +413,31 @@ class _Resolver:
                 s.add(new)
         if r in self.desired:
             self.desired[new] = self.desired.pop(r)
-        if el.id_short != self.I.E[new].id_short:
+        if el.id_short != self.I.E[new].id_short and self.I.E[target].type != "SubmodelElementList":  # N2
             self.desired.setdefault(new, el.id_short)
         self._restore_name(new)
         return new
 
+    def _counterpart(self, t: Id, r: Id) -> Id | None:
+        """The realisation the chain created in place of realisation r of template element t: one of
+        an element whose origin is t, created for r (H2)."""
+        anchor = self.key.get(r, r)
+        return next((n for e, rs in self.R.items() if self.origin.get(e) == t
+                     for n in rs if n in self.I.E and self.key.get(n) == anchor), None)
+
     def _RemoveSME(self, op: ops.RemoveSME, item: Item) -> None:
         for r in reversed(self.realisations(op.e, "RemoveSME")):
-            a = self.I.attr(r, "value")
-            if a is not None and self.I.A[a].value not in (LAMBDA, "", []) and a not in self.transferred:  # V1
-                where = self.I0.path(r) if r in self.I0.E else self.I.path(r)
-                self.note("removed", f"{self.I.A[a].value}", where)
+            if self.I.children(r) and (new := self._counterpart(op.e, r)) is not None:  # H2
+                for c in list(self.I.children(r)):
+                    self.note("inserted", f"UpdateParent {self.I.path(c)}: content the template does not "
+                                          f"describe moves with its container")
+                    self._move(c, new)
+            where = self.I0.path(r) if r in self.I0.E else self.I.path(r)
+            for key in sorted(instance_data(self.I.E[r].type)):  # V1
+                a = self.I.attr(r, key)
+                if a is not None and self.I.A[a].value not in (LAMBDA, "", []) and a not in self.transferred:
+                    value = self.I.A[a].value
+                    self.note("removed", f"{value}" if key == "value" else f"{key}: {value}", where)
             self.emit("RemoveSME", self.I.path(r))
 
     def _Sync(self, op: ops.Sync, item: Item) -> None:

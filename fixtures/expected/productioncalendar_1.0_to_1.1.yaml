@@ -1,0 +1,21 @@
+# Expected outcome of applying productioncalendar_1.0_to_1.1 to fixtures/productioncalendar_1.0.yaml.
+# Derived by hand before running the chain: the bug-fix release corrects attributes of the template
+# only (a blank in a semanticId, qualifier kind, language strings), so the instance keeps every value.
+chain: chains/productioncalendar_1.0_to_1.1.yaml
+instance: fixtures/productioncalendar_1.0.yaml
+
+retained:
+  calendar: /aasx/files/calendar-2026.ics
+  "specificationExtensionVariables[0].variableName": ShiftModel
+  "specificationExtensionVariables[0].variableSpecification": /aasx/files/shift-model.json
+  "specificationExtensionVariables[1].variableName": PlantHolidays
+  "specificationExtensionVariables[2].variableSpecification": /aasx/files/maintenance-windows.json
+  InternalInventoryNumber: INV-2024-0815
+
+control:
+  InternalInventoryNumber: InternalInventoryNumber
+
+manual: []
+conforms: true
+violations: []
+removed: []

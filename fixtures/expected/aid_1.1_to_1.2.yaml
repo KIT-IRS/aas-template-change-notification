@@ -1,0 +1,44 @@
+# Expected outcome of applying aid_1.1_to_1.2 to fixtures/aid_1.1.yaml.
+# Derived by hand before running the chain, from the change log of IDTA 02017 v1.2 (Annex G) and the
+# published templates: no element the instance realises changes structurally, so every value is kept.
+# v1.2 declares every protocol binding OneToMany, whereas its specification declares one Interface{00}
+# with 1..*: against the published template, an instance without MODBUS, OPC UA, BACnet, IO-Link,
+# SNMP and CAN interfaces does not conform.
+# Observed when run: the resolution already refuses the chain (SEMANTIC_MATCH_NONE, rule E2: the
+# interfaces are mandatory as last stated), so the instance never reaches the conformance check; the
+# case is an expected failure (validation/test_v10_aid_retention.py). The expectation is kept as derived.
+chain: chains/aid_1.1_to_1.2.yaml
+instance: fixtures/aid_1.1.yaml
+
+retained:
+  InterfaceHTTP.title: Device REST API
+  InterfaceHTTP.EndpointMetadata.base: https://10.0.0.5/api
+  "InterfaceHTTP.EndpointMetadata.security[0]": {type: ExternalReference, keys: [{type: GlobalReference, value: "https://example.com/ids/sm/example-device/AID#nosec_sc"}]}
+  InterfaceHTTP.EndpointMetadata.securityDefinitions.nosec_sc.scheme: nosec
+  InterfaceHTTP.EndpointMetadata.securityDefinitions.oauth2_sc.flow: client
+  InterfaceHTTP.InteractionMetadata.properties.status.forms.href: /status
+  "InterfaceHTTP.InteractionMetadata.properties.status.forms.security[0]": {type: ExternalReference, keys: [{type: GlobalReference, value: "https://example.com/ids/sm/example-device/AID#nosec_sc"}]}
+  InterfaceHTTP.InteractionMetadata.properties.status.forms.htv_methodName: GET
+  "InterfaceHTTP.InteractionMetadata.properties.status.forms.htv_headers[0].htv_fieldName": Accept
+  "InterfaceHTTP.InteractionMetadata.properties.status.forms.htv_headers[0].htv_fieldValue": application/json
+  InterfaceMQTT.title: Device telemetry
+  InterfaceMQTT.EndpointMetadata.base: mqtt://10.0.0.5:1883
+  "InterfaceMQTT.EndpointMetadata.security[0]": {type: ExternalReference, keys: [{type: GlobalReference, value: "https://example.com/ids/sm/example-device/AID#nosec_sc"}]}
+  InterfaceMQTT.InteractionMetadata.properties.temperature.unit: Cel
+  InterfaceMQTT.InteractionMetadata.properties.temperature.forms.mqv_qos: "1"
+  InternalInventoryNumber: INV-2024-0815
+
+control:
+  InternalInventoryNumber: InternalInventoryNumber
+
+manual: []
+conforms: false
+violations:
+  - [MISSING, InterfaceTemplateForMODBUS]
+  - [MISSING, InterfaceTemplateForOPCUA]
+  - [MISSING, InterfaceTemplateForBacnet]
+  - [MISSING, InterfaceTemplateForIOLINK_OVER_PROFINET_REST]
+  - [MISSING, InterfaceTemplateForSNMP]
+  - [MISSING, InterfaceTemplateForCAN]
+
+removed: []

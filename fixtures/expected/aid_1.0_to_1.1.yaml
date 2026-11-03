@@ -1,0 +1,36 @@
+# Expected outcome of applying aid_1.0_to_1.1 to fixtures/aid_1.0.yaml.
+# Derived by hand before running the chain, from the change log of IDTA 02017-1-1 (Annex F) and the
+# published templates. The interfaces are told apart by their protocol. The entries of the lists
+# security and htv_headers are rebuilt (D1, D2): in the instance they stay at their index and keep
+# their values. scopes of oauth2_sc becomes a list without a template for its entries: its value is
+# reported as removed. The bindings new in v1.1 are optional and not realised.
+chain: chains/aid_1.0_to_1.1.yaml
+instance: fixtures/aid_1.0.yaml
+
+retained:
+  InterfaceHTTP.title: Device REST API
+  InterfaceHTTP.EndpointMetadata.base: https://10.0.0.5/api
+  "InterfaceHTTP.EndpointMetadata.security[0]": {type: ExternalReference, keys: [{type: GlobalReference, value: "https://example.com/ids/sm/example-device/AID#nosec_sc"}]}
+  InterfaceHTTP.EndpointMetadata.securityDefinitions.nosec_sc.scheme: nosec
+  InterfaceHTTP.EndpointMetadata.securityDefinitions.oauth2_sc.flow: client
+  InterfaceHTTP.InteractionMetadata.properties.status.forms.href: /status
+  "InterfaceHTTP.InteractionMetadata.properties.status.forms.security[0]": {type: ExternalReference, keys: [{type: GlobalReference, value: "https://example.com/ids/sm/example-device/AID#nosec_sc"}]}
+  InterfaceHTTP.InteractionMetadata.properties.status.forms.htv_methodName: GET
+  "InterfaceHTTP.InteractionMetadata.properties.status.forms.htv_headers[0].htv_fieldName": Accept
+  "InterfaceHTTP.InteractionMetadata.properties.status.forms.htv_headers[0].htv_fieldValue": application/json
+  InterfaceMQTT.title: Device telemetry
+  InterfaceMQTT.EndpointMetadata.base: mqtt://10.0.0.5:1883
+  "InterfaceMQTT.EndpointMetadata.security[0]": {type: ExternalReference, keys: [{type: GlobalReference, value: "https://example.com/ids/sm/example-device/AID#nosec_sc"}]}
+  InterfaceMQTT.InteractionMetadata.properties.temperature.unit: Cel
+  InterfaceMQTT.InteractionMetadata.properties.temperature.forms.mqv_qos: "1"
+  InternalInventoryNumber: INV-2024-0815
+
+control:
+  InternalInventoryNumber: InternalInventoryNumber
+
+manual: []
+conforms: true
+violations: []
+
+removed:
+  - InterfaceHTTP.EndpointMetadata.securityDefinitions.oauth2_sc.scopes
