@@ -162,8 +162,8 @@ def application_view(path: str) -> ApplicationView:
     view = ApplicationView(str(path), exp.get("chains") or [exp["chain"]], exp["instance"])
     try:
         _, chain, instance, T, notes = application.run(path)
-    except AssertionError as e:  # refused: the view shows the reason
-        view.error = str(e) or "refused"
+    except Exception as e:  # noqa: BLE001 - report run failures without aborting report generation
+        view.error = f"{type(e).__name__}: {e}" if str(e) else type(e).__name__
         return view
 
     def value(template, p):
